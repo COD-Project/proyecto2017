@@ -48,7 +48,35 @@
   margin-left: -15px;
 }
 
-/* Here define cols */
+/* Col Definitions */
+
+.col-2, .col-4, .col-8, .col-12 {
+  position: relative;
+  width: 100%;
+  min-height: 1px;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.col-2 {
+  flex: 0 0 16.666666667%;
+  max-width: 16.666666667%;
+}
+
+.col-4 {
+  flex: 0 0 33.333333333%;
+  max-width: 33.333333333%;
+}
+
+.col-8 {
+  flex: 0 0 66.666666667%;
+  max-width: 66.666666667%;
+}
+
+.col-12 {
+  flex: 0 0 100%;
+  max-width: 100%;
+}
 
 .jumbotron {
   padding: 2rem 1rem;
