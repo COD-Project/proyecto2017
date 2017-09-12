@@ -89,6 +89,21 @@ small, .small {
   font-weight: normal;
 }
 
+footer, .footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  background-color: #4285F4;
+  color: #fff;
+  text-align: center;
+}
+
+footer, .footer a {
+  color: #fff;
+}
+
 .img-fluid {
   max-width: 100%;
   height: auto;
