@@ -110,15 +110,20 @@ footer, .footer a {
 }
 
 .btn {
-
+  padding: 8px 20px;
+  border: 0 none;
+  border-radius: 7%;
+  font-weight: 550;
+  letter-spacing: 1px;
+  background-color: #4285F4;
 }
 
 .btn:focus {
-
+  background-color: #2e6acc;
 }
 
 .btn:hover {
-
+  background-color: #2e6acc;
 }
 
 /* Here define colour rules */
