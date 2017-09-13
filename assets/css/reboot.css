@@ -89,7 +89,7 @@ small, .small {
   font-weight: normal;
 }
 
-footer, .footer {
+footer.footer {
   position: absolute;
   right: 0;
   bottom: 0;
@@ -100,7 +100,7 @@ footer, .footer {
   text-align: center;
 }
 
-footer, .footer a {
+footer.footer a {
   color: #fff;
 }
 
@@ -164,4 +164,18 @@ footer, .footer a {
   font-size: 24px;
   line-height: 1.33;
   border-radius: 35px;
+}
+
+.card {
+  position: relative;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.25rem;
 }
