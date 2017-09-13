@@ -15,7 +15,6 @@
   background-color: #E4E0E0;
 }
 
-
 .logo {
 	position: fixed;
 	width: 7em;
@@ -51,14 +50,31 @@
 }
 
 .btn {
-  background-color: #4285F4;
   color: #fff;
+  background-color: #62a8ea;
+  border-color: #62a8ea;
 }
 
-.btn:focus {
-  background-color: #2e6acc;
+.btn:hover, .btn:focus{
+  background-color: #358fe4;
+  border-color: #2c8ae3;
 }
 
-.btn:hover {
-  background-color: #2e6acc;
+.btn[disabled], .btn:disabled {
+  opacity: 0.65;
+  pointer-events: none;
+}
+
+a {
+  color: #62a8ea;
+  text-decoration: none;
+}
+
+a {
+  background-color: transparent;
+}
+
+ol, ul {
+  margin-top: 0;
+  margin-bottom: 11px;
 }
