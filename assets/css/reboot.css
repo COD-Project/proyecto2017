@@ -110,20 +110,30 @@ footer, .footer a {
 }
 
 .btn {
-  padding: 8px 20px;
-  border: 0 none;
-  border-radius: 7%;
-  font-weight: 550;
-  letter-spacing: 1px;
-  background-color: #4285F4;
+  display: inline-block;
+  font-weight: normal;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  border: 1px solid transparent;
+  padding: 0.5rem 0.75rem;
+  font-size: 1rem;
+  line-height: 1.25;
+  border-radius: 0.25rem;
+  transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
-.btn:focus {
-  background-color: #2e6acc;
+.btn:focus, .btn:hover {
+  text-decoration: none;
 }
 
-.btn:hover {
-  background-color: #2e6acc;
+.btn:focus, .btn.focus {
+  outline: 0;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
 }
 
 /* Here define colour rules */

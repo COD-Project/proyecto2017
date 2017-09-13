@@ -49,3 +49,16 @@
     -o-transform: scale(1.1, 1.1);
     -ms-transform: scale(1.1, 1.1);
 }
+
+.btn {
+  background-color: #4285F4;
+  color: #fff;
+}
+
+.btn:focus {
+  background-color: #2e6acc;
+}
+
+.btn:hover {
+  background-color: #2e6acc;
+}
