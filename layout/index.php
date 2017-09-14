@@ -8,11 +8,11 @@
     <meta name="keywords"content="Hospital Ricardo Gutiérrez">
     <meta name="description" content="Plataforma web para el Hospital Gutiérrez">
     <meta name="robots" content="index,follow">
-    <meta property="og:url" content="https://grupoXX.proyecto2017.linti.unlp.edu.ar/" />
+    <meta property="og:url" content="https://grupo5.proyecto2017.linti.unlp.edu.ar/" />
     <meta property="og:title" content="Hospital Dr. Ricardo Gutiérrez" />
     <meta property="og:site_name" content="Hospital Gutiérrez" />
     <meta property="og:description" content="Plataforma web para el Hospital Gutiérrez" />
-    <meta property="og:image" content="https://grupoXX.proyecto2017.linti.unlp.edu.ar/assets/images/icon.png" />
+    <meta property="og:image" content="https://grupo5.proyecto2017.linti.unlp.edu.ar/assets/images/icon.png" />
 
     <base href="./../">
 
