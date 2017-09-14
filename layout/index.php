@@ -21,24 +21,26 @@
     <link rel="stylesheet" href="assets/css/main.css">
   </head>
   <body>
-    <nav class="navbar">
-      <a href="#" class="navbar-brand">
-        <img class="img-fluid logo zoomin" src="assets/images/logo-2.png" alt="Logo" title="Logo">
-        <h3 class="h3-fluid">Inicio</h3>
-      </a>
-      <div class="">
-        <form class="form-inline" action="#" method="get">
-          <div class="row">
-            <div class="col-8">
-              <input type="text" name="search" value="" alt="Introduzca su busqueda" title="Introduzca su busqueda" placeholder="Introduzca su busqueda">
-            </div>
-            <div class="col-4">
-              <button class="btn" type="submit" alt="Buscar" title="Buscar">Buscar</button>
+    <header>
+      <nav class="navbar fixed">
+          <div class="container">
+            <a class="brand" href="#">
+              <img class="logo zoomin" src="assets/images/logo-2.png" alt="Logo" title="Logo">
+              Hospital Guitiérrez
+            </a>
+            <div class="nav-group">
+              <form class="form-inline" action="#" method="GET">
+                <div class="input-group">
+                  <input type="text" name="search" value="" alt="Introduzca su busqueda" title="Introduzca su busqueda" placeholder="Introduzca su busqueda">
+                </div>
+              </form>
+              <ul class="nav-items">
+                  <li><a href="./login">Login</a></li>
+              </ul>
             </div>
           </div>
-        </form>
-      </div>
-    </nav>
+      </nav>
+    </header>
 
     <!--  -->
 

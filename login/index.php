@@ -22,21 +22,38 @@
     <link rel="stylesheet" href="assets/css/login.css">
   </head>
   <body>
-    <div class="">
-      <section class="login">
-        <form action="#">
-          Usuario:<br>
-          <input type="text" name="username" value="" alt="Ingrese su usuario" title="Ingrese su usuario" placeholder="Ingrese su usuario" required>
-          <br>
-          Contraseña:<br>
-          <input type="password" name="password" value="" alt="Ingrese su contraseña" title="Ingrese su contraseña" placeholder="Ingrese su contraseña"  required>
-          <br><br>
-          <button class="btn" type="submit" alt="Aceptar" title="Aceptar">Aceptar</button>
+    <div class="form-container text-center">
+      <div class="wrap">
+        <div class="brand">
+          <img class="brand-img" src="assets/images/logo.png" height="36px" alt="Hospital" />
+          <h2 class="brand-text font-size-18">Iniciar Sesión</h2>
+        </div>
+        <form action="#" method="post">
+          <div class="form-group">
+              <div class="input-group">
+                  <i class="prefix">U</i>
+                  <input class="full-width" type="text" placeholder="Nombre de usuario" value="">
+              </div>
+          </div>
+          <div class="form-group">
+              <div class="input-group">
+                  <i class="prefix">P</i>
+                  <input class="full-width" type="password" placeholder="Contraseña" value="">
+              </div>
+          </div>
+          <div class="form-group">
+              <div class="checkbox">
+                  <input type="checkbox" id="inputCheckbox" name="remember">
+                  <label for="inputCheckbox">Remember me</label>
+              </div>
+              <a class="text-center" href="forgot-password.html">Olvidaste la contraseña?</a>
+          </div>
+          <button type="submit" class="btn">Ingresar</button>
         </form>
-      </section>
+      </div>
     </div>
 
-    <footer>
+    <footer class="text-center" style="color: #4285F4; margin-top: 45px;">
       <p>Hospital de Niños Ricardo Gutierrez.</p>
       <p>Proyecto de Software &copy; 2017</p>
     </footer>

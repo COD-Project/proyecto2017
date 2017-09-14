@@ -1,50 +1,58 @@
-html, body{
-    height: 100vh;
-    width: 100vw;
+html, body {
+  height: 100vh;
+  width: 100vw;
 }
 
-
-body{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    color: #fafafa;
-    font-weight: 300;
-    font-size: 14px;
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-weight: 300;
+  font-size: 14px;
 }
 
-.wrapper{
-    padding: 30px;
-    display: inline-block;
-    vertical-align: middle;
+.wrap {
+  max-width: 400px;
+  width: 100%;
+  margin: auto;
+  padding: 50px 40px 40px;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  box-shadow: 0px 0px 3px gray;
+  color: #76838f;
 }
 
-.login{
-    padding: 50px 40px 40px;
-    display: flex;
-    flex-direction: column;
-    max-width: 400px;
-    width: 100%;
-    margin-bottom: 45px;
-    background: #fff;
-    color: #76838f;
-    border-radius: 4px;
-    box-shadow: 0 1px 4px rgba(0,0,0,.25);
+.form_container {
+  width: 100%;
+  margin: auto;
 }
 
-.login form{
-    margin: 45px 0 30px;
+.form-container form {
+  margin: 45px 0 30px;
 }
 
-.login .brand{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.form_container form .input-group input[type="text"] {
+  font-family: "Roboto";
+  font-size: 16px;
+  color: #303F9F;
+  width: 100%;
+  outline: none;
+  padding: 15px;
+  background: none;
+  border: none;
+  border-bottom: 2px solid #BBDEFB;
 }
 
-.login .brand h2 {
-    margin: 8px 0 0;
-    font-size: 20px;
-    font-weight: 300;
+.form-container .brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form-container .brand h2 {
+  margin: 8px 0 0;
+  font-size: 20px;
+  font-weight: 300;
 }

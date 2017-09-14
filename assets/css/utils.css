@@ -25,3 +25,19 @@
 .text-center {
   text-align: center !important;
 }
+
+.clearfix {
+  clear: both!important;
+}
+
+.full-width {
+  width: 100%!important;
+}
+
+.fixed {
+  position: fixed!important;
+}
+
+.circle {
+  border-radius: 100% !important;
+}
