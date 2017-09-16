@@ -16,6 +16,8 @@
 
     <title>Hospital Gutiérrez</title>
 
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,200,300,400,600" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/main.css">
   </head>
   <body>
@@ -30,6 +32,7 @@
             <div class="nav-group">
               <form class="form-inline" action="#" method="GET">
                 <div class="input-group">
+                  <i class="suffix material-icons">search</i>
                   <input type="text" name="search" value="" alt="Introduzca su busqueda" title="Introduzca su busqueda" placeholder="Introduzca su busqueda">
                 </div>
               </form>

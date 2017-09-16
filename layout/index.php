@@ -18,6 +18,8 @@
 
     <title>Hospital Gutiérrez</title>
 
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,200,300,400,600" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/main.css">
   </head>
   <body>

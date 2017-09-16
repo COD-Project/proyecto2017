@@ -18,6 +18,8 @@
 
     <title>Hospital Gutiérrez::Ingresar</title>
 
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,200,300,400,600" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/main.css">
     <link rel="stylesheet" href="assets/css/login.css">
   </head>
@@ -31,13 +33,13 @@
         <form action="#" method="post">
           <div class="form-group">
               <div class="input-group">
-                  <i class="prefix">U</i>
-                  <input class="full-width" type="text" placeholder="Nombre de usuario" value="">
+                  <i class="prefix material-icons">mail</i>
+                  <input class="full-width" type="email" placeholder="Ingrese email" value="">
               </div>
           </div>
           <div class="form-group">
               <div class="input-group">
-                  <i class="prefix">P</i>
+                  <i class="prefix material-icons">lock</i>
                   <input class="full-width" type="password" placeholder="Contraseña" value="">
               </div>
           </div>
