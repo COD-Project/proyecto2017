@@ -21,16 +21,25 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,200,300,400,600" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/select.css">
   </head>
   <body>
     <header>
       <nav class="navbar">
           <div class="container">
-            <a class="brand" href="#">
+            <a class="brand" href="#" alt="Inicio" title="Inicio">
               <img class="logo zoomin" src="assets/images/logo-2.png" alt="Logo" title="Logo">
               <p>Hospital Gutiérrez</p>
             </a>
             <div class="separator"></div>
+            <div>
+              <select class="styled-select blue semi-square" alt="Menu de Administración" title=""Menu de Administración"">
+                <option selected disabled>Menu</option>
+                <option value="" alt="Menu de Usuarios" title="Menu de Usuarios">Usuarios</option>
+                <option value="" alt="Menu de Roles" title="Menu de Roles">Roles</option>
+                <option value="" alt="Menu de Permisos" title="Menu de Permisos">Permisos</option>
+              </select>
+            </div>
             <div class="nav-group">
               <form class="form-inline" action="#" method="GET">
                 <div class="input-group">
@@ -38,11 +47,6 @@
                   <input type="text" name="search" value="" alt="Introduzca su busqueda" title="Introduzca su busqueda" placeholder="Introduzca su busqueda">
                 </div>
               </form>
-              <ul class="nav-items">
-                  <li><a href="#">Item 1</a></li>
-                  <li><a href="#">Item 2</a></li>
-                  <li><a href="#">Item 3</a></li>
-              </ul>
             </div>
           </div>
       </nav>
