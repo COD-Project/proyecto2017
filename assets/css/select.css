@@ -1,0 +1,19 @@
+.styled-select {
+   height: 25px;
+   overflow: hidden;
+   width: auto;
+   margin-right: 3em;
+   font-family: "Roboto";
+   font-size: 16px;
+   color: white;
+}
+
+.semi-square {
+   -webkit-border-radius: 4px;
+   -moz-border-radius: 4px;
+   border-radius: 4px;
+}
+
+.blue {
+  background-color: #4285F4;
+}
