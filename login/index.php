@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -34,13 +34,13 @@
           <div class="form-group">
               <div class="input-group">
                   <i class="prefix material-icons">mail</i>
-                  <input class="full-width" type="email" placeholder="Ingrese email" value="" title="Ingrese email" required>
+                  <input for="email" id="email" class="full-width" type="email" placeholder="Ingrese email" value="" title="Ingrese email" required>
               </div>
           </div>
           <div class="form-group">
               <div class="input-group">
                   <i class="prefix material-icons">lock</i>
-                  <input class="full-width" type="password" placeholder="Contraseña" value="" title="Ingrese contraseña" required>
+                  <input for="password" id="password" class="full-width" type="password" placeholder="Contraseña" value="" title="Ingrese contraseña" required>
               </div>
           </div>
           <div class="form-group">
