@@ -30,7 +30,7 @@
           <img class="brand-img" src="assets/images/logo.png" height="36px" alt="Hospital" />
           <h2 class="brand-text font-size-18">Iniciar Sesión</h2>
         </div>
-        <form action="#" method="post">
+        <form action="dashboard" method="post">
           <div class="form-group">
               <div class="input-group">
                   <i class="prefix material-icons">mail</i>
