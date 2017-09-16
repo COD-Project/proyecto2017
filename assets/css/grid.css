@@ -38,6 +38,11 @@
   padding-left: 15px;
 }
 
+.separator {
+  display: flex;
+  flex: 10 0 auto;
+}
+
 .row {
   display: -ms-flexbox;
   display: flex;

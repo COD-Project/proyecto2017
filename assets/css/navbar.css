@@ -24,81 +24,87 @@
 }
 
 .navbar .container-fluid {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: stretch;
-    justify-content: space-between;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  justify-content: space-between;
 }
 
 .navbar .brand {
-    display: flex;
-    margin-right: 1rem;
-    font-size: 1.25rem;
-    line-height: inherit;
-    white-space: nowrap;
-    justify-content: center;
-    align-items: center;
-    color: #404040;
-    text-decoration: none;
+  display: flex;
+  margin-right: 1rem;
+  font-size: 1.25rem;
+  line-height: inherit;
+  white-space: nowrap;
+  justify-content: center;
+  align-items: center;
+  color: #404040;
+  text-decoration: none;
 }
 
 .navbar .brand:hover {
-    color: #333;
+  color: #333;
 }
 
 .navbar .brand img {
-    max-height: 42px;
+  max-height: 42px;
 }
 
-.navbar .separator {
-    display: flex;
-    flex: 10 0 auto;
+.navbar .brand p {
+  padding: auto;
+  margin: auto auto auto 20px;
 }
 
-.navbar .nav-group{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    line-height: 66px;
+@media(max-width: 575px) {
+  .navbar .brand p {
+    display: none;
+  }
+}
+
+.navbar .nav-group {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  line-height: 66px;
 }
 
 .navbar .nav-items {
-    list-style: none;
-    display: flex;
-    flex-direction: row;
-    margin: 0 1rem;
-    padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  margin: 0 1rem;
+  padding: 0;
 }
 
 .navbar ul.nav-items li {
-    display: flex;
-    background-color: #fff;
+  display: flex;
+  background-color: #fff;
 }
 
-.navbar ul.nav-items li > a {
-    color: #333;
-    text-decoration: none;
+.navbar ul.nav-items li>a {
+  color: #333;
+  text-decoration: none;
 }
 
-.navbar ul.nav-items > li > a {
-    line-height: 64px;
-    border-bottom: 2px solid transparent;
-    padding: 0 20px;
-    margin: 0;
+.navbar ul.nav-items>li>a {
+  line-height: 64px;
+  border-bottom: 2px solid transparent;
+  padding: 0 20px;
+  margin: 0;
 }
 
-.navbar ul.nav-items li:hover > a {
-    color: #62a8ea;
+.navbar ul.nav-items li:hover>a {
+  color: #62a8ea;
 }
 
-.navbar ul.nav-items > li:hover > a {
-    border-color: #62a8ea;
+.navbar ul.nav-items>li:hover>a {
+  border-color: #62a8ea;
 }
 
-@media(max-width: 575px){
-    .navbar{
-        flex-direction: column;
-        align-items: stretch;
-    }
+@media(max-width: 575px) {
+  .navbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
 }

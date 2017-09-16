@@ -28,7 +28,7 @@
           <div class="container">
             <a class="brand" href="#">
               <img class="logo zoomin" src="assets/images/logo-2.png" alt="Logo" title="Logo">
-              Hospital Guitiérrez
+              <p>Hospital Gutiérrez</p>
             </a>
             <div class="nav-group">
               <form class="form-inline" action="#" method="GET">
