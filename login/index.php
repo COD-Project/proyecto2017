@@ -34,19 +34,19 @@
           <div class="form-group">
               <div class="input-group">
                   <i class="prefix material-icons">mail</i>
-                  <input class="full-width" type="email" placeholder="Ingrese email" value="">
+                  <input class="full-width" type="email" placeholder="Ingrese email" value="" required>
               </div>
           </div>
           <div class="form-group">
               <div class="input-group">
                   <i class="prefix material-icons">lock</i>
-                  <input class="full-width" type="password" placeholder="Contraseña" value="">
+                  <input class="full-width" type="password" placeholder="Contraseña" value="" required>
               </div>
           </div>
           <div class="form-group">
               <div class="checkbox">
                   <input type="checkbox" id="inputCheckbox" name="remember">
-                  <label for="inputCheckbox">Remember me</label>
+                  <label for="inputCheckbox">Recordarme</label>
               </div>
               <a class="text-center" href="forgot-password.html">Olvidaste la contraseña?</a>
           </div>
