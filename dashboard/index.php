@@ -47,6 +47,10 @@
                   <input type="text" name="search" value="" alt="Introduzca su busqueda" title="Introduzca su busqueda" placeholder="Introduzca su busqueda">
                 </div>
               </form>
+              <ul class="nav-items">
+                  <li>Admin@admin.com</li>
+                  <li><a href="./" alt="Cerrar Sesión" title="Cerrar Sesión">Logout</a></li>
+              </ul>
             </div>
           </div>
       </nav>
