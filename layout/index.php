@@ -30,6 +30,7 @@
               <img class="logo zoomin" src="assets/images/logo-2.png" alt="Logo" title="Logo">
               <p>Hospital Gutiérrez</p>
             </a>
+            <div class="separator"></div>
             <div class="nav-group">
               <form class="form-inline" action="#" method="GET">
                 <div class="input-group">
