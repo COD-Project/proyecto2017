@@ -30,7 +30,6 @@
   }
 }
 
-
 .container-fluid {
   width: 100%;
   margin-right: auto;
@@ -40,20 +39,23 @@
 }
 
 .row {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    margin: 0 -8px;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
 }
 
+
 /* Col Definitions */
+
 
 /*
  * col-(x).max-width: (col-1.max-width)*(x) %;
  * col-1.max-witdh: (100/12) %;
  *
  */
-
 .col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-10, .col-11, .col-12, .col {
   position: relative;
   width: 100%;
@@ -130,10 +132,18 @@
   max-width: 100%;
 }
 
+@media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+    [class*="col-"] {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+}
+
 .jumbotron {
   padding: 2rem 1rem;
   margin-bottom: 2rem;
-  background: rgba(0,0,0,.8);
+  background: rgba(0, 0, 0, .8);
   border-radius: 0.4rem;
 }
 
@@ -148,7 +158,7 @@
   color: #fff;
 }
 
-.jumbotron > hr {
+.jumbotron>hr {
   border-top-color: #d5d5d5;
 }
 

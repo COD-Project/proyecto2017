@@ -24,7 +24,7 @@
   </head>
   <body>
     <header>
-      <nav class="navbar fixed">
+      <nav class="navbar">
           <div class="container">
             <a class="brand" href="#">
               <img class="logo zoomin" src="assets/images/logo-2.png" alt="Logo" title="Logo">
@@ -33,11 +33,14 @@
             <div class="nav-group">
               <form class="form-inline" action="#" method="GET">
                 <div class="input-group">
+                  <i class="suffix material-icons">search</i>
                   <input type="text" name="search" value="" alt="Introduzca su busqueda" title="Introduzca su busqueda" placeholder="Introduzca su busqueda">
                 </div>
               </form>
               <ul class="nav-items">
                   <li><a href="./login">Login</a></li>
+                  <li><a href="#">Item 2</a></li>
+                  <li><a href="#">Item 3</a></li>
               </ul>
             </div>
           </div>
