@@ -64,7 +64,7 @@
             <h4> Guardia </h4>
             <p> Hospital Dr. Ricardo Guitierrez de La Plata dispone de un sofisticado servicio de guardias medicas las 24 horas para la atención de distintas urgencias. La administración de la institución hace viable una eficiente superación de los pacientes según el nivel de seriedad y tipo de patología. </p>
             <hr>
-            <button class="btn" type="submit" alt="Más Información" title="Más Información">Más información</button>
+            <button class="btn" type="submit" title="Más Información">Más información</button>
           </div>
         </div>
         <div class="col-4">
