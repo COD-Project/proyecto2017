@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="theme-color" content="#62a8ea">
-    <meta name="keywords"content="Hospital Ricardo Gutiérrez">
+    <meta name="keywords" content="Hospital Ricardo Gutiérrez">
     <meta name="description" content="Plataforma web para el Hospital Gutiérrez">
     <meta name="robots" content="index,follow">
     <meta property="og:url" content="https://grupo5.proyecto2017.linti.unlp.edu.ar/" />
@@ -25,7 +25,7 @@
     <header>
       <nav class="navbar">
           <div class="container">
-            <a class="brand" href="#" alt="Inicio" title="Inicio">
+            <a class="brand" href="#" title="Inicio">
               <img class="logo zoomin" src="assets/images/logo-2.png" alt="Logo" title="Logo">
               <p>Hospital Gutiérrez</p>
             </a>
@@ -34,11 +34,11 @@
               <form class="form-inline" action="#" method="GET">
                 <div class="input-group">
                   <i class="suffix material-icons">search</i>
-                  <input type="text" name="search" value="" alt="Introduzca su busqueda" title="Introduzca su busqueda" placeholder="Introduzca su busqueda">
+                  <input type="text" name="search" value="" title="Introduzca su busqueda" placeholder="Introduzca su busqueda">
                 </div>
               </form>
               <ul class="nav-items">
-                  <li><a href="./login" alt="Login" title="Login">Login</a></li>
+                  <li><a href="./login" title="Login">Login</a></li>
               </ul>
             </div>
           </div>
@@ -56,7 +56,7 @@
             <h4> El Hospital </h4>
             <p> Este centro de salud tiene un programa de residencias de primer nivel en el pais. Se ofrecen oportunidades de práctica intensiva y supervisada en ambitos profesionales y por la misma -por supuesto- se recibe un salario mensual, acorde a lo que la regulación médica profesional lo indica en cada momento. </p>
             <hr>
-            <button class="btn" type="submit" alt="Más Información" title="Más Información">Más información</button>
+            <button class="btn" type="submit" title="Más Información">Más información</button>
           </div>
         </div>
         <div class="col-4">
@@ -72,7 +72,7 @@
             <h4> Especialidades </h4>
             <p> Acorde a una respetable trayectoria en materia de medicina y salud, en Hospital Dr. Ricardo Gutierrez de La Plata podemos encontrar profesionales de salud. Del mismo modo, se brinda atención programada y de urguencias, se realizan estudios médicos y se brinda soporte en muchas de las ramas comunes de la medicina moderna. </p>
             <hr>
-            <button class="btn" type="submit" alt="Más Información" title="Más Información">Más información</button>
+            <button class="btn" type="submit" title="Más Información">Más información</button>
           </div>
         </div>
       </div>
