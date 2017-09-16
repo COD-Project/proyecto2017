@@ -25,7 +25,7 @@
     <header>
       <nav class="navbar">
           <div class="container">
-            <a class="brand" href="#">
+            <a class="brand" href="#" alt="Inicio" title="Inicio">
               <img class="logo zoomin" src="assets/images/logo-2.png" alt="Logo" title="Logo">
               <p>Hospital Gutiérrez</p>
             </a>
@@ -38,7 +38,7 @@
                 </div>
               </form>
               <ul class="nav-items">
-                  <li><a href="./login">Login</a></li>
+                  <li><a href="./login" alt="Login" title="Login">Login</a></li>
               </ul>
             </div>
           </div>
