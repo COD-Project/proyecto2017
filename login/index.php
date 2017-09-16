@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="theme-color" content="#62a8ea">
-    <meta name="keywords"content="Hospital Ricardo Gutiérrez">
+    <meta name="keywords" content="Hospital Ricardo Gutiérrez">
     <meta name="description" content="Plataforma web para el Hospital Gutiérrez">
     <meta name="robots" content="index,follow">
     <meta property="og:url" content="https://grupo5.proyecto2017.linti.unlp.edu.ar/" />
@@ -27,30 +27,30 @@
     <div class="form-container text-center">
       <div class="wrap">
         <div class="brand">
-          <img class="brand-img" src="assets/images/logo.png" height="36px" alt="Hospital" />
+          <img class="brand-img" src="assets/images/logo.png" height="36" alt="Hospital" />
           <h2 class="brand-text font-size-18">Iniciar Sesión</h2>
         </div>
         <form action="dashboard" method="post">
           <div class="form-group">
               <div class="input-group">
                   <i class="prefix material-icons">mail</i>
-                  <input class="full-width" type="email" placeholder="Ingrese email" value="" alt="Ingrese email" title="Ingrese email" required>
+                  <input class="full-width" type="email" placeholder="Ingrese email" value="" title="Ingrese email" required>
               </div>
           </div>
           <div class="form-group">
               <div class="input-group">
                   <i class="prefix material-icons">lock</i>
-                  <input class="full-width" type="password" placeholder="Contraseña" value="" alt="Ingrese contraseña" title="Ingrese contraseña" required>
+                  <input class="full-width" type="password" placeholder="Contraseña" value="" title="Ingrese contraseña" required>
               </div>
           </div>
           <div class="form-group">
               <div class="checkbox">
                   <input type="checkbox" id="inputCheckbox" name="remember">
-                  <label for="inputCheckbox" alt="Recordarme" title="Recordarme">Recordarme</label>
+                  <label for="inputCheckbox" title="Recordarme">Recordarme</label>
               </div>
-              <a class="text-center" href="login" alt="Olvidaste la contraseña?" title="Olvidaste la contraseña?">Olvidaste la contraseña?</a>
+              <a class="text-center" href="login" title="Olvidaste la contraseña?">Olvidaste la contraseña?</a>
           </div>
-          <button type="submit" class="btn" alt="Ingresar" title="Ingresar">Ingresar</button>
+          <button type="submit" class="btn" title="Ingresar">Ingresar</button>
         </form>
       </div>
     </div>
