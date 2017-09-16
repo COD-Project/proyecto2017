@@ -34,23 +34,23 @@
           <div class="form-group">
               <div class="input-group">
                   <i class="prefix material-icons">mail</i>
-                  <input class="full-width" type="email" placeholder="Ingrese email" value="" required>
+                  <input class="full-width" type="email" placeholder="Ingrese email" value="" alt="Ingrese email" title="Ingrese email" required>
               </div>
           </div>
           <div class="form-group">
               <div class="input-group">
                   <i class="prefix material-icons">lock</i>
-                  <input class="full-width" type="password" placeholder="Contraseña" value="" required>
+                  <input class="full-width" type="password" placeholder="Contraseña" value="" alt="Ingrese contraseña" title="Ingrse contraseña" required>
               </div>
           </div>
           <div class="form-group">
               <div class="checkbox">
                   <input type="checkbox" id="inputCheckbox" name="remember">
-                  <label for="inputCheckbox">Recordarme</label>
+                  <label for="inputCheckbox" alt="Recordarme" title="Recordarme">Recordarme</label>
               </div>
-              <a class="text-center" href="forgot-password.html">Olvidaste la contraseña?</a>
+              <a class="text-center" href="login" alt="Olvidaste la contraseña?" title="Olvidaste la contraseña?">Olvidaste la contraseña?</a>
           </div>
-          <button type="submit" class="btn">Ingresar</button>
+          <button type="submit" class="btn" alt="Ingresar" title="Ingresar">Ingresar</button>
         </form>
       </div>
     </div>
