@@ -1,7 +1,3 @@
-@-ms-viewport {
-  width: device-width;
-}
-
 article,
 aside,
 dialog,
@@ -118,7 +114,6 @@ footer.footer a {
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
-          user-select: none;
   border: 1px solid transparent;
   padding: 0.5rem 0.75rem;
   font-size: 1rem;
