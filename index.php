@@ -81,12 +81,8 @@
     <!-- footer -->
 
     <footer class="footer">
-      <div class="float-left">
-        <p>Hospital de Niños Ricardo Gutierrez.</p>
-      </div>
-      <div class="float-right">
-        <p>Proyecto de Software &copy; 2017</p>
-      </div>
+      <p>Hospital de Niños Ricardo Gutierrez.</p>
+      <p>Proyecto de Software &copy; 2017</p>
     </footer>
   </body>
 </html>

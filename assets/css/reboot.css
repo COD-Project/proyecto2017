@@ -1,14 +1,4 @@
-article,
-aside,
-dialog,
-figcaption,
-figure,
-footer,
-header,
-hgroup,
-main,
-nav,
-section {
+article, aside, dialog, figcaption, figure, footer, header, hgroup, main, nav, section {
   display: block;
 }
 
@@ -87,17 +77,26 @@ small, .small {
 
 footer.footer {
   position: fixed;
-  right: 0;
   bottom: 0;
   left: 0;
-  padding: 10px 5px 2px 5px;
-  background-color: #4285F4;
-  color: #fff;
-  text-align: center;
+  right: 0;
+  margin-top: 75px;
+  padding: 10px 30px;
+  display: flex;
+  flex: 0 1 auto;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fafafa;
+  border-top: 1px solid #e4eaec;
+  min-height: 44px;
 }
 
-footer.footer a {
-  color: #fff;
+@media (max-width: 575px) {
+  footer.footer {
+    flex-direction: column;
+    text-align: center;
+  }
 }
 
 .img-fluid {
@@ -112,8 +111,8 @@ footer.footer a {
   white-space: nowrap;
   vertical-align: middle;
   -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
   border: 1px solid transparent;
   padding: 0.5rem 0.75rem;
   font-size: 1rem;
@@ -130,6 +129,7 @@ footer.footer a {
   outline: 0;
   box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
 }
+
 
 /* Here define colour rules */
 
@@ -167,7 +167,7 @@ footer.footer a {
   display: -ms-flexbox;
   display: flex;
   -ms-flex-direction: column;
-      flex-direction: column;
+  flex-direction: column;
   min-width: 0;
   word-wrap: break-word;
   background-color: #fff;
