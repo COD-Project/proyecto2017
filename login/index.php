@@ -40,7 +40,7 @@
           <div class="form-group">
               <div class="input-group">
                   <i class="prefix material-icons">lock</i>
-                  <input name="password" id="password" class="full-width" type="password" placeholder="Contraseña" value="" title="Ingrese contraseña" required>
+                  <input name="password" id="password" class="full-width" type="password" placeholder="Ingrese contraseña" value="" title="Ingrese contraseña" required>
               </div>
           </div>
           <div class="form-group">
