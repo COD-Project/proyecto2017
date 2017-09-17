@@ -14,9 +14,9 @@
     <meta property="og:description" content="Plataforma web para el Hospital Gutiérrez" />
     <meta property="og:image" content="https://grupo5.proyecto2017.linti.unlp.edu.ar/assets/images/icon.png" />
 
-    <base href="./../">
+    <base href="./../../">
 
-    <title>Hospital Gutiérrez::Ingresar</title>
+    <title>Hospital Gutiérrez::Olvido Contraseña</title>
 
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,200,300,400,600" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -28,31 +28,21 @@
       <div class="wrap">
         <div class="brand">
           <img class="brand-img" src="assets/images/logo.png" height="36" alt="Hospital" />
-          <h2 class="brand-text font-size-18">Iniciar Sesión</h2>
+          <h2 class="brand-text font-size-18">Olvido su contraseña</h2>
+          <p class="brand-text">Ingrese el mail de su cuenta y se le enviarán instrucciones para recuperar su contraseña</p>
         </div>
-        <form action="dashboard" method="post">
+        <form action="login" method="post">
           <div class="form-group">
               <div class="input-group">
                   <i class="prefix material-icons">mail</i>
-                  <input name="email" id="email" class="full-width" type="email" placeholder="Ingrese email" value="" title="Ingrese email" required>
+                  <input name="email" id="email" class="full-width" type="email" placeholder="Ingrese su email" value="" title="Ingrese su email" required>
               </div>
           </div>
           <div class="form-group">
-              <div class="input-group">
-                  <i class="prefix material-icons">lock</i>
-                  <input name="password" id="password" class="full-width" type="password" placeholder="Ingrese contraseña" value="" title="Ingrese contraseña" required>
-              </div>
+              <p>¿No olvidó su contraseña? <a class="text-center" href="login" title="Iniciar Sesión">inicie sesión</a></p>
           </div>
-          <div class="form-group">
-              <div class="checkbox">
-                  <input type="checkbox" id="inputCheckbox" name="remember">
-                  <label for="inputCheckbox" title="Recordarme">Recordarme</label>
-              </div>
-          </div>
-          <button type="submit" class="btn" title="Ingresar">Ingresar</button>
+          <button type="submit" class="btn" title="Enviar">Enviar</button>
         </form>
-        <a class="text-center" href="password/recovery" title="Olvidaste la contraseña?">¿Olvidaste la contraseña?</a>
-        <p>¿Todavía no tenés cuenta? <a href="signup">¡Registrate!</a></p>
       </div>
     </div>
 

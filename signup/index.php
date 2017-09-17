@@ -16,7 +16,7 @@
 
     <base href="./../">
 
-    <title>Hospital Gutiérrez::Ingresar</title>
+    <title>Hospital Gutiérrez::Registrar Usuario</title>
 
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,200,300,400,600" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -28,9 +28,21 @@
       <div class="wrap">
         <div class="brand">
           <img class="brand-img" src="assets/images/logo.png" height="36" alt="Hospital" />
-          <h2 class="brand-text font-size-18">Iniciar Sesión</h2>
+          <h2 class="brand-text font-size-18">Registrar Usuario</h2>
         </div>
-        <form action="dashboard" method="post">
+        <form action="." method="post">
+          <div class="form-group">
+              <div class="input-group">
+                  <i class="prefix material-icons">perm_identity</i>
+                  <input name="nombre" id="nombre" class="full-width" type="text" placeholder="Ingrese Nombre" value="" title="Ingrese Nombre" required>
+              </div>
+          </div>
+          <div class="form-group">
+              <div class="input-group">
+                  <i class="prefix material-icons">perm_identity</i>
+                  <input name="apellido" id="apellido" class="full-width" type="text" placeholder="Ingrese Apellido" value="" title="Ingrese Apellido" required>
+              </div>
+          </div>
           <div class="form-group">
               <div class="input-group">
                   <i class="prefix material-icons">mail</i>
@@ -44,15 +56,19 @@
               </div>
           </div>
           <div class="form-group">
-              <div class="checkbox">
-                  <input type="checkbox" id="inputCheckbox" name="remember">
-                  <label for="inputCheckbox" title="Recordarme">Recordarme</label>
+              <div class="input-group">
+                  <i class="prefix material-icons">date_range</i>
+                  <input name="birthday" id="birthday" class="full-width" type="date" placeholder="Ingrese su Fecha de Nacimiento" value="" title="Ingrese su Fecha de Nacimiento">
               </div>
           </div>
-          <button type="submit" class="btn" title="Ingresar">Ingresar</button>
+          <div class="form-group">
+              <div class="checkbox">
+                  <input type="checkbox" id="inputCheckbox" name="remember" required>
+                  <label for="inputCheckbox" title="Aceptar Terminos y Condiciones">Acepto los <a href="signup/conditions" target="_blank">Terminos y Condiciones</a></label>
+              </div>
+          </div>
+          <button type="submit" class="btn" title="Registrar">Registrar</button>
         </form>
-        <a class="text-center" href="password/recovery" title="Olvidaste la contraseña?">¿Olvidaste la contraseña?</a>
-        <p>¿Todavía no tenés cuenta? <a href="signup">¡Registrate!</a></p>
       </div>
     </div>
 

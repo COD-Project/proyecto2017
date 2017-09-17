@@ -14,9 +14,9 @@
     <meta property="og:description" content="Plataforma web para el Hospital Gutiérrez" />
     <meta property="og:image" content="https://grupo5.proyecto2017.linti.unlp.edu.ar/assets/images/icon.png" />
 
-    <base href="./../">
+    <base href="./../../">
 
-    <title>Hospital Gutiérrez::Olvido Contraseña</title>
+    <title>Hospital Gutiérrez::Términos y Condiciones</title>
 
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,200,300,400,600" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -28,21 +28,12 @@
       <div class="wrap">
         <div class="brand">
           <img class="brand-img" src="assets/images/logo.png" height="36" alt="Hospital" />
-          <h2 class="brand-text font-size-18">Olvido su contraseña</h2>
-          <p class="brand-text">Ingrese el mail de su cuenta y se le enviarán instrucciones para recuperar su contraseña</p>
+          <h2 class="brand-text font-size-18">Términos y Condiciones</h2>
         </div>
-        <form action="login" method="post">
-          <div class="form-group">
-              <div class="input-group">
-                  <i class="prefix material-icons">mail</i>
-                  <input name="email" id="email" class="full-width" type="email" placeholder="Ingrese su email" value="" title="Ingrese su email" required>
-              </div>
-          </div>
-          <div class="form-group">
-              <p>¿No olvidó su contraseña? <a class="text-center" href="login" title="Iniciar Sesión">inicie sesión</a></p>
-          </div>
-          <button type="submit" class="btn" title="Enviar">Enviar</button>
-        </form>
+        <hr>
+          Si apretaste en aceptar es suficiente.<br>
+          Y si leíste esto, más aún.<br>
+          No somos muy exigentes...<br>
       </div>
     </div>
 
