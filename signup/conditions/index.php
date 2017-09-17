@@ -14,7 +14,7 @@
     <meta property="og:description" content="Plataforma web para el Hospital Gutiérrez" />
     <meta property="og:image" content="https://grupo5.proyecto2017.linti.unlp.edu.ar/assets/images/icon.png" />
 
-    <base href="./../">
+    <base href="./../../">
 
     <title>Hospital Gutiérrez::Términos y Condiciones</title>
 
@@ -34,8 +34,6 @@
           Si apretaste en aceptar es suficiente.<br>
           Y si leíste esto, más aún.<br>
           No somos muy exigentes...<br>
-          <hr>
-          <a href="signup">Volver a Registrarse</a>
       </div>
     </div>
 
