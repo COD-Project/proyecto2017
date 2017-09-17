@@ -14,7 +14,7 @@
     <meta property="og:description" content="Plataforma web para el Hospital Gutiérrez" />
     <meta property="og:image" content="https://grupo5.proyecto2017.linti.unlp.edu.ar/assets/images/icon.png" />
 
-    <base href="./../">
+    <base href="./../../">
 
     <title>Hospital Gutiérrez::Olvido Contraseña</title>
 

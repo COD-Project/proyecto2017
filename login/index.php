@@ -48,10 +48,11 @@
                   <input type="checkbox" id="inputCheckbox" name="remember">
                   <label for="inputCheckbox" title="Recordarme">Recordarme</label>
               </div>
-              <a class="text-center" href="forgot_password" title="Olvidaste la contraseña?">Olvidaste la contraseña?</a>
+              <a class="text-center" href="password/recovery" title="Olvidaste la contraseña?">Olvidaste la contraseña?</a>
           </div>
           <button type="submit" class="btn" title="Ingresar">Ingresar</button>
         </form>
+        <p>Todavía no tenés cuenta? <a href="signup">Registrate!</a></p>
       </div>
     </div>
 
