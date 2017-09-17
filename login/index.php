@@ -34,13 +34,13 @@
           <div class="form-group">
               <div class="input-group">
                   <i class="prefix material-icons">mail</i>
-                  <input for="email" id="email" class="full-width" type="email" placeholder="Ingrese email" value="" title="Ingrese email" required>
+                  <input name="email" id="email" class="full-width" type="email" placeholder="Ingrese email" value="" title="Ingrese email" required>
               </div>
           </div>
           <div class="form-group">
               <div class="input-group">
                   <i class="prefix material-icons">lock</i>
-                  <input for="password" id="password" class="full-width" type="password" placeholder="Contraseña" value="" title="Ingrese contraseña" required>
+                  <input name="password" id="password" class="full-width" type="password" placeholder="Contraseña" value="" title="Ingrese contraseña" required>
               </div>
           </div>
           <div class="form-group">
