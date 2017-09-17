@@ -34,7 +34,7 @@
               <form class="form-inline" action="#" method="GET">
                 <div class="input-group">
                   <i class="suffix material-icons">search</i>
-                  <input for="search"  type="text" name="search" value="" title="Introduzca su busqueda" id="search" placeholder="Introduzca su busqueda">
+                  <input type="text" name="search" value="" title="Introduzca su busqueda" id="search" placeholder="Introduzca su busqueda">
                 </div>
               </form>
               <ul class="nav-items">
