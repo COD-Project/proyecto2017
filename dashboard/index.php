@@ -48,7 +48,6 @@
                 </div>
               </form>
               <ul class="nav-items">
-                  <li>Admin@admin.com</li>
                   <li><a href="./" title="Cerrar Sesión">Logout</a></li>
               </ul>
             </div>
