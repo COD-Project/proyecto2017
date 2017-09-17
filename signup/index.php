@@ -64,7 +64,7 @@
           <div class="form-group">
               <div class="checkbox">
                   <input type="checkbox" id="inputCheckbox" name="remember" required>
-                  <label for="inputCheckbox" title="Aceptar Terminos y Condiciones">Acepto los <a href='#'>Terminos y Condiciones</a></label>
+                  <label for="inputCheckbox" title="Aceptar Terminos y Condiciones">Acepto los <a href="signup/conditions">Terminos y Condiciones</a></label>
               </div>
           </div>
           <button type="submit" class="btn" title="Registrar">Registrar</button>

@@ -33,7 +33,9 @@
         <hr>
           Si apretaste en aceptar es suficiente.<br>
           Y si leíste esto, más aún.<br>
-          No somos muy exigentes...
+          No somos muy exigentes...<br>
+          <hr>
+          <a href="signup">Volver a Registrarse</a>
       </div>
     </div>
 
