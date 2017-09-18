@@ -35,7 +35,11 @@
               <form class="form-inline" action="#" method="GET">
                 <div class="input-group">
                   <i class="suffix material-icons">search</i>
+<<<<<<< HEAD
                   <input type="text" name="search" value="" title="The title" placeholder="Introduzca su busqueda" id="search">
+=======
+                  <input type="text" name="search" for="search" value="" title="The title" placeholder="Introduzca su busqueda" id="search"> </input>
+>>>>>>> 08948dd56bcee8d8b749f48a0f923873aa7587a2
                 </div>
               </form>
               <ul class="nav-items">
