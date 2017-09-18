@@ -1,12 +1,7 @@
 .navbar {
   position: relative;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  flex: 1 0 auto;
   width: 100%;
   align-items: center;
-  justify-content: flex-start;
   margin: 0;
   padding: 0;
   z-index: 1050;
@@ -21,13 +16,6 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: flex-start;
-}
-
-.navbar .container-fluid {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: stretch;
-  justify-content: space-between;
 }
 
 .navbar .brand {
@@ -95,11 +83,11 @@
 }
 
 .navbar ul.nav-items li:hover>a {
-  color: #62a8ea;
+  color: #62a8eb;
 }
 
 .navbar ul.nav-items>li:hover>a {
-  border-color: #62a8ea;
+  border-color: #62a8eb;
 }
 
 @media(max-width: 575px) {

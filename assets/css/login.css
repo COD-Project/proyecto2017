@@ -25,24 +25,8 @@ body {
   color: #76838f;
 }
 
-.form_container {
-  width: 100%;
-  margin: auto;
-}
-
 .form-container form {
   margin: 45px 0 30px;
-}
-
-.form_container form .input-group input[type="text"] {
-  font-size: 16px;
-  color: #303F9F;
-  width: 100%;
-  outline: none;
-  padding: 17px;
-  background: none;
-  border: none;
-  border-bottom: 2px solid #BBDEFB;
 }
 
 .form-container .brand {

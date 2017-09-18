@@ -107,10 +107,10 @@ input[type=checkbox] {
   height: 20px;
   left: 0;
   margin-left: -20px;
-  border: 1px solid #e4eaec;
-  border-radius: 3px;
+  border: 0.5px solid #e4eaec;
+  border-radius: 4px;
   background-color: #fff;
-  transition: all .3s ease-in-out 0s;
+  transition: all .2s ease-in-out 0s;
   cursor: pointer;
 }
 
@@ -128,13 +128,6 @@ input[type=checkbox] {
   font-size: 15px;
   color: #fff;
   font-family: "Material Icons";
-  font-weight: normal;
-  font-style: normal;
-  text-transform: none;
-  letter-spacing: normal;
-  word-wrap: normal;
-  white-space: nowrap;
-  direction: ltr;
   font-feature-settings: "liga";
   z-index: 2;
 }
