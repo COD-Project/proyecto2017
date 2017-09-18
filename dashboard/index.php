@@ -21,7 +21,6 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,200,300,400,600" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/main.css">
-    <link rel="stylesheet" href="assets/css/select.css">
   </head>
   <body>
     <header>
@@ -32,30 +31,25 @@
               <p>Hospital Gutiérrez</p>
             </a>
             <div class="separator"></div>
-            <div>
-              <select class="styled-select blue semi-square" title="Menu de Administración">
-                <option selected disabled>Menu</option>
-                <option value="" title="Menu de Usuarios">Usuarios</option>
-                <option value="" title="Menu de Roles">Roles</option>
-                <option value="" title="Menu de Permisos">Permisos</option>
-              </select>
-            </div>
             <div class="nav-group">
-              <form class="form-inline" action="#" method="GET">
-                <div class="input-group">
-                  <i class="suffix material-icons">search</i>
-                  <input type="text" name="search" for="search" value="" title="The title" placeholder="Introduzca su busqueda" id="search"> </input>
-                </div>
-              </form>
               <ul class="nav-items">
-                  <li><a href="./" title="Cerrar Sesión">Logout</a></li>
+                  <li><a href="dashboard" title="Mi usuario">admin@admin.com</a></li>
+                  <li>
+                    <div class="dropdown">
+                      <a class="dropbtn" title="Menu">Menu</a>
+                      <div class="dropdown-content">
+                        <a href="dashboard" title="Usuarios"><i class="material-icons">perm_identity</i> Usuarios</a>
+                        <a href="dashboard" title="Roles"><i class="material-icons">security</i> Roles</a>
+                        <a href="dashboard" title="Permisos"><i class="material-icons">security</i> Permisos</a>
+                        <a href="." title="Cerrar Sesión"><i class="material-icons">security</i> Logout</a>
+                      </div>
+                    </div>
+                  </li>
               </ul>
             </div>
           </div>
       </nav>
     </header>
-
-    <!--  -->
 
     <footer class="footer">
       <p>Hospital de Niños Ricardo Gutierrez.</p>

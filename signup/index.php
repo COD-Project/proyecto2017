@@ -58,7 +58,7 @@
           <div class="form-group">
               <div class="input-group">
                   <i class="prefix material-icons">date_range</i>
-                  <input name="birthday" id="birthday" class="full-width" type="date" placeholder="Ingrese su Fecha de Nacimiento" value="" title="Ingrese su Fecha de Nacimiento">
+                  <input name="birthday" id="birthday" class="full-width" type="date" value="" title="Ingrese su Fecha de Nacimiento">
               </div>
           </div>
           <div class="form-group">
