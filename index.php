@@ -21,7 +21,6 @@
     <link rel="stylesheet" href="assets/css/main.css">
   </head>
   <body>
-
     <header>
       <nav class="navbar">
           <div class="container">
