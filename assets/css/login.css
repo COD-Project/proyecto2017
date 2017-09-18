@@ -35,12 +35,11 @@ body {
 }
 
 .form_container form .input-group input[type="text"] {
-  font-family: "Roboto";
   font-size: 16px;
   color: #303F9F;
   width: 100%;
   outline: none;
-  padding: 15px;
+  padding: 17px;
   background: none;
   border: none;
   border-bottom: 2px solid #BBDEFB;
@@ -53,7 +52,7 @@ body {
 }
 
 .form-container .brand h2 {
-  margin: 8px 0 0;
-  font-size: 20px;
+  margin: 7px 0 0;
+  font-size: 22.5px;
   font-weight: 300;
 }

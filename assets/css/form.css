@@ -82,73 +82,68 @@ input[type=checkbox] {
   margin-bottom: 0;
 }
 
-.checkbox{
-    margin-top: 0;
-    display: inline-block;
-    margin-bottom: 0;
-    padding-left: 20px;
-    cursor: pointer;
+.checkbox {
+  margin-top: 0;
+  display: inline-block;
+  margin-bottom: 0;
+  padding-left: 20px;
+  cursor: pointer;
 }
-.checkbox label{
-    display: inline-block;
-    vertical-align: middle;
-    position: relative;
-    padding-left: 10px;
-    cursor: pointer;
+
+.checkbox label {
+  display: inline-block;
+  vertical-align: middle;
+  position: relative;
+  padding-left: 10px;
+  cursor: pointer;
 }
+
 .checkbox input[type=checkbox]+label::before {
-    content: '';
-    z-index: 1;
-    display: inline-block;
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    left: 0;
-    margin-left: -20px;
-    border: 1px solid #e4eaec;
-    border-radius: 3px;
-    background-color: #fff;
-    transition: all .3s ease-in-out 0s;
-    cursor: pointer;
+  content: '';
+  z-index: 1;
+  display: inline-block;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  left: 0;
+  margin-left: -20px;
+  border: 1px solid #e4eaec;
+  border-radius: 3px;
+  background-color: #fff;
+  transition: all .3s ease-in-out 0s;
+  cursor: pointer;
 }
 
 .checkbox input[type=checkbox]+label::after {
-    display: inline-block;
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    line-height: 20px;
-    left: 0;
-    top: 0;
-    margin-left: -20px;
-    text-align: center;
-    padding-top: 1px;
-    font-size: 15px;
-    color: #fff;
-    font-family: "Material Icons";
-    font-weight: normal;
-    font-style: normal;
-    /* Preferred icon size */
-    text-transform: none;
-    letter-spacing: normal;
-    word-wrap: normal;
-    white-space: nowrap;
-    direction: ltr;
-    /* Support for all WebKit browsers. */
-    -webkit-font-smoothing: antialiased;
-    /* Support for Safari and Chrome. */
-    /*text-rendering: optimizeLegibility;*/
-    /* Support for Firefox. */
-    -moz-osx-font-smoothing: grayscale;
-    /* Support for IE. */
-    font-feature-settings: "liga";
-    z-index: 2;
+  display: inline-block;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+  left: 0;
+  top: 0;
+  margin-left: -20px;
+  text-align: center;
+  padding-top: 1px;
+  font-size: 15px;
+  color: #fff;
+  font-family: "Material Icons";
+  font-weight: normal;
+  font-style: normal;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+  font-feature-settings: "liga";
+  z-index: 2;
 }
 
-.checkbox input[type=checkbox]:checked+label::before{
-    background-color: #62a8ea;
-    border-color: #62a8ea;
+.checkbox input[type=checkbox]:checked+label::before {
+  background-color: #62a8ea;
+  border-color: #62a8eb;
 }
-.checkbox input[type=checkbox]:checked+label::after{
-    content: "check";
+
+.checkbox input[type=checkbox]:checked+label::after {
+  content: "check";
 }

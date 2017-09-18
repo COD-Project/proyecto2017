@@ -26,18 +26,11 @@
   text-align: center !important;
 }
 
-.clearfix {
-  clear: both!important;
-}
-
 .full-width {
   width: 100%!important;
 }
 
-.fixed {
-  position: fixed!important;
-}
-
-.circle {
-  border-radius: 100% !important;
+.separator {
+  display: flex;
+  flex: 10 0 auto;
 }
