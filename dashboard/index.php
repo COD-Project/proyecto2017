@@ -36,12 +36,12 @@
                   <li><a href="dashboard">admin@admin.com</a></li>
                   <li>
                     <div class="dropdown">
-                      <button class="dropbtn">Menu</button>
+                      <a class="dropbtn">Menu</a>
                       <div class="dropdown-content">
-                        <a href="dashboard">Usuarios</a>
-                        <a href="dashboard">Roles</a>
-                        <a href="dashboard">Permisos</a>
-                        <a href="." title="Cerrar Sesión">Logout</a>
+                        <a href="dashboard"><i class="material-icons">perm_identity</i> Usuarios</a>
+                        <a href="dashboard"><i class="material-icons">security</i> Roles</a>
+                        <a href="dashboard"><i class="material-icons">security</i> Permisos</a>
+                        <a href="." title="Cerrar Sesión"><i class="material-icons">security</i> Logout</a>
                       </div>
                     </div>
                   </li>
