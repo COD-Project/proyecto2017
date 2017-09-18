@@ -35,11 +35,7 @@
               <form class="form-inline" action="#" method="GET">
                 <div class="input-group">
                   <i class="suffix material-icons">search</i>
-<<<<<<< HEAD
                   <input type="text" name="search" value="" title="The title" placeholder="Introduzca su busqueda" id="search">
-=======
-                  <input type="text" name="search" for="search" value="" title="The title" placeholder="Introduzca su busqueda" id="search"> </input>
->>>>>>> 08948dd56bcee8d8b749f48a0f923873aa7587a2
                 </div>
               </form>
               <ul class="nav-items">
@@ -48,7 +44,7 @@
                       <a class="dropbtn" title="Menu">Menu</a>
                       <div class="dropdown-content">
                         <a href="layout" title="Usuarios"><i class="material-icons">perm_identity</i> Usuarios</a>
-                        <a href="layout" title="Roles"><i class="material-icons">security</i> Roles</a>
+                        <a href="layout" title="Roles"><i class="material-icons">supervisor_account</i> Roles</a>
                         <a href="layotu" title="Permisos"><i class="material-icons">security</i> Permisos</a>
                         <a href="./login" title="Iniciar Sesión"><i class="material-icons">security</i> Login</a>
                         <a href="." title="Cerrar Sesión"><i class="material-icons">security</i> Logout</a>
