@@ -44,7 +44,7 @@
                       <a class="dropbtn" title="Menu">Menu</a>
                       <div class="dropdown-content">
                         <a href="layout" title="Usuarios"><i class="material-icons">perm_identity</i> Usuarios</a>
-                        <a href="layout" title="Roles"><i class="material-icons">security</i> Roles</a>
+                        <a href="layout" title="Roles"><i class="material-icons">supervisor_account</i> Roles</a>
                         <a href="layotu" title="Permisos"><i class="material-icons">security</i> Permisos</a>
                         <a href="./login" title="Iniciar Sesión"><i class="material-icons">security</i> Login</a>
                         <a href="." title="Cerrar Sesión"><i class="material-icons">security</i> Logout</a>
