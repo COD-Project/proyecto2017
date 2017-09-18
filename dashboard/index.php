@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -27,7 +27,7 @@
       <nav class="navbar">
           <div class="container">
             <a class="brand" href="#" title="Inicio">
-              <img class="logo zoomin" src="assets/images/logo-2.png" alt="Logo" title="Logo">
+              <img class="logo zoomin" src="assets/images/logo-2.png" alt="Logo del Hospital Gutierrez." title="Logo">
               <p>Hospital Gutiérrez</p>
             </a>
             <div class="separator"></div>
