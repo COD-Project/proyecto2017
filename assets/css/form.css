@@ -58,7 +58,11 @@ input:focus {
 }
 
 .input-group .suffix {
-  right: 7px;
+  padding: 0px 1px;
+  border-radius: 4px;
+  color: #fff;
+  right: 3px;
+  background-color: #62a8ea;
 }
 
 .input-group .suffix+input {
