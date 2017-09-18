@@ -33,7 +33,7 @@
             <div class="separator"></div>
             <div class="nav-group">
               <ul class="nav-items">
-                  <li><a href="dashboard">admin@admin.com</a></li>
+                  <li><a href="dashboard" title="Mi usuario">admin@admin.com</a></li>
                   <li>
                     <div class="dropdown">
                       <a class="dropbtn" title="Menu">Menu</a>
@@ -50,8 +50,6 @@
           </div>
       </nav>
     </header>
-
-    <!--  -->
 
     <footer class="footer">
       <p>Hospital de Niños Ricardo Gutierrez.</p>
