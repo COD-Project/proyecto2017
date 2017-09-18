@@ -44,6 +44,7 @@
                         <a href="." title="Cerrar Sesión">Logout</a>
                       </div>
                     </div>
+                  </li>
               </ul>
             </div>
           </div>
