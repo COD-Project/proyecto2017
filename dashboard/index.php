@@ -39,9 +39,9 @@
                       <a class="dropbtn" title="Menu">Menu</a>
                       <div class="dropdown-content">
                         <a href="dashboard" title="Usuarios"><i class="material-icons">perm_identity</i> Usuarios</a>
-                        <a href="dashboard" title="Roles"><i class="material-icons">security</i> Roles</a>
+                        <a href="dashboard" title="Roles"><i class="material-icons">supervisor_account</i> Roles</a>
                         <a href="dashboard" title="Permisos"><i class="material-icons">security</i> Permisos</a>
-                        <a href="." title="Cerrar Sesión"><i class="material-icons">security</i> Logout</a>
+                        <a href="." title="Cerrar Sesión"><i class="material-icons">exit_to_app</i> Logout</a>
                       </div>
                     </div>
                   </li>
