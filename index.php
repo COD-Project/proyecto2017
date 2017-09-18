@@ -37,6 +37,7 @@
                 </div>
               </form>
               <ul class="nav-items">
+                  <li><a href="./signup" title="Signup">Signup</a></li>
                   <li><a href="./login" title="Login">Login</a></li>
               </ul>
             </div>
