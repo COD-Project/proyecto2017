@@ -1,19 +1,27 @@
 {
   "name": "grupo5",
   "version": "0.2.0",
-  "description": "## Introducción",
-  "main": "index.php",
+  "description": "",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "composer update && npm update --prefix=vendor/"
+    "start": "composer update && npm install --prefix=vendor/"
   },
   "repository": {
     "type": "git",
     "url": "git@gitlab.catedras.linti.unlp.edu.ar:proyecto2017/grupo5.git"
   },
-  "dependencies": {
-    "mdbootstrap": "^4.4.1"
-  },
-  "author": "",
+  "authors": [
+      {
+          "name": "Ulises Jeremias Cornejo Fandos",
+          "email": "ulisescf.24@gmail.com"
+      },
+      {
+          "name": "Juan Cruz Ocampos",
+          "email": "ocamposjuancruz23@gmail.com"
+      },
+      {
+          "name": "Lucas Di Cunzolo",
+          "email": "ldicunzolo@cespi.unlp.edu.ar"
+      }
+  ],
   "license": "MIT"
 }
