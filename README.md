@@ -1,5 +1,5 @@
-# Hospital Gutiérrez - Consultorio del Niño Sano
+# Branch 2.x
 
 ## Introducción
 
-En esta branch se dispone la última versión estable del proyecto, en cada una de sus étapas.
+En esta branch se dispone la última versión estable del proyecto, de la etapa 2.
