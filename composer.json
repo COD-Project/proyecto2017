@@ -1,0 +1,26 @@
+{
+    "name": "proyecto2017/grupo5",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ulises Jeremias Cornejo Fandos",
+            "email": "ulisescf.24@gmail.com"
+        },
+        {
+            "name": "Juan Cruz Ocampos",
+            "email": "ocamposjuancruz23@gmail.com"
+        },
+        {
+            "name": "Lucas Di Cunzolo",
+            "email": "ldicunzolo@cespi.unlp.edu.ar"
+        }
+    ],
+    "description": "",
+    "repository": {
+        "type": "git",
+        "url": "git+https://gitlab.catedras.linti.unlp.edu.ar/proyecto2017/grupo5.git"
+    },
+    "require": {
+        "twig/twig": "*"
+    }
+}
