@@ -1,2 +1,4 @@
 .envrc
+composer.lock
+package-lock.json
 /vendor/
