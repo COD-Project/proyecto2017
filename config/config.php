@@ -1,8 +1,5 @@
 <?php
 
-# Strict types for PHP 7
-declare(strict_types=1);
-
 # Timezone DOC http://php.net/manual/es/timezones.php
 date_default_timezone_set('America/Argentina/Buenos_Aires');
 
