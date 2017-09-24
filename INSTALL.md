@@ -5,7 +5,7 @@ En este documento se van a especificar todo lo requerido para tener la app del H
 ## Requerimientos
 - Mínimos:
     - Php 5.6.30 (cualquiera perteneciente a la rama 5.6)
-    - Coposer 1.2.2 o superior
+    - Composer 1.2.2 o superior
     - MariaDB 10.1.26 o superior
     - Apache 2.4.10 o superior
     - npm 5.4.2 o superior
