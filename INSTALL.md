@@ -48,7 +48,7 @@ export PHP_SERVER_DOCKER_RUN_OPTIONS='--add-host local.docker:172.17.0.1 -e APAC
 
 Ademas se debe contar con dos scripts en el directorio $HOME/bin:
 
-Archivo php
+[Archivo php](https://gitlab.catedras.linti.unlp.edu.ar/proyecto2017/grupo5/snippets/2/raw?inline=false)
 ```bash
 #!/bin/bash
 
@@ -62,7 +62,7 @@ PHP_CLI_DOCKER_RUN_OPTIONS=${PHP_CLI_DOCKER_RUN_OPTIONS:-'--add-host local.docke
 docker run --rm -it -u `id -u $USER`:`id -g $USER` -v "`pwd`:`pwd`" -w "`pwd`" $PHP_CLI_DOCKER_RUN_OPTIONS $PHP_CLI_DOCKER_IMAGE $PHP_OPTIONS $@
 ```
 
-Archivo php-server
+[Archivo php-server](https://gitlab.catedras.linti.unlp.edu.ar/proyecto2017/grupo5/snippets/3/raw?inline=false)
 ```bash
 #!/bin/bash
 
