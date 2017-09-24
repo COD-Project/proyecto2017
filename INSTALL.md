@@ -1,9 +1,9 @@
 # Instalación
 
-En este documento se van a especificar todo lo requerido para tener la app del Hospital de Niños Ricardo Gutierrez funcionando.
+En este documento se van a especificar todo lo requerido para tener la app del Hospital de Niños Ricardo Gutiérrez funcionando.
 
 ## Requerimientos
-- Minimos:
+- Mínimos:
     - Php 5.6.30 (cualquiera perteneciente a la rama 5.6)
     - Coposer 1.2.2 o superior
     - MariaDB 10.1.26 o superior
@@ -17,16 +17,16 @@ Instalación de los componentes necesarios usando composer y npm:
 npm start
 ```
 
-Con esto, se procedera a crear la carpeta vendor, la cual contendrá los modulos php y node.
+Con esto, se procederá a crear la carpeta vendor, la cual contendrá los módulos php y node.
 
-Para el desarrollo de la aplicacion, se utilizaron imagenes de docker de php:5.6.30-cli y php:5.6.30-apache, por lo que se recomienda el uso de las mismas. Por lo que se recomienda tener instalado docker.
-_Recomendacion: se recomienda agregar su usuario al grupo de docker para evitar la necesidad de ejecutar docker con sudo. Esto se puede hacer ejecutando:_
+Para el desarrollo de la aplicacion, se utilizaron imágenes de docker de php:5.6.30-cli y php:5.6.30-apache, por lo que se recomienda el uso de las mismas. Por lo que se recomienda tener instalado docker.
+_Recomendación: se recomienda agregar su usuario al grupo de docker para evitar la necesidad de ejecutar docker con sudo. Esto se puede hacer ejecutando:_
 
 ```bash
 sudo usermod -a -G docker $USER
 ```
 
-En el directorio raiz del proyecto, se debe crear el archivo .envrc con el siguiente contenido:
+En el directorio raíz del proyecto, se debe crear el archivo .envrc con el siguiente contenido:
 
 ```bash
 export PATH=$HOME/bin:$PATH
