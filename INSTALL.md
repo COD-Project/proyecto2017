@@ -19,14 +19,26 @@ npm start
 
 Con esto, se procederá a crear la carpeta vendor, la cual contendrá los módulos php y node.
 
-Para el desarrollo de la aplicacion, se utilizaron imágenes de docker de php:5.6.30-cli y php:5.6.30-apache, por lo que se recomienda el uso de las mismas. Por lo que se recomienda tener instalado docker.
-_Recomendación: se recomienda agregar su usuario al grupo de docker para evitar la necesidad de ejecutar docker con sudo. Esto se puede hacer ejecutando:_
+Para el desarrollo de la aplicación, se utilizaron imágenes de docker de php:5.6.30-cli y php:5.6.30-apache, por lo que se recomienda el uso de las mismas. Por lo que se recomienda tener instalado docker.
+
+_Se recomienda agregar su usuario al grupo de docker para evitar la necesidad de ejecutar docker con sudo. Esto se puede hacer ejecutando:_
 
 ```bash
 sudo usermod -a -G docker $USER
 ```
 
-En el directorio raíz del proyecto, se debe crear el archivo .envrc con el siguiente contenido:
+
+### Instalación de las imagenes de php de docker
+
+
+Para instalar las imágenes de php:5.6.30-cli y php:5.6.30-apache se tiene que ejecutar los siguientes comandos:
+
+```bash
+docker pull php:5.6.30-cli
+docker pull php:5.6.30-apache
+```
+
+Luego se debe configurar el ambiente para que se ejecute la imagen de php descargada para esto, se debe crear en el directorio raíz del proyecto el archivo .envrc con el siguiente contenido:
 
 ```bash
 export PATH=$HOME/bin:$PATH
@@ -75,4 +87,10 @@ Y un archivo de configuracion en $HOME/bin/etc/docker/php/php.ini:
 ```
 date.timezone=America/Argentina/Buenos_Aires;
 memory_limit=512M;
+```
+
+Con esto se debería contar con todo lo necesario para levantar la aplicación ejecutando:
+
+```bash
+php-server <server_port>
 ```
