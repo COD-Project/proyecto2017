@@ -18,7 +18,7 @@ _si le falta cumplir alguno de los requerimientos, seguir a la siguiente secció
 
 Instalación de los componentes necesarios usando composer y npm:
 ```bash
-npm start
+$ npm start
 ```
 
 Con esto, se procederá a crear la carpeta vendor, la cual contendrá los módulos php y node.
@@ -28,7 +28,7 @@ Para el desarrollo de la aplicación, se utilizaron imágenes de docker de php:5
 _Se recomienda agregar su usuario al grupo de docker para evitar la necesidad de ejecutar docker con sudo. Esto se puede hacer ejecutando:_
 
 ```bash
-sudo usermod -a -G docker $USER
+$ sudo usermod -a -G docker $USER
 ```
 
 
@@ -38,13 +38,22 @@ sudo usermod -a -G docker $USER
 Para instalar las imágenes de php:5.6.30-cli y php:5.6.30-apache se tiene que ejecutar los siguientes comandos:
 
 ```bash
-docker pull php:5.6.30-cli
-docker pull php:5.6.30-apache
+$ docker pull php:5.6.30-cli
+$ docker pull php:5.6.30-apache # Si se usa esta imagen es necesario activar el modulo apache mod_rewrite
 ```
+_Si no se desea cambiar la imagen, se puede clonar [php:5.6.30-apache-rewrite](https://github.com/lucasdc6/php-apache-rewrite)_
+
+Si se clonó el repositorio php:5.6.30-apache-rewrite, se debe ejecutar los siguientes comandos
+```bash
+$ git clone git@github.com:lucasdc6/php-apache-rewrite.git
+$ git cd php-apache-rewrite/5.6.30
+$ docker build apache-rewrite -t php:5.6.30-apache-rewrite
+```
+
 _Además, se recomienda instalar la imagen docker de composer_
 
 ```bash
-docker pull composer
+$ docker pull composer
 ```
 
 
