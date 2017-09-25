@@ -1,27 +1,27 @@
 {
-  "name": "grupo5",
-  "version": "0.2.0",
-  "description": "",
-  "scripts": {
-    "start": "composer update && npm install --prefix=vendor/"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git@gitlab.catedras.linti.unlp.edu.ar:proyecto2017/grupo5.git"
-  },
-  "authors": [
-      {
-          "name": "Ulises Jeremias Cornejo Fandos",
-          "email": "ulisescf.24@gmail.com"
-      },
-      {
-          "name": "Juan Cruz Ocampos",
-          "email": "ocamposjuancruz23@gmail.com"
-      },
-      {
-          "name": "Lucas Di Cunzolo",
-          "email": "ldicunzolo@cespi.unlp.edu.ar"
-      }
-  ],
-  "license": "MIT"
+    "name": "grupo5",
+    "version": "0.2.0",
+    "description": "",
+    "scripts": {
+        "install": "composer update && npm install --prefix=vendor/"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git@gitlab.catedras.linti.unlp.edu.ar:proyecto2017/grupo5.git"
+    },
+    "authors": [
+        {
+            "name": "Ulises Jeremias Cornejo Fandos",
+            "email": "ulisescf.24@gmail.com"
+        },
+        {
+            "name": "Juan Cruz Ocampos",
+            "email": "ocamposjuancruz23@gmail.com"
+        },
+        {
+            "name": "Lucas Di Cunzolo",
+            "email": "ldicunzolo@cespi.unlp.edu.ar"
+        }
+    ],
+    "license": "MIT"
 }
