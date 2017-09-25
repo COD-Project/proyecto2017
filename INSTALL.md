@@ -9,8 +9,12 @@ En este documento se van a especificar todo lo requerido para tener la app del H
     - MariaDB 10.1.26 o superior
     - Apache 2.4.10 o superior
     - npm 5.4.2 o superior
+- Recomendaciones:
+    - Usar las imagenes docker de php, php-apache y composer (se explicará más adelante como instalarlas y configurarlas)
+    - Usar [nvm](https://github.com/creationix/nvm) y desde nvm instalar node y npm (la instalación se encuentra explicada en el repositorio de nvm)
 
 ## Instalación del ambiente
+_si le falta cumplir alguno de los requerimientos, seguir a la [siguiente sección](https://gitlab.catedras.linti.unlp.edu.ar/proyecto2017/grupo5/edit/master/INSTALL.md#instalaci%C3%B3n-del-ambiente)_
 
 Instalación de los componentes necesarios usando composer y npm:
 ```bash
