@@ -21,7 +21,7 @@ date_default_timezone_set('America/Argentina/Buenos_Aires');
  *        firebird
  *        odbc
  */
-define('DATABASE', json_decode(file_get_contents('config/db.json')));
+define('DATABASE', serialize(json_decode(file_get_contents('config/db.json'))));
 
 /**
  * Defines the directory in which the framework is installed
