@@ -37,16 +37,22 @@ Para instalar las imágenes de php:5.6.30-cli y php:5.6.30-apache se tiene que e
 docker pull php:5.6.30-cli
 docker pull php:5.6.30-apache
 ```
+_Además, se recomienda instalar la imagen docker de composer_
+
+```bash
+docker pull composer
+```
+
 
 Luego se debe configurar el ambiente para que se ejecute la imagen de php descargada para esto, se debe crear en el directorio raíz del proyecto el archivo .envrc con el siguiente contenido:
 
 ```bash
 export PATH=$HOME/bin:$PATH
 export PHP_CLI_DOCKER_IMAGE=<your_php_docker_image> # ie: 'php:5.6.30-cli' between single quotes
-export PHP_SERVER_DOCKER_RUN_OPTIONS='--add-host local.docker:172.17.0.1 -e APACHE_RUN_USER=$USER -e APACHE_RUN_GROUP=$USER -v $USER/bin/etc/docker/php/php.ini:/usr/local/etc/php/conf.d/$USER.ini:ro'
+export PHP_SERVER_DOCKER_RUN_OPTIONS='--add-host local.docker:172.17.0.1 -e APACHE_RUN_USER=$USER -e APACHE_RUN_GROUP=$USER -v $HOME/bin/etc/docker/php/php.ini:/usr/local/etc/php/conf.d/$USER.ini:ro'
 ```
 
-Ademas se debe contar con dos scripts en el directorio $HOME/bin:
+Ademas se debe contar con tres scripts en el directorio $HOME/bin:
 
 [Archivo php](https://gitlab.catedras.linti.unlp.edu.ar/proyecto2017/grupo5/snippets/2/raw?inline=false)
 ```bash
@@ -81,6 +87,13 @@ PHP_SERVER_DOCKER_IMAGE=${PHP_SERVER_DOCKER_IMAGE:-php:5.6.30-apache}
 PHP_SERVER_DOCKER_RUN_OPTIONS=${PHP_SERVER_DOCKER_RUN_OPTIONS:-'--add-host local.docker:172.17.0.1'}
 
 docker run --rm -p ${PHP_SERVER_PORT}:80 -v /etc/passwd:/etc/passwd:ro -v /etc/group:/etc/group:ro -v "`pwd`:`pwd`" -e "APACHE_DOCUMENT_ROOT=`pwd`" -w "`pwd`" $PHP_SERVER_DOCKER_RUN_OPTIONS $PHP_SERVER_DOCKER_IMAGE $@
+```
+
+[Archivo composer](https://gitlab.catedras.linti.unlp.edu.ar/proyecto2017/grupo5/snippets/4/raw?inline=false)
+```bash
+#!/bin/bash
+
+docker run --rm --interactive --tty --volume $PWD:/app composer $@
 ```
 
 Y un archivo de configuracion en $HOME/bin/etc/docker/php/php.ini:
