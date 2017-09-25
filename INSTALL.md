@@ -87,7 +87,7 @@ shift
 
 [ "$PHP_SERVER_PORT" -lt 1024 ] && (echo port must be greater than 1024; exit 1)
 
-PHP_SERVER_DOCKER_IMAGE=${PHP_SERVER_DOCKER_IMAGE:-php:5.6.30-apache}
+PHP_SERVER_DOCKER_IMAGE=${PHP_SERVER_DOCKER_IMAGE:-php:5.6.30-apache-rewrite} # Imagen nueva generada
 PHP_SERVER_DOCKER_RUN_OPTIONS=${PHP_SERVER_DOCKER_RUN_OPTIONS:-'--add-host local.docker:172.17.0.1'}
 
 docker run --rm -p ${PHP_SERVER_PORT}:80 -v /etc/passwd:/etc/passwd:ro -v /etc/group:/etc/group:ro -v "`pwd`:`pwd`" -e "APACHE_DOCUMENT_ROOT=`pwd`" -w "`pwd`" $PHP_SERVER_DOCKER_RUN_OPTIONS $PHP_SERVER_DOCKER_IMAGE $@
