@@ -14,7 +14,7 @@ En este documento se van a especificar todo lo requerido para tener la app del H
     - Usar [nvm](https://github.com/creationix/nvm) y desde nvm instalar node y npm (la instalación se encuentra explicada en el repositorio de nvm)
 
 ## Instalación del ambiente
-_si le falta cumplir alguno de los requerimientos, seguir a la [siguiente sección](https://gitlab.catedras.linti.unlp.edu.ar/proyecto2017/grupo5/edit/master/INSTALL.md#instalaci%C3%B3n-del-ambiente)_
+_si le falta cumplir alguno de los requerimientos, seguir a la siguiente sección_
 
 Instalación de los componentes necesarios usando composer y npm:
 ```bash
