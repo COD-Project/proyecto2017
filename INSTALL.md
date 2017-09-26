@@ -10,7 +10,7 @@ En este documento se van a especificar todo lo requerido para tener la app del H
     - Apache 2.4.10 o superior
     - npm 5.4.2 o superior
 - Recomendaciones:
-    - Usar las imagenes docker de php, php-apache y composer (se explicará más adelante como instalarlas y configurarlas)
+    - Usar las imagenes docker de php, php-apache, mysql y composer (se explicará más adelante como instalarlas y configurarlas)
     - Usar [nvm](https://github.com/creationix/nvm) y desde nvm instalar node y npm (la instalación se encuentra explicada en el repositorio de nvm)
 
 ## Instalación del ambiente
@@ -32,23 +32,18 @@ $ sudo usermod -a -G docker $USER
 ```
 
 
-### Instalación de las imagenes de php de docker
+### Instalación de las imagenes de php y mysql de docker
 
 
-Para instalar las imágenes de php:5.6.30-cli y php:5.6.30-apache se tiene que ejecutar los siguientes comandos:
+Para instalar las imágenes de chrodriguez/php:5.6-cli-latest y chrodriguez/php:5.6-apache-latest se tiene que ejecutar los siguientes comandos:
 
 ```bash
-$ docker pull php:5.6.30-cli
-$ docker pull php:5.6.30-apache # Si se usa esta imagen es necesario activar el modulo apache mod_rewrite
+$ docker pull chrodriguez/php:5.6-cli-latest
+$ docker pull chrodriguez/php:5.6-apache-latest
+$ docker pull mysql
 ```
-_Si no se desea cambiar la imagen, se puede clonar [php:5.6.30-apache-rewrite](https://github.com/lucasdc6/php-apache-rewrite)_
+_para más información, se puede consultar el [repo de chrodriguez](https://hub.docker.com/r/chrodriguez/php-5.6/)_
 
-Si se clonó el repositorio php:5.6.30-apache-rewrite, se debe ejecutar los siguientes comandos
-```bash
-$ git clone git@github.com:lucasdc6/php-apache-rewrite.git
-$ git cd php-apache-rewrite/5.6.30
-$ docker build apache-rewrite -t php:5.6.30-apache-rewrite
-```
 
 _Además, se recomienda instalar la imagen docker de composer_
 
@@ -61,11 +56,13 @@ Luego se debe configurar el ambiente para que se ejecute la imagen de php descar
 
 ```bash
 export PATH=$HOME/bin:$PATH
-export PHP_CLI_DOCKER_IMAGE=<your_php_docker_image> # ie: 'php:5.6.30-cli' between single quotes
-export PHP_SERVER_DOCKER_RUN_OPTIONS='--add-host local.docker:172.17.0.1 -e APACHE_RUN_USER=$USER -e APACHE_RUN_GROUP=$USER -v $HOME/bin/etc/docker/php/php.ini:/usr/local/etc/php/conf.d/$USER.ini:ro'
+export PHP_CLI_DOCKER_IMAGE=chrodriguez/php-5.6:cli-latest
+export PHP_SERVER_DOCKER_IMAGE=chrodriguez/php-5.6:apache-latest
+export MYSQL_DOCKER_IMAGE=mysql
+export PHP_SERVER_DOCKER_RUN_OPTIONS='--add-host local.docker:172.17.0.1 -e APACHE_RUN_USER=<your_username> -e APACHE_RUN_GROUP=<your_user_group> -v <your_home>/bin/etc/docker/php/php.ini:/usr/local/etc/php/conf.d/<your_user>.ini:ro'
 ```
 
-Ademas se debe contar con tres scripts en el directorio $HOME/bin:
+Ademas se debe contar con cuatro scripts en el directorio $HOME/bin:
 
 [Archivo php](https://gitlab.catedras.linti.unlp.edu.ar/proyecto2017/grupo5/snippets/2/raw?inline=false)
 ```bash
@@ -107,6 +104,15 @@ docker run --rm -p ${PHP_SERVER_PORT}:80 -v /etc/passwd:/etc/passwd:ro -v /etc/g
 #!/bin/bash
 
 docker run --rm --interactive --tty --volume $PWD:/app composer $@
+```
+
+[Archivo mysql-server](https://gitlab.catedras.linti.unlp.edu.ar/proyecto2017/grupo5/snippets/5/raw?inline=false)
+```bash
+#!/bin/bash
+
+[ -z "$MYSQL_DOCKER_IMAGE" ] && ( echo You must set MYSQL_DOCKER_IMAGE environment variable ; exit 1)
+
+docker run --rm --name mysql -p 3307:3306 -v mysql-data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD='lucas' -d $MYSQL_DOCKER_IMAGE $@
 ```
 
 Y un archivo de configuracion en $HOME/bin/etc/docker/php/php.ini:
