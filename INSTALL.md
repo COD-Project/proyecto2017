@@ -18,7 +18,7 @@ _si le falta cumplir alguno de los requerimientos, seguir a la siguiente secció
 
 Instalación de los componentes necesarios usando composer y npm:
 ```bash
-$ npm start
+$ npm install
 ```
 
 Con esto, se procederá a crear la carpeta vendor, la cual contendrá los módulos php y node.
