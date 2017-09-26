@@ -3,6 +3,11 @@
 # Timezone DOC http://php.net/manual/es/timezones.php
 date_default_timezone_set('America/Argentina/Buenos_Aires');
 
+$data = json_decode(
+  file_get_contents("config/db.json"),
+  true
+);
+
 /**
  * Settings for DB connection.
  * @param host 'Server for connection to the database -> local/remote hosting'
@@ -21,7 +26,6 @@ date_default_timezone_set('America/Argentina/Buenos_Aires');
  *        firebird
  *        odbc
  */
-$data = json_decode(file_get_contents('config/db.json'));
 define('DATABASE', $data['database']);
 
 /**
