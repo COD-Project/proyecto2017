@@ -26,7 +26,7 @@ $data = json_decode(
  *        firebird
  *        odbc
  */
-define('DATABASE', $data['database']);
+#define('DATABASE', $data['database']);
 
 /**
  * Defines the directory in which the framework is installed
