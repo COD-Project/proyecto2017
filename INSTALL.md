@@ -35,11 +35,11 @@ $ sudo usermod -a -G docker $USER
 ### Instalación de las imagenes de php y mysql de docker
 
 
-Para instalar las imágenes de chrodriguez/php:5.6-cli-latest y chrodriguez/php:5.6-apache-latest se tiene que ejecutar los siguientes comandos:
+Para instalar las imágenes de chrodriguez/php-5.6:cli-latest y chrodriguez/php-5.6:apache-latest se tiene que ejecutar los siguientes comandos:
 
 ```bash
-$ docker pull chrodriguez/php:5.6-cli-latest
-$ docker pull chrodriguez/php:5.6-apache-latest
+$ docker pull chrodriguez/php-5.6:cli-latest
+$ docker pull chrodriguez/php-5.6:apache-latest
 $ docker pull mysql
 ```
 _para más información, se puede consultar el [repo de chrodriguez](https://hub.docker.com/r/chrodriguez/php-5.6/)_
