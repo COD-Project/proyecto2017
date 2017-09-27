@@ -21,6 +21,7 @@
         "url": "git+https://gitlab.catedras.linti.unlp.edu.ar/proyecto2017/grupo5.git"
     },
     "require": {
-        "twig/twig": "*"
+        "php": "^5.6",
+        "twig/twig": "^1.x"
     }
 }
