@@ -62,7 +62,7 @@ export MYSQL_DOCKER_IMAGE=mysql
 export PHP_SERVER_DOCKER_RUN_OPTIONS='--add-host local.docker:172.17.0.1 -e APACHE_RUN_USER=<your_username> -e APACHE_RUN_GROUP=<your_user_group> -v <your_home>/bin/etc/docker/php/php.ini:/usr/local/etc/php/conf.d/<your_user>.ini:ro'
 ```
 
-Ademas se debe contar con cuatro scripts en el directorio $HOME/bin:
+Ademas se debe contar con cinco scripts en el directorio $HOME/bin:
 
 [Archivo php](https://gitlab.catedras.linti.unlp.edu.ar/proyecto2017/grupo5/snippets/2/raw?inline=false)
 ```bash
@@ -110,9 +110,34 @@ docker run --rm --interactive --tty --volume $PWD:/app composer $@
 ```bash
 #!/bin/bash
 
+set -e
+
+[ "$1" = "stop" ] && ( docker stop mysql-server; exit 1)
+
 [ -z "$MYSQL_DOCKER_IMAGE" ] && ( echo You must set MYSQL_DOCKER_IMAGE environment variable ; exit 1)
 
-docker run --rm --name mysql -p 3307:3306 -v mysql-data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD='lucas' -d $MYSQL_DOCKER_IMAGE $@
+[ "$1" = "-v" ] && ( echo $MYSQL_DOCKER_IMAGE; exit 1)
+
+MYSQL_DOCKER_RUN_OPTIONS=${MYSQL_DOCKER_RUN_OPTIONS:-'--add-host local.docker:172.17.0.1'}
+
+docker run --rm --name mysql-server -e MYSQL_ALLOW_EMPTY_PASSWORD='yes' -p 3307:3306 -v mysql-data:/var/lib/mysql -d $MYSQL_DOCKER_RUN_OPTIONS $MYSQL_DOCKER_IMAGE $@
+```
+
+[Archivo mysql-client](https://gitlab.catedras.linti.unlp.edu.ar/proyecto2017/grupo5/snippets/6/raw?inline=false)
+```bash
+/bin/bash
+
+set -e 
+
+[ -z "$MYSQL_DOCKER_IMAGE" ] && ( echo You must set MYSQL_DOCKER_IMAGE environment variable ; exit 1)
+
+[ "$1" = "-v" ] && ( echo $MYSQL_DOCKER_IMAGE; exit 1)
+
+MYSQL_SERVER_DOCKER=`docker ps -f name=mysql-server -f status=running --format {{.ID}}`
+
+[ -z $MYSQL_SERVER_DOCKER ] && ( echo No mysql-server found ; exit 1)
+
+docker exec -it $MYSQL_SERVER_DOCKER mysql -uroot
 ```
 
 Y un archivo de configuracion en $HOME/bin/etc/docker/php/php.ini:
