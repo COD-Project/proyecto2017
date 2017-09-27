@@ -150,7 +150,7 @@ MYSQL_SERVER_DOCKER=`docker ps -f name=mysql-server -f status=running --format {
 
 [ -z $MYSQL_SERVER_DOCKER ] && ( echo No mysql-server found ; exit 1)
 
-docker exec -it $MYSQL_SERVER_DOCKER mysql -uroot
+docker exec -it $MYSQL_SERVER_DOCKER mysql $@
 ```
 
 Y un archivo de configuracion en $HOME/bin/etc/docker/php/php.ini:
