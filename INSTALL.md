@@ -9,6 +9,7 @@ En este documento se van a especificar todo lo requerido para tener la app del H
     - MariaDB 10.1.26 o superior
     - Apache 2.4.10 o superior
     - npm 5.4.2 o superior
+    - [direnv](https://github.com/direnv/direnv) 2.4.0 o superior
 - Recomendaciones:
     - Usar las imagenes docker de php, php-apache, mysql y composer (se explicará más adelante como instalarlas y configurarlas)
     - Usar [nvm](https://github.com/creationix/nvm) y desde nvm instalar node y npm (la instalación se encuentra explicada en el repositorio de nvm)
@@ -62,7 +63,19 @@ export MYSQL_DOCKER_IMAGE=mysql
 export PHP_SERVER_DOCKER_RUN_OPTIONS='--add-host local.docker:172.17.0.1 -e APACHE_RUN_USER=<your_username> -e APACHE_RUN_GROUP=<your_user_group> -v <your_home>/bin/etc/docker/php/php.ini:/usr/local/etc/php/conf.d/<your_user>.ini:ro'
 ```
 
-Ademas se debe contar con cinco scripts en el directorio $HOME/bin:
+_Para el correcto funcionamiento del archivo .envrc es necesario contar con [**direnv**](https://github.com/direnv/direnv)_
+
+_Ademas, **cada vez que se modifique** se debe ejecutar:_
+
+```bash
+$ direnv allow
+```
+
+### Recomendaciones
+
+Para proveer un entorno más amigable para el desarrollo, se proveen 5 scripts que funcionan a forma de wrapper a los comandos de docker.
+Junto con estos scripts se puede pedir declarar ciertas variables de ambiente.
+Todos los scripts aqui mostrados, fueron publicados en la sección [snippets](https://gitlab.catedras.linti.unlp.edu.ar/proyecto2017/grupo5/snippets) del repositorio
 
 [Archivo php](https://gitlab.catedras.linti.unlp.edu.ar/proyecto2017/grupo5/snippets/2/raw?inline=false)
 ```bash
@@ -146,7 +159,7 @@ date.timezone=America/Argentina/Buenos_Aires;
 memory_limit=512M;
 ```
 
-Con esto se debería contar con todo lo necesario para levantar la aplicación ejecutando:
+Con esto se debería contar con todo lo necesario para levantar la aplicación ejecutando en el directorio raíz del proyecto:
 
 ```bash
 php-server <server_port>
