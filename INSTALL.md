@@ -138,7 +138,7 @@ docker run --rm --name mysql-server -e MYSQL_ALLOW_EMPTY_PASSWORD='yes' -p 3307:
 
 [Archivo mysql-client](https://gitlab.catedras.linti.unlp.edu.ar/proyecto2017/grupo5/snippets/6/raw?inline=false)
 ```bash
-/bin/bash
+#!/bin/bash
 
 set -e 
 
