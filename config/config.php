@@ -8,6 +8,8 @@ $data = json_decode(
   true
 );
 
+$db = $data['database'];
+
 /**
  * Settings for DB connection.
  * @param host 'Server for connection to the database -> local/remote hosting'
@@ -26,13 +28,13 @@ $data = json_decode(
  *        firebird
  *        odbc
  */
-define('DATABASE["host"]', $data['database']['host']);
-define('DATABASE["user"]', $data['database']['name']);
-define('DATABASE["password"]', $data['database']['pass']);
-define('DATABASE["name"]', $data['database']['name']);
-define('DATABASE["port"]', $data['database']['port']);
-define('DATABASE["protocol"]', $data['database']['protocol']);
-define('DATABASE["motor"]', $data['database']['motor']);
+define('DATABASE["host"]', $db['host']);
+define('DATABASE["user"]', $db['name']);
+define('DATABASE["password"]', $db['pass']);
+define('DATABASE["name"]', $db['name']);
+define('DATABASE["port"]', $db['port']);
+define('DATABASE["protocol"]', $db['protocol']);
+define('DATABASE["motor"]', $db['motor']);
 
 /**
  * Defines the directory in which the framework is installed

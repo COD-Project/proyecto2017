@@ -1,10 +1,14 @@
 <?php
 
-require __DIR__ . '/config/config.php';
-require __DIR__ . '/vendor/autoload.php';
+class MyApp
+{
+    public static function __init()
+    {
+        define("ROOT", __DIR__);
 
-$app = new \Mbh\App;
+        require_once ROOT . "/app/config/bootstrap.php";
+        AppBootstrap::init();
+    }
+}
 
-require __DIR__ . '/app/routes.php';
-
-$app->run();
+MyApp::__init() ;
