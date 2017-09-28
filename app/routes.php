@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Some examples of routes to make MVC applications
+ * Routes to make MVC applications
  */
 $app->get('/', function() {
     return "MBHFramework is working!";
