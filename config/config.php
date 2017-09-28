@@ -26,12 +26,18 @@ $data = json_decode(
  *        firebird
  *        odbc
  */
-#define('DATABASE', $data['database']);
+define('DATABASE["host"]', $data['database']['host']);
+define('DATABASE["user"]', $data['database']['name']);
+define('DATABASE["password"]', $data['database']['pass']);
+define('DATABASE["name"]', $data['database']['name']);
+define('DATABASE["port"]', $data['database']['port']);
+define('DATABASE["protocol"]', $data['database']['protocol']);
+define('DATABASE["motor"]', $data['database']['motor']);
 
 /**
  * Defines the directory in which the framework is installed
  * @example "/" If to access the framework we place http://url.com in the URL, or http://localhost
- * @example "/cod-framework/" if to access the framework we place http://url.com/mbh-framework, or http://localhost/cod-framework/
+ * @example "/mbh-framework/" if to access the framework we place http://url.com/mbh-framework, or http://localhost/mbh-framework/
  */
-define('__ROOT__', '/grupo5/');
-define('URL', 'http://localhost/grupo5/');
+define('__ROOT__', '/');
+define('URL', 'http://localhost:3000/');
