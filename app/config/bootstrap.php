@@ -9,7 +9,7 @@ class AppBootstrap
      * @param boolean $runApp If false dont load app framework - false during tests
      * @return boolean true
      */
-    public static function init($runApp=true)
+    public static function init($runApp = true)
     {
         // Base config file
         require_once ROOT . "/config/config.php" ;
@@ -21,7 +21,7 @@ class AppBootstrap
             require_once ROOT . "/app/config/routes.php" ;
             $app->run();
         }
-        
+
         return true ;
     }
 }
