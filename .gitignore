@@ -3,3 +3,4 @@ composer.lock
 package-lock.json
 /vendor/*
 !/vendor/package.json
+/var
