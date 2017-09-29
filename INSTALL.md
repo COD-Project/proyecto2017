@@ -174,20 +174,6 @@ date.timezone=America/Argentina/Buenos_Aires;
 memory_limit=512M;
 ```
 
-Con esto se debería contar con todo lo necesario para levantar la aplicación ejecutando en el directorio raíz del proyecto:
-
-```bash
-$ start_app
-```
-
-o se puede optar por levantar los servicios por separado ejecutando
-
-```bash
-$ mysql-server # Si no se encuentra el servicio ya corriendo
-$ phpmyadmin <puerto> # Si se desea tener phpmyadmin y no se encuentra el servicio corriendo, escuchando en el puerto <puerto> (ejecución opcional)
-$ php-server <puerto> # Se inicia el servidor apache escuchando en el puero <puerto>
-```
-
 ## Opcional
 
 ### Instalación de phpmyadmin
@@ -230,3 +216,18 @@ docker run --rm --name phpmyadmin -d --link mysql-server:db -p $PHPMYADMIN_PORT:
 Para ejecutarlo, simplemente en necesario mandarle un puerto en el cual escuchar, por ejemplo 8080.
 
 Luego simplemente se accede, siguiendo el ejemplo, a la dirección [localhost:8080](localhost:8080) en tu navegador favorito
+
+## Iniciar app
+
+Habiendo seguido los pasos anteriores se debería contar con todo lo necesario para levantar la aplicación ejecutando en el directorio raíz del proyecto:
+```bash
+$ start_app
+```
+
+o se puede optar por levantar los servicios por separado ejecutando
+
+```bash
+$ mysql-server # Si no se encuentra el servicio ya corriendo
+$ phpmyadmin <puerto> # Si se desea tener phpmyadmin y no se encuentra el servicio corriendo, escuchando en el puerto <puerto> (ejecución opcional)
+$ php-server <puerto> # Se inicia el servidor apache escuchando en el puero <puerto>
+```
