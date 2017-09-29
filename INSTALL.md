@@ -60,6 +60,7 @@ export PATH=$HOME/bin:$PATH
 export PHP_CLI_DOCKER_IMAGE=chrodriguez/php-5.6:cli-latest
 export PHP_SERVER_DOCKER_IMAGE=chrodriguez/php-5.6:apache-latest
 export MYSQL_DOCKER_IMAGE=mysql
+export PHP_SERVER_DOCKER_LOGS="$PWD/var/logs/apache.logs"
 export PHP_SERVER_DOCKER_RUN_OPTIONS='--add-host local.docker:172.17.0.1 -e APACHE_RUN_USER=<your_username> -e APACHE_RUN_GROUP=<your_user_group> -v <your_home>/bin/etc/docker/php/php.ini:/usr/local/etc/php/conf.d/<your_user>.ini:ro'
 ```
 
@@ -97,6 +98,10 @@ docker run --rm -it -u `id -u $USER`:`id -g $USER` -v "`pwd`:`pwd`" -w "`pwd`" $
 
 set -e 
 
+[ -z "$PHP_SERVER_DOCKER_IMAGE" ] && ( echo You must set PHP_SERVER_DOCKER_IMAGE environment variable ; exit 1)
+
+[ "$1" = "-v" ] && ( echo $PHP_SERVER_DOCKER_IMAGE; exit 1)
+
 PHP_SERVER_PORT=$1
 
 [ -z "$PHP_SERVER_PORT" ] && ( echo You must specify wich port to use as parameter; exit 1)
@@ -106,10 +111,9 @@ shift
 
 [ "$PHP_SERVER_PORT" -lt 1024 ] && (echo port must be greater than 1024; exit 1)
 
-PHP_SERVER_DOCKER_IMAGE=${PHP_SERVER_DOCKER_IMAGE:-php:5.6.30-apache-rewrite} # Imagen nueva generada
 PHP_SERVER_DOCKER_RUN_OPTIONS=${PHP_SERVER_DOCKER_RUN_OPTIONS:-'--add-host local.docker:172.17.0.1'}
 
-docker run --rm -p ${PHP_SERVER_PORT}:80 -v /etc/passwd:/etc/passwd:ro -v /etc/group:/etc/group:ro -v "`pwd`:`pwd`" -e "APACHE_DOCUMENT_ROOT=`pwd`" -w "`pwd`" $PHP_SERVER_DOCKER_RUN_OPTIONS $PHP_SERVER_DOCKER_IMAGE $@
+docker run --rm -p ${PHP_SERVER_PORT}:80 -v /etc/passwd:/etc/passwd:ro -v /etc/group:/etc/group:ro -v "`pwd`:`pwd`" -e "APACHE_DOCUMENT_ROOT=`pwd`" -w "`pwd`" $PHP_SERVER_DOCKER_RUN_OPTIONS $PHP_SERVER_DOCKER_IMAGE $@ |& tee -a $PHP_SERVER_DOCKER_LOGS
 ```
 
 [Archivo composer](https://gitlab.catedras.linti.unlp.edu.ar/proyecto2017/grupo5/snippets/4/raw?inline=false)
