@@ -13,6 +13,8 @@ En este documento se van a especificar todo lo requerido para tener la app del H
 - Recomendaciones:
     - Usar las imagenes docker de php, php-apache, mysql y composer (se explicará más adelante como instalarlas y configurarlas)
     - Usar [nvm](https://github.com/creationix/nvm) y desde nvm instalar node y npm (la instalación se encuentra explicada en el repositorio de nvm)
+- Opcionales
+    - Usar la imagen docker de phpmyadmin y su wraper provisto para manejo de la db
 
 ## Instalación del ambiente
 _si le falta cumplir alguno de los requerimientos, seguir a la siguiente sección_
@@ -56,11 +58,20 @@ $ docker pull composer
 Luego se debe configurar el ambiente para que se ejecute la imagen de php descargada para esto, se debe crear en el directorio raíz del proyecto el archivo .envrc con el siguiente contenido:
 
 ```bash
-export PATH=$HOME/bin:$PATH
+# Ensures that the php script runs
+export PATH=$HOME/bin:$PATH:$PWD/bin
+
+# Define docker images
 export PHP_CLI_DOCKER_IMAGE=chrodriguez/php-5.6:cli-latest
 export PHP_SERVER_DOCKER_IMAGE=chrodriguez/php-5.6:apache-latest
-export MYSQL_DOCKER_IMAGE=mysql
+export MYSQL_DOCKER_IMAGE=mysql:latest
+export PHPMYADMIN_DOCKER_IMAGE=phpmyadmin/phpmyadmin:latest
+
+# Define logs directory
 export PHP_SERVER_DOCKER_LOGS="$PWD/var/logs/apache.logs"
+export MYSQL_SERVER_DOCKER_LOGS="$PWD/var/logs/mysql.logs"
+
+# Define extra run options for php-server
 export PHP_SERVER_DOCKER_RUN_OPTIONS='--add-host local.docker:172.17.0.1 -e APACHE_RUN_USER=<your_username> -e APACHE_RUN_GROUP=<your_user_group> -v <your_home>/bin/etc/docker/php/php.ini:/usr/local/etc/php/conf.d/<your_user>.ini:ro'
 ```
 
@@ -74,7 +85,7 @@ $ direnv allow
 
 ### Recomendaciones
 
-Para proveer un entorno más amigable para el desarrollo, se proveen 6 scripts que funcionan a forma de wrapper a los comandos de docker.
+Para proveer un entorno más amigable para el desarrollo, se proveen 5 scripts que funcionan a forma de wrapper a los comandos de docker.
 Junto con estos scripts se puede pedir declarar ciertas variables de ambiente.
 Todos los scripts aqui mostrados, fueron publicados en la sección [snippets](https://gitlab.catedras.linti.unlp.edu.ar/proyecto2017/grupo5/snippets) del repositorio
 
@@ -157,6 +168,38 @@ MYSQL_SERVER_DOCKER=`docker ps -f name=mysql-server -f status=running --format {
 docker exec -it $MYSQL_SERVER_DOCKER mysql $@
 ```
 
+Y un archivo de configuracion en $HOME/bin/etc/docker/php/php.ini:
+```
+date.timezone=America/Argentina/Buenos_Aires;
+memory_limit=512M;
+```
+
+Con esto se debería contar con todo lo necesario para levantar la aplicación ejecutando en el directorio raíz del proyecto:
+
+```bash
+$ start_app
+```
+
+o se puede optar por levantar los servicios por separado ejecutando
+
+```bash
+$ mysql-server # Si no se encuentra el servicio ya corriendo
+$ phpmyadmin <puerto> # Si se desea tener phpmyadmin y no se encuentra el servicio corriendo, escuchando en el puerto <puerto> (ejecución opcional)
+$ php-server <puerto> # Se inicia el servidor apache escuchando en el puero <puerto>
+```
+
+## Opcional
+
+### Instalación de phpmyadmin
+
+Para instalar phpmyadmin es necesario ejecutar los siguientes comandos
+
+```bash
+$ docker pull phpmyadmin/phpmyadmin
+```
+
+Para interactuar con la imagen de docker, se provee el wrapper phpmyadmin descripto a continuación:
+
 [Archivo phpmyadmin](https://gitlab.catedras.linti.unlp.edu.ar/proyecto2017/grupo5/snippets/7/raw?inline=false)
 ```bash
 #!/bin/bash
@@ -181,25 +224,9 @@ shift
 
 [ "$PHPMYADMIN_PORT" -lt 1024 ] && (echo port must be greater than 1024; exit 1)
 
-docker run --rm --name phpmyadmin -d --link mysql-server:db -p 8080:80 phpmyadmin/phpmyadmin $@
+docker run --rm --name phpmyadmin -d --link mysql-server:db -p $PHPMYADMIN_PORT:80 phpmyadmin/phpmyadmin $@
 ```
 
-Y un archivo de configuracion en $HOME/bin/etc/docker/php/php.ini:
-```
-date.timezone=America/Argentina/Buenos_Aires;
-memory_limit=512M;
-```
+Para ejecutarlo, simplemente en necesario mandarle un puerto en el cual escuchar, por ejemplo 8080.
 
-Con esto se debería contar con todo lo necesario para levantar la aplicación ejecutando en el directorio raíz del proyecto:
-
-```bash
-$ start_app
-```
-
-o se puede optar por levantar los servicios por separado ejecutando
-
-```bash
-$ mysql-server # Si no se encuentra el servicio ya corriendo
-$ phpmyadmin <puerto> # Si se desea tener phpmyadmin y no se encuentra el servicio corriendo, escuchando en el puerto <puerto> (ejecución opcional)
-$ php-server <puerto> # Se inicia el servidor apache escuchando en el puero <puerto>
-```
+Luego simplemente se accede, siguiendo el ejemplo, a la dirección [localhost:8080](localhost:8080) en tu navegador favorito
