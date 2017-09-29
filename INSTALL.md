@@ -74,7 +74,7 @@ $ direnv allow
 
 ### Recomendaciones
 
-Para proveer un entorno más amigable para el desarrollo, se proveen 5 scripts que funcionan a forma de wrapper a los comandos de docker.
+Para proveer un entorno más amigable para el desarrollo, se proveen 6 scripts que funcionan a forma de wrapper a los comandos de docker.
 Junto con estos scripts se puede pedir declarar ciertas variables de ambiente.
 Todos los scripts aqui mostrados, fueron publicados en la sección [snippets](https://gitlab.catedras.linti.unlp.edu.ar/proyecto2017/grupo5/snippets) del repositorio
 
@@ -157,6 +157,33 @@ MYSQL_SERVER_DOCKER=`docker ps -f name=mysql-server -f status=running --format {
 docker exec -it $MYSQL_SERVER_DOCKER mysql $@
 ```
 
+[Archivo phpmyadmin](https://gitlab.catedras.linti.unlp.edu.ar/proyecto2017/grupo5/snippets/7/raw?inline=false)
+```bash
+#!/bin/bash
+
+set -e
+
+[ "$1" = "stop" ] && ( docker stop phpmyadmin; exit 1)
+
+[ -z "$PHPMYADMIN_DOCKER_IMAGE" ] && ( echo You must set PHPMYADMIN_DOCKER_IMAGE environment variable ; exit 1)
+
+[ "$1" = "-v" ] && ( echo $PHPMYADMIN_DOCKER_IMAGE; exit 1)
+
+MYSQL_SERVER_DOCKER=`docker ps -f name=mysql-server -f status=running --format {{.ID}}`
+
+[ -z $MYSQL_SERVER_DOCKER ] && ( echo No mysql-server found ; exit 1)
+
+PHPMYADMIN_PORT=$1
+
+[ -z "$PHPMYADMIN_PORT" ] && ( echo You must specify wich port to use as parameter; exit 1)
+
+shift
+
+[ "$PHPMYADMIN_PORT" -lt 1024 ] && (echo port must be greater than 1024; exit 1)
+
+docker run --rm --name phpmyadmin -d --link mysql-server:db -p 8080:80 phpmyadmin/phpmyadmin $@
+```
+
 Y un archivo de configuracion en $HOME/bin/etc/docker/php/php.ini:
 ```
 date.timezone=America/Argentina/Buenos_Aires;
@@ -166,5 +193,13 @@ memory_limit=512M;
 Con esto se debería contar con todo lo necesario para levantar la aplicación ejecutando en el directorio raíz del proyecto:
 
 ```bash
-php-server <server_port>
+$ start_app
+```
+
+o se puede optar por levantar los servicios por separado ejecutando
+
+```bash
+$ mysql-server # Si no se encuentra el servicio ya corriendo
+$ phpmyadmin <puerto> # Si se desea tener phpmyadmin y no se encuentra el servicio corriendo, escuchando en el puerto <puerto> (ejecución opcional)
+$ php-server <puerto> # Se inicia el servidor apache escuchando en el puero <puerto>
 ```
