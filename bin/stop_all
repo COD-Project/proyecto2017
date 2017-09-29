@@ -1,0 +1,9 @@
+#!/bin/bash
+
+MYSQL_SERVER_DOCKER=`docker ps -f name=mysql-server -f status=running --format {{.ID}}`
+PHPMYADMIN_DOCKER=`docker ps -f name=phpmyadmin -f status=running --format {{.ID}}`
+PHP_SERVER_DOCKER=`docker ps -f name=apache -f status=running --format {{.ID}}`
+
+[ ! -z $PHPMYADMIN_DOCKER ] && (docker stop $PHPMYADMIN_DOCKER)
+[ ! -z $PHP_SERVER_DOCKER ] && (docker stop $PHP_SERVER_DOCKER)
+[ ! -z $MYSQL_SERVER_DOCKER ] && (mysql-server stop)
