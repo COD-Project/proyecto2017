@@ -12,13 +12,14 @@ class AppBootstrap
     public static function init($runApp = true)
     {
         // Base config file
-        require_once ROOT . "/app/config/config.php" ;
+        require_once ROOT . "/app/config/config.php";
 
         if ($runApp) {
             require ROOT . '/vendor/autoload.php';
             $app = new \Mbh\App;
 
-            require_once ROOT . "/app/config/routes.php" ;
+            require_once ROOT . "/app/config/routes.php";
+            $asd = new \Mbh\Connection\Engines\Mysql($db);
             $app->run();
         }
 

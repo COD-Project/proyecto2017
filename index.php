@@ -11,4 +11,4 @@ class MyApp
     }
 }
 
-MyApp::__init() ;
+MyApp::__init();

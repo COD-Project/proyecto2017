@@ -1,11 +1,11 @@
 {
   "database": {
-    "host": "localhost",
+    "host": "172.17.0.1",
     "user": "root",
     "pass": "",
-    "name": "",
-    "port": 1521,
+    "name": "asd",
+    "port": 3307,
     "protocol": "TCP",
-    "motor": "mysql"
+    "driver": "mysql"
   }
 }
