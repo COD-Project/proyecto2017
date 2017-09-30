@@ -7,6 +7,10 @@ $app->get('/', function() {
     return "app working";
 });
 
+$app->get('/phpinfo', function() {
+    return phpinfo();
+});
+
 $app->get('/:controller', function($controller) {
     return "app working";
 });
