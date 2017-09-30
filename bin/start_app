@@ -1,0 +1,31 @@
+#!/bin/bash
+
+MYSQL_SERVER_DOCKER=`docker ps -f name=mysql-server -f status=running --format {{.ID}}`
+PHPMYADMIN_DOCKER=`docker ps -f name=phpmyadmin -f status=running --format {{.ID}}`
+PHP_SERVER_DOCKER=`docker ps -f name=apache -f status=running --format {{.ID}}`
+
+MYSQL_SERVER_DOCKER_LOGS=${MYSQL_SERVER_DOCKER_LOGS:-'tmp/mysql.logs'}
+
+if [ -z $MYSQL_SERVER_DOCKER ]
+then
+  printf "mysql-server running now with docker id "
+  mysql-server
+else
+  echo -e "mysql-server is running with docker id $MYSQL_SERVER_DOCKER"
+fi
+docker logs mysql-server --details -t &>> $MYSQL_SERVER_DOCKER_LOGS
+
+if [ -z $PHPMYADMIN_DOCKER ]
+then
+  printf "phpmyadmin running now with docker id "
+  phpmyadmin 8080
+else
+  echo -e "phpmyadmin is running with docker id $PHPMYADMIN_DOCKER"
+fi
+
+if [ -z $PHP_SERVER_DOCKER ]
+then
+  php-server 3000
+else
+  echo -e "apache is running with docker id $PHP_SERVER_DOCKER"
+fi

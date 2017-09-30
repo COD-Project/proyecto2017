@@ -1,4 +1,4 @@
-# Hospital Gutiérrez - Consultorio del Niño Sano
+# Branch 2.x
 
 ## Introducción
 
