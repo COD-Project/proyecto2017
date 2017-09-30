@@ -12,7 +12,7 @@ class AppBootstrap
     public static function init($runApp = true)
     {
         // Base config file
-        require_once ROOT . "/config/config.php" ;
+        require_once ROOT . "/app/config/config.php" ;
 
         if ($runApp) {
             require ROOT . '/vendor/autoload.php';
