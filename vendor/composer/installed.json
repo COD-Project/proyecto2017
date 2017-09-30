@@ -73,18 +73,18 @@
         "source": {
             "type": "git",
             "url": "https://github.com/MBHFramework/mbh-rest.git",
-            "reference": "fda0a7ab721227cdd2e918e4c011acb0b4019d77"
+            "reference": "0fb7a06eca4db4c01ebeeffa00c7adcaff7ce777"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/MBHFramework/mbh-rest/zipball/fda0a7ab721227cdd2e918e4c011acb0b4019d77",
-            "reference": "fda0a7ab721227cdd2e918e4c011acb0b4019d77",
+            "url": "https://api.github.com/repos/MBHFramework/mbh-rest/zipball/0fb7a06eca4db4c01ebeeffa00c7adcaff7ce777",
+            "reference": "0fb7a06eca4db4c01ebeeffa00c7adcaff7ce777",
             "shasum": ""
         },
         "require": {
             "php": "^5.6 || ^7.0"
         },
-        "time": "2017-09-30T17:08:34+00:00",
+        "time": "2017-09-30T17:15:16+00:00",
         "type": "library",
         "installation-source": "source",
         "autoload": {
