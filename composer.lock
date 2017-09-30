@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/MBHFramework/mbh-mvc.git",
-                "reference": "e23c0f13bcce01e01e0f216e50beae687be2db15"
+                "reference": "641de7b601da753e645bcc54d4409a391b3d06d0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/MBHFramework/mbh-mvc/zipball/e23c0f13bcce01e01e0f216e50beae687be2db15",
-                "reference": "e23c0f13bcce01e01e0f216e50beae687be2db15",
+                "url": "https://api.github.com/repos/MBHFramework/mbh-mvc/zipball/641de7b601da753e645bcc54d4409a391b3d06d0",
+                "reference": "641de7b601da753e645bcc54d4409a391b3d06d0",
                 "shasum": ""
             },
             "require": {
@@ -48,7 +48,7 @@
                 }
             ],
             "description": "Minimalist framework to create MVC Apps with php7.",
-            "time": "2017-09-30T16:55:40+00:00"
+            "time": "2017-09-30T17:08:55+00:00"
         },
         {
             "name": "mbh-framework/rest",
@@ -56,12 +56,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/MBHFramework/mbh-rest.git",
-                "reference": "41a3a6e2d79b28fed7ce0395e0c0fad26f00275d"
+                "reference": "fda0a7ab721227cdd2e918e4c011acb0b4019d77"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/MBHFramework/mbh-rest/zipball/41a3a6e2d79b28fed7ce0395e0c0fad26f00275d",
-                "reference": "41a3a6e2d79b28fed7ce0395e0c0fad26f00275d",
+                "url": "https://api.github.com/repos/MBHFramework/mbh-rest/zipball/fda0a7ab721227cdd2e918e4c011acb0b4019d77",
+                "reference": "fda0a7ab721227cdd2e918e4c011acb0b4019d77",
                 "shasum": ""
             },
             "require": {
@@ -92,7 +92,7 @@
                 }
             ],
             "description": "Minimalist framework to create RESTFull Apps with php7.",
-            "time": "2017-09-30T16:56:10+00:00"
+            "time": "2017-09-30T17:08:34+00:00"
         },
         {
             "name": "twig/twig",
