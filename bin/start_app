@@ -23,7 +23,7 @@ fi
 
 if [ -z $PHP_SERVER_DOCKER ]
 then
-  php-server 8000
+  php-server 3000
 else
   echo -e "apache is running with docker id $PHP_SERVER_DOCKER"
 fi
