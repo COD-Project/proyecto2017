@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/MBHFramework/mbh-mvc.git",
-                "reference": "641de7b601da753e645bcc54d4409a391b3d06d0"
+                "reference": "e358f11fec08729f30d1e4a7fcb988912cb0a9c2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/MBHFramework/mbh-mvc/zipball/641de7b601da753e645bcc54d4409a391b3d06d0",
-                "reference": "641de7b601da753e645bcc54d4409a391b3d06d0",
+                "url": "https://api.github.com/repos/MBHFramework/mbh-mvc/zipball/e358f11fec08729f30d1e4a7fcb988912cb0a9c2",
+                "reference": "e358f11fec08729f30d1e4a7fcb988912cb0a9c2",
                 "shasum": ""
             },
             "require": {
@@ -48,7 +48,7 @@
                 }
             ],
             "description": "Minimalist framework to create MVC Apps with php7.",
-            "time": "2017-09-30T17:08:55+00:00"
+            "time": "2017-09-30T17:14:48+00:00"
         },
         {
             "name": "mbh-framework/rest",
