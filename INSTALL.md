@@ -213,7 +213,18 @@ Para interactuar con la imagen de docker, se provee el wrapper phpmyadmin descri
 
 set -e
 
-[ "$1" = "stop" ] && ( docker stop phpmyadmin; exit 1)
+PHPMYADMIN_DOCKER_SERVER=`docker ps -f name=phpmyadmin -f status=running --format {{.ID}}`
+
+if [ "$1" = "stop" -a -n "$PHPMYADMIN_DOCKER_SERVER" ]
+then
+  docker stop phpmyadmin > /dev/null
+  docker rm phpmyadmin
+  exit 1
+elif [ "$1" = "stop" -a -z "$PHPMYADMIN_DOCKER_SERVER" ]
+then
+  echo "Not phpmyadmin service found"
+  exit 1
+fi
 
 [ -z "$PHPMYADMIN_DOCKER_IMAGE" ] && ( echo You must set PHPMYADMIN_DOCKER_IMAGE environment variable ; exit 1)
 
@@ -231,7 +242,7 @@ shift
 
 [ "$PHPMYADMIN_PORT" -lt 1024 ] && (echo port must be greater than 1024; exit 1)
 
-docker run --rm --name phpmyadmin -d --link mysql-server:db -p $PHPMYADMIN_PORT:80 phpmyadmin/phpmyadmin $@
+docker run --restart=unless-stopped --name phpmyadmin -d --link mysql-server:db -p $PHPMYADMIN_PORT:80 phpmyadmin/phpmyadmin $@
 ```
 
 Para ejecutarlo, simplemente en necesario mandarle un puerto en el cual escuchar, por ejemplo 8080.
