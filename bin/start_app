@@ -4,16 +4,14 @@ MYSQL_SERVER_DOCKER=`docker ps -f name=mysql-server -f status=running --format {
 PHPMYADMIN_DOCKER=`docker ps -f name=phpmyadmin -f status=running --format {{.ID}}`
 PHP_SERVER_DOCKER=`docker ps -f name=apache -f status=running --format {{.ID}}`
 
-MYSQL_SERVER_DOCKER_LOGS=${MYSQL_SERVER_DOCKER_LOGS:-'tmp/mysql.logs'}
-
 if [ -z $MYSQL_SERVER_DOCKER ]
 then
   printf "mysql-server running now with docker id "
-  mysql-server
+  mysql-server --logs=$MYSQL_SERVER_DOCKER_LOGS
 else
   echo -e "mysql-server is running with docker id $MYSQL_SERVER_DOCKER"
+  docker logs mysql-server --details -t &>> $MYSQL_SERVER_DOCKER_LOGS
 fi
-docker logs mysql-server --details -t &>> $MYSQL_SERVER_DOCKER_LOGS
 
 if [ -z $PHPMYADMIN_DOCKER ]
 then
