@@ -1,2 +1,4 @@
 .envrc
 /var
+
+/vendor/**/.git
