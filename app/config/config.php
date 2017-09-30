@@ -3,10 +3,17 @@
 # Timezone DOC http://php.net/manual/es/timezones.php
 date_default_timezone_set('America/Argentina/Buenos_Aires');
 
-$data = json_decode(
+$configjson = json_decode(
+  file_get_contents("config/config.json"),
+  true
+);
+
+$dbjson = json_decode(
   file_get_contents("config/db.json"),
   true
 );
+
+$data = array_merge($configjson, $dbjson);
 
 $db = $data['database'];
 
@@ -41,5 +48,5 @@ define('DATABASE["motor"]', $db['motor']);
  * @example "/" If to access the framework we place http://url.com in the URL, or http://localhost
  * @example "/mbh-framework/" if to access the framework we place http://url.com/mbh-framework, or http://localhost/mbh-framework/
  */
-define('__ROOT__', '/');
-define('URL', 'http://localhost:3000/');
+define('__ROOT__', $data['root']);
+define('URL', $data['url']);
