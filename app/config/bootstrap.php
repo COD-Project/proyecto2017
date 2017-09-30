@@ -19,7 +19,6 @@ class AppBootstrap
             $app = new \Mbh\App;
 
             require_once ROOT . "/app/config/routes.php";
-            $asd = new \Mbh\Connection\Engines\Mysql($db);
             $app->run();
         }
 
