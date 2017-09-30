@@ -67,70 +67,24 @@
         ]
     },
     {
-        "name": "mbh-framework/rest",
-        "version": "dev-PHP5.6-1.x",
-        "version_normalized": "dev-PHP5.6-1.x",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/MBHFramework/mbh-rest.git",
-            "reference": "e006490a36ca23ba9b6f4fda53bf4da01adc8c90"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/MBHFramework/mbh-rest/zipball/e006490a36ca23ba9b6f4fda53bf4da01adc8c90",
-            "reference": "e006490a36ca23ba9b6f4fda53bf4da01adc8c90",
-            "shasum": ""
-        },
-        "require": {
-            "php": "^5.6 || ^7.0"
-        },
-        "time": "2017-09-28T22:31:46+00:00",
-        "type": "library",
-        "installation-source": "source",
-        "autoload": {
-            "psr-4": {
-                "Mbh\\": "Mbh"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Ulises Jeremias Cornejo Fandos",
-                "email": "ulisescf.24@gmail.com"
-            },
-            {
-                "name": "Juan Cruz Ocampos",
-                "email": "ocamposjuancruz23@gmail.com"
-            },
-            {
-                "name": "Lucas Di Cunzolo",
-                "email": "ldicunzolo@cespi.unlp.edu.ar"
-            }
-        ],
-        "description": "Minimalist framework to create RESTFull Apps with php7."
-    },
-    {
         "name": "mbh-framework/mvc",
         "version": "dev-PHP5.6-1.x",
         "version_normalized": "dev-PHP5.6-1.x",
         "source": {
             "type": "git",
             "url": "https://github.com/MBHFramework/mbh-mvc.git",
-            "reference": "ba96ca06f7c682171a1ebd41f367fcba5fe3a1a3"
+            "reference": "e23c0f13bcce01e01e0f216e50beae687be2db15"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/MBHFramework/mbh-mvc/zipball/ba96ca06f7c682171a1ebd41f367fcba5fe3a1a3",
-            "reference": "ba96ca06f7c682171a1ebd41f367fcba5fe3a1a3",
+            "url": "https://api.github.com/repos/MBHFramework/mbh-mvc/zipball/e23c0f13bcce01e01e0f216e50beae687be2db15",
+            "reference": "e23c0f13bcce01e01e0f216e50beae687be2db15",
             "shasum": ""
         },
         "require": {
             "php": "^5.6 || ^7.0"
         },
-        "time": "2017-09-30T15:05:48+00:00",
+        "time": "2017-09-30T16:55:40+00:00",
         "type": "library",
         "installation-source": "source",
         "autoload": {
@@ -157,5 +111,51 @@
             }
         ],
         "description": "Minimalist framework to create MVC Apps with php7."
+    },
+    {
+        "name": "mbh-framework/rest",
+        "version": "dev-PHP5.6-1.x",
+        "version_normalized": "dev-PHP5.6-1.x",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/MBHFramework/mbh-rest.git",
+            "reference": "41a3a6e2d79b28fed7ce0395e0c0fad26f00275d"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/MBHFramework/mbh-rest/zipball/41a3a6e2d79b28fed7ce0395e0c0fad26f00275d",
+            "reference": "41a3a6e2d79b28fed7ce0395e0c0fad26f00275d",
+            "shasum": ""
+        },
+        "require": {
+            "php": "^5.6 || ^7.0"
+        },
+        "time": "2017-09-30T16:56:10+00:00",
+        "type": "library",
+        "installation-source": "source",
+        "autoload": {
+            "psr-4": {
+                "Mbh\\": "Mbh"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Ulises Jeremias Cornejo Fandos",
+                "email": "ulisescf.24@gmail.com"
+            },
+            {
+                "name": "Juan Cruz Ocampos",
+                "email": "ocamposjuancruz23@gmail.com"
+            },
+            {
+                "name": "Lucas Di Cunzolo",
+                "email": "ldicunzolo@cespi.unlp.edu.ar"
+            }
+        ],
+        "description": "Minimalist framework to create RESTFull Apps with php7."
     }
 ]

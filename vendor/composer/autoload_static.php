@@ -24,8 +24,8 @@ class ComposerStaticInitb17448fd5bedd7621266017bcea7f30e
         ),
         'Mbh\\' => 
         array (
-            0 => __DIR__ . '/..' . '/mbh-framework/rest/Mbh',
-            1 => __DIR__ . '/..' . '/mbh-framework/mvc/Mbh',
+            0 => __DIR__ . '/..' . '/mbh-framework/mvc/Mbh',
+            1 => __DIR__ . '/..' . '/mbh-framework/rest/Mbh',
         ),
     );
 
