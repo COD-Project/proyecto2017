@@ -35,13 +35,13 @@ $db = $data['database'];
  *        firebird
  *        odbc
  */
-define('DATABASE["host"]', $db['host']);
-define('DATABASE["user"]', $db['name']);
-define('DATABASE["password"]', $db['pass']);
-define('DATABASE["name"]', $db['name']);
-define('DATABASE["port"]', $db['port']);
-define('DATABASE["protocol"]', $db['protocol']);
-define('DATABASE["driver"]', $db['driver']);
+define('DATABASE_HOST', $db['host']);
+define('DATABASE_USER', $db['user']);
+define('DATABASE_PASSWORD', $db['pass']);
+define('DATABASE_NAME', $db['name']);
+define('DATABASE_PORT', $db['port']);
+define('DATABASE_PROTOCOL', $db['protocol']);
+define('DATABASE_DRIVER', $db['driver']);
 
 /**
  * Defines the directory in which the framework is installed

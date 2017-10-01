@@ -3,7 +3,7 @@
     "host": "172.17.0.1",
     "user": "root",
     "pass": "",
-    "name": "asd",
+    "name": "grupo5",
     "port": 3307,
     "protocol": "TCP",
     "driver": "mysql"
