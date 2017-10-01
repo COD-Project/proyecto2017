@@ -23,6 +23,7 @@ class Bootstrap
             require_once ROOT . "/app/Config/routes.php";
 
             $app->firewall()
+                ->debug()
                 ->run();
         }
 
