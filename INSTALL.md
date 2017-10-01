@@ -122,9 +122,11 @@ shift
 
 [ "$PHP_SERVER_PORT" -lt 1024 ] && (echo port must be greater than 1024; exit 1)
 
+PHP_SERVER_DOCKER_LOGS=${PHP_SERVER_DOCKER_LOGS:-'/tmp/apache.logs'}
+
 PHP_SERVER_DOCKER_RUN_OPTIONS=${PHP_SERVER_DOCKER_RUN_OPTIONS:-'--add-host local.docker:172.17.0.1'}
 
-docker run --rm -p ${PHP_SERVER_PORT}:80 -v /etc/passwd:/etc/passwd:ro -v /etc/group:/etc/group:ro -v "`pwd`:`pwd`" -e "APACHE_DOCUMENT_ROOT=`pwd`" -w "`pwd`" $PHP_SERVER_DOCKER_RUN_OPTIONS $PHP_SERVER_DOCKER_IMAGE $@ |& tee -a $PHP_SERVER_DOCKER_LOGS
+docker run --rm --name apache -p ${PHP_SERVER_PORT}:80 -v /etc/passwd:/etc/passwd:ro -v /etc/group:/etc/group:ro -v "`pwd`:`pwd`" -e "APACHE_DOCUMENT_ROOT=`pwd`" -w "`pwd`" $PHP_SERVER_DOCKER_RUN_OPTIONS $PHP_SERVER_DOCKER_IMAGE $@ |& tee -a $PHP_SERVER_DOCKER_LOGS
 ```
 
 [Archivo composer](https://gitlab.catedras.linti.unlp.edu.ar/proyecto2017/grupo5/snippets/4/raw?inline=false)
@@ -140,7 +142,18 @@ docker run --rm --interactive --tty --volume $PWD:/app composer $@
 
 set -e
 
-[ "$1" = "stop" ] && ( docker stop mysql-server; exit 1)
+MYSQL_DOCKER_SERVER=`docker ps -f name=mysql-server -f status=running --format {{.ID}}`
+
+if [ "$1" = "stop" -a -n "$MYSQL_DOCKER_SERVER" ]
+then
+  docker stop mysql-server > /dev/null
+  docker rm mysql-server
+  exit 1
+elif [ "$1" = "stop" -a -z "$MYSQL_DOCKER_SERVER" ]
+then
+  echo "Not mysql-server service found"
+  exit 1
+fi
 
 [ -z "$MYSQL_DOCKER_IMAGE" ] && ( echo You must set MYSQL_DOCKER_IMAGE environment variable ; exit 1)
 
@@ -148,7 +161,15 @@ set -e
 
 MYSQL_DOCKER_RUN_OPTIONS=${MYSQL_DOCKER_RUN_OPTIONS:-'--add-host local.docker:172.17.0.1'}
 
-docker run --rm --name mysql-server -e MYSQL_ALLOW_EMPTY_PASSWORD='yes' -p 3307:3306 -v mysql-data:/var/lib/mysql -d $MYSQL_DOCKER_RUN_OPTIONS $MYSQL_DOCKER_IMAGE $@
+if [[ $1 == --logs=* || $1 = --logs ]]
+then
+  MYSQL_SERVER_DOCKER_LOGS=$(echo $1 | cut -d "=" -f2 -s)
+  MYSQL_SERVER_DOCKER_LOGS=${MYSQL_SERVER_DOCKER_LOGS:-'/tmp/mysql.logs'}
+  shift
+fi
+
+docker run --name mysql-server -e MYSQL_ALLOW_EMPTY_PASSWORD='yes' -p 3307:3306 -v mysql-data:/var/lib/mysql -d --restart=unless-stopped $MYSQL_DOCKER_RUN_OPTIONS $MYSQL_DOCKER_IMAGE $@
+[ ! -z "$MYSQL_SERVER_DOCKER_LOGS" ] && (docker logs -f mysql-server &>> $MYSQL_SERVER_DOCKER_LOGS &)
 ```
 
 [Archivo mysql-client](https://gitlab.catedras.linti.unlp.edu.ar/proyecto2017/grupo5/snippets/6/raw?inline=false)
@@ -192,7 +213,18 @@ Para interactuar con la imagen de docker, se provee el wrapper phpmyadmin descri
 
 set -e
 
-[ "$1" = "stop" ] && ( docker stop phpmyadmin; exit 1)
+PHPMYADMIN_DOCKER_SERVER=`docker ps -f name=phpmyadmin -f status=running --format {{.ID}}`
+
+if [ "$1" = "stop" -a -n "$PHPMYADMIN_DOCKER_SERVER" ]
+then
+  docker stop phpmyadmin > /dev/null
+  docker rm phpmyadmin
+  exit 1
+elif [ "$1" = "stop" -a -z "$PHPMYADMIN_DOCKER_SERVER" ]
+then
+  echo "Not phpmyadmin service found"
+  exit 1
+fi
 
 [ -z "$PHPMYADMIN_DOCKER_IMAGE" ] && ( echo You must set PHPMYADMIN_DOCKER_IMAGE environment variable ; exit 1)
 
@@ -210,7 +242,7 @@ shift
 
 [ "$PHPMYADMIN_PORT" -lt 1024 ] && (echo port must be greater than 1024; exit 1)
 
-docker run --rm --name phpmyadmin -d --link mysql-server:db -p $PHPMYADMIN_PORT:80 phpmyadmin/phpmyadmin $@
+docker run --restart=unless-stopped --name phpmyadmin -d --link mysql-server:db -p $PHPMYADMIN_PORT:80 phpmyadmin/phpmyadmin $@
 ```
 
 Para ejecutarlo, simplemente en necesario mandarle un puerto en el cual escuchar, por ejemplo 8080.
