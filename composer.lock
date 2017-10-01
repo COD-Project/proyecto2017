@@ -4,9 +4,57 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "33ced1556ec98852ce03860df724c21f",
-    "content-hash": "835e938dac58f5599c1499f4fa4a2b53",
+    "hash": "87366c57220c30112f89ce234e602d17",
+    "content-hash": "2a1dd98209f82579260ca49e9935dcca",
     "packages": [
+        {
+            "name": "mbh-framework/firewall",
+            "version": "dev-PHP5.6-1.x",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/MBHFramework/mbh-firewall.git",
+                "reference": "086bac523a16beaf059830a8e4376c9c81c7e3b8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/MBHFramework/mbh-firewall/zipball/086bac523a16beaf059830a8e4376c9c81c7e3b8",
+                "reference": "086bac523a16beaf059830a8e4376c9c81c7e3b8",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.6 || ^7.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-PHP5.6-1.x": "5.6-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Mbh\\": "Mbh/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ulises Jeremias Cornejo Fandos",
+                    "email": "ulisescf.24@gmail.com"
+                },
+                {
+                    "name": "Juan Cruz Ocampos",
+                    "email": "ocamposjuancruz23@gmail.com"
+                },
+                {
+                    "name": "Lucas Di Cunzolo",
+                    "email": "ldicunzolo@cespi.unlp.edu.ar"
+                }
+            ],
+            "time": "2017-10-01 21:30:06"
+        },
         {
             "name": "mbh-framework/mvc",
             "version": "dev-PHP5.6-1.x",
@@ -176,7 +224,8 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "mbh-framework/rest": 20,
-        "mbh-framework/mvc": 20
+        "mbh-framework/mvc": 20,
+        "mbh-framework/firewall": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

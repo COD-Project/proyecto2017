@@ -167,5 +167,55 @@
             }
         ],
         "description": "Minimalist framework to create MVC Apps with php7."
+    },
+    {
+        "name": "mbh-framework/firewall",
+        "version": "dev-PHP5.6-1.x",
+        "version_normalized": "dev-PHP5.6-1.x",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/MBHFramework/mbh-firewall.git",
+            "reference": "086bac523a16beaf059830a8e4376c9c81c7e3b8"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/MBHFramework/mbh-firewall/zipball/086bac523a16beaf059830a8e4376c9c81c7e3b8",
+            "reference": "086bac523a16beaf059830a8e4376c9c81c7e3b8",
+            "shasum": ""
+        },
+        "require": {
+            "php": "^5.6 || ^7.0"
+        },
+        "time": "2017-10-01 21:30:06",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-PHP5.6-1.x": "5.6-dev"
+            }
+        },
+        "installation-source": "source",
+        "autoload": {
+            "psr-4": {
+                "Mbh\\": "Mbh/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Ulises Jeremias Cornejo Fandos",
+                "email": "ulisescf.24@gmail.com"
+            },
+            {
+                "name": "Juan Cruz Ocampos",
+                "email": "ocamposjuancruz23@gmail.com"
+            },
+            {
+                "name": "Lucas Di Cunzolo",
+                "email": "ldicunzolo@cespi.unlp.edu.ar"
+            }
+        ]
     }
 ]

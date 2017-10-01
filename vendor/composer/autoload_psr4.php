@@ -7,5 +7,5 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Twig\\' => array($vendorDir . '/twig/twig/src'),
-    'Mbh\\' => array($vendorDir . '/mbh-framework/rest/Mbh', $vendorDir . '/mbh-framework/mvc/Mbh'),
+    'Mbh\\' => array($vendorDir . '/mbh-framework/rest/Mbh', $vendorDir . '/mbh-framework/mvc/Mbh', $vendorDir . '/mbh-framework/firewall/Mbh'),
 );
