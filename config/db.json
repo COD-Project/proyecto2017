@@ -1,6 +1,6 @@
 {
   "database": {
-    "host": "172.17.0.1",
+    "host": "local.docker",
     "user": "root",
     "pass": "",
     "name": "grupo5",
