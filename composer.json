@@ -23,7 +23,8 @@
     "require": {
         "php": "^5.6 || ^7.0",
         "twig/twig": "^1",
-        "mbh-framework/rest": "dev-PHP5.6-1.x",
-        "mbh-framework/mvc": "dev-PHP5.6-1.x"
+        "mbh-framework/rest": "5.6.x-dev",
+        "mbh-framework/mvc": "5.6.x-dev",
+        "mbh-framework/firewall": "5.6.x-dev"
     }
 }
