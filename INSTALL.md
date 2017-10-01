@@ -133,7 +133,7 @@ docker run --rm --name apache -p ${PHP_SERVER_PORT}:80 -v /etc/passwd:/etc/passw
 ```bash
 #!/bin/bash
 
-docker run --rm --interactive --tty --volume $PWD:/app composer $@
+docker run --rm -it --user $(id -u):$(id -g) -v $PWD:/app composer:latest $@
 ```
 
 [Archivo mysql-server](https://gitlab.catedras.linti.unlp.edu.ar/proyecto2017/grupo5/snippets/5/raw?inline=false)
