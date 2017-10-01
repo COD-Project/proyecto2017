@@ -21,7 +21,7 @@ class Bootstrap
             $app = new \Mbh\App;
 
             require_once ROOT . "/app/Config/routes.php";
-
+            
             $app->run();
         }
 
@@ -38,9 +38,9 @@ class Bootstrap
             return;
         }
 
+
         $class_end = substr($class, $length);
         $file = $base_dir . str_replace('\\', '/', $class_end) . '.php';
-
         if (is_readable($file)) {
             require $file;
         }
