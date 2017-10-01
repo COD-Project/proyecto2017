@@ -21,7 +21,7 @@ class Bootstrap
             $app = new \Mbh\App;
 
             require_once ROOT . "/app/Config/routes.php";
-            $asd = new \App\Connection\Connection($db);
+
             $app->run();
         }
 
