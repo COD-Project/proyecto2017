@@ -21,8 +21,9 @@ class Bootstrap
             $app = new \Mbh\App;
 
             require_once ROOT . "/app/Config/routes.php";
-            
-            $app->run();
+
+            $app->firewall()
+                ->run();
         }
 
         return true ;

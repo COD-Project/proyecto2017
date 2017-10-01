@@ -24,6 +24,7 @@
         "php": "^5.6 || ^7.0",
         "twig/twig": "^1",
         "mbh-framework/rest": "5.6.x-dev",
-        "mbh-framework/mvc": "5.6.x-dev"
+        "mbh-framework/mvc": "5.6.x-dev",
+        "mbh-framework/firewall": "5.6.x-dev"
     }
 }
