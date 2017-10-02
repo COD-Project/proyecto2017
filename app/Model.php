@@ -9,7 +9,7 @@ class Model extends \Mbh\Model
 {
     public static init($settings = [])
     {
-        $this->db = new Connection();
+        self::$db = new Connection();
     }
 
     public function __construct($state = [])
