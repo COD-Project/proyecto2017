@@ -7,7 +7,7 @@ use App\Connection\Connection;
  */
 class Model extends \Mbh\Model
 {
-    public static function init($settings = [], $new_instance = true)
+    static function init($settings = [], $new_instance = true)
     {
         if (!static::$db instanceof Connection or $new_instance) {
             static::$db = new Connection();
@@ -16,7 +16,7 @@ class Model extends \Mbh\Model
         return static::$db;
     }
 
-    public function __construct($state = [])
+    function __construct($state = [])
     {
         $this->state = $state;
     }

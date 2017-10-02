@@ -8,7 +8,7 @@ use Twig_Loader_Filesystem;
  */
 class Controller extends \Mbh\Controller
 {
-    public function __construct($app = null)
+    function __construct($app = null)
     {
         parent::__construct($app);
         $this->template = new Twig_Environment(new Twig_Loader_Filesystem('./web/templates/'));
