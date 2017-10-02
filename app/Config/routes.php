@@ -3,8 +3,8 @@
 /**
  * Routes to make MVC applications
  */
-$app->get('/', function() {
-    return "app working";
+$app->get('/', function() use($app) {
+    new \App\Controllers\HomeController($app);
 });
 
 $app->get('/phpinfo', function() {

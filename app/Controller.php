@@ -11,6 +11,7 @@ class Controller extends \Mbh\Controller
     function __construct($app = null)
     {
         parent::__construct($app);
-        $this->template = new Twig_Environment(new Twig_Loader_Filesystem('./web/templates/'));
+
+        $this->template = new Twig_Environment(new Twig_Loader_Filesystem('web/templates/'));
     }
 }

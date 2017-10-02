@@ -5,8 +5,10 @@
  */
 class HomeController extends \App\Controller
 {
-    function __construct()
+    function __construct($app)
     {
-        
+        parent::__construct($app);
+
+        echo $this->template->render('home/home.twig');
     }
 }
