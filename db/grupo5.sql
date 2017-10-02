@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: db
--- Tiempo de generación: 01-10-2017 a las 23:04:48
+-- Tiempo de generación: 02-10-2017 a las 15:55:35
 -- Versión del servidor: 5.7.19
 -- Versión de PHP: 7.0.21
 
@@ -29,7 +29,7 @@ USE `grupo5`;
 --
 -- Estructura de tabla para la tabla `controles_de_salud`
 --
--- Creación: 01-10-2017 a las 23:04:23
+-- Creación: 02-10-2017 a las 15:51:05
 --
 
 DROP TABLE IF EXISTS `controles_de_salud`;
@@ -47,8 +47,8 @@ CREATE TABLE IF NOT EXISTS `controles_de_salud` (
   `talla` int(11) DEFAULT NULL,
   `alimentacion` varchar(255) NOT NULL,
   `observaciones_generales` varchar(255) NOT NULL,
-  `paciente_id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
+  `paciente_id` int(11) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `paciente_id` (`paciente_id`),
   UNIQUE KEY `user_id` (`user_id`)
@@ -59,7 +59,7 @@ CREATE TABLE IF NOT EXISTS `controles_de_salud` (
 --
 -- Estructura de tabla para la tabla `datos_demograficos`
 --
--- Creación: 01-10-2017 a las 23:04:23
+-- Creación: 02-10-2017 a las 15:52:11
 --
 
 DROP TABLE IF EXISTS `datos_demograficos`;
@@ -68,9 +68,9 @@ CREATE TABLE IF NOT EXISTS `datos_demograficos` (
   `heladera` tinyint(1) NOT NULL DEFAULT '0',
   `electricidad` tinyint(1) NOT NULL DEFAULT '0',
   `mascota` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'Para vos Ulises',
-  `tipo_vivienda_id` int(11) NOT NULL,
-  `tipo_calefaccion_id` int(11) NOT NULL,
-  `tipo_agua_id` int(11) NOT NULL,
+  `tipo_vivienda_id` int(11) DEFAULT NULL,
+  `tipo_calefaccion_id` int(11) DEFAULT NULL,
+  `tipo_agua_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `tipo_vivienda_id` (`tipo_vivienda_id`),
   UNIQUE KEY `tipo_calefaccion_id` (`tipo_calefaccion_id`),
@@ -82,7 +82,7 @@ CREATE TABLE IF NOT EXISTS `datos_demograficos` (
 --
 -- Estructura de tabla para la tabla `obras_sociales`
 --
--- Creación: 01-10-2017 a las 23:04:23
+-- Creación: 02-10-2017 a las 15:51:00
 --
 
 DROP TABLE IF EXISTS `obras_sociales`;
@@ -98,7 +98,7 @@ CREATE TABLE IF NOT EXISTS `obras_sociales` (
 --
 -- Estructura de tabla para la tabla `pacientes`
 --
--- Creación: 01-10-2017 a las 23:04:23
+-- Creación: 02-10-2017 a las 15:51:07
 --
 
 DROP TABLE IF EXISTS `pacientes`;
@@ -110,9 +110,9 @@ CREATE TABLE IF NOT EXISTS `pacientes` (
   `telefono` varchar(255) NOT NULL,
   `fecha_nac` date NOT NULL,
   `genero` tinytext NOT NULL,
-  `datos_demograficos_id` int(11) NOT NULL,
-  `obra_social_id` int(11) NOT NULL,
-  `tipo_doc_id` int(11) NOT NULL,
+  `datos_demograficos_id` int(11) DEFAULT NULL,
+  `obra_social_id` int(11) DEFAULT NULL,
+  `tipo_doc_id` int(11) DEFAULT NULL,
   `numero` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `datos_demograficos_id` (`datos_demograficos_id`),
@@ -125,7 +125,7 @@ CREATE TABLE IF NOT EXISTS `pacientes` (
 --
 -- Estructura de tabla para la tabla `permisos`
 --
--- Creación: 01-10-2017 a las 23:04:23
+-- Creación: 02-10-2017 a las 15:50:54
 --
 
 DROP TABLE IF EXISTS `permisos`;
@@ -140,7 +140,7 @@ CREATE TABLE IF NOT EXISTS `permisos` (
 --
 -- Estructura de tabla para la tabla `roles`
 --
--- Creación: 01-10-2017 a las 23:04:23
+-- Creación: 02-10-2017 a las 15:50:55
 --
 
 DROP TABLE IF EXISTS `roles`;
@@ -155,7 +155,7 @@ CREATE TABLE IF NOT EXISTS `roles` (
 --
 -- Estructura de tabla para la tabla `rol_tiene_permisos`
 --
--- Creación: 01-10-2017 a las 23:04:23
+-- Creación: 02-10-2017 a las 15:55:07
 --
 
 DROP TABLE IF EXISTS `rol_tiene_permisos`;
@@ -171,7 +171,7 @@ CREATE TABLE IF NOT EXISTS `rol_tiene_permisos` (
 --
 -- Estructura de tabla para la tabla `tipos_documento`
 --
--- Creación: 01-10-2017 a las 23:04:23
+-- Creación: 02-10-2017 a las 15:51:02
 --
 
 DROP TABLE IF EXISTS `tipos_documento`;
@@ -187,7 +187,7 @@ CREATE TABLE IF NOT EXISTS `tipos_documento` (
 --
 -- Estructura de tabla para la tabla `tipo_agua`
 --
--- Creación: 01-10-2017 a las 23:04:24
+-- Creación: 02-10-2017 a las 15:51:03
 --
 
 DROP TABLE IF EXISTS `tipo_agua`;
@@ -202,7 +202,7 @@ CREATE TABLE IF NOT EXISTS `tipo_agua` (
 --
 -- Estructura de tabla para la tabla `tipo_calefaccion`
 --
--- Creación: 01-10-2017 a las 23:04:24
+-- Creación: 02-10-2017 a las 15:51:03
 --
 
 DROP TABLE IF EXISTS `tipo_calefaccion`;
@@ -217,7 +217,7 @@ CREATE TABLE IF NOT EXISTS `tipo_calefaccion` (
 --
 -- Estructura de tabla para la tabla `tipo_vivienda`
 --
--- Creación: 01-10-2017 a las 23:04:24
+-- Creación: 02-10-2017 a las 15:51:04
 --
 
 DROP TABLE IF EXISTS `tipo_vivienda`;
@@ -232,7 +232,8 @@ CREATE TABLE IF NOT EXISTS `tipo_vivienda` (
 --
 -- Estructura de tabla para la tabla `usuarios`
 --
--- Creación: 01-10-2017 a las 23:04:24
+-- Creación: 02-10-2017 a las 15:51:05
+-- Última actualización: 02-10-2017 a las 15:51:04
 --
 
 DROP TABLE IF EXISTS `usuarios`;
@@ -249,14 +250,14 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `usuario_tiene_roles`
 --
--- Creación: 01-10-2017 a las 23:04:24
+-- Creación: 02-10-2017 a las 15:54:31
 --
 
 DROP TABLE IF EXISTS `usuario_tiene_roles`;
@@ -272,59 +273,34 @@ CREATE TABLE IF NOT EXISTS `usuario_tiene_roles` (
 --
 
 --
--- Filtros para la tabla `obras_sociales`
+-- Filtros para la tabla `controles_de_salud`
 --
-ALTER TABLE `obras_sociales`
-  ADD CONSTRAINT `obras_sociales_ibfk_1` FOREIGN KEY (`id`) REFERENCES `pacientes` (`obra_social_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE `controles_de_salud`
+  ADD CONSTRAINT `controles_de_salud_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `usuarios` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `controles_de_salud_ibfk_2` FOREIGN KEY (`paciente_id`) REFERENCES `pacientes` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Filtros para la tabla `datos_demograficos`
+--
+ALTER TABLE `datos_demograficos`
+  ADD CONSTRAINT `datos_demograficos_ibfk_1` FOREIGN KEY (`tipo_agua_id`) REFERENCES `tipo_agua` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `datos_demograficos_ibfk_2` FOREIGN KEY (`tipo_calefaccion_id`) REFERENCES `tipo_calefaccion` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `datos_demograficos_ibfk_3` FOREIGN KEY (`tipo_vivienda_id`) REFERENCES `tipo_vivienda` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `pacientes`
 --
 ALTER TABLE `pacientes`
-  ADD CONSTRAINT `pacientes_ibfk_1` FOREIGN KEY (`id`) REFERENCES `controles_de_salud` (`paciente_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `pacientes_ibfk_2` FOREIGN KEY (`datos_demograficos_id`) REFERENCES `datos_demograficos` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Filtros para la tabla `roles`
---
-ALTER TABLE `roles`
-  ADD CONSTRAINT `roles_ibfk_1` FOREIGN KEY (`id`) REFERENCES `rol_tiene_permisos` (`rol_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `pacientes_ibfk_1` FOREIGN KEY (`datos_demograficos_id`) REFERENCES `datos_demograficos` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `pacientes_ibfk_2` FOREIGN KEY (`obra_social_id`) REFERENCES `obras_sociales` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `pacientes_ibfk_3` FOREIGN KEY (`tipo_doc_id`) REFERENCES `tipos_documento` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `rol_tiene_permisos`
 --
 ALTER TABLE `rol_tiene_permisos`
-  ADD CONSTRAINT `rol_tiene_permisos_ibfk_1` FOREIGN KEY (`permiso_id`) REFERENCES `permisos` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Filtros para la tabla `tipos_documento`
---
-ALTER TABLE `tipos_documento`
-  ADD CONSTRAINT `tipos_documento_ibfk_1` FOREIGN KEY (`id`) REFERENCES `pacientes` (`tipo_doc_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Filtros para la tabla `tipo_agua`
---
-ALTER TABLE `tipo_agua`
-  ADD CONSTRAINT `tipo_agua_ibfk_1` FOREIGN KEY (`id`) REFERENCES `datos_demograficos` (`tipo_agua_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Filtros para la tabla `tipo_calefaccion`
---
-ALTER TABLE `tipo_calefaccion`
-  ADD CONSTRAINT `tipo_calefaccion_ibfk_1` FOREIGN KEY (`id`) REFERENCES `datos_demograficos` (`tipo_calefaccion_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Filtros para la tabla `tipo_vivienda`
---
-ALTER TABLE `tipo_vivienda`
-  ADD CONSTRAINT `tipo_vivienda_ibfk_1` FOREIGN KEY (`id`) REFERENCES `datos_demograficos` (`tipo_vivienda_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Filtros para la tabla `usuarios`
---
-ALTER TABLE `usuarios`
-  ADD CONSTRAINT `usuarios_ibfk_1` FOREIGN KEY (`id`) REFERENCES `controles_de_salud` (`user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `rol_tiene_permisos_ibfk_1` FOREIGN KEY (`permiso_id`) REFERENCES `permisos` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `rol_tiene_permisos_ibfk_2` FOREIGN KEY (`rol_id`) REFERENCES `roles` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `usuario_tiene_roles`
