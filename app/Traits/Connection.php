@@ -3,7 +3,7 @@
 /**
  * created by Ulises Jeremias Cornejo Fandos
  */
-trait TraitName
+trait Connection
 {
     protected static $db;
 

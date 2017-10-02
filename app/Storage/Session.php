@@ -5,5 +5,5 @@
  */
 class Session extends \Mbh\Storage\Session
 {
-    use App\Traits\ConnectionInit;
+    use App\Traits\Connection;
 }

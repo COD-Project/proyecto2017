@@ -7,7 +7,7 @@ use App\Connection\Connection;
  */
 class Model extends \Mbh\Model
 {
-    use \App\Traits\ConnectionInit;
+    use \App\Traits\Connection;
 
     function __construct($state = [])
     {
