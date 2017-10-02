@@ -7,8 +7,13 @@ use App\Connection\Connection;
  */
 class Model extends \Mbh\Model
 {
-    public function __construct()
+    public static init($settings = [])
     {
         $this->db = new Connection();
+    }
+
+    public function __construct($state = [])
+    {
+        $this->state = $state;
     }
 }
