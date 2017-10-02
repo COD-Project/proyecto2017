@@ -4,12 +4,11 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "87366c57220c30112f89ce234e602d17",
-    "content-hash": "2a1dd98209f82579260ca49e9935dcca",
+    "content-hash": "275b67e4f4a486960c2e2f056ece171b",
     "packages": [
         {
             "name": "mbh-framework/firewall",
-            "version": "dev-PHP5.6-1.x",
+            "version": "v5.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/MBHFramework/mbh-firewall.git",
@@ -53,20 +52,20 @@
                     "email": "ldicunzolo@cespi.unlp.edu.ar"
                 }
             ],
-            "time": "2017-10-01 21:30:06"
+            "time": "2017-10-01T21:30:06+00:00"
         },
         {
             "name": "mbh-framework/mvc",
-            "version": "dev-PHP5.6-1.x",
+            "version": "v5.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/MBHFramework/mbh-mvc.git",
-                "reference": "ae57fec9138d04b196a73d642a04ef2fdfdae685"
+                "reference": "038c794c8fb609ef8ef7022504cbea4c940c97cc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/MBHFramework/mbh-mvc/zipball/ae57fec9138d04b196a73d642a04ef2fdfdae685",
-                "reference": "ae57fec9138d04b196a73d642a04ef2fdfdae685",
+                "url": "https://api.github.com/repos/MBHFramework/mbh-mvc/zipball/038c794c8fb609ef8ef7022504cbea4c940c97cc",
+                "reference": "038c794c8fb609ef8ef7022504cbea4c940c97cc",
                 "shasum": ""
             },
             "require": {
@@ -102,20 +101,20 @@
                 }
             ],
             "description": "Minimalist framework to create MVC Apps with php7.",
-            "time": "2017-10-01 19:48:59"
+            "time": "2017-10-02T21:09:54+00:00"
         },
         {
             "name": "mbh-framework/rest",
-            "version": "dev-PHP5.6-1.x",
+            "version": "v5.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/MBHFramework/mbh-rest.git",
-                "reference": "352043000130849c1409f397cfc13ebc97eadabc"
+                "reference": "7389f739d098ef3a8f500b90a25da59088561cbb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/MBHFramework/mbh-rest/zipball/352043000130849c1409f397cfc13ebc97eadabc",
-                "reference": "352043000130849c1409f397cfc13ebc97eadabc",
+                "url": "https://api.github.com/repos/MBHFramework/mbh-rest/zipball/7389f739d098ef3a8f500b90a25da59088561cbb",
+                "reference": "7389f739d098ef3a8f500b90a25da59088561cbb",
                 "shasum": ""
             },
             "require": {
@@ -151,7 +150,7 @@
                 }
             ],
             "description": "Minimalist framework to create RESTFull Apps with php7.",
-            "time": "2017-10-01 17:24:42"
+            "time": "2017-10-02T21:13:43+00:00"
         },
         {
             "name": "twig/twig",
@@ -216,17 +215,13 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2017-09-27 18:06:46"
+            "time": "2017-09-27T18:06:46+00:00"
         }
     ],
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "mbh-framework/rest": 20,
-        "mbh-framework/mvc": 20,
-        "mbh-framework/firewall": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

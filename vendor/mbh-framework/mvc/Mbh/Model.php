@@ -18,15 +18,64 @@ use Mbh\Interfaces\ModelInterface;
  */
 class Model implements ModelInterface
 {
-    protected $db = null;
+    protected static $db = null;
 
-    protected $table = [];
+    protected static $table = [];
 
-    protected $columnData = [];
+    protected static $columnData = [];
 
-    public function __construct($settings)
+    protected $state = [];
+
+    public static function init($settings = [], $new_instance = true)
     {
-        $db = Connection::create($settings);
+          if (!static::$db instanceof Connection or $new_instance) {
+              static::$db = Connection::create($settings);
+          }
+
+          return static::$db;
+    }
+
+    public function __construct($state = [])
+    {
+        $this->state = $state;
+    }
+
+    /**
+     * Calling a non-existant method on App checks to see if there's an item
+     * in the container that is callable and if so, calls it.
+     *
+     * @param  string $method
+     * @param  array $args
+     * @return mixed
+     *
+     * @throws \BadMethodCallException
+     */
+    public function __call($method, $args)
+    {
+        if (!isset($this->state[$method])) {
+            throw new \BadMethodCallException("Method $method is not a valid method");
+        }
+
+        return $this->state[$method];
+    }
+
+    public function exists()
+    {
+        return count(static::get($this->state)) > 0;
+    }
+
+    protected function matches()
+    {
+        $matches = [];
+
+        foreach ($this->state as $key => $value) {
+            if (!isset(static::$columnData[$key])) {
+                throw new \RuntimeException("Key $key does not match with any column of " . static::$table['name'] . " table");
+            }
+            $matches[static::$columnData[$key]] = $value;
+        }
+
+        return $matches;
     }
 
     /**
@@ -37,9 +86,13 @@ class Model implements ModelInterface
      *
      * @return object \PDOStatement
      */
-    public function insert($e)
+    protected static function insert($e)
     {
-        return $this->db->insert($table['name'], $e);
+        if (!static::$db) {
+            static::init();
+        }
+
+        return static::$db->insert(static::$table['name'], $e);
     }
 
     /**
@@ -52,9 +105,13 @@ class Model implements ModelInterface
      *
      * @return object \PDOStatement
      */
-    public function update($e, $where = "1 = 1", $limit = "")
+    protected static function update($e, $where = "1 = 1", $limit = "")
     {
-        return $this->db->update($table['name'], $e, $where, $limit);
+        if (!static::$db) {
+            static::init();
+        }
+
+        return static::$db->update(static::$table['name'], $e, $where, $limit);
     }
 
     /**
@@ -66,9 +123,112 @@ class Model implements ModelInterface
      *
      * @return False if you do not find any results, array associative / numeric if you get at least one
      */
-    public function select($e, $where = "1 = 1", $limit = "")
+    protected static function select($e = "*", $where = "1 = 1", $limit = "")
     {
-        return $this->db->select($e, $table['name'], $where, $limit);
+        if (!static::$db) {
+            static::init();
+        }
+
+        return static::$db->select($e, static::$table['name'], $where, $limit);
+    }
+
+    public static function create($data = [])
+    {
+        $className = get_called_class();
+        $model = new $className($data);
+
+        if (!$model->isValid()) {
+            return;
+        }
+
+        return $model->save();
+    }
+
+    public static function find($id)
+    {
+        $column = static::$columnData[static::$table['idColumn']];
+        return static::findBy($id, $column);
+    }
+
+    public static function findBy($value, $column)
+    {
+        return static::get([
+          $column => $value
+        ]);
+    }
+
+    public static function get($criteria = [])
+    {
+        $className = get_called_class();
+        $models = [];
+
+        $where = "1=1";
+        foreach ($criteria as $key => $value) {
+            if (isset($columnData[$key])) {
+                $where .= " AND " . $columnData[$key] . "=$value";
+            }
+        }
+
+        $result = static::select("*", $where);
+
+        foreach ($result as $row => $content) {
+            $data = [];
+
+            foreach ($content as $key => $value) {
+                $data[$columnData[$key]] = $value;
+            }
+
+            $models[] = new $className($data);
+        }
+
+        return $models;
+    }
+
+    public static function all()
+    {
+        return static::get();
+    }
+
+    public function save()
+    {
+        static::insert($this->matches());
+        $id = static::$table['idColumn'];
+        $this->state[$id] = static::$db->lastInsertId();
+
+        return $this;
+    }
+
+    public function edit()
+    {
+        if ($this->exists()) {
+            $matches = $this->matches();
+            $idColumn = static::$table['idColumn'];
+
+            static::update(
+              $matches,
+              "$idColumn=" . $matches[$idColumn],
+              1
+            );
+        } else {
+            $this->save();
+        }
+
+        return $this;
+    }
+
+    public function remove()
+    {
+        if ($this->exists()) {
+            $matches = $this->matches();
+            $idColumn = static::$table['idColumn'];
+
+            static::delete(
+              "$idColumn=" . $matches[$idColumn],
+              1
+            );
+        }
+
+        return $this;
     }
 
     public function __destruct()
