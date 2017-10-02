@@ -8,7 +8,8 @@ $app->get('/', function() {
 });
 
 $app->get('/phpinfo', function() {
-    return phpinfo();
+
+    phpinfo();
 });
 
 $app->get('/:controller', function($controller) {
