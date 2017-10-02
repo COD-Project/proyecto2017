@@ -7,9 +7,9 @@ use App\Connection\Connection;
  */
 class Model extends \Mbh\Model
 {
-    public static init($settings = [])
+    public static function init($settings = [])
     {
-        self::$db = new Connection();
+        static::$db = new Connection();
     }
 
     public function __construct($state = [])

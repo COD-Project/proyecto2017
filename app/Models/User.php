@@ -4,10 +4,10 @@
  * created by Lucas Di Cunzolo
  */
 
-class User extends \Mbh\Model
+class User extends \App\Model
 {
     protected static $table = [
-        "name" => "usuario",
+        "name" => "usuarios",
         "idColumn" => "id"
     ];
 
@@ -16,7 +16,7 @@ class User extends \Mbh\Model
         "email" => "email",
         "name" => "username",
         "firstName" => "first_name",
-        "lastName" => "last_name"
+        "lastName" => "last_name",
         "password" => "password",
         "activo" => "activo",
         "createdAt" => "created_at",
