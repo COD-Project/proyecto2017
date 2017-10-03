@@ -14,4 +14,9 @@ class Model extends \Mbh\Model
         parent::__construct($state);
         $this->state = $state;
     }
+
+    function __destruct()
+    {
+        static::$db = null;
+    }
 }

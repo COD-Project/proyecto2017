@@ -24,4 +24,9 @@ class Controller extends \Mbh\Controller
 
         $this->template = new Twig_Environment(new Twig_Loader_Filesystem('web/templates/'));
     }
+
+    function __destruct()
+    {
+        static::$model = null;
+    }
 }
