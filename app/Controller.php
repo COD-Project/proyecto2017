@@ -8,6 +8,16 @@ use Twig_Loader_Filesystem;
  */
 class Controller extends \Mbh\Controller
 {
+    static function create($controller, $args)
+    {
+        $className = "\\App\\Controllers\\" . ucwords($controller) . "Controller";
+        if (class_exists($className)) {
+            return parent::create($className, $args);
+        }
+
+        /* do something */
+    }
+
     function __construct($app = null)
     {
         parent::__construct($app);
