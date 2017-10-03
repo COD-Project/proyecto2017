@@ -4,7 +4,7 @@
  * created by Lucas Di Cunzolo
  */
 
-class Patient extends \Mbh\Model
+class Patient extends \App\Model
 {
     protected static $table = [
         "name" => "pacientes",
