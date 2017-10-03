@@ -1,10 +1,10 @@
 {
   "database": {
-    "host": "local.docker",
+    "host": "localhost",
     "user": "root",
     "pass": "",
     "name": "grupo5",
-    "port": 3307,
+    "port": 3306,
     "protocol": "TCP",
     "driver": "mysql"
   }
