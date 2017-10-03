@@ -7,7 +7,7 @@ use App\Models\User;
  */
 class Session extends \Mbh\Storage\Session
 {
-    use App\Traits\Connection;
+    use \App\Traits\Connection;
 
     const SESS_APP_ID = 'grupo5_app_id';
 
