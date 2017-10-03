@@ -11,6 +11,7 @@ class Model extends \Mbh\Model
 
     function __construct($state = [])
     {
+        parent::__construct($state);
         $this->state = $state;
     }
 }
