@@ -1,1 +1,1 @@
-require('map.js');
+

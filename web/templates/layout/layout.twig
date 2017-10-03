@@ -19,21 +19,176 @@
 
   <link href="https://fonts.googleapis.com/css?family=Roboto:100,200,300,400,600" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/main.css">
+  <link href="">
+
+  <link rel="stylesheet" href="web/assets/stylesheets/main.css">
 </head>
 
 <body>
-  {# App content #}
-  {% block appBody %}
-  <!-- -->
+  {# App topnav #}
+  {% block app_topnav %}
+    <!--Navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark indigo">
+
+      <!-- Navbar brand -->
+      <a class="navbar-brand" href="#">
+          <img src="web/assets/images/logo.png" height="35" class="d-inline-block align-top" alt="">
+      </a>
+
+      <!-- Collapse button -->
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+
+      <!-- Collapsible content -->
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+        <!-- Links -->
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Features</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Pricing</a>
+          </li>
+
+          <!-- Dropdown -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+            <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" href="#">Action</a>
+              <a class="dropdown-item" href="#">Another action</a>
+              <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+          </li>
+
+        </ul>
+        <!-- Links -->
+
+        <!-- Search form -->
+        <form class="form-inline">
+          <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+        </form>
+      </div>
+      <!-- Collapsible content -->
+
+    </nav>
+    <!--/.Navbar-->
   {% endblock %}
 
+  {# App content #} {% block app_body %}
+  <!-- -->
+  {% endblock %}
   {# Footer #}
-  {% block appFooter %}
-  <!-- -->
-  {% endblock %}
+    <!--Footer-->
+    <footer class="page-footer center-on-small-only stylish-color-dark">
 
-  {# Scripts globales #}
-  <script src="assets/javascripts/main.js"></script>
+        <!--Footer Links-->
+        <div class="container">
+            <div class="row">
+
+                <!--First column-->
+                <div class="col-md-4">
+                    <h5 class="title mb-4 mt-3 font-bold">Footer Content</h5>
+                    <p>Here you can use rows and columns here to organize your footer content. Lorem ipsum dolor sit
+                        amet, consectetur adipisicing elit.</p>
+                </div>
+                <!--/.First column-->
+
+                <hr class="clearfix w-100 d-md-none">
+
+                <!--Second column-->
+                <div class="col-md-2 mx-auto">
+                    <h5 class="title mb-4 mt-3 font-bold">Links</h5>
+                    <ul>
+                        <li><a href="#!">Link 1</a></li>
+                        <li><a href="#!">Link 2</a></li>
+                        <li><a href="#!">Link 3</a></li>
+                        <li><a href="#!">Link 4</a></li>
+                    </ul>
+                </div>
+                <!--/.Second column-->
+
+                <hr class="clearfix w-100 d-md-none">
+
+                <!--Third column-->
+                <div class="col-md-2 mx-auto">
+                    <h5 class="title mb-4 mt-3 font-bold">Links</h5>
+                    <ul>
+                        <li><a href="#!">Link 1</a></li>
+                        <li><a href="#!">Link 2</a></li>
+                        <li><a href="#!">Link 3</a></li>
+                        <li><a href="#!">Link 4</a></li>
+                    </ul>
+                </div>
+                <!--/.Third column-->
+
+                <hr class="clearfix w-100 d-md-none">
+
+                <!--Fourth column-->
+                <div class="col-md-2 mx-auto">
+                    <h5 class="title mb-4 mt-3 font-bold ">Links</h5>
+                    <ul>
+                        <li><a href="#!">Link 1</a></li>
+                        <li><a href="#!">Link 2</a></li>
+                        <li><a href="#!">Link 3</a></li>
+                        <li><a href="#!">Link 4</a></li>
+                    </ul>
+                </div>
+                <!--/.Fourth column-->
+            </div>
+        </div>
+        <!--/.Footer Links-->
+
+        <hr>
+
+        <!--Call to action-->
+        <div class="call-to-action">
+            <ul>
+                <li>
+                    <h5 class="mb-1">Register for free</h5>
+                </li>
+                <li><a href="" class="btn btn-danger btn-rounded">Sign up!</a></li>
+            </ul>
+        </div>
+        <!--/.Call to action-->
+
+        <hr>
+
+        <!--Social buttons-->
+        <div class="social-section text-center">
+            <ul>
+
+                <li><a class="btn-floating btn-sm btn-fb"><i class="fa fa-facebook"> </i></a></li>
+                <li><a class="btn-floating btn-sm btn-tw"><i class="fa fa-twitter"> </i></a></li>
+                <li><a class="btn-floating btn-sm btn-gplus"><i class="fa fa-google-plus"> </i></a></li>
+                <li><a class="btn-floating btn-sm btn-li"><i class="fa fa-linkedin"> </i></a></li>
+                <li><a class="btn-floating btn-sm btn-dribbble"><i class="fa fa-dribbble"> </i></a></li>
+
+            </ul>
+        </div>
+        <!--/.Social buttons-->
+
+        <!--Copyright-->
+        <div class="footer-copyright">
+            <div class="container-fluid">
+                © 2017 Copyright: <a href="https://www.MDBootstrap.com"> MDBootstrap.com </a>
+
+            </div>
+        </div>
+        <!--/.Copyright-->
+
+    </footer>
+    <!--/.Footer-->
+  {% block app_footer %}
+  <!-- -->
+  {% endblock %} {# Scripts #}
+  <script src="vendor/node_modules/mdbootstrap/js/jquery-3.2.1.min.js"></script>
+  <script src="vendor/node_modules/mdbootstrap/js/popper.min.js"></script>
+  <script src="vendor/node_modules/mdbootstrap/js/bootstrap.min.js"></script>
+  <script src="vendor/node_modules/mdbootstrap/js/mdb.min.js"></script>
+  <script src="web/assets/javascripts/main.js"></script>
 </body>
+
 </html>
