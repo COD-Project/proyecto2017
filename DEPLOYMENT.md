@@ -49,6 +49,18 @@ Una muestra del archivo sería la siguiente:
 }
 ```
 
+## Preparación del archivo config
+
+Se debe modificar el archivo config.json, editando el campo _"url"_, quedando de
+la siguiente manera:
+
+```json
+{
+  "root": "/",
+  "url": "https://grupo5.proyecto2017.linti.unlp.edu.ar"
+}
+```
+
 ## Preparación del frameworb Mbh
 
 Además es necesario cambiar los tags utilizados por composer para bajar el framework
