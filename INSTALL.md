@@ -77,6 +77,12 @@ export PHP_SERVER_DOCKER_RUN_OPTIONS='--add-host local.docker:172.17.0.1 -e APAC
 
 _Para el correcto funcionamiento del archivo .envrc es necesario contar con [**direnv**](https://github.com/direnv/direnv)_
 
+_Notar que se debe agregar la linea eval en el archivo de configuracion de su shell_
+
+_En bash por ejemplo, se agrega la siguiente linea en el .bashrc_
+```bash
+eval "$(direnv hook bash)"
+```
 _Ademas, **cada vez que se modifique** se debe ejecutar:_
 
 ```bash
