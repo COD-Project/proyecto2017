@@ -54,4 +54,14 @@ class Session extends \Mbh\Storage\Session
 
         return true;
     }
+
+    public function sessionInUse()
+    {
+        if (!$this->isLoggedIn()) {
+            return $this;
+        }
+
+        $id = $this->get(static::SESS_APP_ID);
+        return \App\Models\User::find($id);
+    }
 }
