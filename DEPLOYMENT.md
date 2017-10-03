@@ -6,7 +6,10 @@ lista para ser accedida por la [url principal](https://grupo5.proyecto2017.linti
 
 Ya se han visto los pasos para levantar la app en ambito de desarrollo en el 
 [archivo INSTALL](https://gitlab.catedras.linti.unlp.edu.ar/proyecto2017/grupo5/blob/master/INSTALL.md)
-El paso siguiente es, luego de realizar cambios en dicha rama, deployar
+El paso siguiente es, luego de realizar cambios en dicha rama, mergear el entorno
+de desarrollo al master
+
+## Actualización y mergeo
 
 En esta etapa, va a ser necesario posicionarse en la rama master y mergear con 
 la rama deseada ejecutando el siguiente comando
@@ -19,6 +22,8 @@ $ git merge <rama_a_mergear>
 ```
 
 _Procurar **SIEMPRE** contar con la última version de las ramas involucradas para evitar inconvenientes_
+
+## Preparación de la Base de Datos
 
 Luego, va a ser necesario modificar ciertos archivos de configuración con los datos
 del servidor, como son el [archivo de configuración de la base de datos](https://gitlab.catedras.linti.unlp.edu.ar/proyecto2017/grupo5/blob/master/config/db.json)
@@ -43,6 +48,8 @@ Una muestra del archivo sería la siguiente:
   }
 }
 ```
+
+## Preparación del frameworb Mbh
 
 Además es necesario cambiar los tags utilizados por composer para bajar el framework
 [MBHFramework](https://github.com/MBHFramework), por los tags estables.
@@ -83,3 +90,13 @@ Quedando algo del estilo:
 ```
 
 _Tener en cuenta que pueden agregarse dependencias nuevas, o cambiar la version del tag en cuestion_ 
+
+Luego de modificar el composer.json, se deberá ejecutar el siguiente comando, en
+busca de actualizaciones del framework:
+
+```bash
+$ npm install
+```
+
+Luego de realizar los pasos anteriores, se debería contar con la app funcionando
+en la [url](https://grupo5.proyecto2017.linti.unlp.edu.ar/)
