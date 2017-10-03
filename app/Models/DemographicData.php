@@ -16,8 +16,29 @@ class DemographicData extends \App\Model
         "refrigerator" => "heladera",
         "electricity" => "electricidad",
         "pet" => "mascota",
-        "apartament_type_id" => "tipo_vivienda_id",
-        "heating_type_id" => "tipo_calefaccion_id",
-        "water_type_id" => "tipo_agua_id"
+        "apartamentTypeId" => "tipo_vivienda_id",
+        "heatingTypeId" => "tipo_calefaccion_id",
+        "waterTypeId" => "tipo_agua_id"
     ];
+
+    function apartamentType()
+    {
+        if ($this->apartamentTypeId()) {
+            return ApartamentType::find($this->apartamentTypeId());
+        }
+    }
+
+    function heatingType()
+    {
+        if ($this->heatingTypeId()) {
+            return HeatingType::find($this->heatingTypeId());
+        }
+    }
+
+    function waterType()
+    {
+        if ($this->waterTypeId()) {
+            return WaterType::find($this->waterTypeId());
+        }
+    }
 }
