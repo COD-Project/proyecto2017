@@ -27,6 +27,6 @@ class Controller extends \Mbh\Controller
 
     function __destruct()
     {
-        static::$model = null;
+        $this->model = null;
     }
 }

@@ -15,4 +15,9 @@ trait Connection
 
         return static::$db;
     }
+
+    static function destroy()
+    {
+        static::$db = null;
+    }
 }
