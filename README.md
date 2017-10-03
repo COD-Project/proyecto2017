@@ -1,4 +1,4 @@
-# Branch 2.x
+# Branch master
 
 ## Introducción
 
