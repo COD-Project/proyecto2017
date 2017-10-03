@@ -98,5 +98,7 @@ busca de actualizaciones del framework:
 $ npm install
 ```
 
+## Fin
+
 Luego de realizar los pasos anteriores, se debería contar con la app funcionando
 en la [url](https://grupo5.proyecto2017.linti.unlp.edu.ar/)
