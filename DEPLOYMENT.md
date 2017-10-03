@@ -12,9 +12,13 @@ En esta etapa, va a ser necesario posicionarse en la rama master y mergear con
 la rama deseada ejecutando el siguiente comando
 
 ```bash
+$ git pull
 $ git checkout master
+$ git pull
 $ git merge <rama_a_mergear>
 ```
+
+_Procurar **SIEMPRE** contar con la última version de las ramas involucradas para evitar inconvenientes_
 
 Luego, va a ser necesario modificar ciertos archivos de configuración con los datos
 del servidor, como son el [archivo de configuración de la base de datos](https://gitlab.catedras.linti.unlp.edu.ar/proyecto2017/grupo5/blob/master/config/db.json)
