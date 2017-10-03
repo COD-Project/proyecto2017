@@ -1,5 +1,7 @@
 <?php namespace App\Storage;
 
+use App\Models\User;
+
 /**
  * created by Ulises Jeremias Cornejo Fandos
  */
@@ -14,16 +16,42 @@ class Session extends \Mbh\Storage\Session
     /**
      * Generates a session for a certain time for a user.
      *
-     * @param int $id
+     * @param $id
      *
      * @return void
      */
-    final public function generateSession($id)
+    public function generateSession($id)
     {
         $this->set(static::SESS_APP_ID, $id);
         $e['session'] = time() + static::SESSION_TIME;
-        static::$db->update('usuarios', $e, "id='$id'", 'LIMIT 1');
+        User::update($e, "id='$id'", 'LIMIT 1');
 
         return $this;
+    }
+
+    public function checkLife($force = false)
+    {
+        if ($id = $this->get(static::SESS_APP_ID)) {
+            $time = time();
+            if ($force || count(User::select("id", "id='$id' AND session <= '$time'", 1)) > 0) {
+                $e['session'] = 0;
+                User::update($e, "id='$id'", 1);
+                $this->unset(static::SESS_APP_ID);
+                $this->destroy();
+            }
+        }
+
+        return $this;
+    }
+
+    public function isLoggedIn()
+    {
+        $id = $this->get(static::SESS_APP_ID);
+        $time = time();
+        if (!$id || !User::select("id", "id='$id' AND session <= '$time'", 1)) {
+            return false;
+        }
+
+        return true;
     }
 }

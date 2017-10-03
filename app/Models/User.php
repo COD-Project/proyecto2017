@@ -20,6 +20,12 @@ class User extends \App\Model
         "password" => "password",
         "activo" => "activo",
         "createdAt" => "created_at",
-        "updatedAt" => "updated_at"
+        "updatedAt" => "updated_at",
+        "session" => "session"
     ];
+
+    public function roles()
+    {
+        return [];
+    }
 }
