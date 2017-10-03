@@ -110,6 +110,11 @@ busca de actualizaciones del framework:
 $ npm install
 ```
 
+## Recondatorios
+
+Recordar eliminar la ruta "/phpinfo" del archivo [routes.php](https://gitlab.catedras.linti.unlp.edu.ar/proyecto2017/grupo5/blob/master/app/Config/routes.php)
+para evitar mostrar información del servidor publicamente.
+
 ## Fin
 
 Luego de realizar los pasos anteriores, se debería contar con la app funcionando
