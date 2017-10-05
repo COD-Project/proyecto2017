@@ -1,1 +1,32 @@
 {% extends 'layout/layout.twig' %}
+
+{% block app_body %}
+<br>
+<h3 class="text-center">Listado de usuarios</h3>
+<ul class="list-group">
+  <li class="list-group-item d-flex justify-content-between align-items-center">
+    <div class="col-5 text-center">
+      fullname
+    </div>
+    <div class="col-5 text-center">
+      email
+    </div>
+    <div class="col-2 text-center">
+      acciones
+    </div>
+  {% for user in users %}
+  <li class="list-group-item d-flex justify-content-between align-items-center">
+    <div class="col-5 text-center">
+      {{ user.fullName }}
+    </div>
+    <div class="col-5 text-center">
+      {{ user.email }}
+    </div>
+    <div class="col-2 text-center">
+      <a href="user/edit/{{user.id}}"> <span class="badge badge-info badge-pill">Editar</span></a>
+      <a href="user/delete/{{user.id}}"> <span class="badge badge-danger badge-pill">Eliminar</span></a>
+    </div>
+  </li>
+  {% endfor %}
+</ul>
+{% endblock %}
