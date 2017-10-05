@@ -28,4 +28,9 @@ class User extends \App\Model
     {
         return [];
     }
+
+    public function fullName()
+    {
+        return "{$this->firstName()} {$this->lastName()}";
+    }
 }
