@@ -83,6 +83,10 @@ _En bash por ejemplo, se agrega la siguiente linea en el .bashrc_
 ```bash
 eval "$(direnv hook bash)"
 ```
+
+_Para conocer más sobre que línea agregar y como configurarlo en las diferentes_
+_shell, se recomienda leer el [repositorio](https://github.com/direnv/direnv) en github_
+
 _Ademas, **cada vez que se modifique** se debe ejecutar:_
 
 ```bash
