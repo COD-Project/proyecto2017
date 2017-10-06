@@ -36,7 +36,7 @@ class Session extends \Mbh\Storage\Session
             if ($force || count(User::select("id", "id='$id' AND session <= '$time'", "LIMIT 1")) > 0) {
                 $e['session'] = 0;
                 User::update($e, "id='$id'", "LIMIT 1");
-                $this->unset(static::SESS_APP_ID);
+                $this->delete(static::SESS_APP_ID);
                 $this->destroy();
             }
         }

@@ -43,6 +43,11 @@ class Controller extends \Mbh\Controller
          $this->session->checkLife();
     }
 
+    protected function redirect($url = "")
+    {
+         header('location:' . URL . $url);
+    }
+
     public function __destruct()
     {
         $this->model = null;
