@@ -5,7 +5,7 @@
  */
 class UsersController extends \App\Controller
 {
-    function __construct($app, $method = null, $data = null)
+    function __construct($app)
     {
         parent::__construct($app);
         \App\Models\User::init();

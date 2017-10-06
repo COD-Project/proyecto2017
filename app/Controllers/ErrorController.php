@@ -9,6 +9,6 @@ class HomeController extends \App\Controller
     {
         parent::__construct($app);
 
-        echo $this->template->render('patient/patient.twig');
+        echo $this->template->render('error/notfound.twig');
     }
 }
