@@ -1,32 +1,38 @@
-<br>
-<h3 class="text-center">Listado de usuarios</h3>
-<ul class="list-group">
-  <li class="list-group-item d-flex justify-content-between align-items-center">
-    <div class="col-sm-5 text-center">
-      Nombre completo
-    </div>
-    <div class="col-sm-5 text-center">
-      Email
-    </div>
-    <div class="col-sm-2 text-center">
-      Acciones
-    </div>
-    {% for user in users %}
-    <li class="list-group-item d-flex justify-content-between align-items-center">
-      <div class="col-sm-5 text-center">
-        {{ user.fullName }}
-      </div>
-      <div class="col-sm-5 text-center">
-        {{ user.email }}
-      </div>
-      <div class="col-sm-2 text-center">
-        <a href="users/edit/{{user.id}}">
-          <span class="badge badge-info badge-pill">Editar</span>
-        </a>
-        <a href="users/delete/{{user.id}}">
-          <span class="badge badge-danger badge-pill">Eliminar</span>
-        </a>
-      </div>
-    </li>
-  {% endfor %}
-</ul>
+{% extends 'layout/layout.twig' %}
+
+{% block app_body %}
+  <div class="container">
+    <br>
+    <h3 class="text-center">Listado de usuarios</h3>
+    <ul class="list-group">
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        <div class="col-sm-5 text-center">
+          Nombre completo
+        </div>
+        <div class="col-sm-5 text-center">
+          Email
+        </div>
+        <div class="col-sm-2 text-center">
+          Acciones
+        </div>
+        {% for user in users %}
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <div class="col-sm-5 text-center">
+            {{ user.fullName }}
+          </div>
+          <div class="col-sm-5 text-center">
+            {{ user.email }}
+          </div>
+          <div class="col-sm-2 text-center">
+            <a href="users/edit/{{user.id}}">
+              <span class="badge badge-info badge-pill">Editar</span>
+            </a>
+            <a href="users/delete/{{user.id}}">
+              <span class="badge badge-danger badge-pill">Eliminar</span>
+            </a>
+          </div>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endblock %}
