@@ -1,193 +1,247 @@
 <!DOCTYPE html>
 <html lang="es">
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <meta name="theme-color" content="#62a8eb">
-  <meta name="keywords" content="Hospital Ricardo Gutiérrez">
-  <meta name="description" content="Plataforma web para el Hospital Gutiérrez">
-  <meta name="robots" content="index,follow">
-  <meta property="og:url" content="https://grupo5.proyecto2017.linti.unlp.edu.ar/" />
-  <meta property="og:title" content="Hospital Dr. Ricardo Gutiérrez" />
-  <meta property="og:site_name" content="Hospital Gutiérrez" />
-  <meta property="og:description" content="Plataforma web para el Hospital Gutiérrez" />
-  <meta property="og:image" content="https://grupo5.proyecto2017.linti.unlp.edu.ar/web/assets/images/icon.png" />
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="theme-color" content="#62a8eb">
+    <meta name="keywords" content="Hospital Ricardo Gutiérrez">
+    <meta name="description" content="Plataforma web para el Hospital Gutiérrez">
+    <meta name="robots" content="index,follow">
+    <meta property="og:url" content="https://grupo5.proyecto2017.linti.unlp.edu.ar/"/>
+    <meta property="og:title" content="Hospital Dr. Ricardo Gutiérrez"/>
+    <meta property="og:site_name" content="Hospital Gutiérrez"/>
+    <meta property="og:description" content="Plataforma web para el Hospital Gutiérrez"/>
+    <meta property="og:image" content="https://grupo5.proyecto2017.linti.unlp.edu.ar/web/assets/images/icon.png"/>
 
-  <title>Hospital Gutiérrez</title>
+    <title>Hospital Gutiérrez</title>
 
-  <link href="https://fonts.googleapis.com/css?family=Roboto:100,200,300,400,600" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,200,300,400,600" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-  <link rel="stylesheet" href="web/assets/stylesheets/main.css">
-</head>
+    <link rel="stylesheet" href="web/assets/stylesheets/main.css">
+  </head>
 
-<body>
-  {# App topnav #}
-  {% block app_header %}
-    <header>
-      <!--Navbar-->
-      <nav class="navbar navbar-expand-lg navbar-dark indigo">
+  <body>
+    {# App topnav #}
+    {% block app_header %}
+      <header>
+        <!--Navbar-->
+        <nav class="navbar navbar-expand-lg navbar-dark indigo">
 
-        <!-- Navbar brand -->
-        <a class="navbar-brand" href="#">
-            <img src="web/assets/images/logo.png" height="35" class="d-inline-block align-top" alt="">
-        </a>
+          <!-- Navbar brand -->
+          <a class="navbar-brand" href="#">
+            <img src="web/assets/images/logo.png" height="30" class="d-inline-block align-top" alt="">
+          </a>
 
-        <!-- Collapse button -->
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+          <!-- Collapse button -->
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
 
-        <!-- Collapsible content -->
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <!-- Collapsible content -->
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-          <!-- Links -->
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="#">Inicio <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Pacientes</a>
-            </li>
+            <!-- Links -->
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item active">
+                <a class="nav-link" href="#">Inicio
+                  <span class="sr-only">(current)</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Pacientes</a>
+              </li>
 
-            <!-- Dropdown -->
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-              <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <a class="dropdown-item" href="#">Something else here</a>
-              </div>
-            </li>
+              <!-- Dropdown -->
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+                <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+                  <a class="dropdown-item" href="#">Action</a>
+                  <a class="dropdown-item" href="#">Another action</a>
+                  <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+              </li>
 
-          </ul>
+            </ul>
 
-          <!-- Search form -->
-          <form class="form-inline">
-            <input class="form-control mr-sm-2" type="text" placeholder="Buscar" aria-label="Buscar">
-          </form>
+            <!-- Search form -->
+            <form class="form-inline">
+              <input class="form-control mr-sm-2" type="text" placeholder="Buscar" aria-label="Buscar">
+            </form>
+          </div>
+          <!-- Collapsible content -->
+
+        </nav>
+        <!--/.Navbar-->
+      </header>
+    {% endblock %}
+
+    {# App content #}
+    {% block app_body %}
+      <!-- -->
+    {% endblock %}
+
+    {# Footer #}
+    {% block app_footer %}
+      <!--Footer-->
+      <footer class="page-footer center-on-small-only stylish-color-dark">
+
+        <!--Footer Links-->
+        <div class="container">
+          <div class="row">
+
+            <!--First column-->
+            <div class="col-md-4">
+              <h5 class="title mb-4 mt-3 font-bold">Sobre el hospital</h5>
+              <p>El Hospital Gutierrez de La Plata fue inaugurado el 6 de Agosto de 1954. En ese entonces, el hospital funcionaba solo en el área central del edificio, siendo que las dos alas anexas eran ocupadas por casas de admisión de menores.
+              </p>
+            </div>
+            <!--/.First column-->
+
+            <hr class="clearfix w-100 d-md-none">
+
+            <!--Second column-->
+            <div class="col-md-2 mx-auto">
+              <h5 class="title mb-4 mt-3 font-bold">Links</h5>
+              <ul>
+                <li>
+                  <a href="#!">Link 1</a>
+                </li>
+                <li>
+                  <a href="#!">Link 2</a>
+                </li>
+                <li>
+                  <a href="#!">Link 3</a>
+                </li>
+                <li>
+                  <a href="#!">Link 4</a>
+                </li>
+              </ul>
+            </div>
+            <!--/.Second column-->
+
+            <hr class="clearfix w-100 d-md-none">
+
+            <!--Third column-->
+            <div class="col-md-2 mx-auto">
+              <h5 class="title mb-4 mt-3 font-bold">Links</h5>
+              <ul>
+                <li>
+                  <a href="#!">Link 1</a>
+                </li>
+                <li>
+                  <a href="#!">Link 2</a>
+                </li>
+                <li>
+                  <a href="#!">Link 3</a>
+                </li>
+                <li>
+                  <a href="#!">Link 4</a>
+                </li>
+              </ul>
+            </div>
+            <!--/.Third column-->
+
+            <hr class="clearfix w-100 d-md-none">
+
+            <!--Fourth column-->
+            <div class="col-md-2 mx-auto">
+              <h5 class="title mb-4 mt-3 font-bold ">Links</h5>
+              <ul>
+                <li>
+                  <a href="#!">Link 1</a>
+                </li>
+                <li>
+                  <a href="#!">Link 2</a>
+                </li>
+                <li>
+                  <a href="#!">Link 3</a>
+                </li>
+                <li>
+                  <a href="#!">Link 4</a>
+                </li>
+              </ul>
+            </div>
+            <!--/.Fourth column-->
+          </div>
         </div>
-        <!-- Collapsible content -->
+        <!--/.Footer Links-->
 
-      </nav>
-      <!--/.Navbar-->
-    </header>
-  {% endblock %}
+        <hr>
 
-  {# App content #}
-  {% block app_body %}
-  <!-- -->
-  {% endblock %}
-
-  {# Footer #}
-  {% block app_footer %}
-  <!--Footer-->
-  <footer class="page-footer center-on-small-only stylish-color-dark">
-
-    <!--Footer Links-->
-    <div class="container">
-      <div class="row">
-
-        <!--First column-->
-        <div class="col-md-4">
-          <h5 class="title mb-4 mt-3 font-bold">Sobre el hospital</h5>
-          <p>El Hospital Gutierrez de La Plata fue inaugurado el 6 de Agosto de 1954. En ese entonces, el hospital funcionaba solo en el área central del edificio, siendo que las dos alas anexas eran ocupadas por casas de admisión de menores. </p>
-        </div>
-        <!--/.First column-->
-
-        <hr class="clearfix w-100 d-md-none">
-
-        <!--Second column-->
-        <div class="col-md-2 mx-auto">
-          <h5 class="title mb-4 mt-3 font-bold">Links</h5>
+        <!--Call to action-->
+        <div class="call-to-action">
           <ul>
-            <li><a href="#!">Link 1</a></li>
-            <li><a href="#!">Link 2</a></li>
-            <li><a href="#!">Link 3</a></li>
-            <li><a href="#!">Link 4</a></li>
+            <li>
+              <h5 class="mb-1">Registrate Gratis</h5>
+            </li>
+            <li>
+              <a href="" class="btn btn-danger btn-rounded">Sign up!</a>
+            </li>
           </ul>
         </div>
-        <!--/.Second column-->
+        <!--/.Call to action-->
 
-        <hr class="clearfix w-100 d-md-none">
+        <hr>
 
-        <!--Third column-->
-        <div class="col-md-2 mx-auto">
-          <h5 class="title mb-4 mt-3 font-bold">Links</h5>
+        <!--Social buttons-->
+        <div class="social-section text-center">
           <ul>
-            <li><a href="#!">Link 1</a></li>
-            <li><a href="#!">Link 2</a></li>
-            <li><a href="#!">Link 3</a></li>
-            <li><a href="#!">Link 4</a></li>
+
+            <li>
+              <a class="btn-floating btn-circle btn-light-blue">
+                <i class="fa fa-facebook"></i>
+              </a>
+            </li>
+            <li>
+              <a class="btn-floating btn-circle btn-light-blue">
+                <i class="fa fa-twitter"></i>
+              </a>
+            </li>
+            <li>
+              <a class="btn-floating btn-circle btn-light-blue">
+                <i class="fa fa-google-plus"></i>
+              </a>
+            </li>
+            <li>
+              <a class="btn-floating btn-circle btn-light-blue">
+                <i class="fa fa-linkedin"></i>
+              </a>
+            </li>
+            <li>
+              <a class="btn-floating btn-circle btn-light-blue">
+                <i class="fa fa-dribbble"></i>
+              </a>
+            </li>
+
           </ul>
         </div>
-        <!--/.Third column-->
+        <!--/.Social buttons-->
 
-        <hr class="clearfix w-100 d-md-none">
+        <!--Copyright-->
+        <div class="footer-copyright">
+          <div class="container-fluid">
+            © 2017 Copyright:
+            <a href="https://github.com/COD-Project">
+              COD Project
+            </a>
 
-        <!--Fourth column-->
-        <div class="col-md-2 mx-auto">
-          <h5 class="title mb-4 mt-3 font-bold ">Links</h5>
-          <ul>
-            <li><a href="#!">Link 1</a></li>
-            <li><a href="#!">Link 2</a></li>
-            <li><a href="#!">Link 3</a></li>
-            <li><a href="#!">Link 4</a></li>
-          </ul>
+          </div>
         </div>
-        <!--/.Fourth column-->
-      </div>
-    </div>
-    <!--/.Footer Links-->
+        <!--/.Copyright-->
 
-    <hr>
+      </footer>
+      <!--/.Footer-->
+    {% endblock %}
 
-    <!--Call to action-->
-    <div class="call-to-action">
-      <ul>
-        <li>
-          <h5 class="mb-1">Registrate Gratis</h5>
-        </li>
-        <li><a href="" class="btn btn-danger btn-rounded">Sign up!</a></li>
-      </ul>
-    </div>
-    <!--/.Call to action-->
-
-    <hr>
-
-    <!--Social buttons-->
-    <div class="social-section text-center">
-      <ul>
-
-        <li><a class="btn-floating btn-circle btn-light-blue"><i class="fa fa-facebook"></i></a></li>
-        <li><a class="btn-floating btn-circle btn-light-blue"><i class="fa fa-twitter"></i></a></li>
-        <li><a class="btn-floating btn-circle btn-light-blue"><i class="fa fa-google-plus"></i></a></li>
-        <li><a class="btn-floating btn-circle btn-light-blue"><i class="fa fa-linkedin"></i></a></li>
-        <li><a class="btn-floating btn-circle btn-light-blue"><i class="fa fa-dribbble"></i></a></li>
-
-      </ul>
-    </div>
-    <!--/.Social buttons-->
-
-    <!--Copyright-->
-    <div class="footer-copyright">
-      <div class="container-fluid">
-        © 2017 Copyright: <a href="https://github.com/COD-Project"> COD Project </a>
-
-      </div>
-    </div>
-    <!--/.Copyright-->
-
-  </footer>
-  <!--/.Footer-->
-  {% endblock %}
-
-  {# Scripts #}
-  <script src="vendor/node_modules/mdbootstrap/js/jquery-3.2.1.min.js"></script>
-  <script src="vendor/node_modules/mdbootstrap/js/popper.min.js"></script>
-  <script src="vendor/node_modules/mdbootstrap/js/bootstrap.min.js"></script>
-  <script src="vendor/node_modules/mdbootstrap/js/mdb.min.js"></script>
-  <script src="web/assets/javascripts/main.js"></script>
-</body>
+    {# Scripts #}
+    <script src="vendor/node_modules/mdbootstrap/js/jquery-3.2.1.min.js"></script>
+    <script src="vendor/node_modules/mdbootstrap/js/popper.min.js"></script>
+    <script src="vendor/node_modules/mdbootstrap/js/bootstrap.min.js"></script>
+    <script src="vendor/node_modules/mdbootstrap/js/mdb.min.js"></script>
+    <script src="web/assets/javascripts/main.js"></script>
+  </body>
 
 </html>
