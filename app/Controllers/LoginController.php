@@ -9,7 +9,6 @@ class LoginController extends \App\Controller
     {
         parent::__construct($app);
 
-        $session = new \App\Storage\Session();
-        $session->generateSession(2);
+        
     }
 }
