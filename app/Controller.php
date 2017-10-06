@@ -22,12 +22,24 @@ class Controller extends \Mbh\Controller
     {
         parent::__construct($app);
 
+        /**
+         * Templates settings
+         *
+         */
         $this->template = new Twig_Environment(new Twig_Loader_Filesystem('web/templates/'));
 
         $this->template->addGlobal('app', [
             'url' => URL,
             'name' => "Hospital Gutiérrez"
         ]);
+
+        /**
+         * @var Sessions
+         *
+         */
+         $this->session = new Storage\Session();
+
+         $this->session->checkLife();
     }
 
     public function __destruct()
