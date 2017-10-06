@@ -3,7 +3,7 @@
 /**
  * created by Ulises Jeremias Cornejo Fandos
  */
-class HomeController extends \App\Controller
+class ErrorController extends \App\Controller
 {
     function __construct($app)
     {

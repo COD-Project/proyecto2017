@@ -15,7 +15,7 @@ class Controller extends \Mbh\Controller
             return parent::create($className, $args);
         }
 
-        /* do something */
+        header('location:' . URL . 'error');
     }
 
     public function __construct($app = null)
