@@ -33,9 +33,9 @@ class Session extends \Mbh\Storage\Session
     {
         if ($id = $this->get(static::SESS_APP_ID)) {
             $time = time();
-            if ($force || count(User::select("id", "id='$id' AND session <= '$time'", 1)) > 0) {
+            if ($force || count(User::select("id", "id='$id' AND session <= '$time'", "LIMIT 1")) > 0) {
                 $e['session'] = 0;
-                User::update($e, "id='$id'", 1);
+                User::update($e, "id='$id'", "LIMIT 1");
                 $this->unset(static::SESS_APP_ID);
                 $this->destroy();
             }
@@ -48,7 +48,7 @@ class Session extends \Mbh\Storage\Session
     {
         $id = $this->get(static::SESS_APP_ID);
         $time = time();
-        if (!$id || !User::select("id", "id='$id' AND session <= '$time'", 1)) {
+        if (!$id || !User::select("id", "id='$id' AND session <= '$time'", "LIMIT 1")) {
             return false;
         }
 

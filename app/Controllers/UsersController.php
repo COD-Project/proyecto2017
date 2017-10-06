@@ -10,6 +10,6 @@ class UsersController extends \App\Controller
         parent::__construct($app);
         \App\Models\User::init();
         $users = \App\Models\User::all();
-        echo $this->template->render('user/user.twig', array('users' => $users));
+        echo $this->template->render('user/user.twig', [ 'users' => $users ]);
     }
 }

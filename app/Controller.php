@@ -26,7 +26,7 @@ class Controller extends \Mbh\Controller
          * Templates settings
          *
          */
-        $this->template = new Twig_Environment(new Twig_Loader_Filesystem('web/templates/'));
+        $this->template = new Twig_Environment(new Twig_Loader_Filesystem('./web/templates/'));
 
         $this->template->addGlobal('app', [
             'url' => URL,
@@ -37,6 +37,7 @@ class Controller extends \Mbh\Controller
          * @var Sessions
          *
          */
+         Storage\Session::init();
          $this->session = new Storage\Session();
 
          $this->session->checkLife();

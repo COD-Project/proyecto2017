@@ -8,15 +8,4 @@ use App\Connection\Connection;
 class Model extends \Mbh\Model
 {
     use \App\Traits\Connection;
-
-    function __construct($state = [])
-    {
-        parent::__construct($state);
-        $this->state = $state;
-    }
-
-    function __destruct()
-    {
-        static::$db = null;
-    }
 }
