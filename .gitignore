@@ -4,3 +4,4 @@ package-lock.json
 /vendor/*
 !/vendor/package.json
 /var
+/web/node_modules/

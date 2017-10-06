@@ -3,7 +3,7 @@
     "version": "0.2.0",
     "description": "",
     "scripts": {
-        "install": "composer update && npm install --prefix=vendor/"
+        "install": "composer update && npm install --prefix=web/"
     },
     "repository": {
         "type": "git",
