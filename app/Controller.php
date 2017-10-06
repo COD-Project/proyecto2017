@@ -24,8 +24,9 @@ class Controller extends \Mbh\Controller
 
         $this->template = new Twig_Environment(new Twig_Loader_Filesystem('web/templates/'));
 
-        $this->template->addGlobal('config', [
-            'base' => URL
+        $this->template->addGlobal('app', [
+            'url' => URL,
+            'name' => "Hospital Gutiérrez"
         ]);
     }
 

@@ -2,8 +2,7 @@
 <html lang="es">
 
   <head>
-    <base href="{{ config.base }}" target="_blank">
-
+    <base href="{{ app.url }}" target="_blank">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -17,7 +16,7 @@
     <meta property="og:description" content="Plataforma web para el Hospital Gutiérrez"/>
     <meta property="og:image" content="https://grupo5.proyecto2017.linti.unlp.edu.ar/web/assets/images/icon.png"/>
 
-    <title>Hospital Gutiérrez</title>
+    <title>{{ app.name }}</title>
 
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,200,300,400,600" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -180,7 +179,7 @@
               <h5 class="mb-1">Registrate Gratis</h5>
             </li>
             <li>
-              <a href="" class="btn btn-danger btn-rounded">Sign up!</a>
+              <a href="signup" class="btn btn-danger btn-rounded">Sign up!</a>
             </li>
           </ul>
         </div>
