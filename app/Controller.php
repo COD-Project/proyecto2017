@@ -8,7 +8,7 @@ use Twig_Loader_Filesystem;
  */
 class Controller extends \Mbh\Controller
 {
-    static function create($controller, $args)
+    public static function create($controller, $args)
     {
         $className = "\\App\\Controllers\\" . ucwords($controller) . "Controller";
         if (class_exists($className)) {
@@ -18,14 +18,18 @@ class Controller extends \Mbh\Controller
         /* do something */
     }
 
-    function __construct($app = null)
+    public function __construct($app = null)
     {
         parent::__construct($app);
 
         $this->template = new Twig_Environment(new Twig_Loader_Filesystem('web/templates/'));
+
+        $this->template->addGlobal('config', [
+            'base' => URL
+        ]);
     }
 
-    function __destruct()
+    public function __destruct()
     {
         $this->model = null;
     }
