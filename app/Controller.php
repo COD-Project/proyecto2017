@@ -34,18 +34,24 @@ class Controller extends \Mbh\Controller
         ]);
 
         /**
+         * \Mbh\Router
+         *
+         */
+        $app->setRouter(new \Mbh\Router());
+
+        /**
          * @var Sessions
          *
          */
-         Storage\Session::init();
-         $this->session = new Storage\Session();
+        Storage\Session::init();
+        $this->session = new Storage\Session();
 
-         $this->session->checkLife();
+        $this->session->checkLife();
     }
 
     protected function redirect($url = "")
     {
-         header('location:' . URL . $url);
+        header('location:' . URL . $url);
     }
 
     public function __destruct()
