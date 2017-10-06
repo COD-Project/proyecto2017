@@ -3,9 +3,9 @@
 /**
  * Routes to make MVC applications
  */
-$app->get('/', function () {
+$app->get('/', function ($app) {
     return new \App\Controllers\HomeController($app);
-});
+}, [ $app ]);
 
 $app->get('/phpinfo', function () {
     return phpinfo();
