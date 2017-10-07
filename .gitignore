@@ -5,3 +5,4 @@ package-lock.json
 !/vendor/package.json
 /var
 /web/node_modules/
+/web/etc/
