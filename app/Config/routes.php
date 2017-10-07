@@ -11,7 +11,7 @@ $app->get('/phpinfo', function () {
     return phpinfo();
 });
 
-$app->get('/:controller', function ($app, $controller) {
+$app->map(['GET', 'POST'], '/:controller', function ($app, $controller) {
     return \App\Controller::create($controller, [$app]);
 }, [ $app ]);
 
