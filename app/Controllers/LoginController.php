@@ -26,10 +26,12 @@ class LoginController extends \App\Controller
 
     function login()
     {
+        $post = $this->post();
+
         User::init();
         $user = new User([
-            'email' => $_POST['email'],
-            'password' => $_POST['password']
+            'email' => $post['email'],
+            'password' => $post['password']
         ]);
 
         $e = [];

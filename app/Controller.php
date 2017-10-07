@@ -8,7 +8,7 @@ use Twig_Loader_Filesystem;
  */
 class Controller extends \Mbh\Controller
 {
-    public static function create($controller, $args)
+    static function create($controller, $args)
     {
         $className = "\\App\\Controllers\\" . ucwords($controller) . "Controller";
         if (class_exists($className)) {
@@ -18,7 +18,7 @@ class Controller extends \Mbh\Controller
         header('location:' . URL . 'error');
     }
 
-    public function __construct($app = null)
+    function __construct($app = null)
     {
         parent::__construct($app);
 
@@ -37,7 +37,7 @@ class Controller extends \Mbh\Controller
          * \Mbh\Router
          *
          */
-        $app->setRouter(new \Mbh\Router());
+        $this->app->setRouter(new \App\Router());
 
         /**
          * @var Sessions
@@ -54,7 +54,17 @@ class Controller extends \Mbh\Controller
         header('location:' . URL . $url);
     }
 
-    public function __destruct()
+    function get()
+    {
+        return $this->app->router()->get();
+    }
+
+    function post()
+    {
+        return $this->app->router()->post();
+    }
+
+    function __destruct()
     {
         $this->model = null;
     }
