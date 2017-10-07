@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: db
--- Tiempo de generación: 03-10-2017 a las 22:35:29
+-- Tiempo de generación: 07-10-2017 a las 15:34:08
 -- Versión del servidor: 5.7.19
 -- Versión de PHP: 7.0.21
 
@@ -29,7 +29,7 @@ USE `grupo5`;
 --
 -- Estructura de tabla para la tabla `controles_de_salud`
 --
--- Creación: 03-10-2017 a las 22:32:49
+-- Creación: 07-10-2017 a las 12:52:19
 --
 
 DROP TABLE IF EXISTS `controles_de_salud`;
@@ -59,7 +59,7 @@ CREATE TABLE IF NOT EXISTS `controles_de_salud` (
 --
 -- Estructura de tabla para la tabla `datos_demograficos`
 --
--- Creación: 03-10-2017 a las 22:32:50
+-- Creación: 07-10-2017 a las 15:30:50
 --
 
 DROP TABLE IF EXISTS `datos_demograficos`;
@@ -68,9 +68,9 @@ CREATE TABLE IF NOT EXISTS `datos_demograficos` (
   `heladera` tinyint(1) NOT NULL DEFAULT '0',
   `electricidad` tinyint(1) NOT NULL DEFAULT '0',
   `mascota` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'Para vos Ulises',
-  `tipo_vivienda_id` int(11) DEFAULT NULL,
-  `tipo_calefaccion_id` int(11) DEFAULT NULL,
-  `tipo_agua_id` int(11) DEFAULT NULL,
+  `tipo_vivienda_id` int(11) NOT NULL,
+  `tipo_calefaccion_id` int(11) NOT NULL,
+  `tipo_agua_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `tipo_vivienda_id` (`tipo_vivienda_id`),
   UNIQUE KEY `tipo_calefaccion_id` (`tipo_calefaccion_id`),
@@ -82,7 +82,7 @@ CREATE TABLE IF NOT EXISTS `datos_demograficos` (
 --
 -- Estructura de tabla para la tabla `obras_sociales`
 --
--- Creación: 03-10-2017 a las 22:32:43
+-- Creación: 07-10-2017 a las 12:52:19
 --
 
 DROP TABLE IF EXISTS `obras_sociales`;
@@ -98,7 +98,7 @@ CREATE TABLE IF NOT EXISTS `obras_sociales` (
 --
 -- Estructura de tabla para la tabla `pacientes`
 --
--- Creación: 03-10-2017 a las 22:32:51
+-- Creación: 07-10-2017 a las 15:29:15
 --
 
 DROP TABLE IF EXISTS `pacientes`;
@@ -107,17 +107,17 @@ CREATE TABLE IF NOT EXISTS `pacientes` (
   `apellido` varchar(255) NOT NULL,
   `nombre` varchar(255) NOT NULL,
   `domicilio` varchar(255) NOT NULL,
-  `telefono` varchar(255) NOT NULL,
+  `telefono` varchar(255) DEFAULT NULL,
   `fecha_nac` date NOT NULL,
   `genero` tinytext NOT NULL,
   `datos_demograficos_id` int(11) DEFAULT NULL,
   `obra_social_id` int(11) DEFAULT NULL,
-  `tipo_doc_id` int(11) DEFAULT NULL,
-  `numero` int(11) NOT NULL,
+  `tipo_doc_id` int(11) NOT NULL,
+  `numero_doc` int(11) NOT NULL,
   PRIMARY KEY (`id`),
+  UNIQUE KEY `tipo_doc_id` (`tipo_doc_id`),
   UNIQUE KEY `datos_demograficos_id` (`datos_demograficos_id`),
-  UNIQUE KEY `obra_social_id` (`obra_social_id`),
-  UNIQUE KEY `tipo_doc_id` (`tipo_doc_id`)
+  UNIQUE KEY `obra_social_id` (`obra_social_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -125,7 +125,7 @@ CREATE TABLE IF NOT EXISTS `pacientes` (
 --
 -- Estructura de tabla para la tabla `permisos`
 --
--- Creación: 03-10-2017 a las 22:33:28
+-- Creación: 07-10-2017 a las 12:52:19
 --
 
 DROP TABLE IF EXISTS `permisos`;
@@ -140,7 +140,7 @@ CREATE TABLE IF NOT EXISTS `permisos` (
 --
 -- Estructura de tabla para la tabla `roles`
 --
--- Creación: 03-10-2017 a las 22:33:17
+-- Creación: 07-10-2017 a las 12:52:19
 --
 
 DROP TABLE IF EXISTS `roles`;
@@ -148,14 +148,14 @@ CREATE TABLE IF NOT EXISTS `roles` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `rol_tiene_permisos`
 --
--- Creación: 03-10-2017 a las 22:32:51
+-- Creación: 07-10-2017 a las 12:52:19
 --
 
 DROP TABLE IF EXISTS `rol_tiene_permisos`;
@@ -171,7 +171,7 @@ CREATE TABLE IF NOT EXISTS `rol_tiene_permisos` (
 --
 -- Estructura de tabla para la tabla `tipos_documento`
 --
--- Creación: 03-10-2017 a las 22:32:45
+-- Creación: 07-10-2017 a las 12:52:19
 --
 
 DROP TABLE IF EXISTS `tipos_documento`;
@@ -187,7 +187,7 @@ CREATE TABLE IF NOT EXISTS `tipos_documento` (
 --
 -- Estructura de tabla para la tabla `tipo_agua`
 --
--- Creación: 03-10-2017 a las 22:32:45
+-- Creación: 07-10-2017 a las 12:52:19
 --
 
 DROP TABLE IF EXISTS `tipo_agua`;
@@ -202,7 +202,7 @@ CREATE TABLE IF NOT EXISTS `tipo_agua` (
 --
 -- Estructura de tabla para la tabla `tipo_calefaccion`
 --
--- Creación: 03-10-2017 a las 22:32:46
+-- Creación: 07-10-2017 a las 12:52:19
 --
 
 DROP TABLE IF EXISTS `tipo_calefaccion`;
@@ -217,7 +217,7 @@ CREATE TABLE IF NOT EXISTS `tipo_calefaccion` (
 --
 -- Estructura de tabla para la tabla `tipo_vivienda`
 --
--- Creación: 03-10-2017 a las 22:32:46
+-- Creación: 07-10-2017 a las 12:52:19
 --
 
 DROP TABLE IF EXISTS `tipo_vivienda`;
@@ -232,7 +232,8 @@ CREATE TABLE IF NOT EXISTS `tipo_vivienda` (
 --
 -- Estructura de tabla para la tabla `usuarios`
 --
--- Creación: 03-10-2017 a las 22:32:47
+-- Creación: 07-10-2017 a las 12:52:19
+-- Última actualización: 07-10-2017 a las 15:21:33
 --
 
 DROP TABLE IF EXISTS `usuarios`;
@@ -250,14 +251,14 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `usuario_tiene_roles`
 --
--- Creación: 03-10-2017 a las 22:32:53
+-- Creación: 07-10-2017 a las 12:52:19
 --
 
 DROP TABLE IF EXISTS `usuario_tiene_roles`;
