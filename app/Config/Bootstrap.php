@@ -9,7 +9,7 @@ class Bootstrap
      * @param boolean $runApp If false dont load app framework - false during tests
      * @return boolean true
      */
-    static function init($runApp = true)
+    public static function init($runApp = true)
     {
         // Base config file
         require_once ROOT . "/app/Config/config.php";
@@ -23,14 +23,17 @@ class Bootstrap
             require_once ROOT . "/app/Config/routes.php";
 
             $app->firewall()
-                ->run()
-                ->debug();
+                ->run();
+
+            if (DEBUG) {
+                $app->debug();
+            }
         }
 
         return true ;
     }
 
-    static function autoload($class)
+    public static function autoload($class)
     {
         $prefix = __NAMESPACE__ . '\\';
         $length = strlen($prefix) - 1;
@@ -48,7 +51,7 @@ class Bootstrap
         }
     }
 
-    static function register()
+    public static function register()
     {
         spl_autoload_register(__NAMESPACE__ . "\\Bootstrap::autoload");
     }
