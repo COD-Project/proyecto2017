@@ -22,6 +22,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <link rel="stylesheet" href="web/assets/stylesheets/main.css">
+    {% block styles %}{% endblock %}
   </head>
 
   <body>
@@ -86,6 +87,8 @@
         </nav>
         <!--/.Navbar-->
       </header>
+
+      <div class="behind-topnav"></div>
     {% endblock %}
 
     {# App content #}
@@ -252,6 +255,7 @@
     <script src="web/node_modules/mdbootstrap/js/bootstrap.min.js"></script>
     <script src="web/node_modules/mdbootstrap/js/mdb.min.js"></script>
     <script src="web/assets/javascripts/main.js"></script>
+    {% block scripts %}{% endblock %}
   </body>
 
 </html>
