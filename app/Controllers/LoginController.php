@@ -32,13 +32,13 @@ class LoginController extends \App\Controller
 
         User::init();
 
-        $users = new Collection(User::get([
+        $user = new User([
             'name' => $post['username'],
             'password' => $post['password']
-        ]));
+        ]);
 
-        if ($users->count()) {
-            $user = $users->get(0);
+        if ($user->exists()) {
+            $user->refresh();
             $this->session->generateSession($user->id());
             $e = [
               'success' => true,

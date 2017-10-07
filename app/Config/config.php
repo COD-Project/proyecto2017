@@ -50,3 +50,4 @@ define('DATABASE_DRIVER', $db['driver']);
  */
 define('__ROOT__', $data['root']);
 define('URL', $data['url']);
+define('DEBUG', $data['debug']);
