@@ -56,12 +56,12 @@ class Controller extends \Mbh\Controller
 
     function get()
     {
-        return $this->app->router()->get();
+        return $this->app->getRouter()->get();
     }
 
     function post()
     {
-        return $this->app->router()->post();
+        return $this->app->getRouter()->post();
     }
 
     function __destruct()

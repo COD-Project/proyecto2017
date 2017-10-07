@@ -1,6 +1,7 @@
 <?php namespace App\Controllers;
 
 use Mbh\Helpers\Functions;
+use Mbh\Collection;
 use \App\Models\User;
 
 /**
@@ -12,11 +13,11 @@ class LoginController extends \App\Controller
     {
         parent::__construct($app);
 
-        $app->get('/login', [ $this, 'render' ]);
+        $this->app->get('/login', [ $this, 'render' ]);
 
-        $app->post('/login', [ $this, 'login' ]);
+        $this->app->post('/login', [ $this, 'login' ]);
 
-        $app->router()->run();
+        $this->app->router()->run();
     }
 
     function render()
@@ -27,17 +28,27 @@ class LoginController extends \App\Controller
     function login()
     {
         $post = $this->post();
-
-        User::init();
-        $user = new User([
-            'email' => $post['email'],
-            'password' => $post['password']
-        ]);
-
         $e = [];
 
-        if ($user->exists()) {
-            $session->generateSession($user->id());
+        User::init();
+
+        $users = new Collection(User::get([
+            'name' => $post['username'],
+            'password' => $post['password']
+        ]));
+
+        if ($users->count()) {
+            $user = $users->get(0);
+            $this->session->generateSession($user->id());
+            $e = [
+              'success' => true,
+              'message' => 'La sesión se inició correctamente.'
+            ];
+        } else {
+            $e = [
+              'success' => false,
+              'message' => 'El nombre de usuario y/o la contraseña son inválidos.'
+            ];
         }
 
         return $e;
