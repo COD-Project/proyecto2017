@@ -2,8 +2,9 @@
 
 {% block app_body %}
   <div class="wrap">
+    <div id="login_response"></div>
     <!-- Form subscription -->
-    <form action="login" method="post">
+    <form id="login_form" action="login" method="post">
       <p class="h3 text-center mb-4">Iniciar Sesión</p>
 
       <div class="md-form">
@@ -21,7 +22,7 @@
       <br>
 
       <div class="text-center">
-        <button class="btn btn-indigo" title="Iniciar Sesión">
+        <button id="login_button" type="submit" class="btn btn-indigo" title="Iniciar Sesión">
           Iniciar Sesión
         </button>
       </div>
