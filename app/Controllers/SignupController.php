@@ -7,24 +7,35 @@ use App\Models\User;
  */
 class SignupController extends \App\Controller
 {
-  function __construct($app)
-  {
-      parent::__construct($app);
+    public function __construct($app)
+    {
+        parent::__construct($app);
 
-      $this->app->get('/signup', [ $this, 'render' ]);
+        $this->app->get('/signup', [ $this, 'render' ]);
 
-      $this->app->post('/signup', [ $this, 'signup' ]);
+        $this->app->post('/signup', [ $this, 'signup' ]);
 
-      $this->app->router()->run();
-  }
+        $this->app->router()->run();
+    }
 
-  function render()
-  {
-      return $this->template->render('signup/signup.twig');
-  }
+    public function render()
+    {
+        return $this->template->render('signup/signup.twig');
+    }
 
-  function signup()
-  {
-      
-  }
+    public function signup()
+    {
+        $post = $this->post();
+        $e = [];
+
+        User::init();
+        $user = new User([
+          'name' => $post['username'],
+          'email' => $post['email'],
+          'password' => $post['password']
+          /* Include data here */
+        ]);
+
+        return $e;
+    }
 }

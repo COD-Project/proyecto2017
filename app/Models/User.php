@@ -18,7 +18,7 @@ class User extends \App\Model
         "firstName" => "first_name",
         "lastName" => "last_name",
         "password" => "password",
-        "activo" => "activo",
+        "active" => "activo",
         "createdAt" => "created_at",
         "updatedAt" => "updated_at",
         "session" => "session"

@@ -1,0 +1,57 @@
+{% extends 'layout/layout.twig' %}
+
+{% block app_body %}
+  <div class="wrap">
+    <div id="signup_response"></div>
+    <div class="form-container">
+      <!-- Form subscription -->
+      <form id="signup_form" action="signup" method="post">
+        <p class="h3 text-center mb-4">Registrar Cuenta</p>
+
+        <div class="md-form">
+          <i class="fa fa-user prefix grey-text"></i>
+          <input id="username" name="username" type="text" class="form-control" title="Ingrese nombre de usuario" placeholder="" required>
+          <label for="username">Nombre de usuario</label>
+        </div>
+
+        <div class="md-form">
+          <i class="fa fa-envelope prefix grey-text"></i>
+          <input id="email" name="email" type="email" class="form-control" title="Ingrese nombre de usuario" placeholder="" required>
+          <label for="email">Email</label>
+        </div>
+
+        <div class="md-form">
+          <i class="fa fa-lock prefix grey-text"></i>
+          <input id="password" name="password" type="password" class="form-control" title="Ingrese contraseña" placeholder="" required>
+          <label for="password">Contraseña</label>
+        </div>
+
+        <div class="md-form">
+          <i class="fa fa-lock prefix grey-text"></i>
+          <input id="repeat_password" name="repeat_password" type="password" class="form-control" title="Ingrese contraseña" placeholder="" required>
+          <label for="repeat_password">Repetir contraseña</label>
+        </div>
+
+        <br>
+
+        <div class="text-center">
+          <button id="signup_button" type="submit" class="btn btn-indigo" title="Registrar Cuenta">
+            Registrar Cuenta
+          </button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+{% endblock %}
+
+{% block app_footer %}
+  <footer class="text-center" style="color: #4285F4; margin-top: 45px;">
+    <p>Hospital de Niños Ricardo Gutierrez.</p>
+    <p>Proyecto de Software &copy; 2017</p>
+  </footer>
+{% endblock %}
+
+{% block scripts %}
+  <script src="web/assets/javascripts/components/signup/signup.js"></script>
+{% endblock %}

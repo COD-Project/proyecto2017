@@ -1,6 +1,6 @@
 {
   "dependencies": {
     "font-awesome": "^4.7.0",
-    "mdbootstrap": "^4.x"
+    "mdbootstrap": "^4.4.1"
   }
 }
