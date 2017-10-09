@@ -31,6 +31,8 @@ class SignupController extends \App\Controller
             User::init();
 
             $user = User::create([
+              'firstName' => $post['firstName'],
+              'lastName' => $post['lastName'],
               'name' => $post['username'],
               'email' => $post['email'],
               'password' => Functions::encrypt($post['password'])

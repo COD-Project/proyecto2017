@@ -14,7 +14,7 @@ class UsersController extends \App\Controller
         $this->app->get('/users', [ $this, 'render' ]);
         $this->app->get('/users/get', [ $this, 'get' ]);
         $this->app->get('/users/get/:username', [ $this, 'get' ]);
-        $this->app->get('/users/delete/:id', [ $this, 'delete' ]);
+        $this->app->get('/users/disable/:id', [ $this, 'disable' ]);
         $this->app->post('/users/edit/:id', [ $this, 'edit' ]);
 
         $this->app->router()->run();
@@ -48,7 +48,7 @@ class UsersController extends \App\Controller
         }, $users);
     }
 
-    function delete($id)
+    function disable($id)
     {
         $user = User::find($id);
 
