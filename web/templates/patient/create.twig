@@ -1,0 +1,88 @@
+{% extends 'layout/layout.twig' %}
+
+{% block app_body %}
+  <div class="wrap">
+    <div id="patient_create_response">
+      {% if get.success %}
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h5 class="alert-heading">{{get.message}}</h5>
+      </div>
+      {% endif %}
+    </div>
+    <div class="form-container">
+      <!-- Form subscription -->
+      <form id="patient_create_form" action="patients/create" method="post">
+        <p class="h3 text-center mb-4">Agregar Paciente</p>
+
+        <div class="md-form">
+          <i class="fa fa-user prefix grey-text"></i>
+          <input id="firstName" name="firstName" type="text" class="form-control" title="Ingrese nombre" placeholder="">
+          <label for="firstName">Nombre</label>
+        </div>
+
+        <div class="md-form">
+          <i class="fa fa-envelope prefix grey-text"></i>
+          <input id="lastName" name="lastName" type="text" class="form-control" title="Ingrese apellido" placeholder="">
+          <label for="lastName">Apellido</label>
+        </div>
+
+        <div class="md-form">
+          <i class="fa fa-user prefix grey-text"></i>
+          <input id="address" name="address" type="text" class="form-control" title="Ingrese dirección" placeholder="">
+          <label for="address">Dirección</label>
+        </div>
+
+        <div class="md-form">
+          <i class="fa fa-user prefix grey-text"></i>
+          <input id="phone" name="phone" type="text" class="form-control" title="Ingrese teléfono" placeholder="">
+          <label for="phone">Teléfono</label>
+        </div>
+
+        <div class="md-form">
+          <i class="fa fa-user prefix grey-text active"></i>
+          <input id="birthday" name="birthday" type="date" class="form-control" title="Ingrese fecha de nacimiento" placeholder="">
+          <label class="active" for="birthday">Fecha de nacimiento</label>
+        </div>
+
+        <div class="md-form">
+          <i class="fa fa-user prefix grey-text"></i>
+          <input id="gender" name="gender" type="text" class="form-control" title="Ingrese género" placeholder="">
+          <label for="gender">Género</label>
+        </div>
+
+        <div class="md-form">
+          <i class="fa fa-user prefix grey-text"></i>
+          <input id="documentTypeId" name="documentTypeId" type="text" class="form-control" title="Ingrese tipo de documento" placeholder="">
+          <label for="documentTypeId">Tipo de documento</label>
+        </div>
+
+        <div class="md-form">
+          <i class="fa fa-user prefix grey-text"></i>
+          <input id="documentNumber" name="documentNumber" type="text" class="form-control" title="Ingrese número de documento" placeholder="">
+          <label for="documentNumber">Número de documento</label>
+        </div>
+
+        <br>
+
+        <div class="text-center">
+          <button id="patient_create_button" type="submit" class="btn btn-indigo" title="Crear paciente">
+            Iniciar Sesión
+          </button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+{% endblock %}
+
+{% block app_footer %}
+  <footer class="text-center" style="color: #4285F4; margin-top: 45px;">
+    <p>Hospital de Niños Ricardo Gutierrez.</p>
+    <p>Proyecto de Software &copy; 2017</p>
+  </footer>
+{% endblock %}
+
+{% block scripts %}
+  <script src="web/assets/javascripts/components/patient/create.js"></script>
+{% endblock %}
