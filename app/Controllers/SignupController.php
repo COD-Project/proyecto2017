@@ -31,13 +31,8 @@ class SignupController extends \App\Controller
 
             $user = User::create([
               'name' => $post['username'],
-              'firstName' => $post['username'],
-              'lastName' => $post['username'],
               'email' => $post['email'],
-              'password' => $post['password'],
-              'active' => "1",
-              'createdAt' => date("Y-m-d H:i:s"),
-              'updatedAt' => date("Y-m-d H:i:s")
+              'password' => $post['password']
             ]);
 
             $this->session->generateSession($user->id());

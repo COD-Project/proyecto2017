@@ -32,6 +32,14 @@ class User extends \App\Model
             throw new \Exception("El email ingresado corresponde a otro usuario.");
         }
 
+        $data = array_merge($data, [
+          "firstName" => " ",
+          "lastName" => " ",
+          "active" => "1",
+          "createdAt" => date("Y-m-d H:i:s"),
+          "updatedAt" => date("Y-m-d H:i:s")
+        ]);
+
         return parent::create($data);
     }
 
