@@ -56,7 +56,7 @@ $('#login_form').on('submit', function(e) {
       $("#login_response").html(`
           <div class="alert alert-info alert-dismissible fade show" role="alert">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <p>${error.html()}</p>
+            <p><small><strong>${error.html()}</strong></small></p>
           </div>
         `);
     },
