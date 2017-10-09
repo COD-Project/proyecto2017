@@ -24,6 +24,17 @@ class User extends \App\Model
         "session" => "session"
     ];
 
+    public static function create($data = [])
+    {
+        if (count(static::findBy($data['name'], 'name')) > 0) {
+            throw new \Exception("El nombre de usuario ingresado corresponde a otro usuario.");
+        } elseif (count(static::findBy($data['email'], 'email')) > 0) {
+            throw new \Exception("El email ingresado corresponde a otro usuario.");
+        }
+
+        return parent::create($data);
+    }
+
     public function roles()
     {
         return [];

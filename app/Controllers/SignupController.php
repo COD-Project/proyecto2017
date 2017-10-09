@@ -25,17 +25,32 @@ class SignupController extends \App\Controller
 
     public function signup()
     {
-        $post = $this->post();
-        $e = [];
+        try {
+            $post = $this->post();
+            User::init();
 
-        User::init();
-        $user = new User([
-          'name' => $post['username'],
-          'email' => $post['email'],
-          'password' => $post['password']
-          /* Include data here */
-        ]);
+            $user = User::create([
+              'name' => $post['username'],
+              'firstName' => $post['username'],
+              'lastName' => $post['username'],
+              'email' => $post['email'],
+              'password' => $post['password'],
+              'active' => "1",
+              'createdAt' => date("Y-m-d H:i:s"),
+              'updatedAt' => date("Y-m-d H:i:s")
+            ]);
 
-        return $e;
+            $this->session->generateSession($user->id());
+
+            return [
+              'success' => true,
+              'message' => "La operación fué realizada con éxito."
+            ];
+        } catch (\Exception $e) {
+            return [
+              'success' => false,
+              'message' => $e->getMessage()
+            ];
+        }
     }
 }
