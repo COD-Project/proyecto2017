@@ -14,8 +14,6 @@ class UsersController extends \App\Controller
         parent::__construct($app);
 
         $this->app->get('/users', [ $this, 'render' ]);
-        $this->app->get('/users/get', [ $this, 'get' ]);
-        $this->app->get('/users/get/:username', [ $this, 'get' ]);
         $this->app->get('/users/show/:username', [ $this, 'show' ]);
         $this->app->get('/users/disable/:id', [ $this, 'disable' ]);
         $this->app->post('/users/edit/:id', [ $this, 'edit' ]);
