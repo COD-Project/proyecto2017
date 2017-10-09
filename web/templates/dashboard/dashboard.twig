@@ -1,0 +1,62 @@
+{% extends 'layout/layout.twig' %}
+
+{% block styles %}
+  <link rel="stylesheet" href="web/assets/stylesheets/dashboard.css">
+{% endblock %}
+
+{% block app_header %}
+  <!-- -->
+{% endblock %}
+
+{% block app_body %}
+  <div id="wrapper">
+    <!-- Sidebar -->
+    <nav class="nav nav-inverse nav-fixed-top" id="sidebar-wrapper" role="navigation">
+      <ul class="nav sidebar-nav">
+        <li class="sidebar-brand">
+          <a href="#">
+            Dashboard
+          </a>
+        </li>
+        <li>
+          <a href="#!">Home</a>
+        </li>
+        <li>
+          <a href="users">Usuarios</a>
+        </li>
+        <li>
+          <a href="patients">Pacientes</a>
+        </li>
+      </ul>
+    </nav>
+    <!-- /#sidebar-wrapper -->
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+      <button type="button" class="hamburger is-closed" data-toggle="offcanvas">
+        <span class="hamb-top"></span>
+        <span class="hamb-middle"></span>
+        <span class="hamb-bottom"></span>
+      </button>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2">
+            <h1>Dashboard content</h1>
+            <p>Puto el que lee :v</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+
+  </div>
+  <!-- /#wrapper -->
+{% endblock %}
+
+{% block app_footer %}
+  <!-- -->
+{% endblock %}
+
+{% block scripts %}
+  <script src="web/assets/javascripts/components/dashboard/sidenav.js"></script>
+{% endblock %}
