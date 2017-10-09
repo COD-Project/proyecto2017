@@ -41,27 +41,24 @@ class Login {
   }
 }
 
-$('#login_form').on('submit', function(e) {
-  e.preventDefault();
-  $('#login_form').validate({
-    rules: {
-      username: "required",
-      password: "required"
-    },
-    messages: {
-      username: "Por favor, especifique su nombre de usuario.",
-      password: "Por favor, especifique contraseña."
-    },
-    errorPlacement: function(error, input) {
-      $("#login_response").html(`
+$('#login_form').validate({
+  rules: {
+    username: "required",
+    password: "required"
+  },
+  messages: {
+    username: "Por favor, especifique su nombre de usuario.",
+    password: "Por favor, especifique contraseña."
+  },
+  errorPlacement: function(error, input) {
+    $("#login_response").html(`
           <div class="alert alert-info alert-dismissible fade show" role="alert">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             <p><small><strong>${error.html()}</strong></small></p>
           </div>
         `);
-    },
-    submitHandler: function() {
-      new Login;
-    }
-  });
+  },
+  submitHandler: function(form) {
+    new Login;
+  }
 });
