@@ -15,4 +15,9 @@ class Role extends \App\Model
         "id" => "id",
         "name" => "nombre"
     ];
+
+    public function permissions()
+    {
+        
+    }
 }
