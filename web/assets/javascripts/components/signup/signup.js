@@ -45,25 +45,31 @@ class Signup {
 
 $('#signup_form').validate({
   rules: {
+    firstName: "required",
+    lastName: "required",
     username: "required",
     email: {
       required: true,
       email: true
     },
-    password: {
+    password: "required",
+    repeat_password: {
       required: true,
       equalTo: '#repeat_password'
     }
   },
   messages: {
+    firstName: "Por favor, especifique su nombre.",
+    lastName: "Por favor, especifique su apellido.",
     username: "Por favor, especifique su nombre de usuario.",
     email: {
       required: "Necesitamos tu cuenta de email para contactarte.",
       email: "Su dirección de correo electrónico debe tener el formato de name@domain.com"
     },
-    password: {
+    password: "Por favor, especifique su contraseña.",
+    repeat_password: {
       required: "Por favor, especifique su contraseña.",
-      equalTo: "Las contraseñas deben ser iguales"
+      equalTo: "Las contraseñas deben ser iguales."
     }
   },
   errorPlacement: function(error, input) {
