@@ -31,7 +31,7 @@ class PatientsController extends \App\Controller
     {
         Patient::init();
         $patient = Patient::find($id);
-        return $this->template->render('patients/show.twig', [
+        return $this->template->render('patient/show.twig', [
             'patient' => $patient
         ]);
     }
