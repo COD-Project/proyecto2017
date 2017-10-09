@@ -34,7 +34,7 @@ class LoginController extends \App\Controller
 
         $user = new User([
             'name' => $post['username'],
-            'password' => $post['password']
+            'password' => Functions::encrypt($post['password'])
         ]);
 
         if ($user->exists()) {

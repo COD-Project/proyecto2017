@@ -1,5 +1,6 @@
 <?php namespace App\Controllers;
 
+use Mbh\Helpers\Functions;
 use App\Models\User;
 
 /**
@@ -32,7 +33,7 @@ class SignupController extends \App\Controller
             $user = User::create([
               'name' => $post['username'],
               'email' => $post['email'],
-              'password' => $post['password']
+              'password' => Functions::encrypt($post['password'])
             ]);
 
             $this->session->generateSession($user->id());
