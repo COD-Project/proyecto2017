@@ -53,7 +53,7 @@ $('#signup_form').on('submit', function(e) {
       },
       password: {
         required: true,
-        equalsTo: '#repeat_password'
+        equalTo: '#repeat_password'
       }
     },
     messages: {
@@ -64,11 +64,11 @@ $('#signup_form').on('submit', function(e) {
       },
       password: {
         required: "Por favor, especifique su contraseña.",
-        equalsTo: "Las contraseñas deben ser iguales"
+        equalTo: "Las contraseñas deben ser iguales"
       }
     },
     errorPlacement: function(error, input) {
-      $("#signup_error").html(`
+      $("#signup_response").html(`
           <div class="alert alert-info alert-dismissible fade show" role="alert">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             <p>${error.html()}</p>
