@@ -2,7 +2,7 @@
 composer.lock
 package-lock.json
 /vendor/*
-!/vendor/package.json
 /var
 /web/node_modules/
 /web/etc/
+!/web/package.json
