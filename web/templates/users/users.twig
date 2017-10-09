@@ -2,37 +2,102 @@
 
 {% block app_body %}
   <div class="container">
-    <br>
-    <h3 class="text-center">Listado de usuarios</h3>
-    <ul class="list-group">
-      <li class="list-group-item d-flex justify-content-between align-items-center">
-        <div class="col-sm-5 text-center">
-          Nombre completo
-        </div>
-        <div class="col-sm-5 text-center">
-          Email
-        </div>
-        <div class="col-sm-2 text-center">
-          Acciones
-        </div>
-        {% for user in users %}
-        <li class="list-group-item d-flex justify-content-between align-items-center">
-          <div class="col-sm-5 text-center">
-            {{ user.fullName }}
-          </div>
-          <div class="col-sm-5 text-center">
-            {{ user.email }}
-          </div>
-          <div class="col-sm-2 text-center">
-            <a href="users/edit/{{user.id}}">
-              <span class="badge badge-info badge-pill">Editar</span>
-            </a>
-            <a href="users/delete/{{user.id}}">
-              <span class="badge badge-danger badge-pill">Eliminar</span>
-            </a>
-          </div>
-        </li>
-      {% endfor %}
-    </ul>
+    <div class="card card-cascade narrower mt-5">
+
+      <!--Card image-->
+      <div class="view gradient-card-header purple-gradient narrower py-4 mx-4 mb-3 d-flex justify-content-center align-items-center">
+        <h4 class="font-bold font-up mb-0">Listado de Usuarios</h4>
+      </div>
+      <!--/Card image-->
+
+      <div class="px-4">
+        <table class="table table-hover table-responsive w-auto">
+          <thead class="mdb-color darken-3">
+            <tr class="text-white">
+              <th>Nombre de usuario</th>
+              <th>Nombre completo</th>
+              <th>Email</th>
+              <th>Opciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for user in users %}
+              <tr>
+                <td>{{ user.name }}</td>
+                <td>{{ user.fullName }}</td>
+                <td>{{ user.email }}</td>
+                <td>
+                  <a href="users/edit/{{user.id}}">
+                    <span class="badge badge-info badge-pill">Editar</span>
+                  </a>
+                  <a href="users/disable/{{user.id}}">
+                    <span class="badge badge-danger badge-pill">Deshabilitar</span>
+                  </a>
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+
+      <hr class="my-0">
+
+      <!--Bottom Table UI-->
+      <div class="d-flex justify-content-center">
+
+        <!--Pagination -->
+        <nav class="my-4 pt-2">
+          <ul class="pagination pagination-circle pg-purple mb-0">
+
+            <!--First-->
+            <li class="page-item disabled clearfix d-none d-md-block">
+              <a class="page-link">First</a>
+            </li>
+
+            <!--Arrow left-->
+            <li class="page-item disabled">
+              <a class="page-link" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+                <span class="sr-only">Previo</span>
+              </a>
+            </li>
+
+            <!--Numbers-->
+            <li class="page-item active">
+              <a class="page-link">1</a>
+            </li>
+            <li class="page-item">
+              <a class="page-link">2</a>
+            </li>
+            <li class="page-item">
+              <a class="page-link">3</a>
+            </li>
+            <li class="page-item">
+              <a class="page-link">4</a>
+            </li>
+            <li class="page-item">
+              <a class="page-link">5</a>
+            </li>
+
+            <!--Arrow right-->
+            <li class="page-item">
+              <a class="page-link" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+                <span class="sr-only">Siguiente</span>
+              </a>
+            </li>
+
+            <!--First-->
+            <li class="page-item clearfix d-none d-md-block">
+              <a class="page-link">Last</a>
+            </li>
+
+          </ul>
+        </nav>
+        <!--/Pagination -->
+
+      </div>
+      <!--Bottom Table UI-->
+    </div>
   </div>
 {% endblock %}

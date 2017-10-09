@@ -33,8 +33,6 @@ class User extends \App\Model
         }
 
         $data = array_merge($data, [
-          "firstName" => " ",
-          "lastName" => " ",
           "active" => "1",
           "createdAt" => date("Y-m-d H:i:s"),
           "updatedAt" => date("Y-m-d H:i:s")
