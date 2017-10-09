@@ -1,28 +1,14 @@
 class Signup {
   constructor() {
-    this.data = $('#signup_form').serializeObject();
-
-    if (this.query()) {
-      this.ajax();
-    } else {
-      $('#signup_response').html(`
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h5 class="alert-heading">Error procesando la petición...</h5>
-        </div>
-      `);
-    }
-  }
-
-  query() {
-    return this.data.password === this.data.repeat_password;
+    this.data = $('#signup_form').serialize();
+    this.ajax();
   }
 
   ajax() {
     $.ajax({
       url: "http://localhost:3000/signup",
       type: "POST",
-      data: $('#signup_form').serialize(),
+      data: this.data,
       cache: false,
       beforeSend: function() {
         $('#signup_response').html(`
@@ -55,3 +41,42 @@ class Signup {
     });
   }
 }
+
+$('#signup_form').on('submit', function(e) {
+  e.preventDefault();
+  $('#signup_form').validate({
+    rules: {
+      username: "required",
+      email: {
+        required: true,
+        email: true
+      },
+      password: {
+        required: true,
+        equalsTo: '#repeat_password'
+      }
+    },
+    messages: {
+      username: "Por favor, especifique su nombre de usuario.",
+      email: {
+        required: "Necesitamos tu cuenta de email para contactarte.",
+        email: "Su dirección de correo electrónico debe tener el formato de name@domain.com"
+      },
+      password: {
+        required: "Por favor, especifique su contraseña.",
+        equalsTo: "Las contraseñas deben ser iguales"
+      }
+    },
+    errorPlacement: function(error, input) {
+      $("#signup_error").html(`
+          <div class="alert alert-info alert-dismissible fade show" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <p>${error.html()}</p>
+          </div>
+        `);
+    },
+    submitHandler: function() {
+      new Signup;
+    }
+  });
+});
