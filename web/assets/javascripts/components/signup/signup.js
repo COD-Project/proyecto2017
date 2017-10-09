@@ -25,7 +25,7 @@ class Signup {
         $('#signup_response').html(`
           <div class="alert alert-${data.success ? "success": "danger"} alert-dismissible fade show" role="alert">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h5 class="alert-heading">${data.success ? "¡Conexión exitosa!": "Error:"}</h5>
+            <h5 class="alert-heading">${data.success ? "¡Operación exitosa!": "Error:"}</h5>
             <p>${data.message}</p>
           </div>
         `);
