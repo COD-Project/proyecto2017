@@ -18,31 +18,36 @@ class Patient extends \App\Model
         "address" => "domicilio",
         "phone" => "telefono",
         "birthday" => "fecha_nac",
-        "genere" => "genero",
+        "gender" => "genero",
         "demographicDataId" => "datos_demograficos_id",
         "socialWorkId" => "obra_social_id",
         "documentTypeId" => "tipo_doc_id",
-        "number" => "numero"
+        "documentNumber" => "numero_doc"
       ];
 
-    function demographicData()
+    public function demographicData()
     {
         if ($this->demographicDataId()) {
             return DemograpichData::find($this->demographicDataId());
         }
     }
 
-    function socialWork()
+    public function socialWork()
     {
         if ($this->socialWorkId()) {
             return SocialWork::find($this->socialWorkId());
         }
     }
 
-    function documentType()
+    public function documentType()
     {
         if ($this->documentTypeId()) {
             return DocumentType::find($this->documentTypeId());
         }
+    }
+
+    public function fullName()
+    {
+        return "{$this->firstName()} {$this->lastName()}";
     }
 }
