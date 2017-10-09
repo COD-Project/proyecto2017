@@ -53,11 +53,7 @@ class UsersController extends \App\Controller
         $user = User::find($id);
 
         if ($user) {
-            $user->addState([
-              "active" => "0"
-            ]);
-
-            $user->edit();
+            $user->remove();
         }
     }
 }

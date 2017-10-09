@@ -43,6 +43,15 @@ class User extends \App\Model
         return parent::create($data);
     }
 
+    public function remove()
+    {
+        $this->addState([
+          "active" => "0"
+        ]);
+
+        $this->edit();
+    }
+
     public function roles()
     {
         return [];
