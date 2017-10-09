@@ -30,7 +30,7 @@ class Controller extends \Mbh\Controller
 
         $this->template->addGlobal('app', [
             'url' => URL,
-            'name' => "Hospital Gutiérrez"
+            'name' => APP_NAME
         ]);
 
         /**
