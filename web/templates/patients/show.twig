@@ -1,0 +1,54 @@
+{% extends 'layout/layout.twig' %}
+
+{% block app_body %}
+
+
+<div class="container">
+  <!--Card-->
+<div class="card card-cascade wider reverse my-4">
+
+    <!--Card content-->
+    <div class="card-body text-center">
+        <!--Title-->
+        <h4 class="card-title"><strong>{{patient.fullName}}</strong></h4>
+        <h5 class="indigo-text"><strong>{{patient.birthday}}</strong></h5>
+        <br>
+        <div class="row">
+          <div class="col-4 col-sm-4 col-xs-4">
+            <p class="mb-0"><strong>Obra Social</strong></p>
+            <p>{{patient.socialWork.name}}</p>
+          </div>
+          <div class="col-4 col-sm-4 col-xs-4">
+            <p class="mb-0"><strong>Tipo de documento</strong></p>
+            <p>{{patient.documentType.name}}
+          </div>
+          <div class="col-4 col-sm-4 col-xs-4">
+            <p class="mb-0"><strong>Número de documento</strong></p>
+            <p>{{patient.documentNumber}}</p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-4 col-sm-4 col-xs-4">
+            <p class="mb-0"><strong>Teléfono</strong></p>
+            <p>{{patient.phone}}</p>
+          </div>
+          <div class="col-4 col-sm-4 col-xs-4">
+            <p class="mb-0"><strong>Dirección</strong></p>
+            <p>{{patient.address}}</p>
+          </div>
+          <div class="col-4 col-sm-4 col-xs-4">
+            <p class="mb-0"><strong>Género</strong></p>
+            <p>{{patient.gender}}</p>
+          </div>
+        </div>
+        <br>
+        <img style="max-width: 25px;" src="web/assets/images/icon.png"></img>
+
+    </div>
+    <!--/.Card content-->
+
+</div>
+<!--/.Card-->
+</div>
+{% endblock %}
