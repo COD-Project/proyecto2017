@@ -14,6 +14,8 @@ class PatientsController extends \App\Controller
 
         $this->app->get('/patients', [ $this, 'render' ]);
         $this->app->get('/patients/show/:id', [ $this, 'show' ]);
+        $this->app->get('/patients/create', [ $this, 'add' ]);
+        $this->app->post('/patients/create', [ $this, 'createPatient' ]);
 
         $this->app->router()->run();
     }
@@ -34,5 +36,37 @@ class PatientsController extends \App\Controller
         return $this->template->render('patient/show.twig', [
             'patient' => $patient
         ]);
+    }
+
+    public function add()
+    {
+        return $this->template->render('patient/create.twig', [
+            'get' => [
+                'message' => $this->get()['message'],
+                'success' => $this->get()['success']
+            ]
+        ]);
+    }
+
+    public function createPatient()
+    {
+        try {
+            $post = $this->post();
+            Patient::init();
+            $patient = Patient::create([
+                'firstName' => $post['firstName'],
+                'lastName' => $post['lastName'],
+                'address' => $post['address'],
+                'phone' => $post['phone'],
+                'birthday' => date('Y-m-d', $post['birthday']),
+                'gender' => $post['gender'],
+                'documentTypeId' => $post['documentTypeId'],
+                'documentNumber' => $post['documentNumber']
+            ]);
+            $this->redirect("patients/create?success=false&message=La operación fue realizada con éxito");
+        } catch(\Exception $e) {
+            $this->redirect("patients/create?success=false&message={$e->getMessage()}");
+        }
+
     }
 }
