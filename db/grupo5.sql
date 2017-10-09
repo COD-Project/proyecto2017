@@ -50,8 +50,8 @@ CREATE TABLE IF NOT EXISTS `controles_de_salud` (
   `paciente_id` int(11) DEFAULT NULL,
   `user_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `paciente_id` (`paciente_id`),
-  UNIQUE KEY `user_id` (`user_id`)
+  KEY `paciente_id` (`paciente_id`),
+  KEY `user_id` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -72,9 +72,9 @@ CREATE TABLE IF NOT EXISTS `datos_demograficos` (
   `tipo_calefaccion_id` int(11) NOT NULL,
   `tipo_agua_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `tipo_vivienda_id` (`tipo_vivienda_id`),
-  UNIQUE KEY `tipo_calefaccion_id` (`tipo_calefaccion_id`),
-  UNIQUE KEY `tipo_agua_id` (`tipo_agua_id`)
+  KEY `tipo_vivienda_id` (`tipo_vivienda_id`),
+  KEY `tipo_calefaccion_id` (`tipo_calefaccion_id`),
+  KEY `tipo_agua_id` (`tipo_agua_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -115,9 +115,9 @@ CREATE TABLE IF NOT EXISTS `pacientes` (
   `tipo_doc_id` int(11) NOT NULL,
   `numero_doc` int(11) NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `tipo_doc_id` (`tipo_doc_id`),
-  UNIQUE KEY `datos_demograficos_id` (`datos_demograficos_id`),
-  UNIQUE KEY `obra_social_id` (`obra_social_id`)
+  KEY `tipo_doc_id` (`tipo_doc_id`),
+  KEY `datos_demograficos_id` (`datos_demograficos_id`),
+  KEY `obra_social_id` (`obra_social_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -162,8 +162,8 @@ DROP TABLE IF EXISTS `rol_tiene_permisos`;
 CREATE TABLE IF NOT EXISTS `rol_tiene_permisos` (
   `rol_id` int(11) NOT NULL,
   `permiso_id` int(11) NOT NULL,
-  UNIQUE KEY `rol_id` (`rol_id`),
-  UNIQUE KEY `permiso_id` (`permiso_id`)
+  KEY `rol_id` (`rol_id`),
+  KEY `permiso_id` (`permiso_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -265,8 +265,8 @@ DROP TABLE IF EXISTS `usuario_tiene_roles`;
 CREATE TABLE IF NOT EXISTS `usuario_tiene_roles` (
   `usuario_id` int(11) NOT NULL,
   `rol_id` int(11) NOT NULL,
-  UNIQUE KEY `usuario_id` (`usuario_id`),
-  UNIQUE KEY `rol_id` (`rol_id`)
+  KEY `usuario_id` (`usuario_id`),
+  KEY `rol_id` (`rol_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
