@@ -25,6 +25,20 @@ class Patient extends \App\Model
         "documentNumber" => "numero_doc"
       ];
 
+    public static function create($data = [])
+    {
+        $patients = static::get([
+          'documentNumber' => $data['documentNumber'],
+          'documentTypeId' => $data['documentTypeId']
+        ]);
+
+        if (count($patients) > 0) {
+            throw new \Exception("El paciente ya existe - DNI duplicado");
+        }
+
+        return parent::create($data);
+    }
+
     public function demographicData()
     {
         if ($this->demographicDataId()) {
