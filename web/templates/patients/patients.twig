@@ -16,23 +16,23 @@
         </tr>
       </thead>
       {% for patient in patients %}
-      <tbody>
-        <tr>
-          <th>{{ patient.fullName }}</th>
-          <th>{{ patient.address }}</th>
-          <th>{{ patient.phone }}</th>
-          <th>{{ patient.gender }}</th>
-          <th>{{ patient.documentNumber }}</th>
-          <th>
-            <a href="patients/show/{{patient.id}}">
-              <span class="badge badge-info badge-pill">Ver/Editar</span>
-            </a>
-            <a href="patients/delete/{{patient.id}}">
-              <span class="badge badge-danger badge-pill">Eliminar</span>
-            </a>
-          </th>
-        </tr>
-      </tbody>
+        <tbody>
+          <tr>
+            <th>{{ patient.fullName }}</th>
+            <th>{{ patient.address }}</th>
+            <th>{{ patient.phone }}</th>
+            <th>{{ patient.gender }}</th>
+            <th>{{ patient.documentNumber }}</th>
+            <th>
+              <a href="patients/show/{{patient.id}}">
+                <span class="badge badge-info badge-pill">Ver/Editar</span>
+              </a>
+              <a href="patients/delete/{{patient.id}}">
+                <span class="badge badge-danger badge-pill">Eliminar</span>
+              </a>
+            </th>
+          </tr>
+        </tbody>
       {% endfor %}
     </table>
   </div>

@@ -1,13 +1,15 @@
 {% extends 'layout/layout.twig' %}
 
 {% block app_body %}
-  <div class="wrap">
+  <div class="wrap" style="margin-top: 45px;">
     <div id="patient_create_response">
       {% if get.success %}
-      <div class="alert alert-warning alert-dismissible fade show" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h5 class="alert-heading">{{get.message}}</h5>
-      </div>
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h5 class="alert-heading">{{get.message}}</h5>
+        </div>
       {% endif %}
     </div>
     <div class="form-container">

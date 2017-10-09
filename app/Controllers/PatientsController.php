@@ -8,7 +8,7 @@ use App\Models\Patient;
 
 class PatientsController extends \App\Controller
 {
-    function __construct($app)
+    public function __construct($app)
     {
         parent::__construct($app);
 
@@ -40,12 +40,7 @@ class PatientsController extends \App\Controller
 
     public function add()
     {
-        return $this->template->render('patient/create.twig', [
-            'get' => [
-                'message' => $this->get()['message'],
-                'success' => $this->get()['success']
-            ]
-        ]);
+        return $this->template->render('patient/create.twig');
     }
 
     public function createPatient()
@@ -63,10 +58,9 @@ class PatientsController extends \App\Controller
                 'documentTypeId' => $post['documentTypeId'],
                 'documentNumber' => $post['documentNumber']
             ]);
-            $this->redirect("patients/create?success=false&message=La operación fue realizada con éxito");
-        } catch(\Exception $e) {
+            $this->redirect("patients/create?success=true&message=La operación fue realizada con éxito");
+        } catch (\Exception $e) {
             $this->redirect("patients/create?success=false&message={$e->getMessage()}");
         }
-
     }
 }
