@@ -1,0 +1,39 @@
+{% extends 'layout/layout.twig' %}
+
+{% block app_body %}
+  <div class="container">
+    <br>
+    <h3 class="text-center">Listado de pacientes</h3>
+    <table class="table table-hover table-responsive w-auto">
+      <thead>
+        <tr>
+          <th>Nombre completo</th>
+          <th>Domicilio</th>
+          <th>Teléfono</th>
+          <th>Género</th>
+          <th>Número de Documento</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      {% for patient in patients %}
+      <tbody>
+        <tr>
+          <th>{{ patient.fullName }}</th>
+          <th>{{ patient.address }}</th>
+          <th>{{ patient.phone }}</th>
+          <th>{{ patient.gender }}</th>
+          <th>{{ patient.documentNumber }}</th>
+          <th>
+            <a href="users/edit/{{user.id}}">
+              <span class="badge badge-info badge-pill">Editar</span>
+            </a>
+            <a href="users/delete/{{user.id}}">
+              <span class="badge badge-danger badge-pill">Eliminar</span>
+            </a>
+          </th>
+        </tr>
+      </tbody>
+      {% endfor %}
+    </table>
+  </div>
+{% endblock %}
