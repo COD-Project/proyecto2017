@@ -7,7 +7,7 @@ use \App\Models\User;
 /**
  * created by Juan Cruz Ocampos
  */
- 
+
 class DemographicdataController extends \App\Controller
 {
   public function __construct($app)
@@ -73,25 +73,6 @@ class DemographicdataController extends \App\Controller
       return $this->template->render('demographicdata/edit.twig', [
           'demographicData' => $demographicData
       ]);
-  }
-
-  public function editDemographicdata()
-  {
-      try {
-          $post = $this->post();
-          DemographicData::init();
-          $demographicData = DemographicData::edit([
-              'refrigerator' => $post['refrigerator'],
-              'electricity' => $post['electricity'],
-              'pet' => $post['pet'],
-              'apartamentTypeId' => $post['apartamentTypeId'],
-              'heatingTypeId' => $post['heatingTypeId'],
-              'waterTypeId' => $post['waterTypeId']
-          ]);
-          $this->redirect("demographicdata/create?success=true&message=La operación fue realizada con éxito");
-      } catch (\Exception $e) {
-          $this->redirect("demographicdata/create?success=false&message={$e->getMessage()}");
-      }
   }
 
   public function editDemographicdata($id)
