@@ -13,6 +13,10 @@ class LoginController extends \App\Controller
     {
         parent::__construct($app);
 
+        if ($this->session->isLoggedIn()) {
+            $this->redirect();
+        }
+
         $this->app->get('/login', [ $this, 'render' ]);
 
         $this->app->post('/login', [ $this, 'login' ]);
