@@ -22,6 +22,8 @@ class Session extends \Mbh\Storage\Session
      */
     public function generateSession($id)
     {
+        User::init();
+
         $this->set(static::SESS_APP_ID, $id);
         $e['session'] = time() + static::SESSION_TIME;
         User::update($e, "id='$id'", 'LIMIT 1');
@@ -31,6 +33,8 @@ class Session extends \Mbh\Storage\Session
 
     public function checkLife($force = false)
     {
+        User::init();
+
         if ($id = $this->get(static::SESS_APP_ID)) {
             $time = time();
             if ($force || count(User::select("id", "id='$id' AND session <= '$time'", "LIMIT 1")) > 0) {
@@ -46,9 +50,11 @@ class Session extends \Mbh\Storage\Session
 
     public function isLoggedIn()
     {
+        User::init();
+
         $id = $this->get(static::SESS_APP_ID);
         $time = time();
-        if (!$id || !User::select("id", "id='$id' AND session <= '$time'", "LIMIT 1")) {
+        if (!($id && User::select("id", "id='$id' AND session >= '$time'", "LIMIT 1"))) {
             return false;
         }
 
@@ -57,8 +63,10 @@ class Session extends \Mbh\Storage\Session
 
     public function sessionInUse()
     {
+        User::init();
+
         if (!$this->isLoggedIn()) {
-            return $this;
+            return null;
         }
 
         $id = $this->get(static::SESS_APP_ID);

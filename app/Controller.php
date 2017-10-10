@@ -59,10 +59,10 @@ class Controller extends \Mbh\Controller
         if ($this->session->isLoggedIn()) {
             $connectedUser = $this->session->sessionInUse();
             $this->template->addGlobal('owner_user', $connectedUser);
-            
-            if ($this->session->isGranted()) {
+
+            /*if ($this->session->isGranted()) {
                 $this->template->addGlobal('admin', true);
-            }
+            }*/
         }
     }
 
