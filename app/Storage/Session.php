@@ -62,6 +62,11 @@ class Session extends \Mbh\Storage\Session
         }
 
         $id = $this->get(static::SESS_APP_ID);
-        return \App\Models\User::find($id);
+        return User::find($id);
+    }
+
+    public function isGranted()
+    {
+        return $this->sessionInUse()->hasRole('Administrador');
     }
 }

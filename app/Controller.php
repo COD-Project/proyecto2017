@@ -18,7 +18,7 @@ class Controller extends \Mbh\Controller
         header('location:' . URL . 'error');
     }
 
-    public function __construct($app = null)
+    public function __construct($app = null, $permissions = [])
     {
         parent::__construct($app);
 
@@ -55,6 +55,15 @@ class Controller extends \Mbh\Controller
             'success' => $get['success'],
             'message' => $get['message']
         ]);
+
+        if ($this->session->isLoggedIn()) {
+            $connectedUser = $this->session->sessionInUse();
+            $this->template->addGlobal('owner_user', $connectedUser);
+            
+            if ($this->session->isGranted()) {
+                $this->template->addGlobal('admin', true);
+            }
+        }
     }
 
     protected function redirect($url = "")

@@ -1,5 +1,7 @@
 <?php namespace App\Models;
 
+use Mbh\Collection();
+
 /**
  * created by Lucas Di Cunzolo
  */
@@ -50,6 +52,11 @@ class User extends \App\Model
         $this->edit();
     }
 
+    public function fullName()
+    {
+        return "{$this->firstName()} {$this->lastName()}";
+    }
+
     public function roles()
     {
         $select = "*";
@@ -62,6 +69,36 @@ class User extends \App\Model
         return array_map(function ($userRole) {
             return Role::find($userRole['rol_id']);
         }, $userRoles);
+    }
+
+    public function hasRole($role)
+    {
+        Role::init();
+
+        if (is_string($role)) {
+            $role = new Collection(Role::findBy($role, 'name'))->get(0);
+        }
+
+        $result = array_filter($this->roles(), function ($each) use ($role) {
+            return $each->equals($role);
+        });
+
+        return count($result) > 0;
+    }
+
+    public function hasPermission($permission)
+    {
+        Permission::init();
+
+        if (is_string($permission)) {
+            $permission = new Collection(Permission::findBy($permission, 'name'))->get(0);
+        }
+
+        $result = array_filter($this->permissions(), function ($each) use ($permission) {
+            return $each->equals($permission);
+        });
+
+        return count($result) > 0;
     }
 
     public function permissions()
@@ -89,15 +126,10 @@ class User extends \App\Model
             );
 
             foreach ($rolePermissions as $key => $value) {
-                $permission[] = $value;
+                $permissions[] = $value;
             }
         }
 
         return array_values($permissions);
-    }
-
-    public function fullName()
-    {
-        return "{$this->firstName()} {$this->lastName()}";
     }
 }
