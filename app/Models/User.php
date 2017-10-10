@@ -1,6 +1,6 @@
 <?php namespace App\Models;
 
-use Mbh\Collection();
+use Mbh\Collection;
 
 /**
  * created by Lucas Di Cunzolo
@@ -76,7 +76,7 @@ class User extends \App\Model
         Role::init();
 
         if (is_string($role)) {
-            $role = new Collection(Role::findBy($role, 'name'))->get(0);
+            $role = (new Collection(Role::findBy($role, 'name')))->get(0);
         }
 
         $result = array_filter($this->roles(), function ($each) use ($role) {
@@ -91,7 +91,7 @@ class User extends \App\Model
         Permission::init();
 
         if (is_string($permission)) {
-            $permission = new Collection(Permission::findBy($permission, 'name'))->get(0);
+            $permission = (new Collection(Permission::findBy($permission, 'name')))->get(0);
         }
 
         $result = array_filter($this->permissions(), function ($each) use ($permission) {
