@@ -16,7 +16,7 @@ class Role extends \App\Model
         "name" => "nombre"
     ];
 
-    function permissions()
+    public function permissions()
     {
         $select = "*";
         $from = "rol_tiene_permisos";
@@ -25,10 +25,9 @@ class Role extends \App\Model
 
         Permission::init();
 
-        $permissions = array_map(function($rolePermission){
-          return Permission::find($rolePermission['permiso_id']);
+        return array_map(function ($rolePermission) {
+            return Permission::find($rolePermission['permiso_id']);
         }, $rolePermissions);
-
-        return $permissions;
+        ;
     }
 }
