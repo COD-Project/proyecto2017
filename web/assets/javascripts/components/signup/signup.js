@@ -14,7 +14,7 @@ class Signup {
         $('#signup_response').html(`
           <div class="alert alert-warning alert-dismissible fade show" role="alert">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h5 class="alert-heading">Procesando petición...</h5>
+            <h6 class="alert-heading"><strong>Procesando petición...</strong></h6>
           </div>
         `);
       },
@@ -25,8 +25,8 @@ class Signup {
         $('#signup_response').html(`
           <div class="alert alert-${data.success ? "success": "danger"} alert-dismissible fade show" role="alert">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h5 class="alert-heading">${data.success ? "¡Operación exitosa!": "Error:"}</h5>
-            <p>${data.message}</p>
+            <h6 class="alert-heading"><strong>${data.success ? "¡Operación exitosa!": "Error:"}</strong></h6>
+            <p><strong><small>${data.message}</small></strong></p>
           </div>
         `);
       },
@@ -34,7 +34,7 @@ class Signup {
         $('#signup_response').html(`
           <div class="alert alert-danger alert-dismissible fade show" role="alert">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h5 class="alert-heading">Error procesando la petición...</h5>
+            <h6 class="alert-heading"><strong>Error procesando la petición...</strong></h6>
           </div>
         `);
       }
