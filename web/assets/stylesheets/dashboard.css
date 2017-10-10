@@ -37,7 +37,7 @@ body, html {
   left: 220px;
   width: 0;
   height: 100%;
-  margin-left: -220px;
+  margin-left: -235.7px;
   overflow-y: auto;
   overflow-x: hidden;
   background: #1a1a1a;
@@ -62,7 +62,7 @@ body, html {
 
 #wrapper.toggled #page-content-wrapper {
   position: absolute;
-  margin-right: -220px;
+  margin-right: -235.7px;
 }
 
 
@@ -152,7 +152,7 @@ body, html {
 
 .sidebar-nav li a {
   display: block;
-  color: #000;
+  color: #fff;
   text-decoration: none;
   padding: 10px 15px 10px 30px;
 }

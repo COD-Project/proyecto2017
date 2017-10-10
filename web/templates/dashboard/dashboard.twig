@@ -11,7 +11,7 @@
 {% block app_body %}
   <div id="wrapper">
     <!-- Sidebar -->
-    <nav class="nav nav-inverse nav-fixed-top" id="sidebar-wrapper" role="navigation">
+    <nav class="navbar navbar-dark fixed-top" id="sidebar-wrapper" role="navigation">
       <ul class="nav sidebar-nav">
         <li class="sidebar-brand">
           <a href="#">
@@ -22,23 +22,28 @@
           <a href="#!">Home</a>
         </li>
         <li>
+          <a href="patients">Pacientes</a>
+        </li>
+        <li>
           <a href="users">Usuarios</a>
         </li>
         <li>
-          <a href="patients">Pacientes</a>
+          <a href="roles">Roles</a>
+        </li>
+        <li>
+          <a href="permissions">Permisos</a>
         </li>
       </ul>
     </nav>
     <!-- /#sidebar-wrapper -->
 
-    <button type="button" class="hamburger is-closed" data-toggle="offcanvas">
-      <span class="hamb-top"></span>
-      <span class="hamb-middle"></span>
-      <span class="hamb-bottom"></span>
-    </button>
-
     <!-- Page Content -->
     <div id="page-content-wrapper">
+      <button type="button" class="hamburger is-closed" data-toggle="offcanvas">
+        <span class="hamb-top"></span>
+        <span class="hamb-middle"></span>
+        <span class="hamb-bottom"></span>
+      </button>
       <div class="container">
         <div class="row">
           <div class="col-lg-8 col-lg-offset-2">
