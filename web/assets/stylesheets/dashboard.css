@@ -197,7 +197,7 @@ body, html {
   width: 32px;
   height: 32px;
   margin-left: 15px;
-  background: transparent;
+  background-color: transparent;
   border: none;
   cursor: pointer;
 }
