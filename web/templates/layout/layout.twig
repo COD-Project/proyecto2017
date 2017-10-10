@@ -32,7 +32,7 @@
     {% block app_header %}
       <header>
         <!--Navbar-->
-        <nav class="navbar navbar-expand-lg navbar-dark light-blue darken-4 fixed-top scrolling-navbar">
+        <nav class="navbar navbar-expand-lg navbar-dark light-blue darken-4  scrolling-navbar">
 
           <!-- Navbar brand -->
           <a class="navbar-brand" href="#">
@@ -60,16 +60,33 @@
 
             </ul>
             <ul class="navbar-nav nav-flex-icons">
-              <li class="nav-item">
-                <a class="nav-link" href="signup" title="Registrarse">
-                  Registrarse
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="login" title="Iniciar Sesión">
-                  Iniciar Sesión
-                </a>
-              </li>
+              {% if owner_user %}
+                <!-- Dropdown -->
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fa fa-user"></i>
+                  </a>
+                  <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="users/show/{{ owner_user.name }}">
+                      <i class="fa fa-user"></i>
+                      Ver perfil
+                    </a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                  </div>
+                </li>
+              {% else %}
+                <li class="nav-item">
+                  <a class="nav-link" href="signup" title="Registrarse">
+                    Registrarse
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="login" title="Iniciar Sesión">
+                    Iniciar Sesión
+                  </a>
+                </li>
+              {% endif %}
             </ul>
           </div>
           <!-- Collapsible content -->
