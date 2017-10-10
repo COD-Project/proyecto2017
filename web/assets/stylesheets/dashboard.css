@@ -34,7 +34,7 @@ body, html {
 
 #sidebar-wrapper {
   z-index: 1000;
-  left: 220px;
+  left: 0px;
   width: 0;
   height: 100%;
   margin-left: -235.7px;
@@ -53,6 +53,7 @@ body, html {
 
 #wrapper.toggled #sidebar-wrapper {
   width: 220px;
+  left: 220px;
 }
 
 #page-content-wrapper {
