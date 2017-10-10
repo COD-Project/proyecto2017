@@ -68,7 +68,16 @@ class User extends \App\Model
 
     public function permissions()
     {
-      
+        $roles = $this->roles();
+
+        $permissions = [];
+
+        foreach ($roles as $role) {
+            $permissions = array_merge($permissions,
+                           $role->permissions());
+        }
+
+        return $permissions;
     }
 
     public function fullName()
