@@ -6,7 +6,7 @@ class Signup {
 
   ajax() {
     $.ajax({
-      url: "http://localhost:3000/signup",
+      url: window.location,
       type: "POST",
       data: this.data,
       cache: false,
@@ -29,6 +29,8 @@ class Signup {
             <p><strong><small>${data.message}</small></strong></p>
           </div>
         `);
+
+        window.location.reload();
       },
       error: function() {
         $('#signup_response').html(`

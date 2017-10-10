@@ -5,7 +5,7 @@ class Login {
 
   ajax() {
     $.ajax({
-      url: "http://localhost:3000/login",
+      url: window.location,
       type: "POST",
       data: $('#login_form').serialize(),
       cache: false,
@@ -28,6 +28,8 @@ class Login {
             <p><strong><small>${data.message}</small></strong></p>
           </div>
         `);
+
+        window.location.reload();
       },
       error: function() {
         $('#login_response').html(`
