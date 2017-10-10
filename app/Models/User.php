@@ -52,7 +52,23 @@ class User extends \App\Model
 
     public function roles()
     {
-        return [];
+        $select = "*";
+        $from = "usuario_tiene_roles";
+        $where = "usuario_id=" . $this->id();
+        $userRoles = static::$db->select($select, $from, $where);
+
+        Role::init();
+
+        $roles = array_map(function($userRole){
+          return Role::find($userRole['rol_id']);
+        }, $userRoles);
+
+        return $roles;
+    }
+
+    public function permissions()
+    {
+      
     }
 
     public function fullName()
