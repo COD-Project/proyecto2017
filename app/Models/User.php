@@ -59,16 +59,13 @@ class User extends \App\Model
 
         Role::init();
 
-        $roles = array_map(function($userRole){
-          return Role::find($userRole['rol_id']);
+        return array_map(function ($userRole) {
+            return Role::find($userRole['rol_id']);
         }, $userRoles);
-
-        return $roles;
     }
 
     public function permissions()
     {
-      
     }
 
     public function fullName()
