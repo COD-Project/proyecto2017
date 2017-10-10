@@ -28,6 +28,5 @@ class Role extends \App\Model
         return array_map(function ($rolePermission) {
             return Permission::find($rolePermission['permiso_id']);
         }, $rolePermissions);
-        ;
     }
 }

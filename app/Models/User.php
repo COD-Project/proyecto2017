@@ -66,7 +66,6 @@ class User extends \App\Model
 
     public function permissions()
     {
-<<<<<<< HEAD
         $roles = $this->roles();
 
         $permissions = [];
@@ -77,8 +76,6 @@ class User extends \App\Model
         }
 
         return $permissions;
-=======
->>>>>>> dd01a5f39c26038b0b1cfe60bc39beb8e724c0ee
     }
 
     public function fullName()
