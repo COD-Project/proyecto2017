@@ -1,8 +1,10 @@
 {% extends 'layout/layout.twig' %}
 
 {% block app_body %}
-  <div class="container">
-    <div class="card card-cascade narrower mt-5">
+  <div class="container mt-5">
+    {% include 'error/message.twig' %}
+
+    <div class="card card-cascade narrower">
 
       <!--Card image-->
       <div class="view gradient-card-header purple-gradient narrower py-4 mx-4 mb-3 d-flex justify-content-center align-items-center">

@@ -39,25 +39,6 @@ class UsersController extends \App\Controller
         ]);
     }
 
-    public function get($username = null)
-    {
-        User::init();
-        $users = User::findBy($username, 'name');
-
-        if (!$users) {
-            return [];
-        }
-
-        return array_map(function ($user) {
-            return [
-                "username" => $user->name(),
-                "email" => $user->email(),
-                "firstName" => $user->firstName(),
-                "lastName" => $user->lastName()
-            ];
-        }, $users);
-    }
-
     public function edit($id)
     {
         $post = $this->post();
@@ -85,6 +66,7 @@ class UsersController extends \App\Controller
 
         if ($user) {
             $user->remove();
+            $this->redirect("users?success=true&message=La operación fue realizada con éxito");
         }
     }
 }

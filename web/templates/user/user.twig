@@ -2,18 +2,8 @@
 
 {% block app_body %}
   <div class="container" style="margin-top: 45px;">
-    {% if get.success %}
-      <div class="alert alert-info alert-dismissible fade show" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-        <p>
-          <small>
-            <strong>{{get.message}}</strong>
-          </small>
-        </p>
-      </div>
-    {% endif %}
+    {% include 'error/message.twig' %}
+
     <div id="user_edit_response"></div>
 
     <ul class="nav nav nav-pills nav-fill">

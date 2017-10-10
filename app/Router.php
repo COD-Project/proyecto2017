@@ -1,5 +1,7 @@
 <?php namespace App;
 
+use Mbh\Collection;
+
 /**
  * created by Ulises J. Cornejo Fandos
  */
@@ -7,11 +9,11 @@ class Router extends \Mbh\Router
 {
     function get()
     {
-        return new \Mbh\Collection($_GET);
+        return new Collection($_GET);
     }
 
     function post()
     {
-        return new \Mbh\Collection($_POST);
+        return new Collection($_POST);
     }
 }
