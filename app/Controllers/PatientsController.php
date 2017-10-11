@@ -63,7 +63,7 @@ class PatientsController extends \App\Controller
         $socialsWork = SocialWork::all();
         return $this->template->render('patient/create.twig', [
             "documentsType" => DocumentType::all(),
-            "socialsWork" => SocialWork::all()
+            "socialWorks" => SocialWork::all()
         ]);
     }
 
