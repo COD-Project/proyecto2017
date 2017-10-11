@@ -28,9 +28,10 @@ class UsersController extends \App\Controller
         $get = $this->get();
         User::init();
 
-        if ($get['username']) {
+        if (isset($get['username']) || isset($get['active'])) {
             $username = $get['username'];
-            $this->redirect("users/search/$active/$username");
+            $active = !$get['active'] ? $active : $get['active'];
+            $this->redirect("users/search/$active" . (!$username ? "" : "/$username"));
         }
 
         $users = User::get([
