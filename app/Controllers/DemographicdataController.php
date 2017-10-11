@@ -2,7 +2,7 @@
 
 use Mbh\Helpers\Functions;
 use Mbh\Collection;
-use \App\Models\User;
+use \App\Models\DemographicData;
 
 /**
  * created by Juan Cruz Ocampos
@@ -28,6 +28,7 @@ class DemographicdataController extends \App\Controller
   {
       DemographicData::init();
       $demographicDataList = DemographicData::all();
+
       return $this->template->render('demographicdatalist/demographicdatalist.twig', [
           'demographicDataList' => $demographicDataList
       ]);
@@ -37,6 +38,7 @@ class DemographicdataController extends \App\Controller
   {
       DemographicData::init();
       $demographicData = DemographicData::find($id);
+
       return $this->template->render('demographicdata/show.twig', [
           'demographicData' => $demographicData
       ]);
@@ -52,6 +54,7 @@ class DemographicdataController extends \App\Controller
       try {
           $post = $this->post();
           DemographicData::init();
+
           $demographicData = DemographicData::create([
               'refrigerator' => $post['refrigerator'],
               'electricity' => $post['electricity'],
@@ -60,6 +63,7 @@ class DemographicdataController extends \App\Controller
               'heatingTypeId' => $post['heatingTypeId'],
               'waterTypeId' => $post['waterTypeId']
           ]);
+
           $this->redirect("demographicdata/create?success=true&message=La operación fue realizada con éxito");
       } catch (\Exception $e) {
           $this->redirect("demographicdata/create?success=false&message={$e->getMessage()}");
@@ -70,6 +74,7 @@ class DemographicdataController extends \App\Controller
   {
       DemographicData::init();
       $demographicData = DemographicData::find($id);
+      
       return $this->template->render('demographicdata/edit.twig', [
           'demographicData' => $demographicData
       ]);
@@ -87,7 +92,7 @@ class DemographicdataController extends \App\Controller
             'pet' => $post['pet'],
             'apartamentTypeId' => $post['apartamentTypeId'],
             'heatingTypeId' => $post['heatingTypeId'],
-            'waterTypeId' => $post['waterTypeId']f
+            'waterTypeId' => $post['waterTypeId']
           ]);
 
           $demographicData->edit();
