@@ -94,9 +94,9 @@ class PatientsController extends \App\Controller
                 'socialWorkId' => $post['socialWorkId']
             ]);
             $patient->edit();
-            $this->redirect("patients/create?success=true&message=La operación fue realizada con éxito");
+            $this->redirect("patients?success=true&message=La operación fue realizada con éxito");
         } catch (\Exception $e) {
-            $this->redirect("patients/create?success=false&message={$e->getMessage()}");
+            $this->redirect("patients?success=false&message={$e->getMessage()}");
         }
     }
 }
