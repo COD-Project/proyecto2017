@@ -64,6 +64,12 @@ class UsersController extends \App\Controller
     {
         User::init();
         $users = new Collection(User::findBy($username, 'name', 1));
+
+        if (!$users->count()) {
+            $this->redirect("error/404");
+            return;
+        }
+
         return $this->template->render('user/user.twig', [
             'user' => $users->get(0)
         ]);
