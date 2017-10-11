@@ -38,7 +38,6 @@ class PatientsController extends \App\Controller
     {
         Patient::init();
         $patient = Patient::find($id);
-        var_dump($patient->getState());
         if ($patient) {
             return $this->template->render('patient/show.twig', [
                 'patient' => $patient,
