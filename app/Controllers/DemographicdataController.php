@@ -15,7 +15,9 @@ class DemographicdataController extends \App\Controller
 {
   public function __construct($app)
   {
-      parent::__construct($app);
+      parent::__construct($app, [
+        'logged' => true
+      ]);
 
       $this->app->get('/demographicdata', [ $this, 'render' ]);
       $this->app->get('/demographicdata/show/:id', [ $this, 'show' ]);

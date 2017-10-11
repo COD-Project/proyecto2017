@@ -66,7 +66,11 @@ class Controller extends \Mbh\Controller
             }*/
         }
 
-        if ($sessionRules['logged'] && $this->session->isLoggedIn()) {
+        if ($sessionRules['unlogged'] && $this->session->isLoggedIn()) {
+            $this->redirect();
+        }
+
+        if ($sessionRules['logged'] && !$this->session->isLoggedIn()) {
             $this->redirect();
         }
     }

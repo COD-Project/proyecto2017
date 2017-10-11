@@ -11,7 +11,9 @@ class UsersController extends \App\Controller
 {
     public function __construct($app)
     {
-        parent::__construct($app);
+        parent::__construct($app, [
+          'logged' => true
+        ]);
 
         $this->app->get('/users', [ $this, 'render' ]);
         $this->app->get('/users/search/:active', [ $this, 'render' ]);

@@ -12,7 +12,7 @@ class LoginController extends \App\Controller
     function __construct($app)
     {
         parent::__construct($app, [
-          'logged' => true
+          'unlogged' => true
         ]);
 
         $this->app->get('/login', [ $this, 'render' ]);

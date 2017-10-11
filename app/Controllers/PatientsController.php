@@ -12,7 +12,9 @@ class PatientsController extends \App\Controller
 {
     public function __construct($app)
     {
-        parent::__construct($app);
+        parent::__construct($app, [
+          'logged' => true
+        ]);
 
         $this->app->get('/patients', [ $this, 'render' ]);
         $this->app->get('/patients/show/:id', [ $this, 'show' ]);
