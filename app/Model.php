@@ -7,8 +7,5 @@ use App\Connection\Connection;
  */
 class Model extends \Mbh\Model
 {
-    public function __construct()
-    {
-        $this->db = new Connection();
-    }
+    use \App\Traits\Connection;
 }

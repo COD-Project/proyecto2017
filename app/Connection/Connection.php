@@ -7,7 +7,7 @@ use Mbh\Connection\Engines\Mysql;
  */
 class Connection extends Mysql
 {
-    public function __construct()
+    function __construct()
     {
         parent::__construct(array(
           'host' => DATABASE_HOST,

@@ -1,0 +1,45 @@
+{% extends 'layout/layout.twig' %}
+
+{% block app_body %}
+  <div class="wrap">
+    <div id="login_response"></div>
+    <div class="form-container">
+      <!-- Form subscription -->
+      <form id="login_form" action="login" method="post">
+        <p class="h3 text-center mb-4">Iniciar Sesión</p>
+
+        <div class="md-form">
+          <i class="fa fa-user prefix grey-text"></i>
+          <input id="username" name="username" type="text" class="form-control" title="Ingrese nombre de usuario" placeholder="">
+          <label for="username">Nombre de usuario</label>
+        </div>
+
+        <div class="md-form">
+          <i class="fa fa-envelope prefix grey-text"></i>
+          <input id="password" name="password" type="password" class="form-control" title="Ingrese contraseña" placeholder="">
+          <label for="password">Contraseña</label>
+        </div>
+
+        <br>
+
+        <div class="text-center">
+          <button id="login_button" type="submit" class="btn btn-indigo" title="Iniciar Sesión">
+            Iniciar Sesión
+          </button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+{% endblock %}
+
+{% block app_footer %}
+  <footer class="text-center" style="color: #4285F4; margin-top: 45px;">
+    <p>Hospital de Niños Ricardo Gutierrez.</p>
+    <p>Proyecto de Software &copy; 2017</p>
+  </footer>
+{% endblock %}
+
+{% block scripts %}
+  <script src="web/assets/javascripts/components/login/login.js"></script>
+{% endblock %}

@@ -12,7 +12,8 @@ class Bootstrap
     public static function init($runApp = true)
     {
         // Base config file
-        require_once ROOT . "/app/Config/config.php";
+        require_once ROOT . "/app/Config/Config.php";
+        Config::init();
 
         if ($runApp) {
             require ROOT . '/vendor/autoload.php';
@@ -23,8 +24,11 @@ class Bootstrap
             require_once ROOT . "/app/Config/routes.php";
 
             $app->firewall()
-                ->debug()
                 ->run();
+
+            if (DEBUG) {
+                $app->debug();
+            }
         }
 
         return true ;

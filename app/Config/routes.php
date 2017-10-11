@@ -3,20 +3,38 @@
 /**
  * Routes to make MVC applications
  */
-$app->get('/', function() {
-    return "app working";
-});
+$app->get('/', function ($app) {
+    return new \App\Controllers\HomeController($app);
+}, [ $app ]);
 
-$app->get('/:controller', function($controller) {
-    return "app working";
-});
+$app->map(['GET', 'POST'], '/:controller', function ($app, $controller) {
+    return \App\Controller::create($controller, [$app]);
+}, [ $app ]);
 
-$app->map(['GET', 'POST'], '/:controller/:method',
-            function($controller, $method) {
-                return "app working";
-            });
+$app->map(
+    ['GET', 'POST'],
+    '/:controller/:method',
+    function ($app, $controller, $method) {
+        return \App\Controller::create($controller, [$app, $method]);
+    },
+    [ $app ]
+);
+>>>>>>> 2.x
 
-$app->map(['GET', 'POST'], '/:controller/:method/:data',
-            function($controller, $method, $data) {
-                return "app working";
-            });
+$app->map(
+    ['GET', 'POST'],
+    '/:controller/:method/:data',
+    function ($app, $controller, $method, $data) {
+        return \App\Controller::create($controller, [$app, $method, $data]);
+    },
+    [ $app ]
+);
+
+$app->map(
+    ['GET', 'POST'],
+    '/:controller/:method/:data/:state',
+    function ($app, $controller, $method, $data, $state) {
+        return \App\Controller::create($controller, [$app, $method, $data, $state]);
+    },
+    [ $app ]
+);

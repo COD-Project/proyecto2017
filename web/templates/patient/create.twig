@@ -1,0 +1,123 @@
+{% extends 'layout/layout.twig' %}
+
+{% block app_body %}
+  <div class="container-fluid">
+    <div class="wrap-fluid" style="margin-top: 45px;">
+      <div id="patient_create_response">
+        {% include 'error/message.twig' %}
+      </div>
+      <div class="form-container">
+        <!-- Form subscription -->
+        <form id="patient_create_form" action="patients/create" method="post">
+          <p class="h3 text-center mb-0">Agregar Paciente</p>
+          <br><br>
+          <div class="form-row">
+            <div class="col">
+              <div class="md-form">
+                <i class="fa fa-user prefix grey-text"></i>
+                <input id="firstName" name="firstName" type="text" class="form-control" title="Ingrese nombre" placeholder="">
+                <label for="firstName">Nombre</label>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="md-form">
+                <i class="fa fa-user-o prefix grey-text"></i>
+                <input id="lastName" name="lastName" type="text" class="form-control" title="Ingrese apellido" placeholder="">
+                <label for="lastName">Apellido</label>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="md-form">
+                <i class="fa fa-calendar prefix grey-text active"></i>
+                <input id="birthday" name="birthday" type="date" class="form-control" title="Ingrese fecha de nacimiento" placeholder="">
+                <label class="active" for="birthday">Fecha de nacimiento</label>
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="col">
+              <div class="md-form">
+                <i class="fa fa-address-card prefix grey-text"></i>
+                <input id="documentNumber" name="documentNumber" type="text" class="form-control" title="Ingrese número de documento" placeholder="">
+                <label for="documentNumber">Número de documento</label>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="md-form">
+                <i class="fa fa-phone prefix grey-text"></i>
+                <input id="phone" name="phone" type="text" class="form-control" title="Ingrese teléfono" placeholder="">
+                <label for="phone">Teléfono</label>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="md-form">
+                <i class="fa fa-hashtag prefix grey-text"></i>
+                <input id="address" name="address" type="text" class="form-control" title="Ingrese dirección" placeholder="">
+                <label for="address">Dirección</label>
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="col">
+              <div class="md-form">
+                <label for="documentTypeId"></label>
+                <select class="form-control" id="documentTypeId" name="documentTypeId">
+                  <option selected="true" disabled="disabled">Tipo de documento</option>
+                  {% for option in documentsType %}
+                    <option value="{{option.id}}">{{option.name}}</option>
+                  {% endfor %}
+                </select>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="md-form">
+                <label for="gender"></label>
+                <select class="form-control" id="gender" name="gender">
+                  <option selected="true" disabled="disabled">Género</option>
+                  <option value="M">Masculino</option>
+                  <option value="F">Femenino</option>
+                  <option value="Otro">Otro</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="md-form">
+                <label for="socialWorkId"></label>
+                <select class="form-control" id="socialWorkId" name="socialWorkId">
+                  <option selected="true" disabled="disabled">Obra social</option>
+                  {% for option in socialsWork %}
+                    <option value="{{option.id}}">{{option.name}}</option>
+                  {% endfor %}
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="text-center">
+            <button id="patient_create_button" type="submit" class="btn btn-indigo" title="Crear paciente">
+            Registrar paciente
+            </button>
+          </div>
+        </form>
+      </div>
+      <br>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block app_footer %}
+<footer class="text-center" style="color: #4285F4; margin-top: 45px;">
+  <p>Hospital de Niños Ricardo Gutierrez.</p>
+  <p>Proyecto de Software &copy; 2017</p>
+</footer>
+{% endblock %}
+
+{% block scripts %}
+<script src="web/assets/javascripts/components/patient/create.js"></script>
+{% endblock %}

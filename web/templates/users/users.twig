@@ -1,0 +1,117 @@
+{% extends 'layout/layout.twig' %}
+
+{% block app_body %}
+  <div class="container mt-5">
+    {% include 'error/message.twig' %}
+
+    <div class="card card-cascade narrower">
+
+      <!--Card image-->
+      <div class="view gradient-card-header purple-gradient narrower py-4 mx-4 mb-3 d-flex justify-content-center align-items-center">
+        <h4 class="font-bold font-up mb-0">Listado de Usuarios</h4>
+      </div>
+      <!--/Card image-->
+
+      <div class="px-4">
+        <!-- Search form -->
+        <form class="form" action="users" method="get">
+          <div class="row">
+            <div class="col-5 col-sm-5 col-xs-5">
+              <div class="md-form text-center">
+                <label for="active"></label>
+                <select class="form-control" id="active" name="active">
+                  <option selected="true" disabled="disabled">Estado</option>
+                  <option value="active">Activo</option>
+                  <option value="disable">Deshabilitado</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-5 col-sm-5 col-xs-5">
+              <div class="md-form">
+                <input class="form-control mr-sm-2" type="text" name="username" placeholder="" aria-label="Search">
+                <label for="username">Nombre de usuario</label>
+              </div>
+            </div>
+            <div class="col-2 col-sm-2 col-xs-2 text-left">
+              <button type="submit" class="btn btn-dark light-blue darken-4 btn-circle btn-lg" title="Buscar">
+                <i class="material-icons">search</i>
+              </button>
+            </div>
+          </div>
+        </form>
+        <table class="table table-hover table-responsive w-auto">
+          <thead class="mdb-color darken-3">
+            <tr class="text-white">
+              <th>Nombre de usuario</th>
+              <th>Nombre completo</th>
+              <th>Email</th>
+              <th>Opciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for user in users %}
+              <tr>
+                <td>{{ user.name }}</td>
+                <td>{{ user.fullName }}</td>
+                <td>{{ user.email }}</td>
+                <td>
+                  <a href="users/disable/{{user.id}}">
+                    <span class="badge badge-danger badge-pill">Deshabilitar</span>
+                  </a>
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+
+      <!--Bottom Table UI-->
+      <div class="d-flex justify-content-center">
+
+        <!--Pagination -->
+        <nav class="my-4 pt-2">
+          <ul class="pagination pagination-circle pg-bluegrey mb-0">
+
+            <!--First-->
+            <li class="page-item {{ (1 == page) ? 'disabled' }} clearfix d-none d-md-block">
+              <a class="page-link" href="{{ location }}?page=1">First</a>
+            </li>
+
+            <!--Arrow left-->
+            <li class="page-item {{ (1 == page) ? 'disabled' }}">
+              <a class="page-link" href="{{ location }}?page={{ page - 1 }}" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+                <span class="sr-only">Previo</span>
+              </a>
+            </li>
+
+            <!-- Numbers -->
+            {% for index in range(1, last_page) %}
+              <li class="page-item {{ (index == page) ? 'active' }}">
+                <a class="page-link" href="{{ location }}?page={{ index }}">{{ index }}</a>
+              </li>
+            {% endfor %}
+
+            <!--Arrow right-->
+            <li class="page-item {{ (last_page == page) ? 'disabled' }}">
+              <a class="page-link" href="{{ location }}?page={{ page + 1 }}" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+                <span class="sr-only">Siguiente</span>
+              </a>
+            </li>
+
+            <!--First-->
+            <li class="page-item {{ (last_page == page) ? 'disabled' }} clearfix d-none d-md-block">
+              <a class="page-link" href="{{ location }}?page={{ last_page }}">Last</a>
+            </li>
+
+          </ul>
+        </nav>
+        <!--/Pagination -->
+
+      </div>
+      <!--Bottom Table UI-->
+    </div>
+    <br>
+  </div>
+{% endblock %}
