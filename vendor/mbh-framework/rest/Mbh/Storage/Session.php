@@ -13,33 +13,35 @@ namespace Mbh\Storage;
 /**
  * created by Ulises Jeremias Cornejo Fandos
  */
-final class Session
+class Session
 {
-    final public function __construct()
+    const SESSION_TIME = 18000;
+
+    public function __construct()
     {
         if (!headers_sent()) {
             session_start([
               'use_strict_mode' => true,
               'use_cookies' => true,
-              'cookie_lifetime' => 18000, # Life time for session cookies -> 5 hs = 18000 seconds.
+              'cookie_lifetime' => static::SESSION_TIME, # Life time for session cookies -> 5 hs = 18000 seconds.
               'cookie_httponly' => true # Avoid access to the cookie using scripting languages (such as javascript)
             ]);
         }
     }
 
-    final public function set($key, $value)
+    public function set($key, $value)
     {
         $_SESSION[$key] = $value;
         return $this;
     }
 
-    final public function setFlash($identifier, $message)
+    public function setFlash($identifier, $message)
     {
         $_SESSION[$identifier] = $message;
         return $this;
     }
 
-    final public function getFlash($identifier)
+    public function getFlash($identifier)
     {
         if (array_key_exists($identifier, $_SESSION)) {
             $keep = $_SESSION[$identifier];
@@ -48,17 +50,17 @@ final class Session
         }
     }
 
-    final public function get($key)
+    public function get($key)
     {
         return !$this->has($key) ?: $_SESSION[$key];
     }
 
-    final public function has($key)
+    public function has($key)
     {
         return (array_key_exists($key, $_SESSION));
     }
 
-    final public function delete($key)
+    public function delete($key)
     {
         if ($this->has($key)) {
             unset($_SESSION[$key]);
@@ -66,27 +68,27 @@ final class Session
         return $this;
     }
 
-    final public function destroy()
+    public function destroy()
     {
         session_destroy();
     }
 
-    final public function offsetGet($offset)
+    public function offsetGet($offset)
     {
         return $this->get($offset);
     }
 
-    final public function offsetSet($offset, $value)
+    public function offsetSet($offset, $value)
     {
         return $this->set($offset, $value);
     }
 
-    final public function offsetExists($offset)
+    public function offsetExists($offset)
     {
         return $this->has($offset);
     }
 
-    final public function offsetUnset($offset)
+    public function offsetUnset($offset)
     {
         return $this->delete($offset);
     }

@@ -14,7 +14,7 @@ use Mbh\Connection\StdConnection as Connection;
 use Mbh\Interfaces\ModelInterface;
 
 /**
- * created by Lucas Di Cunzolo
+ * created by Ulises Jeremias Cornejo Fandos
  */
 class Model implements ModelInterface
 {
@@ -28,21 +28,25 @@ class Model implements ModelInterface
 
     public static function init($settings = [], $new_instance = true)
     {
-          if (!static::$db instanceof Connection or $new_instance) {
-              static::$db = Connection::create($settings);
-          }
+        if (!static::$db instanceof Connection or $new_instance) {
+            static::$db = Connection::create($settings);
+        }
 
-          return static::$db;
+        return static::$db;
     }
 
-    public function __construct($state = [])
+    public function __construct($state = [], $default = null)
     {
-        $this->state = $state;
+        foreach (static::$columnData as $key => $value) {
+            $this->state[$key] = $default;
+        }
+
+        $this->addState($state);
     }
 
     /**
-     * Calling a non-existant method on App checks to see if there's an item
-     * in the container that is callable and if so, calls it.
+     * Calling a non-existant method on Model checks to see if there's an item
+     * in the state.
      *
      * @param  string $method
      * @param  array $args
@@ -52,16 +56,63 @@ class Model implements ModelInterface
      */
     public function __call($method, $args)
     {
-        if (!isset($this->state[$method])) {
+        if (!array_key_exists($method, $this->state)) {
             throw new \BadMethodCallException("Method $method is not a valid method");
         }
 
-        return $this->state[$method];
+        return $this->getStateAttr($method, ...$args);
+    }
+
+    /**
+     * Does app have a setting with given key?
+     *
+     * @param string $key
+     * @return bool
+     */
+    public function hasStateAttr($key)
+    {
+        return isset($this->state[$key]);
+    }
+
+    /**
+     * Get model state
+     *
+     * @return array
+     */
+    public function getState()
+    {
+        return $this->state;
+    }
+
+    /**
+     * Get model state attr with given key
+     *
+     * @param string $key
+     * @param mixed $defaultValue
+     * @return mixed
+     */
+    public function getStateAttr($key, $defaultValue = null)
+    {
+        return $this->hasStateAttr($key) ? $this->state[$key] : $defaultValue;
+    }
+
+    /**
+     * Merge a key-value array with existing app settings
+     *
+     * @param array $state
+     */
+    public function addState($state)
+    {
+        $this->state = array_merge($this->state, $state);
     }
 
     public function exists()
     {
-        return count(static::get($this->state)) > 0;
+        if (!static::get($this->state)) {
+            return false;
+        }
+
+        return true;
     }
 
     protected function matches()
@@ -71,11 +122,25 @@ class Model implements ModelInterface
         foreach ($this->state as $key => $value) {
             if (!isset(static::$columnData[$key])) {
                 throw new \RuntimeException("Key $key does not match with any column of " . static::$table['name'] . " table");
+            } elseif ($value != null) {
+                $matches[static::$columnData[$key]] = $value;
             }
-            $matches[static::$columnData[$key]] = $value;
         }
 
         return $matches;
+    }
+
+    public function equals($model)
+    {
+        $id = static::$table['idColumn'];
+        $hash_key = array_search($id, static::$columnData);
+        $className = get_called_class();
+
+        if (!$model instanceof $className) {
+            return false;
+        }
+
+        return $this->getStateAttr($hash_key) === $model->getStateAttr($hash_key);
     }
 
     /**
@@ -86,13 +151,30 @@ class Model implements ModelInterface
      *
      * @return object \PDOStatement
      */
-    protected static function insert($e)
+    public static function insert($e)
     {
         if (!static::$db) {
             static::init();
         }
 
         return static::$db->insert(static::$table['name'], $e);
+    }
+
+    /**
+     * Clears a series of items securely from a table in the database
+     *
+     * @param string $where: Deletion condition that defines who are those elements
+     * @param string $limit: By default it is limited to deleting a single element that matches the $ where
+     *
+     * @return object \PDOStatement
+     */
+    public function delete($where, $limit = 'LIMIT 1')
+    {
+        if (!static::$db) {
+            static::init();
+        }
+
+        return static::$db->delete(static::$table['name'], $where, $limit);
     }
 
     /**
@@ -105,7 +187,7 @@ class Model implements ModelInterface
      *
      * @return object \PDOStatement
      */
-    protected static function update($e, $where = "1 = 1", $limit = "")
+    public static function update($e, $where = "1=1", $limit = "")
     {
         if (!static::$db) {
             static::init();
@@ -123,7 +205,7 @@ class Model implements ModelInterface
      *
      * @return False if you do not find any results, array associative / numeric if you get at least one
      */
-    protected static function select($e = "*", $where = "1 = 1", $limit = "")
+    public static function select($e = "*", $where = "1=1", $limit = "")
     {
         if (!static::$db) {
             static::init();
@@ -137,45 +219,49 @@ class Model implements ModelInterface
         $className = get_called_class();
         $model = new $className($data);
 
-        if (!$model->isValid()) {
+        /* if (!$model->isValid()) {
             return;
-        }
+        } */
 
         return $model->save();
     }
 
     public static function find($id)
     {
-        $column = static::$columnData[static::$table['idColumn']];
-        return static::findBy($id, $column);
+        $column = array_search(static::$table['idColumn'], static::$columnData);
+        return static::findBy($id, $column)[0];
     }
 
-    public static function findBy($value, $column)
+    public static function findBy($value, $column, $from = null, $delta = null)
     {
         return static::get([
           $column => $value
-        ]);
+        ], $from, $delta);
     }
 
-    public static function get($criteria = [])
+    public static function get($criteria = [], $from = null, $delta = null)
     {
         $className = get_called_class();
-        $models = [];
-
         $where = "1=1";
+
         foreach ($criteria as $key => $value) {
-            if (isset($columnData[$key])) {
-                $where .= " AND " . $columnData[$key] . "=$value";
+            if (isset(static::$columnData[$key]) and $value !== null) {
+                $where .= " AND " . static::$columnData[$key] . "='$value'";
             }
         }
 
-        $result = static::select("*", $where);
+        if ($from) {
+            $limit = $delta ? "LIMIT $from, $delta" : "LIMIT $from";
+        }
+
+        $result = static::select("*", $where, $limit);
 
         foreach ($result as $row => $content) {
             $data = [];
 
             foreach ($content as $key => $value) {
-                $data[$columnData[$key]] = $value;
+                $hash_key = array_search($key, static::$columnData);
+                $data[$hash_key] = $value;
             }
 
             $models[] = new $className($data);
@@ -193,24 +279,34 @@ class Model implements ModelInterface
     {
         static::insert($this->matches());
         $id = static::$table['idColumn'];
-        $this->state[$id] = static::$db->lastInsertId();
+        $hash_key = array_search($id, static::$columnData);
+
+        $this->refresh();
 
         return $this;
     }
 
     public function edit()
     {
-        if ($this->exists()) {
-            $matches = $this->matches();
-            $idColumn = static::$table['idColumn'];
+        $matches = $this->matches();
+        $idColumn = static::$table['idColumn'];
 
-            static::update(
-              $matches,
-              "$idColumn=" . $matches[$idColumn],
-              1
-            );
-        } else {
-            $this->save();
+        static::$db->update(
+          static::$table['name'],
+          $matches,
+          "$idColumn=" . $matches[$idColumn],
+          "LIMIT 1"
+        );
+
+        return $this;
+    }
+
+    public function refresh()
+    {
+        $users = static::get($this->state);
+
+        if (count($users) > 0) {
+            $this->state = $users[0]->state;
         }
 
         return $this;
@@ -224,15 +320,10 @@ class Model implements ModelInterface
 
             static::delete(
               "$idColumn=" . $matches[$idColumn],
-              1
+              "LIMIT 1"
             );
         }
 
         return $this;
-    }
-
-    public function __destruct()
-    {
-        $db = $table = $columnData = null;
     }
 }

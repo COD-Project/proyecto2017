@@ -1,23 +1,23 @@
 [
     {
         "name": "mbh-framework/rest",
-        "version": "v5.6",
-        "version_normalized": "5.6.0.0",
+        "version": "v5.6-beta.2",
+        "version_normalized": "5.6.0.0-beta2",
         "source": {
             "type": "git",
             "url": "https://github.com/MBHFramework/mbh-rest.git",
-            "reference": "7389f739d098ef3a8f500b90a25da59088561cbb"
+            "reference": "90f22b0abb55bf3fde3ca61f0e2e571651fafc3c"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/MBHFramework/mbh-rest/zipball/7389f739d098ef3a8f500b90a25da59088561cbb",
-            "reference": "7389f739d098ef3a8f500b90a25da59088561cbb",
+            "url": "https://api.github.com/repos/MBHFramework/mbh-rest/zipball/90f22b0abb55bf3fde3ca61f0e2e571651fafc3c",
+            "reference": "90f22b0abb55bf3fde3ca61f0e2e571651fafc3c",
             "shasum": ""
         },
         "require": {
             "php": "^5.6 || ^7.0"
         },
-        "time": "2017-10-02T21:13:43+00:00",
+        "time": "2017-10-07T14:52:23+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -52,23 +52,23 @@
     },
     {
         "name": "mbh-framework/mvc",
-        "version": "v5.6",
-        "version_normalized": "5.6.0.0",
+        "version": "v5.6-beta.2",
+        "version_normalized": "5.6.0.0-beta2",
         "source": {
             "type": "git",
             "url": "https://github.com/MBHFramework/mbh-mvc.git",
-            "reference": "038c794c8fb609ef8ef7022504cbea4c940c97cc"
+            "reference": "5f8f5d73db9998fe7c5718d053aef96b8ad103b4"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/MBHFramework/mbh-mvc/zipball/038c794c8fb609ef8ef7022504cbea4c940c97cc",
-            "reference": "038c794c8fb609ef8ef7022504cbea4c940c97cc",
+            "url": "https://api.github.com/repos/MBHFramework/mbh-mvc/zipball/5f8f5d73db9998fe7c5718d053aef96b8ad103b4",
+            "reference": "5f8f5d73db9998fe7c5718d053aef96b8ad103b4",
             "shasum": ""
         },
         "require": {
             "php": "^5.6 || ^7.0"
         },
-        "time": "2017-10-02T21:09:54+00:00",
+        "time": "2017-10-11T00:33:38+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -103,23 +103,23 @@
     },
     {
         "name": "mbh-framework/firewall",
-        "version": "v5.6",
-        "version_normalized": "5.6.0.0",
+        "version": "v5.6-beta.2",
+        "version_normalized": "5.6.0.0-beta2",
         "source": {
             "type": "git",
             "url": "https://github.com/MBHFramework/mbh-firewall.git",
-            "reference": "086bac523a16beaf059830a8e4376c9c81c7e3b8"
+            "reference": "9753cba4c1c739e6e3538f8297ce0d3126097fb0"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/MBHFramework/mbh-firewall/zipball/086bac523a16beaf059830a8e4376c9c81c7e3b8",
-            "reference": "086bac523a16beaf059830a8e4376c9c81c7e3b8",
+            "url": "https://api.github.com/repos/MBHFramework/mbh-firewall/zipball/9753cba4c1c739e6e3538f8297ce0d3126097fb0",
+            "reference": "9753cba4c1c739e6e3538f8297ce0d3126097fb0",
             "shasum": ""
         },
         "require": {
             "php": "^5.6 || ^7.0"
         },
-        "time": "2017-10-01T21:30:06+00:00",
+        "time": "2017-10-09T02:03:14+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
