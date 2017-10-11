@@ -51,7 +51,7 @@
           <select class="form-control" id="documentTypeId" name="documentTypeId">
             <option selected="true" disabled="disabled">---</option>
             {% for option in documentsType %}
-              <option value={{option.id}}>{{option.name}}</option>
+              <option value="{{option.id}}">{{option.name}}</option>
             {% endfor %}
           </select>
         </div>
@@ -61,7 +61,7 @@
           <select class="form-control" id="socialWorkId" name="socialWorkId">
             <option selected="true" disabled="disabled">---</option>
             {% for option in socialsWork %}
-              <option value={{option.id}}>{{option.name}}</option>
+              <option value="{{option.id}}">{{option.name}}</option>
             {% endfor %}
           </select>
         </div>

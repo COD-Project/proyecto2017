@@ -18,6 +18,7 @@ class PatientsController extends \App\Controller
         $this->app->get('/patients/show/:id', [ $this, 'show' ]);
         $this->app->get('/patients/create', [ $this, 'add' ]);
         $this->app->post('/patients/create', [ $this, 'createPatient' ]);
+        $this->app->post('/patients/edit/:id', [ $this, 'edit' ]);
 
         $this->app->router()->run();
     }
@@ -35,9 +36,12 @@ class PatientsController extends \App\Controller
     {
         Patient::init();
         $patient = Patient::find($id);
-        return $this->template->render('patient/show.twig', [
-            'patient' => $patient
-        ]);
+        if ($patient) {
+            return $this->template->render('patient/show.twig', [
+                'patient' => $patient
+            ]);
+        }
+        return $this->template->render('error/notfound.twig');
     }
 
     public function add()
@@ -67,6 +71,29 @@ class PatientsController extends \App\Controller
                 'documentNumber' => $post['documentNumber'],
                 'socialWorkId' => $post['socialWorkId']
             ]);
+            $this->redirect("patients/create?success=true&message=La operación fue realizada con éxito");
+        } catch (\Exception $e) {
+            $this->redirect("patients/create?success=false&message={$e->getMessage()}");
+        }
+    }
+    public function edit($id)
+    {
+        try {
+            $post = $this->post();
+            Patient::init();
+            $patient = Patient::find($id);
+            $patient->addState([
+                'firstName' => $post['firstName'],
+                'lastName' => $post['lastName'],
+                'address' => $post['address'],
+                'phone' => $post['phone'],
+                'birthday' => $post['birthday'],
+                'gender' => $post['gender'],
+                'documentTypeId' => $post['documentTypeId'],
+                'documentNumber' => $post['documentNumber'],
+                'socialWorkId' => $post['socialWorkId']
+            ]);
+            $patient->edit();
             $this->redirect("patients/create?success=true&message=La operación fue realizada con éxito");
         } catch (\Exception $e) {
             $this->redirect("patients/create?success=false&message={$e->getMessage()}");
