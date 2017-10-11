@@ -4,16 +4,14 @@ $('#user_edit_form').validate({
     email: {
       required: true,
       email: true
-    },
-    password: "required"
+    }
   },
   messages: {
     username: "Por favor, especifique nombre de usuario.",
     email: {
       required: "Por favor, especifique email.",
       email: "Su dirección de correo electrónico debe tener el formato de name@domain.com"
-    },
-    password: "Por favor, especifique contraseña."
+    }
   },
   errorPlacement: function(error, input) {
     $("#user_edit_response").html(`

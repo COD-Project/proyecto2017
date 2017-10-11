@@ -29,7 +29,9 @@ class Login {
           </div>
         `);
 
-        window.location.reload();
+        if (data.success) {
+          window.location.reload();
+        }
       },
       error: function() {
         $('#login_response').html(`

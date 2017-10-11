@@ -30,7 +30,9 @@ class Signup {
           </div>
         `);
 
-        window.location.reload();
+        if (data.success) {
+          window.location.reload();
+        }
       },
       error: function() {
         $('#signup_response').html(`

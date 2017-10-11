@@ -78,7 +78,9 @@ class UsersController extends \App\Controller
             $user->addState([
               'name' => $post['username'],
               'email' => $post['email'],
-              'password' => Functions::encrypt($post['password'])
+              'password' => !$post['password'] ?
+                  $user->password() :
+                  Functions::encrypt($post['password'])
             ]);
 
             $user->edit();
