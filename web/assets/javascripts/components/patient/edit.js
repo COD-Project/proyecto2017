@@ -11,8 +11,6 @@ $('#patient_edit_form').validate({
       number: true,
       minlength: 7
     },
-    gender: "required",
-    documentTypeId: "required",
     documentNumber: {
       required: true,
       number: true,
