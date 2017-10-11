@@ -14,8 +14,22 @@
 
       <div class="px-4">
         <!-- Search form -->
-        <form class="form-inline" method="get">
-          <input class="form-control mr-sm-2" type="text" name="username" placeholder="Buscar usuario" aria-label="Search">
+        <form class="" method="get">
+          <div class="row">
+            <div class="col-6 col-sm-6 col-xs-6 text-left">
+              <div class="form-group text-center">
+                <label for="active"></label>
+                <select class="form-control" id="active" name="active">
+                  <option selected="true" disabled="disabled">Estado</option>
+                  <option value="active">Activo</option>
+                  <option value="disable">Deshabilitado</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-6 col-sm-6 col-xs-6 text-right">
+              <input class="form-control mr-sm-2" type="text" name="username" placeholder="Buscar usuario" aria-label="Search">
+            </div>
+          </div>
         </form>
         <table class="table table-hover table-responsive w-auto">
           <thead class="mdb-color darken-3">
