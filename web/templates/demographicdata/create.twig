@@ -1,0 +1,80 @@
+{% extends 'modal/modal.twig' %}
+
+{% block modal_title %}
+  <i class="fa id-card-o">Registrar Datos Demográficos</i>
+{% endblock %}
+
+{% block modal_body %}
+  <form action="demographicdata/create" method="post">
+    <div class="form-row">
+      <div class="col col-sm col-xs">
+        <div class="md-form">
+          <div class="checkbox">
+            <input type="checkbox" id="refrigerator" name="refrigerator">
+            <label for="refrigerator">Heladera</label>
+          </div>
+        </div>
+      </div>
+      <div class="col col-sm col-xs">
+        <div class="md-form">
+          <div class="checkbox">
+            <input type="checkbox" id="electricidad" name="electricidad">
+            <label for="electricidad">Electricidad</label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col col-sm col-xs">
+
+        <div class="md-form">
+          <div class="checkbox">
+            <input type="checkbox" id="mascota" name="mascota">
+            <label for="mascota">Mascota</label>
+          </div>
+        </div>
+      </div>
+      <div class="col col-sm col-xs">
+        <div class="md-form">
+          <label for="apartmentTypeId"></label>
+          <select class="form-control" id="apartmentTypeId" name="apartmentTypeId">
+            <option selected="true" disabled="disabled">Tipo de Vivienda</option>
+            {% for option in apartmentType %}
+              <option value="{{option.id}}">{{option.name}}</option>
+            {% endfor %}
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="col col-sm col-xs">
+        <div class="md-form">
+          <label for="socialWorkId"></label>
+          <select class="form-control" id="socialWorkId" name="socialWorkId">
+            <option selected="true" disabled="disabled">Obra social</option>
+            {% for option in socialWorks %}
+              <option value="{{option.id}}">{{option.name}}</option>
+            {% endfor %}
+          </select>
+        </div>
+      </div>
+      <div class="col col-sm col-xs">
+        <div class="md-form">
+          <label for="waterTypeId"></label>
+          <select class="form-control" id="waterTypeId" name="waterTypeId">
+            <option selected="true" disabled="disabled">Tipo de Agua</option>
+            {% for option in waterType %}
+              <option value="{{option.id}}">{{option.name}}</option>
+            {% endfor %}
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="text-center mt-1-half">
+      <button class="btn btn-info mb-2 waves-effect waves-light">Registrar
+        <i class="fa fa-send ml-1"></i>
+      </button>
+    </div>
+  </form>
+{% endblock %}
