@@ -1,25 +1,20 @@
-$(document).ready(function () {
+$(document).ready(function() {
   var trigger = $('.hamburger'),
-     isClosed = true;
+    is_open = $('.hamburger').hasClass('is-open');
 
-    trigger.click(function () {
-      hamburger_cross();
-    });
+  trigger.click(function() {
+    if (is_open == true) {
+      trigger.removeClass('is-open');
+      trigger.addClass('is-closed');
+      is_open = false;
+    } else {
+      trigger.removeClass('is-closed');
+      trigger.addClass('is-open');
+      is_open = true;
+    }
+  });
 
-    function hamburger_cross() {
-
-      if (isClosed == true) {
-        trigger.removeClass('is-open');
-        trigger.addClass('is-closed');
-        isClosed = false;
-      } else {
-        trigger.removeClass('is-closed');
-        trigger.addClass('is-open');
-        isClosed = true;
-      }
-  }
-
-  $('[data-toggle="offcanvas"]').click(function () {
-        $('#wrapper').toggleClass('toggled');
+  $('[data-toggle="offcanvas"]').click(function() {
+    $('#wrapper').toggleClass('toggled');
   });
 });
