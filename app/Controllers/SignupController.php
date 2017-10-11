@@ -10,11 +10,9 @@ class SignupController extends \App\Controller
 {
     public function __construct($app)
     {
-        parent::__construct($app);
-
-        if ($this->session->isLoggedIn()) {
-            $this->redirect();
-        }
+        parent::__construct($app, [
+          'logged' => true
+        ]);
 
         $this->app->get('/signup', [ $this, 'render' ]);
 
