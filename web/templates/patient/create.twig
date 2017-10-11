@@ -41,18 +41,17 @@
         </div>
 
         <div class="md-form">
-        <i class="fa fa-address-card prefix grey-text"></i>
-        <input id="documentNumber" name="documentNumber" type="text" class="form-control" title="Ingrese número de documento" placeholder="">
-        <label for="documentNumber">Número de documento</label>
+          <i class="fa fa-address-card prefix grey-text"></i>
+          <input id="documentNumber" name="documentNumber" type="text" class="form-control" title="Ingrese número de documento" placeholder="">
+          <label for="documentNumber">Número de documento</label>
         </div>
-
 
         <div class="form-group text-center">
           <label for="documentTypeId">Tipo de documento</label>
           <select class="form-control" id="documentTypeId" name="documentTypeId">
             <option selected="true" disabled="disabled">---</option>
             {% for option in documentsType %}
-            <option value="{{option.id}}">{{option.name}}</option>
+              <option value="{{option.id}}">{{option.name}}</option>
             {% endfor %}
           </select>
         </div>
@@ -62,11 +61,10 @@
           <select class="form-control" id="socialWorkId" name="socialWorkId">
             <option selected="true" disabled="disabled">---</option>
             {% for option in socialsWork %}
-            <option value="{{option.id}}">{{option.name}}</option>
+              <option value="{{option.id}}">{{option.name}}</option>
             {% endfor %}
           </select>
         </div>
-
 
         <div class="form-group text-center">
           <label for="gender">Género</label>
