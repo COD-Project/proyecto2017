@@ -19,7 +19,6 @@ $app->map(
     },
     [ $app ]
 );
->>>>>>> 2.x
 
 $app->map(
     ['GET', 'POST'],
