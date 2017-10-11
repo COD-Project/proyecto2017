@@ -40,7 +40,10 @@ class PatientsController extends \App\Controller
         $patient = Patient::find($id);
         if ($patient) {
             return $this->template->render('patient/show.twig', [
-                'patient' => $patient
+                'patient' => $patient,
+                'documentsType' => DocumentType::all(),
+                'socialsWork' => SocialWork::all(),
+                'genders' => ["Masculino", "Femenino", "Otro"]
             ]);
         }
         return $this->template->render('error/notfound.twig');
@@ -52,8 +55,8 @@ class PatientsController extends \App\Controller
         $docuemntsType = DocumentType::all();
         $socialsWork = SocialWork::all();
         return $this->template->render('patient/create.twig', [
-            "socialsWork" => $socialsWork,
-            "documentsType" => $docuemntsType
+            "socialsWork" => DocumentType::all(),
+            "documentsType" => SocialWork::all()
         ]);
     }
 
@@ -96,9 +99,9 @@ class PatientsController extends \App\Controller
                 'socialWorkId' => $post['socialWorkId']
             ]);
             $patient->edit();
-            $this->redirect("patients?success=true&message=La operación fue realizada con éxito");
+            $this->redirect("patients/show/{$id}?success=true&message=La operación fue realizada con éxito");
         } catch (\Exception $e) {
-            $this->redirect("patients?success=false&message={$e->getMessage()}");
+            $this->redirect("patients/show/{$id}?success=false&message={$e->getMessage()}");
         }
     }
 }
