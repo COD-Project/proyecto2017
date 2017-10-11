@@ -107,25 +107,8 @@ class User extends \App\Model
 
         $permissions = [];
 
-        $array_search = function ($permission, $permissions) {
-            foreach ($permissions as $key => $permission) {
-                if ($permission->equals($permission)) {
-                    return true;
-                }
-            }
-
-            return false;
-        };
-
         foreach ($roles as $key => $role) {
-            $rolePermissions = array_filter(
-                $role->permissions(),
-                function ($permission) use ($permissions, $array_search) {
-                    return !$array_search($permission, $permissions);
-                }
-            );
-
-            foreach ($rolePermissions as $key => $value) {
+            foreach ($role->permissions() as $key => $value) {
                 $permissions[] = $value;
             }
         }
