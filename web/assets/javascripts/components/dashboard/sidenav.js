@@ -1,4 +1,10 @@
 $(document).ready(function() {
+  if ($(window).width() <= 768) {
+    $('#wrapper').removeClass('toggled');
+    $('.hamburger').removeClass('is-open');
+    $('.hamburger').addClass('is-closed');
+  }
+
   var trigger = $('.hamburger'),
     is_open = $('.hamburger').hasClass('is-open');
 
@@ -17,12 +23,4 @@ $(document).ready(function() {
   $('[data-toggle="offcanvas"]').click(function() {
     $('#wrapper').toggleClass('toggled');
   });
-
-
-  if ($(window).width() <= 768) {
-    is_open = false;
-    $('#wrapper').removeClass('toggled');
-    trigger.removeClass('is-open');
-    trigger.addClass('is-closed');
-  }
 });
