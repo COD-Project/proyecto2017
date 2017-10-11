@@ -105,12 +105,14 @@
       <div style="margin-top: 75px;"></div>
     {% endblock %}
 
-    {# App content #}
-    {% block app_body %}
+    {% block app_message %}
       <div class="container" style="margin-top: 45px;">
         {% include 'error/message.twig' %}
       </div>
     {% endblock %}
+
+    {# App content #}
+    {% block app_body %}{% endblock %}
 
     {# Footer #}
     {% block app_footer %}
