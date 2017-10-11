@@ -250,6 +250,8 @@ class Model implements ModelInterface
             }
         }
 
+        $limit = "";
+
         if ($from) {
             $limit = $delta ? "LIMIT $from, $delta" : "LIMIT $from";
         }
