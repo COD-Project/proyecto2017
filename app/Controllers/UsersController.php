@@ -14,8 +14,8 @@ class UsersController extends \App\Controller
         parent::__construct($app);
 
         $this->app->get('/users', [ $this, 'render' ]);
-        $this->app->get('/users/search/:username', [ $this, 'render' ]);
-        $this->app->get('/users/search/:username/:active', [ $this, 'render' ]);
+        $this->app->get('/users/search/:active', [ $this, 'render' ]);
+        $this->app->get('/users/search/:active/:username', [ $this, 'render' ]);
         $this->app->get('/users/show/:username', [ $this, 'show' ]);
         $this->app->get('/users/disable/:id', [ $this, 'disable' ]);
         $this->app->post('/users/edit/:id', [ $this, 'edit' ]);
@@ -23,12 +23,15 @@ class UsersController extends \App\Controller
         $this->app->router()->run();
     }
 
-    public function render($username = null, $active = null)
+    public function render($active = 'active', $username = null)
     {
         $get = $this->get();
         User::init();
 
-        $active = $active ? $active : 'active';
+        if ($get['username']) {
+            $username = $get['username'];
+            $this->redirect("users/search/$active/$username");
+        }
 
         $users = User::get([
             'name' => $username,
@@ -36,11 +39,14 @@ class UsersController extends \App\Controller
         ]);
 
         $pageNumber = !$get['page'] ? $get['page'] : $get['page'] - 1;
-        $from = PAGES * (int) $pageNumber;
+        $from = AMOUNT_PER_PAGE * (int) $pageNumber;
 
         return $this->template->render('users/users.twig', [
             'users' => $users ? array_slice($users, $from, $delta) : [],
-            'users_count' => count($users)
+            'users_count' => count($users),
+            'page' => !$get['page'] ? 1 : $get['page'],
+            'last_page' => ceil(count($users) / AMOUNT_PER_PAGE),
+            'location' => "users/search/$active" . (!$username ? "" : "/$username")
         ]);
     }
 

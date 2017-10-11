@@ -49,46 +49,36 @@
           <ul class="pagination pagination-circle pg-bluegrey mb-0">
 
             <!--First-->
-            <li class="page-item disabled clearfix d-none d-md-block">
-              <a class="page-link">First</a>
+            <li class="page-item {{ (1 == page) ? 'disabled' }} clearfix d-none d-md-block">
+              <a class="page-link" href="{{ location }}?page=1">First</a>
             </li>
 
             <!--Arrow left-->
-            <li class="page-item disabled">
-              <a class="page-link" aria-label="Previous">
+            <li class="page-item {{ (1 == page) ? 'disabled' }}">
+              <a class="page-link" href="{{ location }}?page={{ page - 1 }}" aria-label="Previous">
                 <span aria-hidden="true">&laquo;</span>
                 <span class="sr-only">Previo</span>
               </a>
             </li>
 
-            <!--Numbers-->
-            <li class="page-item active">
-              <a class="page-link">1</a>
-            </li>
-            <li class="page-item">
-              <a class="page-link">2</a>
-            </li>
-            <li class="page-item">
-              <a class="page-link">3</a>
-            </li>
-            <li class="page-item">
-              <a class="page-link">4</a>
-            </li>
-            <li class="page-item">
-              <a class="page-link">5</a>
-            </li>
+            <!-- Numbers -->
+            {% for index in range(1, last_page) %}
+              <li class="page-item {{ (index == page) ? 'active' }}">
+                <a class="page-link" href="{{ location }}?page={{ index }}">{{ index }}</a>
+              </li>
+            {% endfor %}
 
             <!--Arrow right-->
-            <li class="page-item">
-              <a class="page-link" aria-label="Next">
+            <li class="page-item {{ (last_page == page) ? 'disabled' }}">
+              <a class="page-link" href="{{ location }}?page={{ page + 1 }}" aria-label="Next">
                 <span aria-hidden="true">&raquo;</span>
                 <span class="sr-only">Siguiente</span>
               </a>
             </li>
 
             <!--First-->
-            <li class="page-item clearfix d-none d-md-block">
-              <a class="page-link">Last</a>
+            <li class="page-item {{ (last_page == page) ? 'disabled' }} clearfix d-none d-md-block">
+              <a class="page-link" href="{{ location }}?page={{ last_page }}">Last</a>
             </li>
 
           </ul>
