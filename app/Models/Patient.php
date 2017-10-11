@@ -22,7 +22,8 @@ class Patient extends \App\Model
         "demographicDataId" => "datos_demograficos_id",
         "socialWorkId" => "obra_social_id",
         "documentTypeId" => "tipo_doc_id",
-        "documentNumber" => "numero_doc"
+        "documentNumber" => "numero_doc",
+        "state" => "estado"
       ];
 
     public static function create($data = [])
