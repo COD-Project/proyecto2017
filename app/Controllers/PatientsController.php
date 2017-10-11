@@ -38,6 +38,7 @@ class PatientsController extends \App\Controller
     {
         Patient::init();
         $patient = Patient::find($id);
+        var_dump($patient->getState());
         if ($patient) {
             return $this->template->render('patient/show.twig', [
                 'patient' => $patient,
@@ -87,7 +88,6 @@ class PatientsController extends \App\Controller
             $post = $this->post();
             Patient::init();
             $patient = Patient::find($id);
-            var_dump($patient->getState());
             $patient->addState([
                 'firstName' => $post['firstName'],
                 'lastName' => $post['lastName'],
@@ -99,7 +99,6 @@ class PatientsController extends \App\Controller
                 'documentNumber' => $post['documentNumber'],
                 'socialWorkId' => $post['socialWorkId']
               ]);
-            var_dump($patient->getState());
             $patient->edit();
             $this->redirect("patients/show/{$id}?success=true&message=La operación fue realizada con éxito");
         } catch (\Exception $e) {
