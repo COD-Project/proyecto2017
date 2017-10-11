@@ -11,6 +11,11 @@ class ErrorController extends \App\Controller
 
         $this->template = new \Twig_Environment(new \Twig_Loader_Filesystem('./web/public/'));
 
+        $this->template->addGlobal('app', [
+            'url' => URL,
+            'name' => APP_NAME
+        ]);
+
         $this->app->get('/error', function($template) {
             return $template->render('error/404.twig');
         }, [$this->template]);
