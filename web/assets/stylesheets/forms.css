@@ -38,3 +38,13 @@
 .md-form select {
   margin-top: 17.5px;
 }
+
+.card-style-input {
+  margin: 0 45px;
+}
+
+@media screen and (max-width: 768px) {
+  .card-style-input {
+    margin: 0;
+  }
+}
