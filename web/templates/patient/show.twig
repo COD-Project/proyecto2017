@@ -155,9 +155,9 @@
                     </p>
                     <div class="md-form mb-0 card-style-input">
                       <select class="form-control" id="documentTypeId" name="documentTypeId">
-                        <option selected="true" disabled="disabled">{{patient.documentType.name}}</option>
+                        <option disabled>Tipo de documento</option>
                         {% for option in documentsType %}
-                          <option value="{{option.id}}">{{option.name}}</option>
+                          <option value="{{option.id}}" {{(patient.documentTypeId == option.id)? "selected"}}>{{option.name}}</option>
                         {% endfor %}
                       </select>
                     </div>
@@ -168,10 +168,10 @@
                     </p>
                     <div class="md-form mb-0 card-style-input">
                       <select class="form-control" id="gender" name="gender">
-                        <option selected="true" disabled="disabled">{{patient.gender}}</option>
-                        <option value="M">Masculino</option>
-                        <option value="F">Femenino</option>
-                        <option value="Otro">Otro</option>
+                      <option disabled>Género</option>
+                      {% for option in genders %}
+                        <option value="{{option}}" {{(patient.gender == option) ? "selected"}}>{{option}}</option>
+                      {% endfor %}
                       </select>
                     </div>
                   </div>
@@ -181,9 +181,9 @@
                     </p>
                     <div class="md-form mb-0 card-style-input">
                       <select class="form-control" id="socialWorkId" name="socialWorkId">
-                        <option selected="true" disabled="disabled">{{patient.socialWork.name}}</option>
+                        <option disabled>Obra Social</option>
                         {% for option in socialsWork %}
-                          <option value="{{option.id}}">{{option.name}}</option>
+                          <option value="{{option.id}}" {{(patient.socialWorkId == option.id)? "selected"}}>{{option.name}}</option>
                         {% endfor %}
                       </select>
                     </div>
