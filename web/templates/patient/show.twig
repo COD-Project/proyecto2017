@@ -2,6 +2,8 @@
 
 {% block app_body %}
 
+  {% include 'demographicdata/create.twig' with {'id' : 'demographic_data_create'} only %}
+
   <div class="container" style="margin-top: 45px;">
     {% include 'error/message.twig' %}
     <div id="patient_edit_response"></div>
@@ -73,7 +75,11 @@
                   <p>{{patient.gender}}</p>
                 </div>
               </div>
-              <br>
+
+              <hr>
+              <div class="mt-5 mb-4">
+                <button type="button" class="btn btn-dark light-blue darken-3" data-toggle="modal" data-target="#demographic_data_create">Registrar Datos Demográficos</button>
+              </div>
               <img style="max-width: 25px;" src="web/assets/images/icon.png"></img>
 
             </div>
