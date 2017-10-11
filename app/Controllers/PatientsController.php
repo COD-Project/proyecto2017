@@ -2,7 +2,10 @@
 
 use App\Models\Patient;
 use App\Models\DocumentType;
+use App\Models\ApartamentType;
 use App\Models\SocialWork;
+use App\Models\WaterType;
+use App\Models\HeatingType;
 
 /**
  * created by Ulises Jeremias Cornejo Fandos
@@ -41,12 +44,20 @@ class PatientsController extends \App\Controller
         $this->checkPermissions([ 'paciente_show' ]);
 
         Patient::init();
+        SocialWork::init();
+        HeatingType::init();
+        ApartamentType::init();
+        WaterType::init();
         $patient = Patient::find($id);
+
         if ($patient) {
             return $this->template->render('patient/show.twig', [
                 'patient' => $patient,
                 'documentsType' => DocumentType::all(),
-                'socialsWork' => SocialWork::all(),
+                'socialWork' => SocialWork::all(),
+                'heatingType' => HeatingType::all(),
+                'apartamentType' => ApartamentType::all(),
+                'waterType' => WaterType::all(),
                 'genders' => ["Masculino", "Femenino", "Otro"]
             ]);
         }
