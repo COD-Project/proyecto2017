@@ -4,6 +4,12 @@
   margin: auto;
 }
 
+.patient-form-wrap {
+  min-width: 925px;
+  max-width: 1025px;
+  margin: auto;
+}
+
 .form-container {
   width: 100%;
   padding: 75px 50px 50px;
