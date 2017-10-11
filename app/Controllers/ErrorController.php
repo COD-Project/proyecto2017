@@ -9,6 +9,6 @@ class ErrorController extends \App\Controller
     {
         parent::__construct($app);
 
-        echo $this->template->render('error/notfound.twig');
+        require "web/public/error/404.phtml";
     }
 }
