@@ -41,21 +41,38 @@
         </div>
 
         <div class="md-form">
-          <i class="fa fa-user prefix grey-text"></i>
-          <input id="gender" name="gender" type="text" class="form-control" title="Ingrese género" placeholder="">
-          <label for="gender">Género</label>
+        <i class="fa fa-user prefix grey-text"></i>
+        <input id="documentNumber" name="documentNumber" type="text" class="form-control" title="Ingrese número de documento" placeholder="">
+        <label for="documentNumber">Número de documento</label>
         </div>
 
-        <div class="md-form">
-          <i class="fa fa-user prefix grey-text"></i>
-          <input id="documentTypeId" name="documentTypeId" type="text" class="form-control" title="Ingrese tipo de documento" placeholder="">
+
+        <div class="form-group text-center">
           <label for="documentTypeId">Tipo de documento</label>
+          <select class="form-control" id="documentTypeId" name="documentTypeId">
+            {% for option in documentsType %}
+            <option value={{option.id}}>{{option.name}}</option>
+            {% endfor %}
+          </select>
         </div>
 
-        <div class="md-form">
-          <i class="fa fa-user prefix grey-text"></i>
-          <input id="documentNumber" name="documentNumber" type="text" class="form-control" title="Ingrese número de documento" placeholder="">
-          <label for="documentNumber">Número de documento</label>
+        <div class="form-group text-center">
+          <label for="socialWorkId">Obra social</label>
+          <select class="form-control" id="socialWorkId" name="socialWorkId">
+            {% for option in socialsWork %}
+            <option value={{option.id}}>{{option.name}}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+
+        <div class="form-group text-center">
+          <label for="gender">Género</label>
+          <select class="form-control" id="gender" name="gender">
+            <option value="M">Masculino</option>
+            <option value="F">Femenino</option>
+            <option value="Otro">Otro</option>
+          </select>
         </div>
 
         <br>
