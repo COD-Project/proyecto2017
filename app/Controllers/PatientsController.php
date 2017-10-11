@@ -46,7 +46,8 @@ class PatientsController extends \App\Controller
                 'genders' => ["Masculino", "Femenino", "Otro"]
             ]);
         }
-        return $this->template->render('error/notfound.twig');
+
+        $this->redirect("error");
     }
 
     public function add()
