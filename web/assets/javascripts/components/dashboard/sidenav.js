@@ -17,4 +17,12 @@ $(document).ready(function() {
   $('[data-toggle="offcanvas"]').click(function() {
     $('#wrapper').toggleClass('toggled');
   });
+
+
+  if ($(window).width() <= 768) {
+    is_open = false;
+    $('#wrapper').removeClass('toggled');
+    trigger.removeClass('is-open');
+    trigger.addClass('is-closed');
+  }
 });
