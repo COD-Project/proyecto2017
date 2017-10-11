@@ -11,6 +11,10 @@ body, html {
   background-color: transparent;
 }
 
+.navbar .dropdown-menu a {
+  color: #fff !important;
+}
+
 
 /*-------------------------------*/
 
