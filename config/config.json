@@ -1,5 +1,6 @@
 {
   "name": "Hospital Gutierrez",
+  "pages": 7,
   "root": "/",
   "url": "http://localhost:3000/",
   "debug": false

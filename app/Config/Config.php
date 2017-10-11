@@ -71,6 +71,7 @@ class Config
         define('URL', static::$data['url']);
         define('DEBUG', static::$data['debug']);
         define('APP_NAME', static::$data['name']);
+        define('PAGES', static::$data['pages']);
     }
 
     protected static function defineConstants()
