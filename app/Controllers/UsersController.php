@@ -14,6 +14,8 @@ class UsersController extends \App\Controller
         parent::__construct($app);
 
         $this->app->get('/users', [ $this, 'render' ]);
+        $this->app->get('/users/search/:username', [ $this, 'render' ]);
+        $this->app->get('/users/search/:username/:active', [ $this, 'render' ]);
         $this->app->get('/users/show/:username', [ $this, 'show' ]);
         $this->app->get('/users/disable/:id', [ $this, 'disable' ]);
         $this->app->post('/users/edit/:id', [ $this, 'edit' ]);
@@ -21,19 +23,29 @@ class UsersController extends \App\Controller
         $this->app->router()->run();
     }
 
-    public function render()
+    public function render($username = null, $active = null)
     {
+        $get = $this->get();
         User::init();
-        $users = User::findBy(1, 'active');
+
+        $users = User::get([
+            'name' => $username,
+            'active' => (int) $active == 'active'
+        ]);
+
+        $pageNumber = !$get['page'] ? $get['page'] : $get['page'] - 1;
+        $from = PAGES * ((int) $pageNumber);
+
         return $this->template->render('users/users.twig', [
-          'users' => $users
+            'users' => array_slice($users, $from, $delta),
+            'users_count' => count($users)
         ]);
     }
 
     public function show($username)
     {
         User::init();
-        $users = new Collection(User::findBy($username, 'name'));
+        $users = new Collection(User::findBy($username, 'name', 1));
         return $this->template->render('user/user.twig', [
             'user' => $users->get(0)
         ]);

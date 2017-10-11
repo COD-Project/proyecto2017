@@ -32,3 +32,12 @@ $app->map(
     },
     [ $app ]
 );
+
+$app->map(
+    ['GET', 'POST'],
+    '/:controller/:method/:data/:state',
+    function ($app, $controller, $method, $data, $state) {
+        return \App\Controller::create($controller, [$app, $method, $data, $state]);
+    },
+    [ $app ]
+);
