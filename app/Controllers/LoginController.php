@@ -11,7 +11,9 @@ class LoginController extends \App\Controller
 {
     function __construct($app)
     {
-        parent::__construct($app, true);
+        parent::__construct($app, [
+          'logged' => true
+        ]);
 
         $this->app->get('/login', [ $this, 'render' ]);
 

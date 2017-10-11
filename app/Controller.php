@@ -18,7 +18,7 @@ class Controller extends \Mbh\Controller
         header('location:' . URL . 'error');
     }
 
-    public function __construct($app = null, $unlogged = false, $permissions = [])
+    public function __construct($app = null, $sessionRules = [], $permissions = [])
     {
         parent::__construct($app);
 
@@ -65,7 +65,7 @@ class Controller extends \Mbh\Controller
             }*/
         }
 
-        if ($unlogged && $this->session->isLoggedIn()) {
+        if ($sessionRules['logged'] && $this->session->isLoggedIn()) {
             $this->redirect();
         }
     }
