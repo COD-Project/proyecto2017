@@ -18,7 +18,7 @@ class Controller extends \Mbh\Controller
         header('location:' . URL . 'error');
     }
 
-    public function __construct($app = null, $permissions = [])
+    public function __construct($app = null, $unlogged = false, $permissions = [])
     {
         parent::__construct($app);
 
@@ -63,6 +63,10 @@ class Controller extends \Mbh\Controller
             /*if ($this->session->isGranted()) {
                 $this->template->addGlobal('admin', true);
             }*/
+        }
+
+        if ($unlogged && $this->session->isLoggedIn()) {
+            $this->redirect();
         }
     }
 
