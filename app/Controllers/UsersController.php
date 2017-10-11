@@ -28,16 +28,18 @@ class UsersController extends \App\Controller
         $get = $this->get();
         User::init();
 
+        $active = $active ? $active : 'active';
+
         $users = User::get([
             'name' => $username,
-            'active' => (int) $active == 'active'
+            'active' => (int) ($active == 'active')
         ]);
 
         $pageNumber = !$get['page'] ? $get['page'] : $get['page'] - 1;
-        $from = PAGES * ((int) $pageNumber);
+        $from = PAGES * (int) $pageNumber;
 
         return $this->template->render('users/users.twig', [
-            'users' => array_slice($users, $from, $delta),
+            'users' => $users ? array_slice($users, $from, $delta) : [],
             'users_count' => count($users)
         ]);
     }
