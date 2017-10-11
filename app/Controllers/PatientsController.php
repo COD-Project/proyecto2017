@@ -1,6 +1,8 @@
 <?php namespace App\Controllers;
 
 use App\Models\Patient;
+use App\Models\DocumentType;
+use App\Models\SocialWork;
 
 /**
  * created by Ulises Jeremias Cornejo Fandos
@@ -40,7 +42,13 @@ class PatientsController extends \App\Controller
 
     public function add()
     {
-        return $this->template->render('patient/create.twig');
+        Patient::init();
+        $docuemntsType = DocumentType::all();
+        $socialsWork = SocialWork::all();
+        return $this->template->render('patient/create.twig', [
+            "socialsWork" => $socialsWork,
+            "documentsType" => $docuemntsType
+        ]);
     }
 
     public function createPatient()
@@ -56,7 +64,8 @@ class PatientsController extends \App\Controller
                 'birthday' => date('Y-m-d', $post['birthday']),
                 'gender' => $post['gender'],
                 'documentTypeId' => $post['documentTypeId'],
-                'documentNumber' => $post['documentNumber']
+                'documentNumber' => $post['documentNumber'],
+                'socialWorkId' => $post['socialWorkId']
             ]);
             $this->redirect("patients/create?success=true&message=La operación fue realizada con éxito");
         } catch (\Exception $e) {
