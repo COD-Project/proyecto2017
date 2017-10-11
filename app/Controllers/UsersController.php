@@ -76,6 +76,7 @@ class UsersController extends \App\Controller
 
         try {
             $user->addState([
+              'updatedAt' => date("Y-m-d H:i:s"),
               'name' => $post['username'],
               'email' => $post['email'],
               'password' => !$post['password'] ?
