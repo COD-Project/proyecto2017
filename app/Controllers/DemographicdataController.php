@@ -51,9 +51,9 @@ class DemographicdataController extends \App\Controller
               'waterTypeId' => $post['waterTypeId']
           ]);
 
-          $this->redirect("demographicdata/create?success=true&message=La operación fue realizada con éxito");
+          $this->redirect("?success=true&message=La operación fue realizada con éxito");
       } catch (\Exception $e) {
-          $this->redirect("demographicdata/create?success=false&message={$e->getMessage()}");
+          $this->redirect("?success=false&message={$e->getMessage()}");
       }
   }
 
