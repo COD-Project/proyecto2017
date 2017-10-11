@@ -61,7 +61,7 @@ class PatientsController extends \App\Controller
                 'lastName' => $post['lastName'],
                 'address' => $post['address'],
                 'phone' => $post['phone'],
-                'birthday' => date('Y-m-d', $post['birthday']),
+                'birthday' => $post['birthday'],
                 'gender' => $post['gender'],
                 'documentTypeId' => $post['documentTypeId'],
                 'documentNumber' => $post['documentNumber'],
