@@ -13,6 +13,16 @@
   box-shadow: 0px 0px 3px gray;
 }
 
-.md-form .prefix.fa {
+.md-form .prefix {
   margin-top: 15px;
+}
+
+.form-control {
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid #bdbdbd;
+}
+
+.md-form select {
+  margin-top: 17.5px;
 }

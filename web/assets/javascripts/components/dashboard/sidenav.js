@@ -1,25 +1,26 @@
-$(document).ready(function () {
-  var trigger = $('.hamburger'),
-     isClosed = false;
-
-    trigger.click(function () {
-      hamburger_cross();
-    });
-
-    function hamburger_cross() {
-
-      if (isClosed == true) {
-        trigger.removeClass('is-open');
-        trigger.addClass('is-closed');
-        isClosed = false;
-      } else {
-        trigger.removeClass('is-closed');
-        trigger.addClass('is-open');
-        isClosed = true;
-      }
+$(document).ready(function() {
+  if ($(window).width() <= 768) {
+    $('#wrapper').removeClass('toggled');
+    $('.hamburger').removeClass('is-open');
+    $('.hamburger').addClass('is-closed');
   }
 
-  $('[data-toggle="offcanvas"]').click(function () {
-        $('#wrapper').toggleClass('toggled');
+  var trigger = $('.hamburger'),
+    is_open = $('.hamburger').hasClass('is-open');
+
+  trigger.click(function() {
+    if (is_open == true) {
+      trigger.removeClass('is-open');
+      trigger.addClass('is-closed');
+      is_open = false;
+    } else {
+      trigger.removeClass('is-closed');
+      trigger.addClass('is-open');
+      is_open = true;
+    }
+  });
+
+  $('[data-toggle="offcanvas"]').click(function() {
+    $('#wrapper').toggleClass('toggled');
   });
 });

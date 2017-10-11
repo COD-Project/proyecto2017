@@ -27,7 +27,12 @@
   border-radius: 35px;
 }
 
-.btn-circle i {
-    font-size: .96154rem;
-    margin: auto;
+.btn-circle i.fa {
+  font-size: .96154rem;
+  margin: auto;
+}
+
+.btn-circle i.material-icons {
+  margin: auto;
+  line-height: 1.33;
 }
