@@ -3,6 +3,9 @@
 use Mbh\Helpers\Functions;
 use Mbh\Collection;
 use \App\Models\DemographicData;
+use \App\Models\ApartamentType;
+use \App\Models\HeatingType;
+use \App\Models\WaterType;
 
 /**
  * created by Juan Cruz Ocampos
@@ -46,7 +49,18 @@ class DemographicdataController extends \App\Controller
 
   public function add()
   {
-      return $this->template->render('demographicdata/create.twig');
+      ApartamentType::init();
+      $apartamentTypes = ApartamentType::all();
+      HeatingType::init();
+      $heatingTypes = HeatingType::all();
+      WaterType::init();
+      $waterTypes = WaterType::all();
+
+      return $this->template->render('demographicdata/create.twig', [
+          'apartamentTypes' => $apartamentTypes,
+          'heatingTypes' => $heatingTypes,
+          'waterTypes' => $waterTypes
+      ]);
   }
 
   public function createDemographicdata()
@@ -74,9 +88,18 @@ class DemographicdataController extends \App\Controller
   {
       DemographicData::init();
       $demographicData = DemographicData::find($id);
-      
+      ApartamentType::init();
+      $apartamentTypes = ApartamentType::all();
+      HeatingType::init();
+      $heatingTypes = HeatingType::all();
+      WaterType::init();
+      $waterTypes = WaterType::all();
+
       return $this->template->render('demographicdata/edit.twig', [
-          'demographicData' => $demographicData
+          'demographicData' => $demographicData,
+          'apartamentTypes' => $apartamentTypes,
+          'heatingTypes' => $heatingTypes,
+          'waterTypes' => $waterTypes
       ]);
   }
 
