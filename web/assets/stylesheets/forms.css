@@ -4,9 +4,9 @@
   margin: auto;
 }
 
-.patient-form-wrap {
+.wrap-fluid {
   min-width: 925px;
-  max-width: 1025px;
+  max-width: 90%;
   margin: auto;
 }
 
