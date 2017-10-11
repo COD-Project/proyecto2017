@@ -57,6 +57,7 @@ class Config
         define('DATABASE_PORT', $db['port']);
         define('DATABASE_PROTOCOL', $db['protocol']);
         define('DATABASE_DRIVER', $db['driver']);
+        define('PHP_INT_MIN', -9223372036854775808);
     }
 
 
