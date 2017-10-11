@@ -27,6 +27,8 @@ class PatientsController extends \App\Controller
 
     public function render()
     {
+        $this->checkPermissions([ 'paciente_index' ]);
+
         Patient::init();
         $patients = Patient::all();
         return $this->template->render('patients/patients.twig', [
@@ -36,6 +38,8 @@ class PatientsController extends \App\Controller
 
     public function show($id)
     {
+        $this->checkPermissions([ 'paciente_show' ]);
+
         Patient::init();
         $patient = Patient::find($id);
         if ($patient) {
@@ -52,6 +56,8 @@ class PatientsController extends \App\Controller
 
     public function add()
     {
+        $this->checkPermissions([ 'paciente_new' ]);
+
         Patient::init();
         $docuemntsType = DocumentType::all();
         $socialsWork = SocialWork::all();
@@ -63,6 +69,8 @@ class PatientsController extends \App\Controller
 
     public function createPatient()
     {
+        $this->checkPermissions([ 'paciente_new' ]);
+
         try {
             $post = $this->post();
             Patient::init();
@@ -82,8 +90,11 @@ class PatientsController extends \App\Controller
             $this->redirect("patients/create?success=false&message={$e->getMessage()}");
         }
     }
+
     public function edit($id)
     {
+        $this->checkPermissions([ 'paciente_update' ]);
+
         try {
             $post = $this->post();
             Patient::init();

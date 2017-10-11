@@ -27,6 +27,8 @@ class UsersController extends \App\Controller
 
     public function render($active = 'active', $username = null)
     {
+        $this->checkPermissions([ 'usuario_index' ]);
+
         $get = $this->get();
 
         if (isset($get['username']) || isset($get['active'])) {
@@ -62,6 +64,8 @@ class UsersController extends \App\Controller
 
     public function show($username)
     {
+        $this->checkPermissions([ 'usuario_show' ]);
+
         User::init();
         $users = new Collection(User::findBy($username, 'name', 1));
 
@@ -77,6 +81,8 @@ class UsersController extends \App\Controller
 
     public function edit($id)
     {
+        $this->checkPermissions([ 'usuario_update' ]);
+
         $post = $this->post();
         $user = User::find($id);
 
@@ -101,6 +107,8 @@ class UsersController extends \App\Controller
 
     public function disable($id)
     {
+        $this->checkPermissions([ 'usuario_destroy' ]);
+
         $user = User::find($id);
 
         if ($user) {
