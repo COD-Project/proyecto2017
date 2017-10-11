@@ -258,6 +258,8 @@ class Model implements ModelInterface
 
         $result = static::select("*", $where, $limit);
 
+        $models = [];
+
         foreach ($result as $row => $content) {
             $data = [];
 
