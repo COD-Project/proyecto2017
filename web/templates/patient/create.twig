@@ -34,7 +34,8 @@
                 <label class="active" for="birthday">Fecha de nacimiento</label>
               </div>
             </div>
-
+          </div>
+          <div class="row">
             <div class="col-4 col-sm-4 col-xs-4">
               <div class="md-form">
                 <i class="fa fa-address-card prefix grey-text"></i>
@@ -58,7 +59,8 @@
                 <label for="address">Dirección</label>
               </div>
             </div>
-
+          </div>
+          <div class="row">
             <div class="col-4 col-sm-4 col-xs-4">
               <div class="form-group text-center">
                 <label for="documentTypeId"></label>
@@ -95,26 +97,27 @@
               </div>
             </div>
           </div>
-          <br>
+        </div>
+        <br>
 
-          <div class="text-center">
-            <button id="patient_create_button" type="submit" class="btn btn-indigo" title="Crear paciente">
-              Registrar paciente
-            </button>
-          </div>
-        </form>
-      </div>
+        <div class="text-center">
+          <button id="patient_create_button" type="submit" class="btn btn-indigo" title="Crear paciente">
+            Registrar paciente
+          </button>
+        </div>
+      </form>
     </div>
   </div>
+</div>
 {% endblock %}
 
 {% block app_footer %}
-  <footer class="text-center" style="color: #4285F4; margin-top: 45px;">
-    <p>Hospital de Niños Ricardo Gutierrez.</p>
-    <p>Proyecto de Software &copy; 2017</p>
-  </footer>
+<footer class="text-center" style="color: #4285F4; margin-top: 45px;">
+  <p>Hospital de Niños Ricardo Gutierrez.</p>
+  <p>Proyecto de Software &copy; 2017</p>
+</footer>
 {% endblock %}
 
 {% block scripts %}
-  <script src="web/assets/javascripts/components/patient/create.js"></script>
+<script src="web/assets/javascripts/components/patient/create.js"></script>
 {% endblock %}

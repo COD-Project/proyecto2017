@@ -10,6 +10,12 @@
   margin: auto;
 }
 
+@media screen and (min-width: 768px) {
+  .wrap-fluid {
+    min-width: 325px;
+  }
+}
+
 .form-container {
   width: 100%;
   padding: 75px 50px 50px;
