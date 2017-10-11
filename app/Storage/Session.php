@@ -73,8 +73,29 @@ class Session extends \Mbh\Storage\Session
         return User::find($id);
     }
 
-    public function isGranted()
+    public function checkRoles($roles = [])
     {
-        return $this->sessionInUse()->hasRole('Administrador');
+        $user = $this->sessionInUse();
+
+        foreach ($roles as $key => $role) {
+            if (!$user->hasRole($role)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    public function checkPermissions($permissions = [])
+    {
+        $user = $this->sessionInUse();
+
+        foreach ($permissions as $key => $permission) {
+            if (!$user->hasPermission($permission)) {
+                return false;
+            }
+        }
+
+        return true;
     }
 }

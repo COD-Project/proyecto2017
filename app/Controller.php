@@ -75,6 +75,20 @@ class Controller extends \Mbh\Controller
         }
     }
 
+    protected function checkRoles($roles = [])
+    {
+        if ($this->session->checkRoles($roles)) {
+            $this->redirect("error/403");
+        }
+    }
+
+    protected function checkPermissions($permissions = [])
+    {
+        if (!$this->session->checkPermissions($permissions)) {
+            $this->redirect("error/403");
+        }
+    }
+
     protected function redirect($url = "")
     {
         header('location:' . URL . $url);
