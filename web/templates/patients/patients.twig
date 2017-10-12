@@ -42,5 +42,18 @@
         </tbody>
       {% endfor %}
     </table>
+    {% if patients is null %}
+    <div class="alert alert-info alert-dismissible fade show" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <p>
+        <small>
+          <strong>No hay pacientes cargados en el sistema.</strong>
+          Puede cargar un nuevo paciente <a href="patients/create">aquí</a>
+        </small>
+      </p>
+    </div>
+    {% endif %}
   </div>
 {% endblock %}
