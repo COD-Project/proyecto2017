@@ -1,4 +1,4 @@
-$('#patient_create_form').validate({
+$('#demographic_data_form').validate({
   rules: {
     apartmentTypeId: {
       valueNotEquals : "default"
@@ -22,7 +22,7 @@ $('#patient_create_form').validate({
     }
   },
   errorPlacement: function(error, input) {
-    $("#patient_create_response").html(`
+    $("#demographic_data_response").html(`
           <div class="alert alert-info alert-dismissible fade show" role="alert">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             <p><small><strong>${error.html()}</strong></small></p>

@@ -41,11 +41,11 @@ class DemographicdataController extends \App\Controller
       try {
           $post = $this->post();
           DemographicData::init();
-
+          
           $demographicData = DemographicData::create([
-              'refrigerator' => $post['refrigerator'],
-              'electricity' => $post['electricity'],
-              'pet' => $post['pet'],
+              'refrigerator' => (int) ($post['refrigerator'] == "on"),
+              'electricity' => (int) ($post['electricity'] == "on"),
+              'pet' => (int) ($post['pet'] == "on"),
               'apartamentTypeId' => $post['apartamentTypeId'],
               'heatingTypeId' => $post['heatingTypeId'],
               'waterTypeId' => $post['waterTypeId']
