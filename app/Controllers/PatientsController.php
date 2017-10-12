@@ -24,6 +24,7 @@ class PatientsController extends \App\Controller
         $this->app->get('/patients/create', [ $this, 'add' ]);
         $this->app->post('/patients/create', [ $this, 'createPatient' ]);
         $this->app->post('/patients/edit/:id', [ $this, 'edit' ]);
+        $this->app->get('/patients/delete/:id', [ $this, 'delete' ]);
 
         $this->app->router()->run();
     }
@@ -33,7 +34,7 @@ class PatientsController extends \App\Controller
         $this->checkPermissions([ 'paciente_index' ]);
 
         Patient::init();
-        $patients = Patient::all();
+        $patients = Patient::findBy(1, "state");
         return $this->template->render('patients/patients.twig', [
             'patients' => $patients
         ]);
@@ -121,5 +122,19 @@ class PatientsController extends \App\Controller
         } catch (\Exception $e) {
             $this->redirect("patients/show/{$id}?success=false&message={$e->getMessage()}");
         }
+    }
+
+    public function delete($id)
+    {
+          $this->checkPermissions([ 'paciente_destroy' ]);
+
+          Patient::init();
+          $patient = Patient::find($id);
+          if ($patient) {
+              $patient->remove();
+              $this->redirect("patients?success=true&message=La operación fue realizada con éxito");
+          } else {
+              $this->redirect("?success=false&message=La operación no fue realizada con éxito");
+          }
     }
 }
