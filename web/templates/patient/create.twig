@@ -83,8 +83,8 @@
                 <label for="gender"></label>
                 <select class="form-control" id="gender" name="gender">
                   <option selected="true" disabled="disabled">Género</option>
-                  <option value="M">Masculino</option>
-                  <option value="F">Femenino</option>
+                  <option value="Masculino">Masculino</option>
+                  <option value="Femenino">Femenino</option>
                   <option value="Otro">Otro</option>
                 </select>
               </div>
@@ -95,7 +95,7 @@
                 <label for="socialWorkId"></label>
                 <select class="form-control" id="socialWorkId" name="socialWorkId">
                   <option selected="true" disabled="disabled">Obra social</option>
-                  {% for option in socialWork %}
+                  {% for option in socialWorks %}
                     <option value="{{option.id}}">{{option.name}}</option>
                   {% endfor %}
                 </select>
