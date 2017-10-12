@@ -10,6 +10,7 @@
     'patient_id': patient.id
   } %}
   {% include 'demographicdata/create.twig' with data only %}
+  {% include 'demographicdata/edit.twig' with { 'demographic_data': patient.demographicData } only %}
 
   <div class="container" style="margin-top: 45px;">
     <div id="patient_edit_response"></div>
@@ -87,7 +88,9 @@
               </div>
               {% else %}
               <br>
-              <h4>Datos demográficos</h4>
+              <h4>Datos demográficos
+                <button class="btn btn-dark light-blue darken-3 btn-circle btn-xs" data-toggle="modal" data-target="#demographic_data_edit"><i class="material-icons">edit</i></button>
+              </h4>
               <div class="card-body text-center">
                 <div class="row">
                   <div class="col-lg-4 col-sm-6">
