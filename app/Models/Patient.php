@@ -31,8 +31,7 @@ class Patient extends \App\Model
         $patients = static::get([
           'documentNumber' => $data['documentNumber'],
           'documentTypeId' => $data['documentTypeId']
-        ]);
-
+        ], 1);
         if (count($patients) > 0) {
             throw new \Exception("El paciente ya existe - DNI duplicado");
         }
@@ -43,7 +42,7 @@ class Patient extends \App\Model
     public function demographicData()
     {
         if ($this->demographicDataId()) {
-            return DemograpichData::find($this->demographicDataId());
+            return DemographicData::find($this->demographicDataId());
         }
     }
 

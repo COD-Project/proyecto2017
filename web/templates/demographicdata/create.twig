@@ -6,7 +6,7 @@
 
 {% block modal_body %}
   <div id="demographic_data_response"></div>
-  <form id="demographic_data_form" action="demographicdata/create" method="post">
+  <form id="demographic_data_form" action="demographicdata/create/patient/{{patient_id}}" method="post">
     <div class="form-row">
       <div class="col col-sm col-xs">
         <div class="md-form">
