@@ -19,7 +19,7 @@
                 <select class="form-control" id="active" name="active">
                   <option selected="true" disabled="disabled">Estado</option>
                   <option value="active">Activo</option>
-                  <option value="disable">Deshabilitado</option>
+                  <option value="inactive">Deshabilitado</option>
                 </select>
               </div>
             </div>
@@ -52,8 +52,8 @@
                 <td>{{ user.fullName }}</td>
                 <td>{{ user.email }}</td>
                 <td>
-                  <a href="users/disable/{{user.id}}">
-                    <span class="badge badge-danger badge-pill">Deshabilitar</span>
+                  <a href="users/{{ user.active == '1' ? 'disable' : 'enable' }}/{{user.id}}">
+                    <span class="badge badge-danger badge-pill">{{ user.active == '1' ? 'Deshabilitar' : 'Habilitar' }}</span>
                   </a>
                 </td>
               </tr>
@@ -61,16 +61,16 @@
           </tbody>
         </table>
         {% if users is empty %}
-        <div class="alert alert-info alert-dismissible fade show" role="alert">
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-          <p>
-            <small>
-              <strong>No se encontraron usuarios.</strong>
-            </small>
-          </p>
-        </div>
+          <div class="alert alert-info alert-dismissible fade show" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <p>
+              <small>
+                <strong>No se encontraron usuarios.</strong>
+              </small>
+            </p>
+          </div>
         {% endif %}
       </div>
 
@@ -79,44 +79,44 @@
 
         <!--Pagination -->
         {% if users is not empty %}
-        <nav class="my-4 pt-2">
-          <ul class="pagination pagination-circle pg-bluegrey mb-0">
+          <nav class="my-4 pt-2">
+            <ul class="pagination pagination-circle pg-bluegrey mb-0">
 
-            <!--First-->
-            <li class="page-item {{ (1 == page) ? 'disabled' }} clearfix d-none d-md-block">
-              <a class="page-link" href="{{ location }}?page=1">First</a>
-            </li>
-
-            <!--Arrow left-->
-            <li class="page-item {{ (1 == page) ? 'disabled' }}">
-              <a class="page-link" href="{{ location }}?page={{ page - 1 }}" aria-label="Previous">
-                <span aria-hidden="true">&laquo;</span>
-                <span class="sr-only">Previo</span>
-              </a>
-            </li>
-
-            <!-- Numbers -->
-            {% for index in range(1, last_page) %}
-              <li class="page-item {{ (index == page) ? 'active' }}">
-                <a class="page-link" href="{{ location }}?page={{ index }}">{{ index }}</a>
+              <!--First-->
+              <li class="page-item {{ (1 == page) ? 'disabled' }} clearfix d-none d-md-block">
+                <a class="page-link" href="{{ location }}?page=1">First</a>
               </li>
-            {% endfor %}
 
-            <!--Arrow right-->
-            <li class="page-item {{ (last_page == page) ? 'disabled' }}">
-              <a class="page-link" href="{{ location }}?page={{ page + 1 }}" aria-label="Next">
-                <span aria-hidden="true">&raquo;</span>
-                <span class="sr-only">Siguiente</span>
-              </a>
-            </li>
+              <!--Arrow left-->
+              <li class="page-item {{ (1 == page) ? 'disabled' }}">
+                <a class="page-link" href="{{ location }}?page={{ page - 1 }}" aria-label="Previous">
+                  <span aria-hidden="true">&laquo;</span>
+                  <span class="sr-only">Previo</span>
+                </a>
+              </li>
 
-            <!--First-->
-            <li class="page-item {{ (last_page == page) ? 'disabled' }} clearfix d-none d-md-block">
-              <a class="page-link" href="{{ location }}?page={{ last_page }}">Last</a>
-            </li>
+              <!-- Numbers -->
+              {% for index in range(1, last_page) %}
+                <li class="page-item {{ (index == page) ? 'active' }}">
+                  <a class="page-link" href="{{ location }}?page={{ index }}">{{ index }}</a>
+                </li>
+              {% endfor %}
 
-          </ul>
-        </nav>
+              <!--Arrow right-->
+              <li class="page-item {{ (last_page == page) ? 'disabled' }}">
+                <a class="page-link" href="{{ location }}?page={{ page + 1 }}" aria-label="Next">
+                  <span aria-hidden="true">&raquo;</span>
+                  <span class="sr-only">Siguiente</span>
+                </a>
+              </li>
+
+              <!--First-->
+              <li class="page-item {{ (last_page == page) ? 'disabled' }} clearfix d-none d-md-block">
+                <a class="page-link" href="{{ location }}?page={{ last_page }}">Last</a>
+              </li>
+
+            </ul>
+          </nav>
         {% endif %}
         <!--/Pagination -->
 

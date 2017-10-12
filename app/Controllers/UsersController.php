@@ -20,6 +20,7 @@ class UsersController extends \App\Controller
         $this->app->get('/users/search/:active/:username', [ $this, 'render' ]);
         $this->app->get('/users/show/:username', [ $this, 'show' ]);
         $this->app->get('/users/disable/:id', [ $this, 'disable' ]);
+        $this->app->get('/users/enable/:id', [ $this, 'enable' ]);
         $this->app->post('/users/edit/:id', [ $this, 'edit' ]);
 
         $this->app->router()->run();
@@ -113,6 +114,24 @@ class UsersController extends \App\Controller
 
         if ($user) {
             $user->remove();
+            $this->redirect("users?success=true&message=La operación fue realizada con éxito");
+        } else {
+            $this->redirect("?success=false&message=La operación no fue realizada con éxito");
+        }
+    }
+
+    public function enable($id)
+    {
+        $this->checkPermissions([ 'usuario_new' ]);
+
+        $user = User::find($id);
+
+        if ($user) {
+            $user->addState([
+              'active' => '1'
+            ]);
+
+            $user->edit();
             $this->redirect("users?success=true&message=La operación fue realizada con éxito");
         } else {
             $this->redirect("?success=false&message=La operación no fue realizada con éxito");
