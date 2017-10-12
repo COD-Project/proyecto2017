@@ -29,4 +29,8 @@ class Role extends \App\Model
             return Permission::find($rolePermission['permiso_id']);
         }, $rolePermissions);
     }
+
+    public function remove()
+    {
+    }
 }
