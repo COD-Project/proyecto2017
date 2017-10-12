@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: db
--- Tiempo de generación: 11-10-2017 a las 20:30:27
+-- Tiempo de generación: 12-10-2017 a las 23:39:48
 -- Versión del servidor: 5.7.19
 -- Versión de PHP: 7.0.21
 
@@ -47,6 +47,11 @@ INSERT INTO `permisos` (`id`, `nombre`) VALUES
 (2, 'paciente_new'),
 (5, 'paciente_show'),
 (4, 'paciente_update'),
+(19, 'rol_destroy'),
+(20, 'rol_index'),
+(16, 'rol_new'),
+(18, 'rol_show'),
+(17, 'rol_update'),
 (8, 'usuario_destroy'),
 (6, 'usuario_index'),
 (7, 'usuario_new'),
@@ -67,30 +72,35 @@ INSERT INTO `roles` (`id`, `nombre`) VALUES
 --
 
 INSERT INTO `rol_tiene_permisos` (`rol_id`, `permiso_id`) VALUES
-(1, 3),
 (1, 1),
-(2, 1),
-(2, 5),
-(2, 2),
-(3, 2),
-(2, 4),
-(3, 4),
-(3, 1),
-(3, 5),
-(1, 13),
+(1, 3),
+(1, 6),
+(1, 8),
+(1, 9),
+(1, 10),
 (1, 11),
-(3, 11),
-(3, 12),
-(3, 15),
-(3, 14),
+(1, 13),
+(1, 16),
+(1, 17),
+(1, 18),
+(1, 19),
+(1, 20),
+(2, 1),
+(2, 2),
+(2, 4),
+(2, 5),
 (2, 11),
 (2, 12),
-(2, 15),
 (2, 14),
-(1, 8),
-(1, 6),
-(1, 10),
-(1, 9);
+(2, 15),
+(3, 1),
+(3, 2),
+(3, 4),
+(3, 5),
+(3, 11),
+(3, 12),
+(3, 14),
+(3, 15);
 
 --
 -- Volcado de datos para la tabla `tipos_documento`
@@ -98,6 +108,27 @@ INSERT INTO `rol_tiene_permisos` (`rol_id`, `permiso_id`) VALUES
 
 INSERT INTO `tipos_documento` (`id`, `nombre`) VALUES
 (1, 'DNI');
+
+--
+-- Volcado de datos para la tabla `tipo_agua`
+--
+
+INSERT INTO `tipo_agua` (`id`, `nombre`) VALUES
+(1, 'Corriente');
+
+--
+-- Volcado de datos para la tabla `tipo_calefaccion`
+--
+
+INSERT INTO `tipo_calefaccion` (`id`, `nombre`) VALUES
+(1, 'Gas');
+
+--
+-- Volcado de datos para la tabla `tipo_vivienda`
+--
+
+INSERT INTO `tipo_vivienda` (`id`, `nombre`) VALUES
+(1, 'Casa');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
