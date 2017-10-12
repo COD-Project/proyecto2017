@@ -3,15 +3,14 @@
 {% block app_body %}
 
   {% set data = {
-    'id' : 'demographic_data_create',
-    'apartamentType' : apartamentType,
-    'heatingType' : heatingType,
-    'waterType' : waterType
+    'id': 'demographic_data_create',
+    'apartamentType': apartamentType,
+    'heatingType': heatingType,
+    'waterType': waterType
   } %}
   {% include 'demographicdata/create.twig' with data only %}
 
   <div class="container" style="margin-top: 45px;">
-    {% include 'error/message.twig' %}
     <div id="patient_edit_response"></div>
 
     <ul class="nav nav nav-pills nav-fill">
@@ -180,10 +179,10 @@
                     </p>
                     <div class="md-form mb-0 card-style-input">
                       <select class="form-control" id="gender" name="gender">
-                      <option disabled>Género</option>
-                      {% for option in genders %}
-                        <option value="{{option}}" {{(patient.gender == option) ? "selected"}}>{{option}}</option>
-                      {% endfor %}
+                        <option disabled>Género</option>
+                        {% for option in genders %}
+                          <option value="{{option}}" {{(patient.gender == option) ? "selected"}}>{{option}}</option>
+                        {% endfor %}
                       </select>
                     </div>
                   </div>
