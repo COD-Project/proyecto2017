@@ -114,6 +114,8 @@ class UsersController extends \App\Controller
         if ($user) {
             $user->remove();
             $this->redirect("users?success=true&message=La operación fue realizada con éxito");
+        } else {
+            $this->redirect("?success=false&message=La operación no fue realizada con éxito");
         }
     }
 }

@@ -60,10 +60,7 @@ class Controller extends \Mbh\Controller
         if ($this->session->isLoggedIn()) {
             $connectedUser = $this->session->sessionInUse();
             $this->template->addGlobal('owner_user', $connectedUser);
-
-            /*if ($this->session->isGranted()) {
-                $this->template->addGlobal('admin', true);
-            }*/
+            $this->template->addGlobal('permissions', $this->currentPermissions());
         }
 
         if ($sessionRules['unlogged'] && $this->session->isLoggedIn()) {
@@ -89,17 +86,22 @@ class Controller extends \Mbh\Controller
         }
     }
 
+    protected function currentPermissions()
+    {
+        return $this->session->currentPermissions();
+    }
+
     protected function redirect($url = "")
     {
         header('location:' . URL . $url);
     }
 
-    public function get()
+    protected function get()
     {
         return $this->app->getRouter()->get();
     }
 
-    public function post()
+    protected function post()
     {
         return $this->app->getRouter()->post();
     }
