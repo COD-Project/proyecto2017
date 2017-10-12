@@ -1,0 +1,48 @@
+{% extends 'layout/layout.twig' %}
+
+{% block app_body %}
+  <div class="wrap">
+    <div id="role_response"></div>
+    <div class="form-container">
+      <!-- Form subscription -->
+      <form id="role_form" action="roles/create" method="post">
+        <p class="h3 text-center mb-4">Crear rol</p>
+
+        <div class="md-form">
+          <input id="name" name="name" type="text" class="form-control" title="Ingrese nombre del rol" placeholder="">
+          <label for="name">Nombre</label>
+        </div>
+
+        <div class="md-form">
+          <select class="form-control" id="permissionsId" name="permissionsId[]" multiple="">
+            <option selected="true" value="default" disabled="disabled">Permisos</option>
+            {% for option in permissions %}
+              <option value="{{option.id}}">{{option.name}}</option>
+            {% endfor %}
+          </select>
+          <label for="permissionsId"></label>
+        </div>
+
+        <br>
+
+        <div class="text-center">
+          <button id="rol_button" type="submit" class="btn btn-indigo" title="Crear rol">
+            Crear
+          </button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+{% endblock %}
+
+{% block app_footer %}
+  <footer class="text-center" style="color: #4285F4; margin-top: 45px;">
+    <p>{{ app.name }}</p>
+    <p>Proyecto de Software &copy; 2017</p>
+  </footer>
+{% endblock %}
+
+{% block scripts %}
+  <script src="web/assets/javascripts/components/login/login.js"></script>
+{% endblock %}
