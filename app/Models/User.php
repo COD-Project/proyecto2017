@@ -50,6 +50,8 @@ class User extends \App\Model
         ]);
 
         $this->edit();
+
+        return $this;
     }
 
     public function fullName()

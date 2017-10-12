@@ -98,4 +98,19 @@ class Session extends \Mbh\Storage\Session
 
         return true;
     }
+
+    public function currentPermissions()
+    {
+        $user = $this->sessionInUse();
+
+        $permissions = [];
+
+        foreach ($user->permissions() as $key => $permission) {
+            if (!in_array($permission->name(), $permissions)) {
+                $permissions[] = $permission->name();
+            }
+        }
+
+        return $permissions;
+    }
 }
