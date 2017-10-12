@@ -82,7 +82,13 @@
           <div class="col-lg-10 col-lg-offset-2">
             <h1>Dashboard content</h1>
             <br>
-            {% include 'analytics/analytics.twig' %}
+            {% set analytics_data = {
+              'users': users_count,
+              'patients': patients_count,
+              'roles': roles_count,
+              'permissions': permissions_count
+            } %}
+            {% include 'analytics/analytics.twig' with analytics_data only %}
           </div>
         </div>
       </div>
