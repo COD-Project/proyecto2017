@@ -36,3 +36,8 @@
   margin: auto;
   line-height: 1.33;
 }
+
+.btn-circle.btn-xs i.material-icons {
+  font-size: 20px;
+  line-height: 0.9;
+}
