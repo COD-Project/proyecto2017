@@ -60,12 +60,25 @@
             {% endfor %}
           </tbody>
         </table>
+        {% if users is empty %}
+        <div class="alert alert-info alert-dismissible fade show" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <p>
+            <small>
+              <strong>No se encontraron usuarios.</strong>
+            </small>
+          </p>
+        </div>
+        {% endif %}
       </div>
 
       <!--Bottom Table UI-->
       <div class="d-flex justify-content-center">
 
         <!--Pagination -->
+        {% if users is not empty %}
         <nav class="my-4 pt-2">
           <ul class="pagination pagination-circle pg-bluegrey mb-0">
 
@@ -104,6 +117,7 @@
 
           </ul>
         </nav>
+        {% endif %}
         <!--/Pagination -->
 
       </div>
