@@ -39,6 +39,16 @@ class Patient extends \App\Model
         return parent::create($data);
     }
 
+    public function remove()
+    {
+        $this->addState([
+            "state" => "0"
+        ]);
+        $this->edit();
+
+        return $this;
+    }
+
     public function demographicData()
     {
         if ($this->demographicDataId()) {
