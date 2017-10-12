@@ -7,6 +7,10 @@
   overflow: hidden;
 }
 
+.card-inverse {
+  color: #e1f5fe !important;
+}
+
 .card-body .rotate {
   z-index: 8;
   float: right;
