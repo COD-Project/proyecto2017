@@ -44,17 +44,13 @@ class PatientsController extends \App\Controller
         $this->checkPermissions([ 'paciente_show' ]);
 
         Patient::init();
-        SocialWork::init();
-        HeatingType::init();
-        ApartamentType::init();
-        WaterType::init();
         $patient = Patient::find($id);
 
         if ($patient) {
             return $this->template->render('patient/show.twig', [
                 'patient' => $patient,
                 'documentsType' => DocumentType::all(),
-                'socialWork' => SocialWork::all(),
+                'socialWorks' => SocialWork::all(),
                 'heatingType' => HeatingType::all(),
                 'apartamentType' => ApartamentType::all(),
                 'waterType' => WaterType::all(),
@@ -70,8 +66,6 @@ class PatientsController extends \App\Controller
         $this->checkPermissions([ 'paciente_new' ]);
 
         Patient::init();
-        $docuemntsType = DocumentType::all();
-        $socialsWork = SocialWork::all();
         return $this->template->render('patient/create.twig', [
             "documentsType" => DocumentType::all(),
             "socialWorks" => SocialWork::all()
@@ -94,9 +88,10 @@ class PatientsController extends \App\Controller
                 'gender' => $post['gender'],
                 'documentTypeId' => $post['documentTypeId'],
                 'documentNumber' => $post['documentNumber'],
-                'socialWorkId' => $post['socialWorkId']
+                'socialWorkId' => $post['socialWorkId'],
+                'state' => 1
             ]);
-            $this->redirect("patients/create?success=true&message=La operación fue realizada con éxito");
+            $this->redirect("patients/show/{$patient->id()}?success=true&message=La operación fue realizada con éxito");
         } catch (\Exception $e) {
             $this->redirect("patients/create?success=false&message={$e->getMessage()}");
         }
