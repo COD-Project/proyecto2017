@@ -19,6 +19,7 @@ class RolesController extends \App\Controller
         $this->app->get('/roles/show/:id', [ $this, 'show']);
         $this->app->get('/roles/create', [ $this, 'add']);
         $this->app->post('/roles/create', [ $this, 'createRole' ]);
+        $this->app->get('/roles/delete/:id'. [ $this, 'delete' ]);
 
         $this->app->router()->run();
     }
@@ -61,8 +62,9 @@ class RolesController extends \App\Controller
 
     public function createRole()
     {
+        $this->checkPermissions([ 'rol_new' ]);
+
         try {
-            $this->checkPermissions([ 'rol_new' ]);
             $post = $this->post();
             Role::init();
             $role = Role::create([
@@ -83,6 +85,20 @@ class RolesController extends \App\Controller
             $this->redirect("roles/show/{$role->id()}?success=true&message=La operación fue realizada con éxito");
         } catch (\Exception $e) {
             $this->redirect("?success=false&message={$e->getMessage()}");
+        }
+    }
+
+    public function delete($id)
+    {
+        $this->checkPermissions([ 'rol_destroy' ]);
+
+        Role::init();
+        $role = Role::find($id);
+        if ($role) {
+            $role->remove();
+            $this->redirect("roles?success=true&message=La operación fue realizada con éxito");
+        } else {
+            $this->redirect("?success=false&message=La operación no fue realizada con éxito");
         }
     }
 }
