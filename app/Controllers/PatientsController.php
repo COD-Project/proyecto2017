@@ -126,15 +126,15 @@ class PatientsController extends \App\Controller
 
     public function delete($id)
     {
-          $this->checkPermissions([ 'paciente_destroy' ]);
+        $this->checkPermissions([ 'paciente_destroy' ]);
 
-          Patient::init();
-          $patient = Patient::find($id);
-          if ($patient) {
-              $patient->remove();
-              $this->redirect("patients?success=true&message=La operación fue realizada con éxito");
-          } else {
-              $this->redirect("?success=false&message=La operación no fue realizada con éxito");
-          }
+        Patient::init();
+        $patient = Patient::find($id);
+        if ($patient) {
+            $patient->remove();
+            $this->redirect("patients?success=true&message=La operación fue realizada con éxito");
+        } else {
+            $this->redirect("?success=false&message=La operación no fue realizada con éxito");
+        }
     }
 }
