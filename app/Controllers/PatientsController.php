@@ -32,11 +32,17 @@ class PatientsController extends \App\Controller
     public function render()
     {
         $this->checkPermissions([ 'paciente_index' ]);
+        $get = $this->get();
 
         Patient::init();
         $patients = Patient::findBy(1, "state");
+        $pageNumber = !$get['page'] ? $get['page'] : $get['page'] - 1;
+        $from = AMOUNT_PER_PAGE * (int) $pageNumber;
+
         return $this->template->render('patients/patients.twig', [
-            'patients' => $patients
+            'patients' => $patients ? array_slice($patients, $from, AMOUNT_PER_PAGE) : [],
+            'page' => !$get['page'] ? 1 : $get['page'],
+            'last_page' => ceil(count($patients) / AMOUNT_PER_PAGE)
         ]);
     }
 
