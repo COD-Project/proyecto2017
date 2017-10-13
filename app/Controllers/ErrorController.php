@@ -21,7 +21,7 @@ class ErrorController extends \App\Controller
         }, [$this->template]);
 
         $this->app->get('/error/:code', function($template, $code) {
-            if (in_array($code, [404, 403, 301, 302])) {
+            if (in_array($code, [404, 403, 301, 302, 500])) {
                 return $template->render("error/$code.twig");
             }
 
