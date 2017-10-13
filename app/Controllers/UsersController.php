@@ -26,6 +26,7 @@ class UsersController extends \App\Controller
         $this->app->get('/users/disable/:id', [ $this, 'disable' ]);
         $this->app->get('/users/enable/:id', [ $this, 'enable' ]);
         $this->app->post('/users/edit/:id', [ $this, 'edit' ]);
+        $this->app->post('/users/edit/:id/roles', [ $this, 'editRoles' ]);
 
         $this->app->router()->run();
     }
@@ -114,6 +115,37 @@ class UsersController extends \App\Controller
             $this->redirect("users/show/$username?success=true&message=La operación fue realizada con éxito");
         } catch (\Exception $e) {
             $this->redirect("users/show/$username?success=false&message={$e->getMessage()}");
+        }
+    }
+
+    public function editRoles($id)
+    {
+        $this->checkPermissions([ 'usuario_update' ]);
+
+        try {
+            $post = $this->post();
+
+            $user = User::find($id);
+            if (count($post['roles']) > 0) {
+                $db = new \App\Connection\Connection;
+
+                $db->delete("usuario_tiene_roles", "usuario_id={$user->id()}", "");
+
+                foreach ($post['roles'] as $key => $role) {
+                    if (!Role::find($role)) {
+                        throw new \Exception("El rol ingresado no es válido.");
+                    }
+
+                    $db->insert('usuario_tiene_roles', [
+                      'usuario_id' => $user->id(),
+                      'rol_id' => $role
+                    ]);
+                }
+            }
+
+            $this->redirect("users/show/{$user->name()}?success=true&message=La operación fue realizada con éxito");
+        } catch (\Exception $e) {
+            $this->redirect("?success=false&message={$e->getMessage()}");
         }
     }
 
