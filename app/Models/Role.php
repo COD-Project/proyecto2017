@@ -32,5 +32,8 @@ class Role extends \App\Model
 
     public function remove()
     {
+        static::$db->delete("rol_tiene_permisos", "rol_id={$this->id()}", "LIMIT " . count($this->permissions()));
+        $this->delete("id={$this->id()}");
+        return $this;
     }
 }
