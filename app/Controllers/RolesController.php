@@ -20,6 +20,7 @@ class RolesController extends \App\Controller
         $this->app->get('/roles/create', [ $this, 'add']);
         $this->app->post('/roles/create', [ $this, 'createRole' ]);
         $this->app->get('/roles/delete/:id', [ $this, 'delete' ]);
+        $this->app->get('/roles/delete/:id/:id_p', [ $this, 'deletePermission' ]);
 
         $this->app->router()->run();
     }
@@ -97,6 +98,19 @@ class RolesController extends \App\Controller
         if ($role) {
             $role->remove();
             $this->redirect("roles?success=true&message=La operación fue realizada con éxito");
+        } else {
+            $this->redirect("?success=false&message=La operación no fue realizada con éxito");
+        }
+    }
+
+    public function deletePermission($id_role, $id_permission)
+    {
+        $this->checkPermissions([ 'rol_destroy' ]);
+        Role::init();
+        $role = Role::find($id_role);
+        if ($role) {
+            $role->removePermission($id_permission);
+            $this->redirect("roles/show/{$id_role}?success=true&message=La operación fue realizada con éxito");
         } else {
             $this->redirect("?success=false&message=La operación no fue realizada con éxito");
         }
