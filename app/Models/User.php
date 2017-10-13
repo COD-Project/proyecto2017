@@ -117,4 +117,30 @@ class User extends \App\Model
 
         return array_values($permissions);
     }
+
+    public function rolesAsStringArray()
+    {
+        $roles = [];
+
+        foreach ($this->roles() as $key => $role) {
+            if (!in_array($role->name(), $roles)) {
+                $roles[] = $role->name();
+            }
+        }
+
+        return $roles;
+    }
+
+    public function permissionsAsStringArray()
+    {
+        $permissions = [];
+
+        foreach ($this->permissions() as $key => $permission) {
+            if (!in_array($permission->name(), $permissions)) {
+                $permissions[] = $permission->name();
+            }
+        }
+
+        return $permissions;
+    }
 }

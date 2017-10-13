@@ -1,6 +1,7 @@
 <?php namespace App\Controllers;
 
 use App\Models\User;
+use App\Models\Role;
 use Mbh\Collection;
 use Mbh\Helpers\Functions;
 
@@ -81,7 +82,8 @@ class UsersController extends \App\Controller
         }
 
         return $this->template->render('user/user.twig', [
-            'user' => $users->get(0)
+            'user' => $users->get(0),
+            'roles' => Role::all()
         ]);
     }
 

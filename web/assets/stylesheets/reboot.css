@@ -41,3 +41,31 @@
   font-size: 20px;
   line-height: 0.9;
 }
+
+.nav-tabs {
+  border: 0;
+  padding: .7rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  margin-bottom: -20px;
+  background-color: #2BBBAD;
+  z-index: 2;
+  position: relative;
+  border-radius: 2px;
+}
+
+.nav-tabs .nav-link {
+  color: #fff;
+  border: 0;
+  -webkit-transition: all 1s;
+  transition: all 1s;
+}
+
+.nav-tabs .nav-link.active {
+  background-color: rgba(255, 255, 255, .2);
+  color: #fff;
+  -webkit-transition: all 1s;
+  transition: all 1s;
+  border: 0;
+  border-radius: 2px;
+}

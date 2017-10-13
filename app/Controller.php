@@ -61,6 +61,8 @@ class Controller extends \Mbh\Controller
             $connectedUser = $this->session->sessionInUse();
             $this->template->addGlobal('owner_user', $connectedUser);
             $this->template->addGlobal('permissions', $this->currentPermissions());
+            $this->template->addGlobal('roles', $this->currentRoles());
+            $this->template->addGlobal('admin', $connectedUser->hasRole('Administrador'));
         }
 
         if ($sessionRules['unlogged'] && $this->session->isLoggedIn()) {
@@ -84,6 +86,11 @@ class Controller extends \Mbh\Controller
         if (!$this->session->checkPermissions($permissions)) {
             $this->redirect("error/403");
         }
+    }
+
+    protected function currentRoles()
+    {
+        return $this->session->currentRoles();
     }
 
     protected function currentPermissions()
