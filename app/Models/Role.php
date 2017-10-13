@@ -36,4 +36,9 @@ class Role extends \App\Model
         $this->delete("id={$this->id()}");
         return $this;
     }
+
+    public function removePermission($id_permission)
+    {
+        static::$db->delete("rol_tiene_permisos", "rol_id={$this->id()} AND permiso_id={$id_permission}");
+    }
 }
