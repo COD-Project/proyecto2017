@@ -91,8 +91,9 @@
             } %}
             {% include 'analytics/analytics.twig' with analytics_data only %}
             <hr>
-            <h3>Configuración del sistema</h3>
-            <div class="text-center">
+            <div class="text-center mt-4">
+              <h3>Configuración del sistema</h3>
+              <br>
               <form id="user_edit_form" action="users/edit/{{user.id}}" method="post">
                 <div class="form-row">
                   <div class="col-lg-4 col-xs-6">
@@ -100,47 +101,39 @@
                       <strong>Nombre</strong>
                     </p>
                     <div class="md-form mb-0 card-style-input">
-                      <input class="form-control text-center" type="text" name="firstName" value="{{user.firstName}}" placeholder="Nombre">
+                      <input class="form-control text-center" type="text" name="name" value="{{app.name}}" placeholder="Nombre">
                     </div>
                   </div>
                   <div class="col-lg-4 col-xs-6">
                     <p class="mb-0">
-                      <strong>Apellido</strong>
+                      <strong>Cantidad por página</strong>
                     </p>
                     <div class="md-form mb-0 card-style-input">
-                      <input class="form-control text-center" type="text" name="lastName" value="{{user.lastName}}" placeholder="Nombre">
+                      <input class="form-control text-center" type="number" name="amount_per_page" value="{{ app.amount_per_page }}" placeholder="Cantidad por página">
                     </div>
                   </div>
                   <div class="col-lg-4 col-xs-6">
                     <p class="mb-0">
-                      <strong></strong>
+                      <strong>Sitio en mantenimiento</strong>
                     </p>
                     <div class="md-form">
                       <div class="checkbox">
-                        <input type="checkbox" id="refrigerator" name="refrigerator">
-                        <label for="refrigerator">Sitio en mantenimiento</label>
+                        <input type="checkbox" {{ manteinance == true ? 'checked="true"'}} id="maintenance" name="maintenance">
+                        <label for="maintenance">Mantenimiento</label>
                       </div>
                     </div>
                   </div>
-                  <div class="col-lg-4 col-xs-6">
+                  <div class="col-lg-12 col-xs-6">
                     <p class="mb-0">
-                      <strong>Email</strong>
+                      <strong>Descripción</strong>
                     </p>
                     <div class="md-form mb-0 card-style-input">
-                      <textarea type="text" id="form8" class="md-textarea" style="height: 100px"></textarea>
-                      <label for="form8">Your message</label>
-                    </div>
-                  </div>
-                  <div class="col-lg-4 col-xs-6">
-                    <p class="mb-0">
-                      <strong>Contraseña</strong>
-                    </p>
-                    <div class="md-form mb-0 card-style-input">
-                      <input class="form-control text-center" type="password" name="password" value="" placeholder="Contraseña">
+                      <textarea type="text" id="description" name="description" class="md-textarea" style="height: 45px"></textarea>
+                      <label for="description">Descripción...</label>
                     </div>
                   </div>
                 </div>
-                <div class="text-center">
+                <div class="text-center mt-4">
                   <button type="submit" class="btn btn-indigo" title="Editar Usuario">
                     Editar usuario
                   </button>
