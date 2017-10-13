@@ -15,6 +15,9 @@ class UsersController extends \App\Controller
           'logged' => true
         ]);
 
+        $this->allowed = $this->session->isLoggedIn() &&
+                         $this->session->sessionInUse()->name() == $username;
+
         $this->app->get('/users', [ $this, 'render' ]);
         $this->app->get('/users/search/:active', [ $this, 'render' ]);
         $this->app->get('/users/search/:active/:username', [ $this, 'render' ]);
@@ -65,7 +68,9 @@ class UsersController extends \App\Controller
 
     public function show($username)
     {
-        $this->checkPermissions([ 'usuario_show' ]);
+        if (!$this->allowed) {
+            $this->checkPermissions([ 'usuario_show' ]);
+        }
 
         User::init();
         $users = new Collection(User::findBy($username, 'name', 1));
@@ -82,7 +87,9 @@ class UsersController extends \App\Controller
 
     public function edit($id)
     {
-        $this->checkPermissions([ 'usuario_update' ]);
+        if (!$this->allowed) {
+            $this->checkPermissions([ 'usuario_update' ]);
+        }
 
         $post = $this->post();
         $user = User::find($id);
@@ -91,6 +98,8 @@ class UsersController extends \App\Controller
             $user->addState([
               'updatedAt' => date("Y-m-d H:i:s"),
               'name' => $post['username'],
+              'firstName' => $post['firstName'],
+              'lastName' => $post['lastName'],
               'email' => $post['email'],
               'password' => !$post['password'] ?
                   $user->password() :

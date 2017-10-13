@@ -1,5 +1,7 @@
 $('#user_edit_form').validate({
   rules: {
+    firstName: "required",
+    lastName: "required",
     username: "required",
     email: {
       required: true,
@@ -7,6 +9,8 @@ $('#user_edit_form').validate({
     }
   },
   messages: {
+    firstName: "Por favor, especifique nombre.",
+    lastName: "Por favor, especifique apellido.",
     username: "Por favor, especifique nombre de usuario.",
     email: {
       required: "Por favor, especifique email.",

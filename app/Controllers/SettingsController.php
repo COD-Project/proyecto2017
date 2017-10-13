@@ -1,13 +1,12 @@
 <?php namespace App\Controller;
 
 /**
- * 
+ * @author Ulises J. Cornejo Fandos
  */
-class ClassName extends AnotherClass
+class SettingsController extends \App\Controller
 {
-
-  function __construct(argument)
-  {
-    # code...
-  }
+    public function __construct($app)
+    {
+        parent::__construct($app);
+    }
 }
