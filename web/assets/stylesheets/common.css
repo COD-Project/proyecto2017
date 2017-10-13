@@ -3,6 +3,18 @@
   background: transparent;
 }
 
+.home hr {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 83%;
+}
+
+@media screen and (max-width: 1024px) {
+  .home hr {
+    max-width: 100%;
+  }
+}
+
 .card {
   overflow: hidden;
 }
