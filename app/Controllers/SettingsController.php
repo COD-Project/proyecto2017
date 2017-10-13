@@ -12,16 +12,10 @@ class SettingsController extends \App\Controller
         parent::__construct($app);
 
         $this->configFile = new File("uploads/config.json");
-        $this->controllersFile = new File("uploads/controllers.json");
 
         $this->app->get('/settings', [ $this, 'notFound' ]);
         $this->app->get('/settings/:method', [ $this, 'notFound' ]);
-        $this->app->post('/settings/:method', function($controller, $method) {
-            if (!method_exists($controller, $method)) {
-                $controller->redirect("error/404");
-            }
-
-        }, [ $this ]);
+        $this->app->post('/settings/edit', [ $this, 'edit' ]
 
         $this->app->router()->run();
     }
@@ -29,5 +23,20 @@ class SettingsController extends \App\Controller
     public function notFound()
     {
         $this->redirect("error/404");
+    }
+
+    public function edit()
+    {
+        $post = $this->post();
+
+        $data = json_encode($this->configFile->content(), true);
+
+        $data = array_merge($data, [
+            'name' => !$post['app_name'],
+            'amount_per_page' => $post['amount_per_page'],
+            'maintenance' => (bool) ($post['maintenance'] == 'on')
+        ]);
+
+        $this->configFile->write(json_decode($data));
     }
 }
