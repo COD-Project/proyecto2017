@@ -15,8 +15,13 @@ class Config
 
     protected static function prepareData()
     {
+        $serverjson = json_decode(
+          file_get_contents("config/server.json"),
+          true
+        );
+
         $configjson = json_decode(
-          file_get_contents("config/config.json"),
+          file_get_contents("uploads/config.json"),
           true
         );
 
@@ -25,7 +30,7 @@ class Config
           true
         );
 
-        static::$data = array_merge($configjson, $dbjson);
+        static::$data = array_merge($serverjson, $dbjson, $configjson);
     }
 
     protected static function defineDBConstants()

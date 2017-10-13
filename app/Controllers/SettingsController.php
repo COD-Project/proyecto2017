@@ -11,8 +11,8 @@ class SettingsController extends \App\Controller
     {
         parent::__construct($app);
 
-        $this->configFile = new File("config/config.json");
+        $this->configFile = new File("uploads/config.json");
 
-        $this->controllersFile = new File("config/controllers.json");
+        $this->controllersFile = new File("uploads/controllers.json");
     }
 }
