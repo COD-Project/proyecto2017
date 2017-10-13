@@ -6,7 +6,7 @@ use App\Models\Role;
 use App\Models\Permission;
 
 /**
- * created by Ulises Jeremias Cornejo Fandos
+ * @author Ulises Jeremias Cornejo Fandos
  */
 class DashboardController extends \App\Controller
 {

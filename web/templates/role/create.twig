@@ -14,13 +14,13 @@
         </div>
 
         <div class="md-form">
+          <label for="permissionsId"></label>
           <select class="form-control" id="permissionsId" name="permissionsId[]" multiple="">
             <option selected="true" value="default" disabled="disabled">Permisos</option>
             {% for option in permissions %}
               <option value="{{option.id}}">{{option.name}}</option>
             {% endfor %}
           </select>
-          <label for="permissionsId"></label>
         </div>
 
         <br>

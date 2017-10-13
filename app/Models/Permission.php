@@ -1,7 +1,7 @@
 <?php namespace App\Models;
 
 /**
- * created by Juan Cruz Ocampos
+ * @author Juan Cruz Ocampos
  */
 
 class Permission extends \App\Model
@@ -15,5 +15,4 @@ class Permission extends \App\Model
         "id" => "id",
         "name" => "nombre"
     ];
-
 }

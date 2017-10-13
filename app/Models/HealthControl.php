@@ -1,7 +1,7 @@
 <?php namespace App\Models;
 
 /**
- * created by Lucas Di Cunzolo
+ * @author Lucas Di Cunzolo
  */
 
 class HealthControl extends \App\Model

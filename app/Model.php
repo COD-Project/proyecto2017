@@ -3,7 +3,7 @@
 use App\Connection\Connection;
 
 /**
- * created by Ulises J. Cornejo Fandos
+ * @author Ulises J. Cornejo Fandos
  */
 class Model extends \Mbh\Model
 {

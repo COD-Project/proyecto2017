@@ -31,3 +31,7 @@
   -ms-transform: rotate(-44deg);
   transform: rotate(-44deg);
 }
+
+.nav-pills .nav-link.active {
+  background-color: #01579b!important
+}

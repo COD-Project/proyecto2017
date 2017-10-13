@@ -3,7 +3,7 @@
 use Mbh\Connection\Engines\Mysql;
 
 /**
- * created by Ulises Jeremias Cornejo Fandos
+ * @author Ulises Jeremias Cornejo Fandos
  */
 class Connection extends Mysql
 {

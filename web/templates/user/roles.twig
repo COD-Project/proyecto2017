@@ -1,0 +1,89 @@
+<div class="modal fade" id="user_roles_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog cascading-modal" role="document">
+    <!--Content-->
+    <div class="modal-content">
+
+      <!--Modal cascading tabs-->
+      <div class="modal-c-tabs">
+
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs tabs-2 light-blue darken-3" role="tablist">
+          <li class="nav-item waves-effect waves-light">
+            <a class="nav-link active" data-toggle="tab" href="#panel1" role="tab">
+              <i class="fa fa-user mr-1"></i>
+              Ver roles
+            </a>
+          </li>
+          <li class="nav-item waves-effect waves-light">
+            <a class="nav-link" data-toggle="tab" href="#panel2" role="tab">
+              <i class="fa fa-user-plus mr-1"></i>
+              Editar roles
+            </a>
+          </li>
+        </ul>
+
+        <!-- Tab panels -->
+        <div class="tab-content">
+          <!--Panel 1-->
+          <div class="tab-pane fade in show active" id="panel1" role="tabpanel">
+
+            <!--Body-->
+            <div class="modal-body mb-1">
+              <ul class="list-group">
+                {% for role in user.roles %}
+                  <li class="list-group-item d-flex justify-content-between align-items-center">
+                    {{ role.name }}
+                    <a href="roles/show/{{ role.id }}">
+                      <span class="badge badge-primary badge-pill">Ver role</span>
+                    </a>
+                  </li>
+                {% endfor %}
+              </ul>
+            </div>
+            <!--Footer-->
+            <div class="modal-footer">
+              <div class="options text-right"></div>
+              <button type="button" class="btn btn-outline-info waves-effect ml-auto" data-dismiss="modal">Close</button>
+            </div>
+
+          </div>
+          <!--/.Panel 1-->
+
+          <!--Panel 2-->
+          <div class="tab-pane fade" id="panel2" role="tabpanel">
+
+            <!--Body-->
+            <div class="modal-body">
+              <form action="users/edit/{{ user.id }}/roles" method="post">
+                <div class="md-form form-sm">
+                  <label for="roles"></label>
+                  <select class="form-control" id="roles" name="roles[]" multiple="">
+                    <option value="default" disabled="disabled">Roles</option>
+                    {% for role in roles %}
+                      {% set user_roles = user.rolesAsStringArray %}
+                      <option {{ role.name in user_roles ? 'selected="true"'}} value="{{ role.id }}">{{ role.name }}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+
+                <div class="text-center form-sm mt-2">
+                  <button class="btn btn-info waves-effect waves-light">
+                    Editar Roles
+                  </button>
+                </div>
+              </form>
+            </div>
+            <!--Footer-->
+            <div class="modal-footer">
+              <div class="options text-right"></div>
+              <button type="button" class="btn btn-outline-info waves-effect ml-auto" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+          <!--/.Panel 2-->
+        </div>
+
+      </div>
+    </div>
+    <!--/.Content-->
+  </div>
+</div>

@@ -1,6 +1,10 @@
 {% extends 'layout/layout.twig' %}
 
 {% block app_body %}
+  {% if admin %}
+    {% include 'user/roles.twig' with {'user': user, 'roles': roles}
+    only %}
+  {% endif %}
   <div class="container" style="margin-top: 45px;">
     <div id="user_edit_response"></div>
 
@@ -51,6 +55,11 @@
                 <p>{{user.createdAt | date('d-m-Y')}}
                 </div>
               </div>
+              {% if admin %}
+                <div class="mt-5 mb-4">
+                  <button type="button" class="btn btn-dark light-blue darken-3" data-toggle="modal" data-target="#user_roles_modal">Roles</button>
+                </div>
+              {% endif %}
               <br>
               <img style="max-width: 25px;" alt="Icono" src="web/assets/images/icon.png">
 
@@ -79,6 +88,22 @@
               <br>
               <form id="user_edit_form" action="users/edit/{{user.id}}" method="post">
                 <div class="form-row">
+                  <div class="col-lg-4 col-xs-6">
+                    <p class="mb-0">
+                      <strong>Nombre</strong>
+                    </p>
+                    <div class="md-form mb-0 card-style-input">
+                      <input class="form-control text-center" type="text" name="firstName" value="{{user.firstName}}" placeholder="Nombre">
+                    </div>
+                  </div>
+                  <div class="col-lg-4 col-xs-6">
+                    <p class="mb-0">
+                      <strong>Apellido</strong>
+                    </p>
+                    <div class="md-form mb-0 card-style-input">
+                      <input class="form-control text-center" type="text" name="lastName" value="{{user.lastName}}" placeholder="Nombre">
+                    </div>
+                  </div>
                   <div class="col-lg-4 col-xs-6">
                     <p class="mb-0">
                       <strong>Nombre de usuario</strong>

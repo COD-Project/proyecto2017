@@ -1,11 +1,12 @@
 <?php namespace App\Controllers;
 
 use App\Models\User;
+use App\Models\Role;
 use Mbh\Collection;
 use Mbh\Helpers\Functions;
 
 /**
- * created by Ulises Jeremias Cornejo Fandos
+ * @author Ulises Jeremias Cornejo Fandos
  */
 class UsersController extends \App\Controller
 {
@@ -15,6 +16,9 @@ class UsersController extends \App\Controller
           'logged' => true
         ]);
 
+        $this->allowed = $this->session->isLoggedIn() &&
+                         $this->session->sessionInUse()->name() == $username;
+
         $this->app->get('/users', [ $this, 'render' ]);
         $this->app->get('/users/search/:active', [ $this, 'render' ]);
         $this->app->get('/users/search/:active/:username', [ $this, 'render' ]);
@@ -22,6 +26,7 @@ class UsersController extends \App\Controller
         $this->app->get('/users/disable/:id', [ $this, 'disable' ]);
         $this->app->get('/users/enable/:id', [ $this, 'enable' ]);
         $this->app->post('/users/edit/:id', [ $this, 'edit' ]);
+        $this->app->post('/users/edit/:id/roles', [ $this, 'editRoles' ]);
 
         $this->app->router()->run();
     }
@@ -65,7 +70,9 @@ class UsersController extends \App\Controller
 
     public function show($username)
     {
-        $this->checkPermissions([ 'usuario_show' ]);
+        if (!$this->allowed) {
+            $this->checkPermissions([ 'usuario_show' ]);
+        }
 
         User::init();
         $users = new Collection(User::findBy($username, 'name', 1));
@@ -76,13 +83,16 @@ class UsersController extends \App\Controller
         }
 
         return $this->template->render('user/user.twig', [
-            'user' => $users->get(0)
+            'user' => $users->get(0),
+            'roles' => Role::all()
         ]);
     }
 
     public function edit($id)
     {
-        $this->checkPermissions([ 'usuario_update' ]);
+        if (!$this->allowed) {
+            $this->checkPermissions([ 'usuario_update' ]);
+        }
 
         $post = $this->post();
         $user = User::find($id);
@@ -91,6 +101,8 @@ class UsersController extends \App\Controller
             $user->addState([
               'updatedAt' => date("Y-m-d H:i:s"),
               'name' => $post['username'],
+              'firstName' => $post['firstName'],
+              'lastName' => $post['lastName'],
               'email' => $post['email'],
               'password' => !$post['password'] ?
                   $user->password() :
@@ -103,6 +115,37 @@ class UsersController extends \App\Controller
             $this->redirect("users/show/$username?success=true&message=La operación fue realizada con éxito");
         } catch (\Exception $e) {
             $this->redirect("users/show/$username?success=false&message={$e->getMessage()}");
+        }
+    }
+
+    public function editRoles($id)
+    {
+        $this->checkPermissions([ 'usuario_update' ]);
+
+        try {
+            $post = $this->post();
+
+            $user = User::find($id);
+            if (count($post['roles']) > 0) {
+                $db = new \App\Connection\Connection;
+
+                $db->delete("usuario_tiene_roles", "usuario_id={$user->id()}", "");
+
+                foreach ($post['roles'] as $key => $role) {
+                    if (!Role::find($role)) {
+                        throw new \Exception("El rol ingresado no es válido.");
+                    }
+
+                    $db->insert('usuario_tiene_roles', [
+                      'usuario_id' => $user->id(),
+                      'rol_id' => $role
+                    ]);
+                }
+            }
+
+            $this->redirect("users/show/{$user->name()}?success=true&message=La operación fue realizada con éxito");
+        } catch (\Exception $e) {
+            $this->redirect("?success=false&message={$e->getMessage()}");
         }
     }
 

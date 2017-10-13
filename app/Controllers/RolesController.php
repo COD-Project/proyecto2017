@@ -4,7 +4,7 @@ use App\Models\Role;
 use App\Models\Permission;
 
 /**
- * created by Lucas Di Cunzolo
+ * @author Lucas Di Cunzolo
  */
 
 class RolesController extends \App\Controller

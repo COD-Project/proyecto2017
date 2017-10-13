@@ -22,6 +22,20 @@
           <a href="#!">Inicio</a>
         </li>
         <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Sesión
+            <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu" role="menu">
+            <li class="dropdown-header">Sesión</li>
+            <li>
+              <a href="users/show/{{ owner_user.name }}">Ver perfil</a>
+            </li>
+            <li>
+              <a href="logout">Cerrar Sesión</a>
+            </li>
+          </ul>
+        </li>
+        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pacientes
             <span class="caret"></span>
           </a>
@@ -49,20 +63,6 @@
             </li>
             <li>
               <a {{ 'rol_new' not in permissions ? 'class="disabled"' }} href="roles/create">Crear rol</a>
-            </li>
-          </ul>
-        </li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Permisos
-            <span class="caret"></span>
-          </a>
-          <ul class="dropdown-menu" role="menu">
-            <li class="dropdown-header">Opciones</li>
-            <li>
-              <a {{ 'permiso_index' not in permissions ? 'class="disabled"' }} href="permissions">Ver listado</a>
-            </li>
-            <li>
-              <a {{ 'permiso_new' not in permissions ? 'class="disabled"' }} href="permissions/create">Crear permiso</a>
             </li>
           </ul>
         </li>

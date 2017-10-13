@@ -4,7 +4,7 @@ use Mbh\Helpers\Functions;
 use App\Models\User;
 
 /**
- * created by Ulises Jeremias Cornejo Fandos
+ * @author Ulises Jeremias Cornejo Fandos
  */
 class SignupController extends \App\Controller
 {
