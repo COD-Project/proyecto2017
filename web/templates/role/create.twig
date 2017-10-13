@@ -2,10 +2,10 @@
 
 {% block app_body %}
   <div class="wrap">
-    <div id="role_response"></div>
+    <div id="role_create_response"></div>
     <div class="form-container">
       <!-- Form subscription -->
-      <form id="role_form" action="roles/create" method="post">
+      <form id="role_create_form" action="roles/create" method="post">
         <p class="h3 text-center mb-4">Crear rol</p>
 
         <div class="md-form">
@@ -44,5 +44,5 @@
 {% endblock %}
 
 {% block scripts %}
-  <script src="web/assets/javascripts/components/login/login.js"></script>
+  <script src="web/assets/javascripts/components/role/create.js"></script>
 {% endblock %}
