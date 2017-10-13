@@ -11,6 +11,46 @@
       {% include 'error/message.twig' %}
     </div>
     <h3 class="text-center">Listado de pacientes</h3>
+    <!-- Search form -->
+    <form class="form" action="patients" method="post">
+      <div class="row">
+        <div class="col-5 col-sm-5 col-xs-5">
+          <div class="md-form">
+            <input class="form-control mr-sm-2" type="text" id="firstName" name="firstName" placeholder="" aria-label="Search">
+            <label for="firstName">Nombre</label>
+          </div>
+        </div>
+        <div class="col-5 col-sm-5 col-xs-5">
+          <div class="md-form">
+            <input class="form-control mr-sm-2" type="text" id="lastName" name="lastName" placeholder="" aria-label="Search">
+            <label for="lastName">Apellido</label>
+          </div>
+        </div>
+        <div class="col-5 col-sm-5 col-xs-5">
+          <div class="md-form text-center">
+            <label for="documentTypeId"></label>
+            <select class="form-control" id="documentTypeId" name="documentTypeId">
+              <option selected="true" disabled="disabled">Tipo de documento</option>
+              {% for option in documentsType %}
+              <option value="{{option.id}}">{{option.name}}</option>
+              {% endfor %}
+            </select>
+          </div>
+        </div>
+        <div class="col-5 col-sm-5 col-xs-5">
+          <div class="md-form">
+            <input class="form-control mr-sm-2" type="text" id="documentNumber" name="documentNumber" placeholder="" aria-label="Search">
+            <label for="documentNumber">Número de documento</label>
+          </div>
+        </div>
+        <div class="col-2 col-sm-2 col-xs-2 text-left">
+          <button type="submit" class="btn btn-dark light-blue darken-3 btn-circle btn-lg" title="Buscar">
+            <i class="material-icons">search</i>
+          </button>
+        </div>
+      </div>
+    </form>
+
     <table class="table table-hover table-responsive w-auto">
       <thead>
         <tr>
