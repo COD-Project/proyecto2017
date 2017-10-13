@@ -19,7 +19,7 @@ class RolesController extends \App\Controller
         $this->app->get('/roles/show/:id', [ $this, 'show']);
         $this->app->get('/roles/create', [ $this, 'add']);
         $this->app->post('/roles/create', [ $this, 'createRole' ]);
-        $this->app->get('/roles/delete/:id'. [ $this, 'delete' ]);
+        $this->app->get('/roles/delete/:id', [ $this, 'delete' ]);
 
         $this->app->router()->run();
     }
