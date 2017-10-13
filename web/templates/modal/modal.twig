@@ -1,0 +1,32 @@
+<div class="modal fade" id="{{ id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+  <div class="modal-dialog cascading-modal" role="document">
+    <!--Content-->
+    <div class="modal-content">
+
+      <!--Header-->
+      <div class="modal-header light-blue darken-3 white-text">
+        <h4 class="title">
+
+          {% block modal_title %}
+            <!--modal_title-->
+          {% endblock %}
+
+        </h4>
+        <button type="button" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+
+      <!--Body-->
+      <div class="modal-body mb-0">
+
+        {% block modal_body %}
+          <!--modal_body-->
+        {% endblock %}
+
+      </div>
+    </div>
+    <!--/.Content-->
+  </div>
+</div>

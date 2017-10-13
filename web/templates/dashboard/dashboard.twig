@@ -28,15 +28,15 @@
           <ul class="dropdown-menu" role="menu">
             <li class="dropdown-header">Opciones</li>
             <li>
-              <a href="patients">Ver listado</a>
+              <a {{ 'paciente_index' not in permissions ? 'class="disabled"' }} href="patients">Ver listado</a>
             </li>
             <li>
-              <a href="patients/create">Registrar paciente</a>
+              <a {{ 'paciente_new' not in permissions ? 'class="disabled"' }} href="patients/create">Registrar paciente</a>
             </li>
           </ul>
         </li>
         <li>
-          <a href="users">Usuarios</a>
+          <a {{ 'usuario_index' not in permissions ? 'class="disabled"' }} href="users">Usuarios</a>
         </li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Roles
@@ -45,10 +45,10 @@
           <ul class="dropdown-menu" role="menu">
             <li class="dropdown-header">Opciones</li>
             <li>
-              <a href="roles">Ver listado</a>
+              <a {{ 'rol_index' not in permissions ? 'class="disabled"' }} href="roles">Ver listado</a>
             </li>
             <li>
-              <a href="roles/create">Crear rol</a>
+              <a {{ 'rol_new' not in permissions ? 'class="disabled"' }} href="roles/create">Crear rol</a>
             </li>
           </ul>
         </li>
@@ -59,10 +59,10 @@
           <ul class="dropdown-menu" role="menu">
             <li class="dropdown-header">Opciones</li>
             <li>
-              <a href="permissions">Ver listado</a>
+              <a {{ 'permiso_index' not in permissions ? 'class="disabled"' }} href="permissions">Ver listado</a>
             </li>
             <li>
-              <a href="permissions/create">Crear permiso</a>
+              <a {{ 'permiso_new' not in permissions ? 'class="disabled"' }} href="permissions/create">Crear permiso</a>
             </li>
           </ul>
         </li>
@@ -77,11 +77,18 @@
         <span class="hamb-middle"></span>
         <span class="hamb-bottom"></span>
       </button>
-      <div class="container">
+      <div id="dashboard_container" class="container-fluid">
         <div class="row">
-          <div class="col-lg-8 col-lg-offset-2">
+          <div class="col-lg-10 col-lg-offset-2">
             <h1>Dashboard content</h1>
-            <p>Puto el que lee :v</p>
+            <br>
+            {% set analytics_data = {
+              'users': users_count,
+              'patients': patients_count,
+              'roles': roles_count,
+              'permissions': permissions_count
+            } %}
+            {% include 'analytics/analytics.twig' with analytics_data only %}
           </div>
         </div>
       </div>
@@ -97,5 +104,5 @@
 {% endblock %}
 
 {% block scripts %}
-  <script src="web/assets/javascripts/components/dashboard/sidenav.js"></script>
+  <script src="web/assets/javascripts/components/dashboard/dashboard.js"></script>
 {% endblock %}

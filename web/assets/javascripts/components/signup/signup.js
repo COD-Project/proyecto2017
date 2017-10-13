@@ -59,7 +59,7 @@ $('#signup_form').validate({
     password: "required",
     repeat_password: {
       required: true,
-      equalTo: '#repeat_password'
+      equalTo: '#password'
     }
   },
   messages: {
@@ -72,7 +72,7 @@ $('#signup_form').validate({
     },
     password: "Por favor, especifique su contraseña.",
     repeat_password: {
-      required: "Por favor, especifique su contraseña.",
+      required: "Por favor, especifique nuevamente su contraseña.",
       equalTo: "Las contraseñas deben ser iguales."
     }
   },

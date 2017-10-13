@@ -5,7 +5,7 @@ use Mbh\Collection;
 use \App\Models\User;
 
 /**
- * created by Ulises Jeremias Cornejo Fandos
+ * @author Ulises Jeremias Cornejo Fandos
  */
 class LoginController extends \App\Controller
 {
@@ -36,7 +36,8 @@ class LoginController extends \App\Controller
 
         $user = new User([
             'name' => $post['username'],
-            'password' => Functions::encrypt($post['password'])
+            'password' => Functions::encrypt($post['password']),
+            'active' => '1'
         ]);
 
         if ($user->exists()) {

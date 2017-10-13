@@ -1,9 +1,11 @@
 {% extends 'layout/layout.twig' %}
 
 {% block app_body %}
+  {% if admin %}
+    {% include 'user/roles.twig' with {'user': user, 'roles': roles}
+    only %}
+  {% endif %}
   <div class="container" style="margin-top: 45px;">
-    {% include 'error/message.twig' %}
-
     <div id="user_edit_response"></div>
 
     <ul class="nav nav nav-pills nav-fill">
@@ -34,27 +36,32 @@
             </h5>
             <br>
             <div class="row">
-              <div class="col-4 col-sm-4 col-xs-4">
+              <div class="col-lg-4 col-xs-12">
                 <p class="mb-0">
                   <strong>Nombre de usuario</strong>
                 </p>
                 <p>{{user.name}}</p>
               </div>
-              <div class="col-4 col-sm-4 col-xs-4">
+              <div class="col-lg-4 col-xs-12">
                 <p class="mb-0">
                   <strong>Email</strong>
                 </p>
                 <p>{{user.email}}</p>
               </div>
-              <div class="col-4 col-sm-4 col-xs-4">
+              <div class="col-lg-4 col-xs-12">
                 <p class="mb-0">
                   <strong>Fecha de ingreso</strong>
                 </p>
                 <p>{{user.createdAt | date('d-m-Y')}}
                 </div>
               </div>
+              {% if admin %}
+                <div class="mt-5 mb-4">
+                  <button type="button" class="btn btn-dark light-blue darken-3" data-toggle="modal" data-target="#user_roles_modal">Roles</button>
+                </div>
+              {% endif %}
               <br>
-              <img style="max-width: 25px;" src="web/assets/images/icon.png"></img>
+              <img style="max-width: 25px;" alt="Icono" src="web/assets/images/icon.png">
 
             </div>
             <!--/.Card content-->
@@ -81,7 +88,23 @@
               <br>
               <form id="user_edit_form" action="users/edit/{{user.id}}" method="post">
                 <div class="form-row">
-                  <div class="col col-sm col-xs">
+                  <div class="col-lg-4 col-xs-6">
+                    <p class="mb-0">
+                      <strong>Nombre</strong>
+                    </p>
+                    <div class="md-form mb-0 card-style-input">
+                      <input class="form-control text-center" type="text" name="firstName" value="{{user.firstName}}" placeholder="Nombre">
+                    </div>
+                  </div>
+                  <div class="col-lg-4 col-xs-6">
+                    <p class="mb-0">
+                      <strong>Apellido</strong>
+                    </p>
+                    <div class="md-form mb-0 card-style-input">
+                      <input class="form-control text-center" type="text" name="lastName" value="{{user.lastName}}" placeholder="Nombre">
+                    </div>
+                  </div>
+                  <div class="col-lg-4 col-xs-6">
                     <p class="mb-0">
                       <strong>Nombre de usuario</strong>
                     </p>
@@ -89,7 +112,7 @@
                       <input class="form-control text-center" type="text" name="username" value="{{user.name}}" placeholder="Nombre de usuario">
                     </div>
                   </div>
-                  <div class="col col-sm col-xs">
+                  <div class="col-lg-4 col-xs-6">
                     <p class="mb-0">
                       <strong>Email</strong>
                     </p>
@@ -97,7 +120,7 @@
                       <input class="form-control text-center" type="email" name="email" value="{{user.email}}" placeholder="Email">
                     </div>
                   </div>
-                  <div class="col col-sm col-xs">
+                  <div class="col-lg-4 col-xs-6">
                     <p class="mb-0">
                       <strong>Contraseña</strong>
                     </p>

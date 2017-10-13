@@ -1,0 +1,51 @@
+{% extends 'layout/layout.twig' %}
+
+{% block app_message %}
+  <!-- -->
+{% endblock %}
+
+{% block app_body %}
+  <div class="container">
+    <br>
+    <div id="role_edit_response">
+      {% include 'error/message.twig' %}
+    </div>
+    <h3 class="text-center">Listado de roles</h3>
+    <table class="table table-hover table-responsive w-auto">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th class="text-right">Acciones</th>
+        </tr>
+      </thead>
+      {% for role in roles %}
+        <tbody>
+          <tr>
+            <th>{{ role.name }}</th>
+            <th class="text-right">
+              <a href="roles/show/{{role.id}}">
+                <span class="badge badge-info badge-pill">Ver/Editar</span>
+              </a>
+              <a href="roles/delete/{{role.id}}">
+                <span class="badge badge-danger badge-pill">Eliminar</span>
+              </a>
+            </th>
+          </tr>
+        </tbody>
+      {% endfor %}
+    </table>
+    {% if roles is null %}
+    <div class="alert alert-info alert-dismissible fade show" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <p>
+        <small>
+          <strong>No hay roles cargados en el sistema.</strong>
+          Puede crear un nuevo rol <a href="roles/create">aquí</a>
+        </small>
+      </p>
+    </div>
+    {% endif %}
+  </div>
+{% endblock %}

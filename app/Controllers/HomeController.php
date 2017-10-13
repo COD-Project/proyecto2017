@@ -1,7 +1,7 @@
 <?php namespace App\Controllers;
 
 /**
- * created by Ulises Jeremias Cornejo Fandos
+ * @author Ulises Jeremias Cornejo Fandos
  */
 class HomeController extends \App\Controller
 {

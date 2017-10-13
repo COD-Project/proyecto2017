@@ -1,7 +1,7 @@
 <?php namespace App\Models;
 
 /**
- * created by Juan Cruz Ocampos
+ * @author Juan Cruz Ocampos
  */
 
 class Role extends \App\Model
@@ -28,5 +28,17 @@ class Role extends \App\Model
         return array_map(function ($rolePermission) {
             return Permission::find($rolePermission['permiso_id']);
         }, $rolePermissions);
+    }
+
+    public function remove()
+    {
+        static::$db->delete("rol_tiene_permisos", "rol_id={$this->id()}", "LIMIT " . count($this->permissions()));
+        $this->delete("id={$this->id()}");
+        return $this;
+    }
+
+    public function removePermission($id_permission)
+    {
+        static::$db->delete("rol_tiene_permisos", "rol_id={$this->id()} AND permiso_id={$id_permission}");
     }
 }

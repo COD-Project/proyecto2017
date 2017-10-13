@@ -1,0 +1,5 @@
+@media only screen and (max-width: 768px) {
+  [class*="col-"] {
+    margin-bottom: 15px;
+  }
+}

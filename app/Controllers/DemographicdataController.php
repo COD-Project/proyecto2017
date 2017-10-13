@@ -6,9 +6,10 @@ use \App\Models\DemographicData;
 use \App\Models\ApartamentType;
 use \App\Models\HeatingType;
 use \App\Models\WaterType;
+use \App\Models\Patient;
 
 /**
- * created by Juan Cruz Ocampos
+ * @author Juan Cruz Ocampos
  */
 
 class DemographicdataController extends \App\Controller
@@ -20,11 +21,9 @@ class DemographicdataController extends \App\Controller
       ]);
 
       $this->app->get('/demographicdata', [ $this, 'render' ]);
-      $this->app->get('/demographicdata/show/:id', [ $this, 'show' ]);
-      $this->app->get('/demographicdata/create', [ $this, 'add' ]);
       $this->app->post('/demographicdata/create', [ $this, 'createDemographicdata' ]);
-      $this->app->get('/demographicdata/edit/:id', [ $this, 'edit' ]);
       $this->app->post('/demographicdata/edit', [ $this, 'editDemographicdata' ]);
+      $this->app->post('/demographicdata/create/patient/:id', [ $this, 'createDemographicdata' ]);
 
       $this->app->router()->run();
   }
@@ -39,70 +38,36 @@ class DemographicdataController extends \App\Controller
       ]);
   }
 
-  public function show($id)
-  {
-      DemographicData::init();
-      $demographicData = DemographicData::find($id);
-
-      return $this->template->render('demographicdata/show.twig', [
-          'demographicData' => $demographicData
-      ]);
-  }
-
-  public function add()
-  {
-      ApartamentType::init();
-      $apartamentTypes = ApartamentType::all();
-      HeatingType::init();
-      $heatingTypes = HeatingType::all();
-      WaterType::init();
-      $waterTypes = WaterType::all();
-
-      return $this->template->render('demographicdata/create.twig', [
-          'apartamentTypes' => $apartamentTypes,
-          'heatingTypes' => $heatingTypes,
-          'waterTypes' => $waterTypes
-      ]);
-  }
-
-  public function createDemographicdata()
+  public function createDemographicdata($id = null)
   {
       try {
           $post = $this->post();
           DemographicData::init();
 
           $demographicData = DemographicData::create([
-              'refrigerator' => $post['refrigerator'],
-              'electricity' => $post['electricity'],
-              'pet' => $post['pet'],
+              'refrigerator' => (int) ($post['refrigerator'] == "on"),
+              'electricity' => (int) ($post['electricity'] == "on"),
+              'pet' => (int) ($post['pet'] == "on"),
               'apartamentTypeId' => $post['apartamentTypeId'],
               'heatingTypeId' => $post['heatingTypeId'],
               'waterTypeId' => $post['waterTypeId']
           ]);
 
-          $this->redirect("demographicdata/create?success=true&message=La operación fue realizada con éxito");
+          if ($id != null) {
+              $patient = Patient::find($id);
+              $patient->addState([
+                  'demographicDataId' => $demographicData->id()
+              ]);
+              $patient->edit();
+              $this->redirect("patients/show/{$patient->id()}?success=true&message=La operación fue realizada con éxito");
+
+              return;
+          }
+
+          $this->redirect("?success=true&message=La operación fue realizada con éxito");
       } catch (\Exception $e) {
-          $this->redirect("demographicdata/create?success=false&message={$e->getMessage()}");
+          $this->redirect("?success=false&message={$e->getMessage()}");
       }
-  }
-
-  public function edit($id)
-  {
-      DemographicData::init();
-      $demographicData = DemographicData::find($id);
-      ApartamentType::init();
-      $apartamentTypes = ApartamentType::all();
-      HeatingType::init();
-      $heatingTypes = HeatingType::all();
-      WaterType::init();
-      $waterTypes = WaterType::all();
-
-      return $this->template->render('demographicdata/edit.twig', [
-          'demographicData' => $demographicData,
-          'apartamentTypes' => $apartamentTypes,
-          'heatingTypes' => $heatingTypes,
-          'waterTypes' => $waterTypes
-      ]);
   }
 
   public function editDemographicdata($id)

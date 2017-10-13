@@ -1,7 +1,7 @@
 <?php namespace App\Models;
 
 /**
- * created by Lucas Di Cunzolo
+ * @author Lucas Di Cunzolo
  */
 
 class Patient extends \App\Model
@@ -31,8 +31,7 @@ class Patient extends \App\Model
         $patients = static::get([
           'documentNumber' => $data['documentNumber'],
           'documentTypeId' => $data['documentTypeId']
-        ]);
-
+        ], 1);
         if (count($patients) > 0) {
             throw new \Exception("El paciente ya existe - DNI duplicado");
         }
@@ -40,10 +39,20 @@ class Patient extends \App\Model
         return parent::create($data);
     }
 
+    public function remove()
+    {
+        $this->addState([
+            "state" => "0"
+        ]);
+        $this->edit();
+
+        return $this;
+    }
+
     public function demographicData()
     {
         if ($this->demographicDataId()) {
-            return DemograpichData::find($this->demographicDataId());
+            return DemographicData::find($this->demographicDataId());
         }
     }
 

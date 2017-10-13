@@ -4,7 +4,7 @@ use Twig_Environment;
 use Twig_Loader_Filesystem;
 
 /**
- * created by Ulises J. Cornejo Fandos
+ * @author Ulises J. Cornejo Fandos
  */
 class Controller extends \Mbh\Controller
 {
@@ -60,10 +60,9 @@ class Controller extends \Mbh\Controller
         if ($this->session->isLoggedIn()) {
             $connectedUser = $this->session->sessionInUse();
             $this->template->addGlobal('owner_user', $connectedUser);
-
-            /*if ($this->session->isGranted()) {
-                $this->template->addGlobal('admin', true);
-            }*/
+            $this->template->addGlobal('permissions', $this->currentPermissions());
+            $this->template->addGlobal('roles', $this->currentRoles());
+            $this->template->addGlobal('admin', $connectedUser->hasRole('Administrador'));
         }
 
         if (isset($sessionRules['unlogged']) && $sessionRules['unlogged'] && $this->session->isLoggedIn()) {
@@ -75,17 +74,41 @@ class Controller extends \Mbh\Controller
         }
     }
 
+    protected function checkRoles($roles = [])
+    {
+        if ($this->session->checkRoles($roles)) {
+            $this->redirect("error/403");
+        }
+    }
+
+    protected function checkPermissions($permissions = [])
+    {
+        if (!$this->session->checkPermissions($permissions)) {
+            $this->redirect("error/403");
+        }
+    }
+
+    protected function currentRoles()
+    {
+        return $this->session->currentRoles();
+    }
+
+    protected function currentPermissions()
+    {
+        return $this->session->currentPermissions();
+    }
+
     protected function redirect($url = "")
     {
         header('location:' . URL . $url);
     }
 
-    public function get()
+    protected function get()
     {
         return $this->app->getRouter()->get();
     }
 
-    public function post()
+    protected function post()
     {
         return $this->app->getRouter()->post();
     }

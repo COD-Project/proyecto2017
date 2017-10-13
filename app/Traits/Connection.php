@@ -1,7 +1,7 @@
 <?php namespace App\Traits;
 
 /**
- * created by Ulises Jeremias Cornejo Fandos
+ * @author Ulises Jeremias Cornejo Fandos
  */
 trait Connection
 {
