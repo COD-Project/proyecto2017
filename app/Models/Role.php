@@ -37,8 +37,12 @@ class Role extends \App\Model
         return $this;
     }
 
-    public function removePermission($id_permission)
+    public function removePermission($permission)
     {
-        static::$db->delete("rol_tiene_permisos", "rol_id={$this->id()} AND permiso_id={$id_permission}");
+        if (!($permission instanceof \App\Models\Permission)) {
+            throw new \Exception("La operación no se pudo realizar con éxito");
+        }
+        static::$db->delete("rol_tiene_permisos", "rol_id={$this->id()} AND permiso_id={$permission->id()}");
+        return $this;
     }
 }
