@@ -4,13 +4,23 @@
 
   {% set data = {
     'id': 'demographic_data_create',
-    'apartamentType': apartamentType,
-    'heatingType': heatingType,
-    'waterType': waterType,
-    'patient_id': patient.id
+    'apartamentType' : apartamentType,
+    'heatingType' : heatingType,
+    'waterType' : waterType,
+    'patient_id' : patient.id
   } %}
+
+  {% set editData = {
+    'id' : 'demographic_data_edit',
+    'apartamentType' : apartamentType,
+    'heatingType' : heatingType,
+    'waterType' : waterType,
+    'patient_id' : patient.id,
+    'demographic_data' : patient.demographicData
+  } %}
+
   {% include 'demographicdata/create.twig' with data only %}
-  {% include 'demographicdata/edit.twig' with { 'demographic_data': patient.demographicData } only %}
+  {% include 'demographicdata/edit.twig' with editData only %}
 
   <div class="container" style="margin-top: 45px;">
     <div id="patient_edit_response"></div>
@@ -89,7 +99,7 @@
               {% else %}
               <br>
               <h4>Datos demográficos
-                <button class="btn btn-dark light-blue darken-3 btn-circle btn-xs" data-toggle="modal" data-target="#demographic_data_edit"><i class="material-icons">edit</i></button>
+                <button type="button" class="btn btn-dark light-blue darken-3 btn-circle btn-xs" data-toggle="modal" data-target="#demographic_data_edit"><i class="material-icons">edit</i></button>
               </h4>
               <div class="card-body text-center">
                 <div class="row">
