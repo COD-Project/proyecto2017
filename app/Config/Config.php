@@ -77,8 +77,8 @@ class Config
 
     protected static function defineConstants()
     {
-      static::defineDBConstants();
-      static::defineAppConstants();
+        static::defineDBConstants();
+        static::defineAppConstants();
     }
 
     public static function init()
@@ -86,5 +86,10 @@ class Config
         static::prepareDefault();
         static::prepareData();
         static::defineConstants();
+    }
+
+    public static function controllers()
+    {
+        return json_encode(file_get_contents("config/controllers.json"), true);
     }
 }

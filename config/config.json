@@ -1,7 +1,7 @@
 {
-  "name": "Hospital de Niños Ricardo Gutierrez",
+  "name": "Hospital de Ni\u00f1os Ricardo Gutierrez",
   "amount_per_page": 7,
-  "root": "/",
-  "url": "http://localhost:3000/",
+  "root": "\/",
+  "url": "http:\/\/localhost:3000\/",
   "debug": false
 }
