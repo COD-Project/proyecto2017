@@ -91,8 +91,61 @@
             } %}
             {% include 'analytics/analytics.twig' with analytics_data only %}
             <hr>
-            <div class="">
-              <h3>Configuración del sistema</h3>
+            <h3>Configuración del sistema</h3>
+            <div class="text-center">
+              <form id="user_edit_form" action="users/edit/{{user.id}}" method="post">
+                <div class="form-row">
+                  <div class="col-lg-4 col-xs-6">
+                    <p class="mb-0">
+                      <strong>Nombre</strong>
+                    </p>
+                    <div class="md-form mb-0 card-style-input">
+                      <input class="form-control text-center" type="text" name="firstName" value="{{user.firstName}}" placeholder="Nombre">
+                    </div>
+                  </div>
+                  <div class="col-lg-4 col-xs-6">
+                    <p class="mb-0">
+                      <strong>Apellido</strong>
+                    </p>
+                    <div class="md-form mb-0 card-style-input">
+                      <input class="form-control text-center" type="text" name="lastName" value="{{user.lastName}}" placeholder="Nombre">
+                    </div>
+                  </div>
+                  <div class="col-lg-4 col-xs-6">
+                    <p class="mb-0">
+                      <strong></strong>
+                    </p>
+                    <div class="md-form">
+                      <div class="checkbox">
+                        <input type="checkbox" id="refrigerator" name="refrigerator">
+                        <label for="refrigerator">Sitio en mantenimiento</label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-4 col-xs-6">
+                    <p class="mb-0">
+                      <strong>Email</strong>
+                    </p>
+                    <div class="md-form mb-0 card-style-input">
+                      <textarea type="text" id="form8" class="md-textarea" style="height: 100px"></textarea>
+                      <label for="form8">Your message</label>
+                    </div>
+                  </div>
+                  <div class="col-lg-4 col-xs-6">
+                    <p class="mb-0">
+                      <strong>Contraseña</strong>
+                    </p>
+                    <div class="md-form mb-0 card-style-input">
+                      <input class="form-control text-center" type="password" name="password" value="" placeholder="Contraseña">
+                    </div>
+                  </div>
+                </div>
+                <div class="text-center">
+                  <button type="submit" class="btn btn-indigo" title="Editar Usuario">
+                    Editar usuario
+                  </button>
+                </div>
+              </form>
             </div>
           </div>
         </div>
