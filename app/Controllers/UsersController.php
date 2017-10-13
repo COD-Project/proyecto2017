@@ -16,9 +16,6 @@ class UsersController extends \App\Controller
           'logged' => true
         ]);
 
-        $this->allowed = $this->session->isLoggedIn() &&
-                         $this->session->sessionInUse()->name() == $username;
-
         $this->app->get('/users', [ $this, 'render' ]);
         $this->app->get('/users/search/:active', [ $this, 'render' ]);
         $this->app->get('/users/search/:active/:username', [ $this, 'render' ]);
@@ -70,7 +67,8 @@ class UsersController extends \App\Controller
 
     public function show($username)
     {
-        if (!$this->allowed) {
+        if (!$this->session->isLoggedIn() &&
+                         $this->session->sessionInUse()->name() == $username) {
             $this->checkPermissions([ 'usuario_show' ]);
         }
 
@@ -90,7 +88,10 @@ class UsersController extends \App\Controller
 
     public function edit($id)
     {
-        if (!$this->allowed) {
+        if (!
+            $this->session->isLoggedIn()
+            && $this->session->sessionInUse()->name() == $username
+        ) {
             $this->checkPermissions([ 'usuario_update' ]);
         }
 
