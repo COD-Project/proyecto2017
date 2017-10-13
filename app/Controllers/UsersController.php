@@ -61,7 +61,6 @@ class UsersController extends \App\Controller
 
         return $this->template->render('users/users.twig', [
             'users' => $users ? array_slice($users, $from, AMOUNT_PER_PAGE) : [],
-            'users_count' => count($users),
             'page' => !$get['page'] ? 1 : $get['page'],
             'last_page' => ceil(count($users) / AMOUNT_PER_PAGE),
             'location' => "users/search/$active" . (!$username ? "" : "/$username")
