@@ -58,7 +58,7 @@
                 <div class="md-form form-sm">
                   <label for="roles"></label>
                   <select class="form-control" id="roles" name="roles[]" multiple="">
-                    <option selected="true" value="default" disabled="disabled">Roles</option>
+                    <option value="default" disabled="disabled">Roles</option>
                     {% for role in roles %}
                       {% set user_roles = user.rolesAsStringArray %}
                       <option {{ role.name in user_roles ? 'selected="true"'}} value="{{ role.id }}">{{ role.name }}</option>
