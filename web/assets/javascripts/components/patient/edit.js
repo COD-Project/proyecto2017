@@ -16,7 +16,7 @@ $('#patient_edit_form').validate({
       number: true,
       minlength: 5,
       maxlength: 9
-    },
+    }
   },
   messages: {
     firstName: "Por favor, especifique nombre del paciente.",
