@@ -7,6 +7,10 @@ $app->get('/', function ($app) {
     return new \App\Controllers\HomeController($app);
 }, [ $app ]);
 
+$app->get('/error/:code', function ($app, $code) {
+    return new \App\Controllers\ErrorController($app);
+}, [ $app ]);
+
 $app->get('/phpinfo', function () {
     return phpinfo();
 });
