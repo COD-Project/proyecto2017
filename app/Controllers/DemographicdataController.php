@@ -9,7 +9,7 @@ use \App\Models\WaterType;
 use \App\Models\Patient;
 
 /**
- * created by Juan Cruz Ocampos
+ * @author Juan Cruz Ocampos
  */
 
 class DemographicdataController extends \App\Controller

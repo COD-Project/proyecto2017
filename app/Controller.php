@@ -4,7 +4,7 @@ use Twig_Environment;
 use Twig_Loader_Filesystem;
 
 /**
- * created by Ulises J. Cornejo Fandos
+ * @author Ulises J. Cornejo Fandos
  */
 class Controller extends \Mbh\Controller
 {

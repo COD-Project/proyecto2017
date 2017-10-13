@@ -1,7 +1,7 @@
 <?php namespace App\Models;
 
 /**
- * created by Juan Cruz Ocampos
+ * @author Juan Cruz Ocampos
  */
 
 class Role extends \App\Model

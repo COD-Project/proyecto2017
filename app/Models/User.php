@@ -3,7 +3,7 @@
 use Mbh\Collection;
 
 /**
- * created by Lucas Di Cunzolo
+ * @author Lucas Di Cunzolo
  */
 
 class User extends \App\Model

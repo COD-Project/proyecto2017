@@ -3,7 +3,7 @@
 use App\Models\User;
 
 /**
- * created by Ulises Jeremias Cornejo Fandos
+ * @author Ulises Jeremias Cornejo Fandos
  */
 class Session extends \Mbh\Storage\Session
 {

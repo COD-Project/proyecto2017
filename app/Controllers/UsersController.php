@@ -5,7 +5,7 @@ use Mbh\Collection;
 use Mbh\Helpers\Functions;
 
 /**
- * created by Ulises Jeremias Cornejo Fandos
+ * @author Ulises Jeremias Cornejo Fandos
  */
 class UsersController extends \App\Controller
 {

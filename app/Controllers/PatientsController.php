@@ -8,7 +8,7 @@ use App\Models\WaterType;
 use App\Models\HeatingType;
 
 /**
- * created by Ulises Jeremias Cornejo Fandos
+ * @author Ulises Jeremias Cornejo Fandos
  */
 
 class PatientsController extends \App\Controller

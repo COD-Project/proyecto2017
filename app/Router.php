@@ -3,7 +3,7 @@
 use Mbh\Collection;
 
 /**
- * created by Ulises J. Cornejo Fandos
+ * @author Ulises J. Cornejo Fandos
  */
 class Router extends \Mbh\Router
 {

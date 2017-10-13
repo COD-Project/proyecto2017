@@ -5,7 +5,7 @@ use Mbh\Collection;
 use \App\Models\User;
 
 /**
- * created by Ulises Jeremias Cornejo Fandos
+ * @author Ulises Jeremias Cornejo Fandos
  */
 class LoginController extends \App\Controller
 {
