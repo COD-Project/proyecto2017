@@ -27,6 +27,29 @@ USE `grupo5`;
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `configuraciones`
+--
+-- Creación: 14-10-2017 a las 13:23:14
+-- Última actualización: 14-10-2017 a las 13:23:55
+--
+
+DROP TABLE IF EXISTS `configuraciones`;
+CREATE TABLE IF NOT EXISTS `configuraciones` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre_app` varchar(255) NOT NULL,
+  `cantidad_por_pagina` tinyint(4) NOT NULL DEFAULT '7',
+  `mail_contacto` varchar(63) NOT NULL,
+  `descripcion` varchar(511) NOT NULL,
+  `usuario_id` int(11) NOT NULL,
+  `mantenimiento` tinyint(1) NOT NULL,
+  `created_at` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `usuario_id` (`usuario_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `controles_de_salud`
 --
 -- Creación: 11-10-2017 a las 17:31:39
@@ -358,6 +381,12 @@ CREATE TABLE IF NOT EXISTS `usuario_tiene_roles` (
 --
 -- Restricciones para tablas volcadas
 --
+
+--
+-- Filtros para la tabla `configuraciones`
+--
+ALTER TABLE `configuraciones`
+  ADD CONSTRAINT `configuraciones_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `controles_de_salud`

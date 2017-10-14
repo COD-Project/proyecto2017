@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: db
--- Tiempo de generación: 12-10-2017 a las 23:38:58
+-- Tiempo de generación: 14-10-2017 a las 13:24:53
 -- Versión del servidor: 5.7.19
 -- Versión de PHP: 7.0.21
 
@@ -27,9 +27,32 @@ USE `grupo5`;
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `configuraciones`
+--
+-- Creación: 14-10-2017 a las 13:23:14
+-- Última actualización: 14-10-2017 a las 13:23:55
+--
+
+DROP TABLE IF EXISTS `configuraciones`;
+CREATE TABLE IF NOT EXISTS `configuraciones` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre_app` varchar(255) NOT NULL,
+  `cantidad_por_pagina` tinyint(4) NOT NULL DEFAULT '7',
+  `mail_contacto` varchar(63) NOT NULL,
+  `descripcion` varchar(511) NOT NULL,
+  `usuario_id` int(11) NOT NULL,
+  `mantenimiento` tinyint(1) NOT NULL,
+  `created_at` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `usuario_id` (`usuario_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `controles_de_salud`
 --
--- Creación: 12-10-2017 a las 18:06:56
+-- Creación: 14-10-2017 a las 12:51:46
 --
 
 DROP TABLE IF EXISTS `controles_de_salud`;
@@ -60,8 +83,7 @@ CREATE TABLE IF NOT EXISTS `controles_de_salud` (
 --
 -- Estructura de tabla para la tabla `datos_demograficos`
 --
--- Creación: 12-10-2017 a las 18:06:56
--- Última actualización: 12-10-2017 a las 19:58:49
+-- Creación: 14-10-2017 a las 12:51:46
 --
 
 DROP TABLE IF EXISTS `datos_demograficos`;
@@ -77,14 +99,14 @@ CREATE TABLE IF NOT EXISTS `datos_demograficos` (
   KEY `tipo_vivienda_id` (`tipo_vivienda_id`),
   KEY `tipo_calefaccion_id` (`tipo_calefaccion_id`),
   KEY `tipo_agua_id` (`tipo_agua_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `obras_sociales`
 --
--- Creación: 12-10-2017 a las 18:06:56
+-- Creación: 14-10-2017 a las 12:51:46
 --
 
 DROP TABLE IF EXISTS `obras_sociales`;
@@ -100,8 +122,7 @@ CREATE TABLE IF NOT EXISTS `obras_sociales` (
 --
 -- Estructura de tabla para la tabla `pacientes`
 --
--- Creación: 12-10-2017 a las 18:06:56
--- Última actualización: 12-10-2017 a las 20:34:39
+-- Creación: 14-10-2017 a las 12:51:46
 --
 
 DROP TABLE IF EXISTS `pacientes`;
@@ -122,15 +143,14 @@ CREATE TABLE IF NOT EXISTS `pacientes` (
   KEY `tipo_doc_id` (`tipo_doc_id`),
   KEY `datos_demograficos_id` (`datos_demograficos_id`),
   KEY `obra_social_id` (`obra_social_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `permisos`
 --
--- Creación: 12-10-2017 a las 18:06:56
--- Última actualización: 12-10-2017 a las 22:33:47
+-- Creación: 14-10-2017 a las 12:51:46
 --
 
 DROP TABLE IF EXISTS `permisos`;
@@ -146,8 +166,7 @@ CREATE TABLE IF NOT EXISTS `permisos` (
 --
 -- Estructura de tabla para la tabla `roles`
 --
--- Creación: 12-10-2017 a las 23:37:59
--- Última actualización: 12-10-2017 a las 23:37:50
+-- Creación: 14-10-2017 a las 12:51:46
 --
 
 DROP TABLE IF EXISTS `roles`;
@@ -156,15 +175,14 @@ CREATE TABLE IF NOT EXISTS `roles` (
   `nombre` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `nombre` (`nombre`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `rol_tiene_permisos`
 --
--- Creación: 12-10-2017 a las 22:31:58
--- Última actualización: 12-10-2017 a las 23:37:41
+-- Creación: 14-10-2017 a las 12:51:46
 --
 
 DROP TABLE IF EXISTS `rol_tiene_permisos`;
@@ -181,7 +199,7 @@ CREATE TABLE IF NOT EXISTS `rol_tiene_permisos` (
 --
 -- Estructura de tabla para la tabla `tipos_documento`
 --
--- Creación: 12-10-2017 a las 18:06:56
+-- Creación: 14-10-2017 a las 12:51:46
 --
 
 DROP TABLE IF EXISTS `tipos_documento`;
@@ -190,15 +208,14 @@ CREATE TABLE IF NOT EXISTS `tipos_documento` (
   `nombre` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `nombre` (`nombre`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `tipo_agua`
 --
--- Creación: 12-10-2017 a las 18:06:56
--- Última actualización: 12-10-2017 a las 19:27:28
+-- Creación: 14-10-2017 a las 12:51:46
 --
 
 DROP TABLE IF EXISTS `tipo_agua`;
@@ -214,8 +231,7 @@ CREATE TABLE IF NOT EXISTS `tipo_agua` (
 --
 -- Estructura de tabla para la tabla `tipo_calefaccion`
 --
--- Creación: 12-10-2017 a las 18:06:56
--- Última actualización: 12-10-2017 a las 19:27:35
+-- Creación: 14-10-2017 a las 12:51:46
 --
 
 DROP TABLE IF EXISTS `tipo_calefaccion`;
@@ -231,8 +247,7 @@ CREATE TABLE IF NOT EXISTS `tipo_calefaccion` (
 --
 -- Estructura de tabla para la tabla `tipo_vivienda`
 --
--- Creación: 12-10-2017 a las 18:06:56
--- Última actualización: 12-10-2017 a las 19:27:51
+-- Creación: 14-10-2017 a las 12:51:46
 --
 
 DROP TABLE IF EXISTS `tipo_vivienda`;
@@ -248,8 +263,7 @@ CREATE TABLE IF NOT EXISTS `tipo_vivienda` (
 --
 -- Estructura de tabla para la tabla `usuarios`
 --
--- Creación: 12-10-2017 a las 18:06:56
--- Última actualización: 12-10-2017 a las 23:20:25
+-- Creación: 14-10-2017 a las 12:51:46
 --
 
 DROP TABLE IF EXISTS `usuarios`;
@@ -274,7 +288,7 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
 --
 -- Estructura de tabla para la tabla `usuario_tiene_roles`
 --
--- Creación: 12-10-2017 a las 22:31:43
+-- Creación: 14-10-2017 a las 12:51:46
 --
 
 DROP TABLE IF EXISTS `usuario_tiene_roles`;
@@ -289,6 +303,12 @@ CREATE TABLE IF NOT EXISTS `usuario_tiene_roles` (
 --
 -- Restricciones para tablas volcadas
 --
+
+--
+-- Filtros para la tabla `configuraciones`
+--
+ALTER TABLE `configuraciones`
+  ADD CONSTRAINT `configuraciones_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `controles_de_salud`
