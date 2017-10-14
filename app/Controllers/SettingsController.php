@@ -40,7 +40,7 @@ class SettingsController extends \App\Controller
               'maintenance' => (bool) ($post['maintenance'] == 'on')
           ]);
 
-            $this->configFile->write(json_encode($data));
+            file_put_contents("uploads/settings.json", json_encode($data));
 
 
 
