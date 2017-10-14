@@ -16,7 +16,6 @@ class UsersController extends \App\Controller
           'logged' => true
         ]);
 
-
         $this->app->get('/users', [ $this, 'render' ]);
         $this->app->get('/users/search/:active', [ $this, 'render' ]);
         $this->app->get('/users/search/:active/:username', [ $this, 'render' ]);
