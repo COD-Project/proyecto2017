@@ -19,6 +19,7 @@ class RolesController extends \App\Controller
         $this->app->get('/roles/show/:id', [ $this, 'show']);
         $this->app->get('/roles/create', [ $this, 'add']);
         $this->app->post('/roles/create', [ $this, 'createRole' ]);
+        $this->app->post('/roles/edit/:id', [ $this, 'edit']);
         $this->app->get('/roles/delete/:id', [ $this, 'delete' ]);
         $this->app->get('/roles/delete/:id/:permission_name', [ $this, 'deletePermission' ]);
 
@@ -52,7 +53,8 @@ class RolesController extends \App\Controller
 
         if ($role) {
             return $this->template->render('role/show.twig', [
-                'role' => $role
+                'role' => $role,
+                'permissions' => $role->permissionsComplement()
             ]);
         }
 
@@ -79,6 +81,35 @@ class RolesController extends \App\Controller
             $role = Role::create([
                 'name' => $post['name']
             ]);
+            if (count($post['permissionsId']) > 0) {
+              $db = new \App\Connection\Connection;
+              foreach ($post['permissionsId'] as $key => $permission) {
+                  if (!Permission::find($permission)) {
+                      throw new \Exception("Permiso no encontrado", 1);
+                  }
+                  $db->insert('rol_tiene_permisos', [
+                      'rol_id' => $role->id(),
+                      'permiso_id' => $permission
+                  ]);
+              }
+            }
+            $this->redirect("roles/show/{$role->id()}?success=true&message=La operación fue realizada con éxito");
+        } catch (\Exception $e) {
+            $this->redirect("?success=false&message={$e->getMessage()}");
+        }
+    }
+
+    public function edit($id)
+    {
+        $this->checkPermissions([ 'rol_update' ]);
+        try {
+            $post = $this->post();
+            Role::init();
+            $role = Role::find($id);
+            $role->addState([
+                'name' => $post['name']
+            ]);
+            $role->edit();
             if (count($post['permissionsId']) > 0) {
               $db = new \App\Connection\Connection;
               foreach ($post['permissionsId'] as $key => $permission) {
