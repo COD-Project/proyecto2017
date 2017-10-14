@@ -10,86 +10,97 @@
     <div id="role_edit_response">
       {% include 'error/message.twig' %}
     </div>
-    <h3 class="text-center">Listado de roles</h3>
-    <table class="table table-hover table-responsive w-auto">
-      <thead>
-        <tr>
-          <th>Nombre</th>
-          <th class="text-right">Acciones</th>
-        </tr>
-      </thead>
-      {% for role in roles %}
-        <tbody>
-          <tr>
-            <th>{{ role.name }}</th>
-            <th class="text-right">
-              <a href="roles/show/{{role.id}}">
-                <span class="badge badge-info badge-pill">Ver/Editar</span>
-              </a>
-              <a href="roles/delete/{{role.id}}">
-                <span class="badge badge-danger badge-pill">Eliminar</span>
-              </a>
-            </th>
-          </tr>
-        </tbody>
-      {% endfor %}
-    </table>
-    {% if roles is null %}
-    <div class="alert alert-info alert-dismissible fade show" role="alert">
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-      <p>
-        <small>
-          <strong>No hay roles cargados en el sistema.</strong>
-          Puede crear un nuevo rol <a href="roles/create">aquí</a>
-        </small>
-      </p>
-    </div>
-    {% endif %}
-    <!--Pagination -->
-    {% if roles is not empty %}
-    <div class="text-center">
-      <nav class="my-4 pt-2">
-        <ul class="pagination pagination-circle pg-bluegrey mb-0">
-
-          <!--First-->
-          <li class="page-item {{ (1 == page) ? 'disabled' }} clearfix d-none d-md-block">
-            <a class="page-link" href="roles?page=1">First</a>
-          </li>
-
-          <!--Arrow left-->
-          <li class="page-item {{ (1 == page) ? 'disabled' }}">
-            <a class="page-link" href="roles?page={{ page - 1 }}" aria-label="Previous">
-              <span aria-hidden="true">&laquo;</span>
-              <span class="sr-only">Previo</span>
-            </a>
-          </li>
-
-          <!-- Numbers -->
-          {% for index in range(1, last_page) %}
-            <li class="page-item {{ (index == page) ? 'active' }}">
-              <a class="page-link" href="roles?page={{ index }}">{{ index }}</a>
-            </li>
+    <div class="card card-cascade narrower">
+      <!--Card image-->
+      <div class="view gradient-card-header purple-gradient narrower py-4 mx-4 mb-3 d-flex justify-content-center align-items-center">
+        <h3 class="text-center">Listado de roles</h3>
+      </div>
+      <!--/Card image-->
+      <div class="px-4">
+        <table class="table table-hover table-responsive w-auto">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th class="text-right">Acciones</th>
+            </tr>
+          </thead>
+          {% for role in roles %}
+            <tbody>
+              <tr>
+                <th>{{ role.name }}</th>
+                <th class="text-right">
+                  <a href="roles/show/{{role.id}}">
+                    <span class="badge badge-info badge-pill">Ver/Editar</span>
+                  </a>
+                  <a href="roles/delete/{{role.id}}">
+                    <span class="badge badge-danger badge-pill">Eliminar</span>
+                  </a>
+                </th>
+              </tr>
+            </tbody>
           {% endfor %}
+        </table>
+        {% if roles is null %}
+        <div class="alert alert-info alert-dismissible fade show" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <p>
+            <small>
+              <strong>No hay roles cargados en el sistema.</strong>
+              Puede crear un nuevo rol <a href="roles/create">aquí</a>
+            </small>
+          </p>
+        </div>
+        {% endif %}
 
-          <!--Arrow right-->
-          <li class="page-item {{ (last_page == page) ? 'disabled' }}">
-            <a class="page-link" href="roles?page={{ page + 1 }}" aria-label="Next">
-              <span aria-hidden="true">&raquo;</span>
-              <span class="sr-only">Siguiente</span>
-            </a>
-          </li>
+        <div class="d-flex justify-content-center">
+          <!--Pagination -->
+          {% if roles is not empty %}
+          <div class="text-center">
+            <nav class="my-4 pt-2">
+              <ul class="pagination pagination-circle pg-bluegrey mb-0">
 
-          <!--First-->
-          <li class="page-item {{ (last_page == page) ? 'disabled' }} clearfix d-none d-md-block">
-            <a class="page-link" href="roles?page={{ last_page }}">Last</a>
-          </li>
+                <!--First-->
+                <li class="page-item {{ (1 == page) ? 'disabled' }} clearfix d-none d-md-block">
+                  <a class="page-link" href="roles?page=1">First</a>
+                </li>
 
-        </ul>
-      </nav>
+                <!--Arrow left-->
+                <li class="page-item {{ (1 == page) ? 'disabled' }}">
+                  <a class="page-link" href="roles?page={{ page - 1 }}" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                    <span class="sr-only">Previo</span>
+                  </a>
+                </li>
+
+                <!-- Numbers -->
+                {% for index in range(1, last_page) %}
+                  <li class="page-item {{ (index == page) ? 'active' }}">
+                    <a class="page-link" href="roles?page={{ index }}">{{ index }}</a>
+                  </li>
+                {% endfor %}
+
+                <!--Arrow right-->
+                <li class="page-item {{ (last_page == page) ? 'disabled' }}">
+                  <a class="page-link" href="roles?page={{ page + 1 }}" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                    <span class="sr-only">Siguiente</span>
+                  </a>
+                </li>
+
+                <!--First-->
+                <li class="page-item {{ (last_page == page) ? 'disabled' }} clearfix d-none d-md-block">
+                  <a class="page-link" href="roles?page={{ last_page }}">Last</a>
+                </li>
+
+              </ul>
+            </nav>
+          </div>
+          {% endif %}
+          <!--/Pagination -->
+        </div>
+      </div>
     </div>
-    {% endif %}
-    <!--/Pagination -->
   </div>
 {% endblock %}
