@@ -108,18 +108,18 @@
         "source": {
             "type": "git",
             "url": "https://github.com/MBHFramework/mbh-firewall.git",
-            "reference": "9753cba4c1c739e6e3538f8297ce0d3126097fb0"
+            "reference": "e210e2c0fb094d39d6e938bca37be9f9af68467a"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/MBHFramework/mbh-firewall/zipball/9753cba4c1c739e6e3538f8297ce0d3126097fb0",
-            "reference": "9753cba4c1c739e6e3538f8297ce0d3126097fb0",
+            "url": "https://api.github.com/repos/MBHFramework/mbh-firewall/zipball/e210e2c0fb094d39d6e938bca37be9f9af68467a",
+            "reference": "e210e2c0fb094d39d6e938bca37be9f9af68467a",
             "shasum": ""
         },
         "require": {
             "php": "^5.6 || ^7.0"
         },
-        "time": "2017-10-09T02:03:14+00:00",
+        "time": "2017-10-11T18:52:07+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
