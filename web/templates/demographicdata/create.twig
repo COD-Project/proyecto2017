@@ -39,8 +39,8 @@
       <div class="col col-sm col-xs">
         <div class="md-form">
           <label for="apartamentTypeId"></label>
-          <select class="form-control" id="apartamentTypeId" name="apartamentTypeId">
-            <option selected="true" value="default" disabled="disabled">Tipo de Vivienda</option>
+          <select class="form-control" required id="edit_apartamentTypeId" name="apartamentTypeId">
+            <option value="">Tipo de Vivienda</option>
             {% for option in apartamentType %}
               <option value="{{option.id}}">{{option.name}}</option>
             {% endfor %}

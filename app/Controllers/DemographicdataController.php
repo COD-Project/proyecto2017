@@ -30,16 +30,29 @@ class DemographicdataController extends \App\Controller
 
   public function render()
   {
-      DemographicData::init();
-      $demographicDataList = DemographicData::all();
+      $this->checkPermissions([ 'paciente_index' ]);
+      $get = $this->get();
 
-      return $this->template->render('demographicdatalist/demographicdatalist.twig', [
-          'demographicDataList' => $demographicDataList
+      DemographicData::init();
+      $demographicData = DemographicData::all();
+
+      $pageNumber = !$get['page'] ? $get['page'] : $get['page'] - 1;
+      $from = AMOUNT_PER_PAGE * (int) $pageNumber;
+
+      $location = "demographicdata?";
+      $location .= "search=true";
+
+      return $this->template->render('demographicdata/demographicdata.twig', [
+          'demographicData' => $demographicData ? array_slice($demographicData, $from, AMOUNT_PER_PAGE) : [],
+          'page' => !$get['page'] ? 1 : $get['page'],
+          'last_page' => ceil(count($demographicData) / AMOUNT_PER_PAGE),
+          'location' => $location
       ]);
   }
 
   public function createDemographicdata($id = null)
   {
+      $this->checkPermissions([ 'paciente_new' ]);
       try {
           $post = $this->post();
           DemographicData::init();
@@ -72,6 +85,7 @@ class DemographicdataController extends \App\Controller
 
   public function editDemographicdata($id)
   {
+      $this->checkPermissions([ 'paciente_update' ]);
       $post = $this->post();
       $demographicData = DemographicData::find($id);
 

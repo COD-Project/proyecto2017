@@ -33,25 +33,31 @@ class PatientsController extends \App\Controller
     {
         $this->checkPermissions([ 'usuario_index' ]);
         $get = $this->get();
-        $post = $this->post();
 
         Patient::init();
         $patients = Patient::get([
-          "firstName" => $post['firstName'] == "" ? null : $post["firstName"],
-          "lastName" => $post['lastName'] == "" ? null : $post["lastName"],
-          "documentNumber" => $post['documentNumber'] == "" ? null : $post["documentNumber"],
-          "documentTypeId" => $post['documentTypeId'] == "" ? null : $post["documentTypeId"],
-          "state" => "1"
+            "firstName" => $get['firstName'] == "" ? null : $get["firstName"],
+            "lastName" => $get['lastName'] == "" ? null : $get["lastName"],
+            "documentNumber" => $get['documentNumber'] == "" ? null : $get["documentNumber"],
+            "documentTypeId" => $get['documentTypeId'] == "" ? null : $get["documentTypeId"],
+            "state" => "1"
         ]);
         $pageNumber = !$get['page'] ? $get['page'] : $get['page'] - 1;
         $from = AMOUNT_PER_PAGE * (int) $pageNumber;
+
+        $location = "patients?";
+        $location .= !empty($get['firstName'])? "firstName={$get['firstName']}&" : null;
+        $location .= !empty($get['lastName'])? "lastName={$get['lastName']}&" : null;
+        $location .= !empty($get['documentNumber'])? "documentNumber={$get['documentNumber']}&" : null;
+        $location .= !empty($get['documentTypeId'])? "documentTypeId={$get['documentTypeId']}&" : null;
+        $location .= "search=true";
 
         return $this->template->render('patients/patients.twig', [
             'patients' => $patients ? array_slice($patients, $from, AMOUNT_PER_PAGE) : [],
             'page' => !$get['page'] ? 1 : $get['page'],
             'last_page' => ceil(count($patients) / AMOUNT_PER_PAGE),
-            'location' => "patients/search/$field" . (!$value ? "" : "/$value"),
-            'documentsType' => DocumentType::all()
+            'location' => $location,
+            'documentTypes' => DocumentType::all()
         ]);
     }
 
@@ -60,12 +66,15 @@ class PatientsController extends \App\Controller
         $this->checkPermissions([ 'paciente_show' ]);
 
         Patient::init();
-        $patient = Patient::find($id);
+        $patient = Patient::get([
+            "id" => $id,
+            "state" => "1"
+        ])[0];
 
         if ($patient) {
             return $this->template->render('patient/show.twig', [
                 'patient' => $patient,
-                'documentsType' => DocumentType::all(),
+                'documentTypes' => DocumentType::all(),
                 'socialWorks' => SocialWork::all(),
                 'heatingType' => HeatingType::all(),
                 'apartamentType' => ApartamentType::all(),
@@ -83,7 +92,7 @@ class PatientsController extends \App\Controller
 
         Patient::init();
         return $this->template->render('patient/create.twig', [
-            "documentsType" => DocumentType::all(),
+            "documentTypes" => DocumentType::all(),
             "socialWorks" => SocialWork::all()
         ]);
     }
@@ -95,6 +104,20 @@ class PatientsController extends \App\Controller
         try {
             $post = $this->post();
             Patient::init();
+            $patient = Patient::get([
+                "documentTypeId" => $post['documentTypeId'],
+                "documentNumber" => $post['documentNumber'],
+                "state" => "0"
+            ], 1);
+            if ($patient) {
+                $patient->addState([
+                    "state" => 1
+                ]);
+                $patient->edit();
+                $this->redirect("patients/show/{$patient->id()}?success=true&message=El paciente con número de documento {$patient->documentNumber()} y tipo de documento {$patient->documentType()->name()} fue reactivado. Puede editar su información aquí");
+                return;
+            }
+
             $patient = Patient::create([
                 'firstName' => $post['firstName'],
                 'lastName' => $post['lastName'],

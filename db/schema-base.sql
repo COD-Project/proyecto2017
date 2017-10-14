@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: db
--- Tiempo de generación: 11-10-2017 a las 20:29:57
+-- Tiempo de generación: 14-10-2017 a las 16:03:37
 -- Versión del servidor: 5.7.19
 -- Versión de PHP: 7.0.21
 
@@ -27,9 +27,31 @@ USE `grupo5`;
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `configuraciones`
+--
+-- Creación: 14-10-2017 a las 15:46:57
+--
+
+DROP TABLE IF EXISTS `configuraciones`;
+CREATE TABLE IF NOT EXISTS `configuraciones` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre_app` varchar(255) NOT NULL,
+  `cantidad_por_pagina` tinyint(4) NOT NULL DEFAULT '7',
+  `mail_contacto` varchar(63) NOT NULL,
+  `descripcion` varchar(511) NOT NULL,
+  `usuario_id` int(11) NOT NULL,
+  `mantenimiento` tinyint(1) NOT NULL,
+  `created_at` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `usuario_id` (`usuario_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `controles_de_salud`
 --
--- Creación: 11-10-2017 a las 17:31:39
+-- Creación: 14-10-2017 a las 15:46:58
 --
 
 DROP TABLE IF EXISTS `controles_de_salud`;
@@ -60,7 +82,7 @@ CREATE TABLE IF NOT EXISTS `controles_de_salud` (
 --
 -- Estructura de tabla para la tabla `datos_demograficos`
 --
--- Creación: 11-10-2017 a las 16:53:56
+-- Creación: 14-10-2017 a las 15:46:59
 --
 
 DROP TABLE IF EXISTS `datos_demograficos`;
@@ -83,7 +105,8 @@ CREATE TABLE IF NOT EXISTS `datos_demograficos` (
 --
 -- Estructura de tabla para la tabla `obras_sociales`
 --
--- Creación: 11-10-2017 a las 16:32:58
+-- Creación: 14-10-2017 a las 15:46:52
+-- Última actualización: 14-10-2017 a las 15:48:13
 --
 
 DROP TABLE IF EXISTS `obras_sociales`;
@@ -92,23 +115,27 @@ CREATE TABLE IF NOT EXISTS `obras_sociales` (
   `nombre` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `nombre` (`nombre`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `obras_sociales`
 --
 
 INSERT INTO `obras_sociales` (`id`, `nombre`) VALUES
+(3, 'GALLENO'),
 (1, 'IOMA'),
-(2, 'OSECAC');
+(4, 'OSDE'),
+(2, 'OSECAC'),
+(5, 'OSPEPBA'),
+(6, 'OSPIC'),
+(7, 'PAMI');
 
 -- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `pacientes`
 --
--- Creación: 11-10-2017 a las 17:34:00
--- Última actualización: 11-10-2017 a las 17:34:00
+-- Creación: 14-10-2017 a las 15:47:00
 --
 
 DROP TABLE IF EXISTS `pacientes`;
@@ -136,8 +163,8 @@ CREATE TABLE IF NOT EXISTS `pacientes` (
 --
 -- Estructura de tabla para la tabla `permisos`
 --
--- Creación: 11-10-2017 a las 17:34:31
--- Última actualización: 11-10-2017 a las 20:20:21
+-- Creación: 14-10-2017 a las 15:46:53
+-- Última actualización: 14-10-2017 a las 15:53:55
 --
 
 DROP TABLE IF EXISTS `permisos`;
@@ -153,29 +180,29 @@ CREATE TABLE IF NOT EXISTS `permisos` (
 --
 
 INSERT INTO `permisos` (`id`, `nombre`) VALUES
-(13, 'datos_demograficos_destroy'),
-(11, 'datos_demograficos_index'),
-(12, 'datos_demograficos_new'),
-(15, 'datos_demograficos_show'),
-(14, 'datos_demograficos_update'),
-(3, 'paciente_destroy'),
-(1, 'paciente_index'),
-(2, 'paciente_new'),
-(5, 'paciente_show'),
-(4, 'paciente_update'),
-(8, 'usuario_destroy'),
-(6, 'usuario_index'),
-(7, 'usuario_new'),
-(10, 'usuario_show'),
-(9, 'usuario_update');
+(10, 'paciente_destroy'),
+(6, 'paciente_index'),
+(8, 'paciente_new'),
+(7, 'paciente_show'),
+(9, 'paciente_update'),
+(15, 'rol_destroy'),
+(11, 'rol_index'),
+(13, 'rol_new'),
+(12, 'rol_show'),
+(14, 'rol_update'),
+(5, 'usuario_destroy'),
+(1, 'usuario_index'),
+(3, 'usuario_new'),
+(2, 'usuario_show'),
+(4, 'usuario_update');
 
 -- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `roles`
 --
--- Creación: 11-10-2017 a las 17:34:38
--- Última actualización: 11-10-2017 a las 20:16:06
+-- Creación: 14-10-2017 a las 15:46:53
+-- Última actualización: 14-10-2017 a las 15:46:54
 --
 
 DROP TABLE IF EXISTS `roles`;
@@ -200,8 +227,8 @@ INSERT INTO `roles` (`id`, `nombre`) VALUES
 --
 -- Estructura de tabla para la tabla `rol_tiene_permisos`
 --
--- Creación: 11-10-2017 a las 16:32:58
--- Última actualización: 11-10-2017 a las 20:28:45
+-- Creación: 14-10-2017 a las 15:47:01
+-- Última actualización: 14-10-2017 a las 15:56:06
 --
 
 DROP TABLE IF EXISTS `rol_tiene_permisos`;
@@ -217,37 +244,33 @@ CREATE TABLE IF NOT EXISTS `rol_tiene_permisos` (
 --
 
 INSERT INTO `rol_tiene_permisos` (`rol_id`, `permiso_id`) VALUES
-(1, 3),
 (1, 1),
-(2, 1),
-(2, 5),
-(2, 2),
-(3, 2),
-(2, 4),
-(3, 4),
-(3, 1),
-(3, 5),
-(1, 13),
-(1, 11),
-(3, 11),
-(3, 12),
-(3, 15),
-(3, 14),
-(2, 11),
-(2, 12),
-(2, 15),
-(2, 14),
-(1, 8),
+(1, 2),
+(1, 3),
+(1, 4),
+(1, 5),
 (1, 6),
-(1, 10),
-(1, 9);
+(1, 11),
+(1, 12),
+(1, 13),
+(1, 14),
+(1, 15),
+(2, 6),
+(2, 7),
+(2, 8),
+(2, 9),
+(3, 6),
+(3, 7),
+(3, 8),
+(3, 9);
 
 -- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `tipos_documento`
 --
--- Creación: 11-10-2017 a las 16:32:58
+-- Creación: 14-10-2017 a las 15:46:55
+-- Última actualización: 14-10-2017 a las 15:56:40
 --
 
 DROP TABLE IF EXISTS `tipos_documento`;
@@ -256,21 +279,25 @@ CREATE TABLE IF NOT EXISTS `tipos_documento` (
   `nombre` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `nombre` (`nombre`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `tipos_documento`
 --
 
 INSERT INTO `tipos_documento` (`id`, `nombre`) VALUES
-(1, 'DNI');
+(2, 'CI'),
+(1, 'DNI'),
+(4, 'LC'),
+(3, 'LI');
 
 -- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `tipo_agua`
 --
--- Creación: 11-10-2017 a las 17:34:56
+-- Creación: 14-10-2017 a las 15:46:55
+-- Última actualización: 14-10-2017 a las 15:57:04
 --
 
 DROP TABLE IF EXISTS `tipo_agua`;
@@ -279,14 +306,24 @@ CREATE TABLE IF NOT EXISTS `tipo_agua` (
   `nombre` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `nombre` (`nombre`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `tipo_agua`
+--
+
+INSERT INTO `tipo_agua` (`id`, `nombre`) VALUES
+(1, 'Corriente'),
+(3, 'No tiene'),
+(2, 'Pozo');
 
 -- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `tipo_calefaccion`
 --
--- Creación: 11-10-2017 a las 17:35:11
+-- Creación: 14-10-2017 a las 15:46:55
+-- Última actualización: 14-10-2017 a las 15:57:40
 --
 
 DROP TABLE IF EXISTS `tipo_calefaccion`;
@@ -295,14 +332,25 @@ CREATE TABLE IF NOT EXISTS `tipo_calefaccion` (
   `nombre` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `nombre` (`nombre`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `tipo_calefaccion`
+--
+
+INSERT INTO `tipo_calefaccion` (`id`, `nombre`) VALUES
+(2, 'Electrico'),
+(1, 'Gas'),
+(3, 'Leña'),
+(4, 'No tiene');
 
 -- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `tipo_vivienda`
 --
--- Creación: 11-10-2017 a las 17:35:18
+-- Creación: 14-10-2017 a las 15:46:56
+-- Última actualización: 14-10-2017 a las 15:59:02
 --
 
 DROP TABLE IF EXISTS `tipo_vivienda`;
@@ -311,15 +359,27 @@ CREATE TABLE IF NOT EXISTS `tipo_vivienda` (
   `nombre` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `nombre` (`nombre`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `tipo_vivienda`
+--
+
+INSERT INTO `tipo_vivienda` (`id`, `nombre`) VALUES
+(2, 'Casa unifamilar'),
+(3, 'Conventillo'),
+(4, 'Departamento duplex'),
+(1, 'Edificio de departamentos'),
+(6, 'P.H'),
+(5, 'Vivienda tipo triplex');
 
 -- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `usuarios`
 --
--- Creación: 11-10-2017 a las 16:32:58
--- Última actualización: 11-10-2017 a las 16:41:13
+-- Creación: 14-10-2017 a las 15:46:56
+-- Última actualización: 14-10-2017 a las 16:03:01
 --
 
 DROP TABLE IF EXISTS `usuarios`;
@@ -337,14 +397,24 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `usuarios`
+--
+
+INSERT INTO `usuarios` (`id`, `email`, `username`, `password`, `activo`, `created_at`, `updated_at`, `session`, `first_name`, `last_name`) VALUES
+(2, 'admin@admin.com', 'admin', '0b1c78bc8b5b71f6f49e0f29c36db73c', 1, '2017-10-14 12:59:36', '2017-10-14 12:59:36', 0, 'Señor', 'Administrador'),
+(3, 'recepcionista@hnrc.com', 'recepcionista', 'd1d038d9d63b86431fc00d944e1ac852', 1, '2017-10-14 13:00:24', '2017-10-14 13:00:24', 0, 'Señor', 'Recepcionista'),
+(4, 'pediatra@hnrg.com', 'pediatra', '10616abba48177479b2b2c7411eb4021', 1, '2017-10-14 13:00:59', '2017-10-14 13:00:59', 1508014981, 'Señor', 'Pediatra');
 
 -- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `usuario_tiene_roles`
 --
--- Creación: 11-10-2017 a las 16:32:58
+-- Creación: 14-10-2017 a las 15:47:02
+-- Última actualización: 14-10-2017 a las 16:02:27
 --
 
 DROP TABLE IF EXISTS `usuario_tiene_roles`;
@@ -356,8 +426,23 @@ CREATE TABLE IF NOT EXISTS `usuario_tiene_roles` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
+-- Volcado de datos para la tabla `usuario_tiene_roles`
+--
+
+INSERT INTO `usuario_tiene_roles` (`usuario_id`, `rol_id`) VALUES
+(2, 1),
+(4, 3),
+(3, 2);
+
+--
 -- Restricciones para tablas volcadas
 --
+
+--
+-- Filtros para la tabla `configuraciones`
+--
+ALTER TABLE `configuraciones`
+  ADD CONSTRAINT `configuraciones_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `controles_de_salud`
