@@ -47,14 +47,22 @@ class RolesController extends \App\Controller
     public function show($id)
     {
         $this->checkPermissions([ 'rol_show' ]);
+        $get = $this->get();
 
         Role::init();
+        $pageNumber = !$get['page'] ? $get['page'] : $get['page'] - 1;
+        $from = AMOUNT_PER_PAGE * (int) $pageNumber;
+
         $role = Role::find($id);
+        $permissions = $role->permissions();
 
         if ($role) {
             return $this->template->render('role/show.twig', [
                 'role' => $role,
-                'permissions' => $role->permissionsComplement()
+                'permissions' => $permissions ? array_slice($permissions, $from, AMOUNT_PER_PAGE) : [],
+                'page' => !$get['page'] ? 1 : $get['page'],
+                'last_page' => ceil(count($permissions) / AMOUNT_PER_PAGE),
+                'notPermissions' => $role->permissionsComplement()
             ]);
         }
 
