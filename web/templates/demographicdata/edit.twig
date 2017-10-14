@@ -39,7 +39,7 @@
       <div class="col col-sm col-xs">
         <div class="md-form">
           <label for="apartamentTypeId"></label>
-          <select class="form-control" class="required" id="edit_apartamentTypeId" name="apartamentTypeId">
+          <select class="form-control required" id="edit_apartamentTypeId" name="apartamentTypeId">
             <option value="" disabled="disabled">Tipo de Vivienda</option>
             {% for option in apartamentType %}
               <option {{demographic_data.apartamentTypeId == option.id ? "selected" : ""}} value="{{option.id}}">{{option.name}}</option>
