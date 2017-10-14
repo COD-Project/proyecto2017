@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: db
--- Tiempo de generación: 12-10-2017 a las 23:39:48
+-- Tiempo de generación: 14-10-2017 a las 15:01:59
 -- Versión del servidor: 5.7.19
 -- Versión de PHP: 7.0.21
 
@@ -29,34 +29,34 @@ USE `grupo5`;
 --
 
 INSERT INTO `obras_sociales` (`id`, `nombre`) VALUES
+(3, 'GALLENO'),
 (1, 'IOMA'),
-(2, 'OSECAC');
+(2, 'OSDE'),
+(7, 'OSECAC'),
+(6, 'OSPEPBA'),
+(4, 'OSPIC'),
+(5, 'PAMI');
 
 --
 -- Volcado de datos para la tabla `permisos`
 --
 
 INSERT INTO `permisos` (`id`, `nombre`) VALUES
-(13, 'datos_demograficos_destroy'),
-(11, 'datos_demograficos_index'),
-(12, 'datos_demograficos_new'),
-(15, 'datos_demograficos_show'),
-(14, 'datos_demograficos_update'),
-(3, 'paciente_destroy'),
-(1, 'paciente_index'),
-(2, 'paciente_new'),
-(5, 'paciente_show'),
-(4, 'paciente_update'),
-(19, 'rol_destroy'),
-(20, 'rol_index'),
-(16, 'rol_new'),
-(18, 'rol_show'),
-(17, 'rol_update'),
-(8, 'usuario_destroy'),
-(6, 'usuario_index'),
-(7, 'usuario_new'),
-(10, 'usuario_show'),
-(9, 'usuario_update');
+(10, 'paciente_destroy'),
+(6, 'paciente_index'),
+(8, 'paciente_new'),
+(7, 'paciente_show'),
+(9, 'paciente_update'),
+(15, 'rol_destroy'),
+(11, 'rol_index'),
+(13, 'rol_new'),
+(12, 'rol_show'),
+(14, 'rol_update'),
+(5, 'usuario_destroy'),
+(1, 'usuario_index'),
+(3, 'usuario_new'),
+(2, 'usuario_show'),
+(4, 'usuario_update');
 
 --
 -- Volcado de datos para la tabla `roles`
@@ -73,62 +73,83 @@ INSERT INTO `roles` (`id`, `nombre`) VALUES
 
 INSERT INTO `rol_tiene_permisos` (`rol_id`, `permiso_id`) VALUES
 (1, 1),
+(1, 2),
 (1, 3),
+(1, 4),
+(1, 5),
 (1, 6),
-(1, 8),
-(1, 9),
-(1, 10),
 (1, 11),
+(1, 12),
 (1, 13),
-(1, 16),
-(1, 17),
-(1, 18),
-(1, 19),
-(1, 20),
-(2, 1),
-(2, 2),
-(2, 4),
-(2, 5),
-(2, 11),
-(2, 12),
-(2, 14),
-(2, 15),
-(3, 1),
-(3, 2),
-(3, 4),
-(3, 5),
-(3, 11),
-(3, 12),
-(3, 14),
-(3, 15);
+(1, 14),
+(1, 15),
+(2, 6),
+(2, 7),
+(2, 8),
+(2, 9),
+(3, 6),
+(3, 7),
+(3, 8),
+(3, 9);
 
 --
 -- Volcado de datos para la tabla `tipos_documento`
 --
 
 INSERT INTO `tipos_documento` (`id`, `nombre`) VALUES
-(1, 'DNI');
+(2, 'CI'),
+(1, 'DNI'),
+(4, 'LC'),
+(3, 'LI');
 
 --
 -- Volcado de datos para la tabla `tipo_agua`
 --
 
 INSERT INTO `tipo_agua` (`id`, `nombre`) VALUES
-(1, 'Corriente');
+(1, 'Corriente'),
+(3, 'No tiene'),
+(2, 'Pozo');
 
 --
 -- Volcado de datos para la tabla `tipo_calefaccion`
 --
 
 INSERT INTO `tipo_calefaccion` (`id`, `nombre`) VALUES
-(1, 'Gas');
+(2, 'Eléctrico'),
+(1, 'Gas'),
+(3, 'Leña'),
+(4, 'No tiene');
 
 --
 -- Volcado de datos para la tabla `tipo_vivienda`
 --
 
 INSERT INTO `tipo_vivienda` (`id`, `nombre`) VALUES
-(1, 'Casa');
+(2, 'Casas unifamiliares'),
+(3, 'Conventillos'),
+(4, 'Departamento dúplex'),
+(1, 'Edificio de departamentos'),
+(6, 'P.H'),
+(5, 'Vivienda tipo tríplex');
+
+--
+-- Volcado de datos para la tabla `usuarios`
+--
+
+INSERT INTO `usuarios` (`id`, `email`, `username`, `password`, `activo`, `created_at`, `updated_at`, `session`, `first_name`, `last_name`) VALUES
+(1, 'admin@admin.com', 'admin', '0b1c78bc8b5b71f6f49e0f29c36db73c', 1, '2017-10-14 11:56:57', '2017-10-14 11:56:57', 0, 'Señor', 'Administrador'),
+(2, 'recepcionista@hnrc.com', 'recepcionista', 'd1d038d9d63b86431fc00d944e1ac852', 1, '2017-10-14 11:58:08', '2017-10-14 11:58:08', 0, 'Señor', 'Recepcionista'),
+(3, 'pediatra@hnrc.com', 'pediatra', '10616abba48177479b2b2c7411eb4021', 1, '2017-10-14 11:59:21', '2017-10-14 11:59:21', 0, 'Señor', 'Pediatra');
+
+--
+-- Volcado de datos para la tabla `usuario_tiene_roles`
+--
+
+INSERT INTO `usuario_tiene_roles` (`usuario_id`, `rol_id`) VALUES
+(1, 1),
+(2, 2),
+(3, 3);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
