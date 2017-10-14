@@ -2,6 +2,8 @@
 
 use Twig_Environment;
 use Twig_Loader_Filesystem;
+use App\Config;
+use App\Models\Setting;
 
 /**
  * @author Ulises J. Cornejo Fandos
@@ -21,6 +23,8 @@ class Controller extends \Mbh\Controller
     public function __construct($app = null, $sessionRules = [], $permissions = [])
     {
         parent::__construct($app);
+
+        $this->defineSettingConstants();
 
         /**
          * \Mbh\Router
@@ -75,6 +79,12 @@ class Controller extends \Mbh\Controller
         if ($sessionRules['logged'] && !$this->session->isLoggedIn()) {
             $this->redirect();
         }
+    }
+
+    protected function defineSettingConstants()
+    {
+        $settings = Setting::get([]);
+        Config::defineSettingConstants(!$settings ? $settings : $settings[count($settings) - 1]->data());
     }
 
     protected function checkRoles($roles = [])
