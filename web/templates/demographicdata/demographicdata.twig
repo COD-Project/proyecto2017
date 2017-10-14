@@ -12,6 +12,7 @@
           <thead class="mdb-color darken-3">
             <tr class="text-white">
               <th>Paciente</th>
+              <th>Tipo de Documento</th>
               <th>Documento</th>
               <th>Heladera</th>
               <th>Electricidad</th>
@@ -22,18 +23,19 @@
             </tr>
           </thead>
           <tbody>
-            {% for demographicElem in DemographicData %}
+            {% for demographicElem in demographicData %}
               <tr>
                 <td>
-                  <a href="patient/show/{{ demographicElem.patient.id }}">{{ demographicElem.patient.name }}</a>
+                  <a href="patient/show/{{ demographicElem.patient.id }}"> {{ demographicElem.patient.firstName }} {{ demographicElem.patient.lastName }} </a>
                 </td>
+                <td> {{ demographicElem.patient.documentType.name }} </td>
                 <td> {{ demographicElem.patient.documentNumber }} </td>
                 <td> {{ (demographicElem.refrigerator == "0")? "No":"Si"}} </td>
                 <td> {{ (demographicElem.electricity == "0")? "No":"Si"}} </td>
                 <td> {{ (demographicElem.pet == "0")? "No":"Si"}} </td>
-                <td> {{ demographicElem.apartamentType }}  </td>
-                <td> {{ demographicElem.heatingType }} </td>
-                <td> {{ demographicElem.waterType }} </td>
+                <td> {{ demographicElem.apartamentType.name }}  </td>
+                <td> {{ demographicElem.heatingType.name }} </td>
+                <td> {{ demographicElem.waterType.name }} </td>
               </tr>
             {% endfor %}
           </tbody>
