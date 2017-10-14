@@ -71,19 +71,19 @@
           {% for patient in patients %}
             <tbody>
               <tr>
-                <th>{{ patient.fullName }}</th>
-                <th>{{ patient.address }}</th>
-                <th>{{ patient.phone }}</th>
-                <th>{{ patient.gender }}</th>
-                <th>{{ patient.documentNumber }}</th>
-                <th>
+                <td>{{ patient.fullName }}</td>
+                <td>{{ patient.address }}</td>
+                <td>{{ patient.phone }}</td>
+                <td>{{ patient.gender }}</td>
+                <td>{{ patient.documentNumber }}</td>
+                <td>
                   <a href="patients/show/{{patient.id}}">
                     <span class="badge badge-info badge-pill">Ver/Editar</span>
                   </a>
                   <a href="patients/delete/{{patient.id}}">
                     <span class="badge badge-danger badge-pill">Eliminar</span>
                   </a>
-                </th>
+                </td>
               </tr>
             </tbody>
           {% endfor %}
