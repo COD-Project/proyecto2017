@@ -228,7 +228,7 @@
                     <div class="md-form mb-0 card-style-input">
                       <select class="form-control" id="documentTypeId" name="documentTypeId">
                         <option disabled>Tipo de documento</option>
-                        {% for option in documentsType %}
+                        {% for option in documentTypes %}
                           <option value="{{option.id}}" {{(patient.documentTypeId == option.id)? "selected"}}>{{option.name}}</option>
                         {% endfor %}
                       </select>
