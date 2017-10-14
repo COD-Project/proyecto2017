@@ -118,6 +118,25 @@ class User extends \App\Model
         return array_values($permissions);
     }
 
+    public function permissionsComplement()
+    {
+        Permission::init();
+        $permissions = $this->permissions();
+        $all_permissions = Permission::all();
+        return array_udiff($all_permissions, $permissions, function($x, $y){
+            $x_id = $x->id();
+            $y_id = $y->id();
+
+            if ($x_id < $y_id) {
+                return -1;
+            } elseif ($x_id > $y_id) {
+                return 1;
+            } else {
+                return 0;
+            }
+          });
+    }
+
     public function rolesAsStringArray()
     {
         $roles = [];

@@ -11,26 +11,96 @@
       {% include 'error/message.twig' %}
     </div>
     <h1 class="text-center"><strong>{{role.name}}</strong></h1>
-    <table class="table table-hover table-responsive w-auto">
-      <thead>
-        <tr>
-          <th>Nombre</th>
-          <th class="text-right">Acciones</th>
-        </tr>
-      </thead>
-      {% for permission in role.permissions %}
-        <tbody>
-          <tr>
-            <th>{{ permission.name }}</th>
-            <th class="text-right">
-              <a href="roles/delete/{{role.id}}/{{permission.name}}">
-                <span class="badge badge-danger badge-pill">Eliminar</span>
-              </a>
-            </th>
-          </tr>
-        </tbody>
-      {% endfor %}
-    </table>
+    <br>
+    <ul class="nav nav nav-pills nav-fill">
+      <li class="nav-item">
+        <a class="nav-link active" data-toggle="tab" href="#show" role="tab">Permisos</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#add" role="tab">Agregar permisos</a>
+      </li>
+    </ul>
+    <!-- Tab panels -->
+    <div class="tab-content">
+      <!--Panel 1-->
+      <div class="tab-pane fade in show active" id="show" role="tabpanel">
+        <!--Card-->
+        <div class="card card-cascade wider reverse my-4">
+
+          <!--Card content-->
+          <div class="card-body text-center">
+            <table class="table table-hover table-responsive w-auto">
+              <thead>
+                <tr>
+                  <th>Nombre</th>
+                  <th class="text-right">Acciones</th>
+                </tr>
+              </thead>
+              {% for permission in role.permissions %}
+                <tbody>
+                  <tr>
+                    <th>{{ permission.name }}</th>
+                    <th class="text-right">
+                      <a href="roles/delete/{{role.id}}/{{permission.name}}">
+                        <span class="badge badge-danger badge-pill">Eliminar</span>
+                      </a>
+                    </th>
+                  </tr>
+                </tbody>
+              {% endfor %}
+            </table>
+          </div>
+          <!--/.Card content-->
+        </div>
+        <!--/.Card-->
+      </div>
+      <!--/.Panel 1-->
+      <!--Panel 2-->
+      <div class="tab-pane fade" id="add" role="tabpanel">
+        <!--Card-->
+        <div class="card card-cascade wider reverse my-4">
+
+          <!--Card content-->
+          <div class="card-body text-center">
+            <form id="roles_edit_form" action="roles/edit/{{role.id}}" method="post">
+              <div class="form-row">
+                <div class="col-lg-12 col-sm-12">
+                  <p class="mb-0">
+                    <strong>Nombre</strong>
+                  </p>
+                  <div class="md-form mb-0 card-style-input">
+                    <input class="form-control text-center" type="text" name="name" value="{{role.name}}" placeholder="Nombre">
+                  </div>
+                </div>
+                <div class="col-lg-12 col-sm-12">
+                  <p class="mb-0">
+                    <strong>Obra Social</strong>
+                  </p>
+                  <div class="md-form">
+                    <label for="permissionsId"></label>
+                    <select class="form-control" id="permissionsId" name="permissionsId[]" multiple="">
+                      <option selected="true" value="default" disabled="disabled">Permisos</option>
+                      {% for option in permissions %}
+                        <option value="{{option.id}}">{{option.name}}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+                  <div class="text-center">
+                    <button id="edit_button" type="submit" class="btn btn-indigo" title="Agregar permisos">
+                      Agregar permisos
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+          <!--/.Card content-->
+
+        </div>
+        <!--/.Card-->
+      </div>
+      <!--/.Panel 2-->
+    </div>
     {% if role.permissions is empty %}
     <div class="alert alert-info alert-dismissible fade show" role="alert">
       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
