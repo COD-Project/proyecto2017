@@ -83,7 +83,7 @@ class Controller extends \Mbh\Controller
 
     protected function defineSettingConstants()
     {
-        $settings = Setting::get([]);
+        $settings = Setting::all();
         Config::defineSettingConstants(!$settings ? $settings : $settings[count($settings) - 1]->data());
     }
 
