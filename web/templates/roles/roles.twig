@@ -16,26 +16,26 @@
         <h3 class="text-center">Listado de roles</h3>
       </div>
       <!--/Card image-->
-      <div class="px-4">
+      <div class="card-body text-center">
         <table class="table table-hover table-responsive w-auto">
           <thead>
             <tr>
-              <th>Nombre</th>
-              <th class="text-right">Acciones</th>
+              <th class="col-10">Nombre</th>
+              <th class="col-2">Acciones</th>
             </tr>
           </thead>
           {% for role in roles %}
             <tbody>
               <tr>
-                <th>{{ role.name }}</th>
-                <th class="text-right">
+                <td class="col-10 text-left">{{ role.name }}</td>
+                <td class="col-2">
                   <a href="roles/show/{{role.id}}">
                     <span class="badge badge-info badge-pill">Ver/Editar</span>
                   </a>
                   <a href="roles/delete/{{role.id}}">
                     <span class="badge badge-danger badge-pill">Eliminar</span>
                   </a>
-                </th>
+                </td>
               </tr>
             </tbody>
           {% endfor %}
