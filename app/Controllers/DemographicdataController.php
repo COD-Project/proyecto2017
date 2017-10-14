@@ -30,8 +30,7 @@ class DemographicdataController extends \App\Controller
 
   public function render()
   {
-      $this->checkPermissions([ 'datos_demograficos_index' ]);
-      $this->checkPermissions([ 'paciente_show' ]);
+      $this->checkPermissions([ 'paciente_index' ]);
       $get = $this->get();
 
       DemographicData::init();
@@ -53,7 +52,7 @@ class DemographicdataController extends \App\Controller
 
   public function createDemographicdata($id = null)
   {
-      $this->checkPermissions([ 'datos_demograficos_new' ]);
+      $this->checkPermissions([ 'paciente_new' ]);
       try {
           $post = $this->post();
           DemographicData::init();
@@ -86,7 +85,7 @@ class DemographicdataController extends \App\Controller
 
   public function editDemographicdata($id)
   {
-      $this->checkPermissions([ 'datos_demograficos_update' ]);
+      $this->checkPermissions([ 'paciente_update' ]);
       $post = $this->post();
       $demographicData = DemographicData::find($id);
 
