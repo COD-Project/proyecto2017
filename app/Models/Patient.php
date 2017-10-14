@@ -33,7 +33,7 @@ class Patient extends \App\Model
           'documentTypeId' => $data['documentTypeId']
         ], 1);
         if (count($patients) > 0) {
-            throw new \Exception("El paciente ya existe - DNI duplicado");
+            throw new \Exception("El paciente ya existe - Número de documento y tipo de documento duplicado");
         }
 
         return parent::create($data);

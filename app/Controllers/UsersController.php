@@ -66,8 +66,10 @@ class UsersController extends \App\Controller
 
     public function show($username)
     {
-        if (!$this->session->isLoggedIn() &&
-                         $this->session->sessionInUse()->name() == $username) {
+        if (!(
+          $this->session->isLoggedIn()
+          && $this->session->sessionInUse()->name() == $username
+        )) {
             $this->checkPermissions([ 'usuario_show' ]);
         }
 
@@ -87,10 +89,10 @@ class UsersController extends \App\Controller
 
     public function edit($id)
     {
-        if (!
-            $this->session->isLoggedIn()
-            && $this->session->sessionInUse()->name() == $username
-        ) {
+        if (!(
+          $this->session->isLoggedIn()
+          && $this->session->sessionInUse()->name() == $username
+        )) {
             $this->checkPermissions([ 'usuario_update' ]);
         }
 
