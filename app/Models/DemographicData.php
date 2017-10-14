@@ -41,4 +41,14 @@ class DemographicData extends \App\Model
             return WaterType::find($this->waterTypeId());
         }
     }
+
+    function patient()
+    {
+        return Patient::findBy($this->id(), "demographicDataId")[0];
+    }
+
+    function isActive()
+    {
+        return (bool) $this->patient()->state();
+    }
 }
