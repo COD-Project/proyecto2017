@@ -33,7 +33,6 @@ class PatientsController extends \App\Controller
     {
         $this->checkPermissions([ 'usuario_index' ]);
         $get = $this->get();
-        #$post = $this->post();
 
         Patient::init();
         $patients = Patient::get([
@@ -67,7 +66,10 @@ class PatientsController extends \App\Controller
         $this->checkPermissions([ 'paciente_show' ]);
 
         Patient::init();
-        $patient = Patient::find($id);
+        $patient = Patient::get([
+            "id" => $id,
+            "state" => "1"
+        ])[0];
 
         if ($patient) {
             return $this->template->render('patient/show.twig', [
