@@ -27,7 +27,7 @@ class SettingsController extends \App\Controller
 
     public function edit()
     {
-        try {
+
             $post = $this->post();
 
             $data = json_decode($this->configFile->content(), true);
@@ -42,9 +42,7 @@ class SettingsController extends \App\Controller
 
             $this->configFile->write(json_encode($data));
 
-            $this->redirect("dashboard?success=true&message=La operación fué realizada con éxito.");
-        } catch (\Exception $e) {
-            $this->redirect("dashboard?success=false&message={$e->getMessage()}");
-        }
+
+
     }
 }
