@@ -31,6 +31,7 @@ class DemographicdataController extends \App\Controller
   public function render()
   {
       $this->checkPermissions([ 'datos_demograficos_index' ]);
+      $this->checkPermissions([ 'paciente_show' ]);
       $get = $this->get();
 
       DemographicData::init();
