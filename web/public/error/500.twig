@@ -36,10 +36,17 @@
         Lo sentimos, pero la página que busca se encuentra en mantenimiento actualmente.
         <br/>
         <div>
-          <a href="login">
-            <i class="fa fa-arrow-left"></i>
-            Iniciar Sesión
-          </a>
+          {% if owner_user %}
+            <a href="login">
+              Iniciar Sesión
+              <i class="fa fa-arrow-right"></i>
+            </a>
+          {% else %}
+            <a href="dashboard">
+              Dashboard
+              <i class="fa fa-arrow-right"></i>
+            </a>
+          {% endif %}
         </div>
       </div>
     </div>
