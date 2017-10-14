@@ -42,7 +42,7 @@
           <select class="form-control" class="required" id="edit_apartamentTypeId" name="apartamentTypeId">
             <option value="" disabled="disabled">Tipo de Vivienda</option>
             {% for option in apartamentType %}
-              <option {{demographic_data.apartamentTypeId == option.id ? "selected='true'" : ""}} value="{{option.id}}">{{option.name}}</option>
+              <option {{demographic_data.apartamentTypeId == option.id ? "selected" : ""}} value="{{option.id}}">{{option.name}}</option>
             {% endfor %}
           </select>
         </div>
@@ -52,10 +52,10 @@
       <div class="col col-sm col-xs">
         <div class="md-form">
           <label for="heatingTypeId"></label>
-          <select class="form-control" class="required" id="edit_heatingTypeId" name="heatingTypeId">
+          <select class="form-control required" id="edit_heatingTypeId" name="heatingTypeId">
             <option value="" disabled="disabled">Tipo de Calefacción</option>
             {% for option in heatingType %}
-              <option {{demographic_data.heatingTypeId == option.id ? "selected='true'" : ""}} value="{{option.id}}">{{option.name}}</option>
+              <option {{demographic_data.heatingTypeId == option.id ? "selected" : ""}} value="{{option.id}}">{{option.name}}</option>
             {% endfor %}
           </select>
         </div>
@@ -63,10 +63,10 @@
       <div class="col col-sm col-xs">
         <div class="md-form">
           <label for="waterTypeId"></label>
-          <select class="form-control" class="required" id="edit_waterTypeId" name="waterTypeId">
+          <select class="form-control required" id="edit_waterTypeId" name="waterTypeId">
             <option value="" disabled="disabled">Tipo de Agua</option>
             {% for option in waterType %}
-              <option {{demographic_data.waterTypeId == option.id ? "selected='true'" : ""}} value="{{option.id}}">{{option.name}}</option>
+              <option {{demographic_data.waterTypeId == option.id ? "selected" : ""}} value="{{option.id}}">{{option.name}}</option>
             {% endfor %}
           </select>
         </div>
