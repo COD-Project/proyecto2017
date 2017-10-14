@@ -76,11 +76,19 @@ class Config
         define('__ROOT__', static::$data['root']);
         define('URL', static::$data['url']);
         define('DEBUG', static::$data['debug']);
-        define('APP_NAME', static::$data['name']);
-        define('AMOUNT_PER_PAGE', static::$data['amount_per_page']);
-        define('MAINTENANCE', static::$data['maintenance']);
-        define('CONTACT', static::$data['contact']);
-        define('DESCRIPTION', static::$data['description']);
+    }
+
+    public static function defineSettingConstants($data = null)
+    {
+        if (!$data) {
+            $data = static::$data;
+        }
+
+        define('APP_NAME', $data['name']);
+        define('AMOUNT_PER_PAGE', $data['amount_per_page']);
+        define('MAINTENANCE', $data['maintenance']);
+        define('CONTACT', $data['contact']);
+        define('DESCRIPTION', $data['description']);
     }
 
     protected static function defineConstants()

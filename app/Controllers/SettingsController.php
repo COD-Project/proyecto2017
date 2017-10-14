@@ -1,6 +1,7 @@
 <?php namespace App\Controllers;
 
 use App\Storage\File;
+use App\Models\Setting;
 
 /**
  * @author Ulises J. Cornejo Fandos
@@ -9,9 +10,9 @@ class SettingsController extends \App\Controller
 {
     public function __construct($app)
     {
-        parent::__construct($app);
-
-        $this->configFile = new File("uploads/settings.json");
+        parent::__construct($app, [
+          'logged' => true
+        ]);
 
         $this->app->get('/settings', [ $this, 'notFound' ]);
         $this->app->get('/settings/:method', [ $this, 'notFound' ]);
@@ -30,17 +31,17 @@ class SettingsController extends \App\Controller
         try {
             $post = $this->post();
 
-            $data = json_decode($this->configFile->content(), true);
+            Setting::init();
 
-            $data = array_merge($data, [
-              'name' => $post['name'],
-              'description' => $post['description'],
-              'contact' => $post['contact'],
-              'amount_per_page' => $post['amount_per_page'],
-              'maintenance' => (bool) ($post['maintenance'] == 'on')
-          ]);
-
-            $this->configFile->write(json_encode($data));
+            Setting::create([
+                'appName' => $post['name'],
+                'description' => $post['description'],
+                'contact' => $post['contact'],
+                'amountPerPage' => $post['amount_per_page'],
+                'maintenance' => (string) (int) ($post['maintenance'] == 'on'),
+                'userId' => $this->session->sessionInUse()->id(),
+                'createdAt' => date("Y-m-d H:i:s")
+            ]);
 
             $this->redirect("dashboard?success=true&message=La operación fué realizada con éxito.");
         } catch (\Exception $e) {
