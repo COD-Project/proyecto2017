@@ -36,7 +36,7 @@
               <div class="md-form text-center">
                 <label for="documentTypeId"></label>
                 <select class="form-control" id="documentTypeId" name="documentTypeId">
-                  <option selected="true" disabled="disabled">Tipo de documento</option>
+                  <option selected disabled="disabled">Tipo de documento</option>
                   {% for option in documentTypes %}
                   <option value="{{option.id}}">{{option.name}}</option>
                   {% endfor %}
