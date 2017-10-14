@@ -49,17 +49,20 @@ Una muestra del archivo sería la siguiente:
 }
 ```
 
-## Preparación del archivo config
+## Preparación del archivo server
 
 Se debe modificar el archivo config.json, editando el campo _"url"_, quedando de
 la siguiente manera:
 
 ```json
 {
-  "root": "/",
-  "url": "https://grupo5.proyecto2017.linti.unlp.edu.ar"
+  "root": "\/",
+  "url": "https://grupo5.proyecto2017.linti.unlp.edu.ar",
+  "debug":  false
 }
 ```
+
+_Notar que el campo debug debe estar **Siempre** en false, salgo circunstancias extremas_
 
 ## Preparación del frameworb Mbh
 
