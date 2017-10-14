@@ -10,132 +10,142 @@
     <div id="patient_edit_response">
       {% include 'error/message.twig' %}
     </div>
-    <h3 class="text-center">Listado de pacientes</h3>
-    <!-- Search form -->
-    <form class="form" action="patients" method="get">
-      <div class="row">
-        <div class="col-5 col-sm-5 col-xs-5">
-          <div class="md-form">
-            <input class="form-control mr-sm-2" type="text" id="firstName" name="firstName" placeholder="" aria-label="Search">
-            <label for="firstName">Nombre</label>
+    <div class="card card-cascade narrower">
+      <!--Card image-->
+      <div class="view gradient-card-header purple-gradient narrower py-4 mx-4 mb-3 d-flex justify-content-center align-items-center">
+        <h3 class="text-center">Listado de pacientes</h3>
+      </div>
+      <!--/Card image-->
+      <div class="px-4">
+        <!-- Search form -->
+        <form class="form" action="patients" method="get">
+          <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+              <div class="md-form">
+                <input class="form-control mr-sm-2" type="text" id="firstName" name="firstName" placeholder="" aria-label="Search">
+                <label for="firstName">Nombre</label>
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+              <div class="md-form">
+                <input class="form-control mr-sm-2" type="text" id="lastName" name="lastName" placeholder="" aria-label="Search">
+                <label for="lastName">Apellido</label>
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+              <div class="md-form text-center">
+                <label for="documentTypeId"></label>
+                <select class="form-control" id="documentTypeId" name="documentTypeId">
+                  <option selected="true" disabled="disabled">Tipo de documento</option>
+                  {% for option in documentTypes %}
+                  <option value="{{option.id}}">{{option.name}}</option>
+                  {% endfor %}
+                </select>
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+              <div class="md-form">
+                <input class="form-control mr-sm-2" type="text" id="documentNumber" name="documentNumber" placeholder="" aria-label="Search">
+                <label for="documentNumber">Número de documento</label>
+              </div>
+            </div>
+            <div class="col-lg-12 col-sm-12 col-xs-12 text-center">
+              <button type="submit" class="btn btn-dark light-blue darken-3 btn-circle btn-lg" title="Buscar">
+                <i class="material-icons">search</i>
+              </button>
+            </div>
           </div>
-        </div>
-        <div class="col-5 col-sm-5 col-xs-5">
-          <div class="md-form">
-            <input class="form-control mr-sm-2" type="text" id="lastName" name="lastName" placeholder="" aria-label="Search">
-            <label for="lastName">Apellido</label>
-          </div>
-        </div>
-        <div class="col-5 col-sm-5 col-xs-5">
-          <div class="md-form text-center">
-            <label for="documentTypeId"></label>
-            <select class="form-control" id="documentTypeId" name="documentTypeId">
-              <option selected="true" disabled="disabled">Tipo de documento</option>
-              {% for option in documentsType %}
-              <option value="{{option.id}}">{{option.name}}</option>
-              {% endfor %}
-            </select>
-          </div>
-        </div>
-        <div class="col-5 col-sm-5 col-xs-5">
-          <div class="md-form">
-            <input class="form-control mr-sm-2" type="text" id="documentNumber" name="documentNumber" placeholder="" aria-label="Search">
-            <label for="documentNumber">Número de documento</label>
-          </div>
-        </div>
-        <div class="col-2 col-sm-2 col-xs-2 text-left">
-          <button type="submit" class="btn btn-dark light-blue darken-3 btn-circle btn-lg" title="Buscar">
-            <i class="material-icons">search</i>
+        </form>
+        <br>
+        <table class="table table-hover table-responsive w-auto">
+          <thead>
+            <tr>
+              <th>Nombre completo</th>
+              <th>Domicilio</th>
+              <th>Teléfono</th>
+              <th>Género</th>
+              <th>Número de Documento</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          {% for patient in patients %}
+            <tbody>
+              <tr>
+                <th>{{ patient.fullName }}</th>
+                <th>{{ patient.address }}</th>
+                <th>{{ patient.phone }}</th>
+                <th>{{ patient.gender }}</th>
+                <th>{{ patient.documentNumber }}</th>
+                <th>
+                  <a href="patients/show/{{patient.id}}">
+                    <span class="badge badge-info badge-pill">Ver/Editar</span>
+                  </a>
+                  <a href="patients/delete/{{patient.id}}">
+                    <span class="badge badge-danger badge-pill">Eliminar</span>
+                  </a>
+                </th>
+              </tr>
+            </tbody>
+          {% endfor %}
+        </table>
+        {% if patients is null %}
+        <div class="alert alert-info alert-dismissible fade show" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
           </button>
+          <p>
+            <small>
+              <strong>No hay pacientes cargados en el sistema.</strong>
+              Puede cargar un nuevo paciente <a href="patients/create">aquí</a>
+            </small>
+          </p>
+        </div>
+        {% endif %}
+        <div class="d-flex justify-content-center">
+          <!--Pagination -->
+          {% if patients is not empty %}
+            <nav class="my-4 pt-2">
+              <ul class="pagination pagination-circle pg-bluegrey mb-0">
+
+                <!--First-->
+                <li class="page-item {{ (1 == page) ? 'disabled' }} clearfix d-none d-md-block">
+                  <a class="page-link" href="{{location}}&page=1">First</a>
+                </li>
+
+                <!--Arrow left-->
+                <li class="page-item {{ (1 == page) ? 'disabled' }}">
+                  <a class="page-link" href="{{location}}&page={{ page - 1 }}" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                    <span class="sr-only">Previo</span>
+                  </a>
+                </li>
+
+                <!-- Numbers -->
+                {% for index in range(1, last_page) %}
+                  <li class="page-item {{ (index == page) ? 'active' }}">
+                    <a class="page-link" href="{{location}}&page={{index}}">{{ index }}</a>
+                  </li>
+                {% endfor %}
+
+                <!--Arrow right-->
+                <li class="page-item {{ (last_page == page) ? 'disabled' }}">
+                  <a class="page-link" href="{{location}}&page={{ page + 1 }}" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                    <span class="sr-only">Siguiente</span>
+                  </a>
+                </li>
+
+                <!--First-->
+                <li class="page-item {{ (last_page == page) ? 'disabled' }} clearfix d-none d-md-block">
+                  <a class="page-link" href="{{location}}&page={{ last_page }}">Last</a>
+                </li>
+
+              </ul>
+            </nav>
+          {% endif %}
+          <!--/Pagination -->
         </div>
       </div>
-    </form>
-
-    <table class="table table-hover table-responsive w-auto">
-      <thead>
-        <tr>
-          <th>Nombre completo</th>
-          <th>Domicilio</th>
-          <th>Teléfono</th>
-          <th>Género</th>
-          <th>Número de Documento</th>
-          <th>Acciones</th>
-        </tr>
-      </thead>
-      {% for patient in patients %}
-        <tbody>
-          <tr>
-            <th>{{ patient.fullName }}</th>
-            <th>{{ patient.address }}</th>
-            <th>{{ patient.phone }}</th>
-            <th>{{ patient.gender }}</th>
-            <th>{{ patient.documentNumber }}</th>
-            <th>
-              <a href="patients/show/{{patient.id}}">
-                <span class="badge badge-info badge-pill">Ver/Editar</span>
-              </a>
-              <a href="patients/delete/{{patient.id}}">
-                <span class="badge badge-danger badge-pill">Eliminar</span>
-              </a>
-            </th>
-          </tr>
-        </tbody>
-      {% endfor %}
-    </table>
-    {% if patients is null %}
-    <div class="alert alert-info alert-dismissible fade show" role="alert">
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-      <p>
-        <small>
-          <strong>No hay pacientes cargados en el sistema.</strong>
-          Puede cargar un nuevo paciente <a href="patients/create">aquí</a>
-        </small>
-      </p>
     </div>
-    {% endif %}
-    <!--Pagination -->
-    {% if patients is not empty %}
-      <nav class="my-4 pt-2">
-        <ul class="pagination pagination-circle pg-bluegrey mb-0">
-
-          <!--First-->
-          <li class="page-item {{ (1 == page) ? 'disabled' }} clearfix d-none d-md-block">
-            <a class="page-link" href="{{location}}&page=1">First</a>
-          </li>
-
-          <!--Arrow left-->
-          <li class="page-item {{ (1 == page) ? 'disabled' }}">
-            <a class="page-link" href="{{location}}&page={{ page - 1 }}" aria-label="Previous">
-              <span aria-hidden="true">&laquo;</span>
-              <span class="sr-only">Previo</span>
-            </a>
-          </li>
-
-          <!-- Numbers -->
-          {% for index in range(1, last_page) %}
-            <li class="page-item {{ (index == page) ? 'active' }}">
-              <a class="page-link" href="{{location}}&page={{index}}">{{ index }}</a>
-            </li>
-          {% endfor %}
-
-          <!--Arrow right-->
-          <li class="page-item {{ (last_page == page) ? 'disabled' }}">
-            <a class="page-link" href="{{location}}&page={{ page + 1 }}" aria-label="Next">
-              <span aria-hidden="true">&raquo;</span>
-              <span class="sr-only">Siguiente</span>
-            </a>
-          </li>
-
-          <!--First-->
-          <li class="page-item {{ (last_page == page) ? 'disabled' }} clearfix d-none d-md-block">
-            <a class="page-link" href="{{location}}&page={{ last_page }}">Last</a>
-          </li>
-
-        </ul>
-      </nav>
-    {% endif %}
-    <!--/Pagination -->
   </div>
 {% endblock %}
