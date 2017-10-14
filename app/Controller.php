@@ -46,7 +46,10 @@ class Controller extends \Mbh\Controller
         $this->template->addGlobal('app', [
             'url' => URL,
             'name' => APP_NAME,
-            'amount_per_page' => AMOUNT_PER_PAGE
+            'amount_per_page' => AMOUNT_PER_PAGE,
+            'description' => DESCRIPTION,
+            'maintenance' => MAINTENANCE,
+            'contact' => CONTACT
         ]);
 
         $get = $this->get();

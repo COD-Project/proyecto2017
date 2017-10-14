@@ -20,7 +20,7 @@ class RolesController extends \App\Controller
         $this->app->get('/roles/create', [ $this, 'add']);
         $this->app->post('/roles/create', [ $this, 'createRole' ]);
         $this->app->get('/roles/delete/:id', [ $this, 'delete' ]);
-        $this->app->get('/roles/delete/:id/:id_p', [ $this, 'deletePermission' ]);
+        $this->app->get('/roles/delete/:id/:permission_name', [ $this, 'deletePermission' ]);
 
         $this->app->router()->run();
     }
@@ -28,10 +28,18 @@ class RolesController extends \App\Controller
     public function render()
     {
         $this->checkPermissions([ 'rol_index' ]);
+        $get = $this->get();
 
         Role::init();
+        $pageNumber = !$get['page'] ? $get['page'] : $get['page'] - 1;
+        $from = AMOUNT_PER_PAGE * (int) $pageNumber;
+
+        $roles = Role::all();
+
         return $this->template->render('roles/roles.twig', [
-            'roles' => Role::all()
+            'roles' => $roles ? array_slice($roles, $from, AMOUNT_PER_PAGE) : [],
+            'page' => !$get['page'] ? 1 : $get['page'],
+            'last_page' => ceil(count($roles) / AMOUNT_PER_PAGE)
         ]);
     }
 
@@ -92,27 +100,31 @@ class RolesController extends \App\Controller
     public function delete($id)
     {
         $this->checkPermissions([ 'rol_destroy' ]);
-
-        Role::init();
-        $role = Role::find($id);
-        if ($role) {
-            $role->remove();
+        try {
+            Role::init();
+            $role = Role::find($id);
+            if ($role) {
+                $role->remove();
+            }
             $this->redirect("roles?success=true&message=La operación fue realizada con éxito");
-        } else {
-            $this->redirect("?success=false&message=La operación no fue realizada con éxito");
-        }
+          } catch (\Exception $e) {
+              $this->redirect("?success=false&message={$e->getMessage()}");
+          }
     }
 
-    public function deletePermission($id_role, $id_permission)
+    public function deletePermission($role_id, $permission)
     {
         $this->checkPermissions([ 'rol_destroy' ]);
-        Role::init();
-        $role = Role::find($id_role);
-        if ($role) {
-            $role->removePermission($id_permission);
-            $this->redirect("roles/show/{$id_role}?success=true&message=La operación fue realizada con éxito");
-        } else {
-            $this->redirect("?success=false&message=La operación no fue realizada con éxito");
+        try {
+            Role::init();
+            $role = Role::find($role_id);
+            $permission = Permission::findBy($permission, 'name')[0];
+            if ($role) {
+                $role->removePermission($permission);
+            }
+            $this->redirect("roles/show/{$role->id()}?success=true&message=La operación fue realizada con éxito");
+        } catch (\Exception $e) {
+            $this->redirect("?success=false&message={$e->getMessage()}");
         }
     }
 }

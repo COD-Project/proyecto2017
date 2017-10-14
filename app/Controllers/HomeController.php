@@ -9,6 +9,10 @@ class HomeController extends \App\Controller
     {
         parent::__construct($app);
 
+        if (MAINTENANCE) {
+            header('location:' . URL . 'error/500');
+        }
+
         echo $this->template->render('home/home.twig');
     }
 }

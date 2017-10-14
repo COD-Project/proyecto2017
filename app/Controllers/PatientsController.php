@@ -19,7 +19,7 @@ class PatientsController extends \App\Controller
           'logged' => true
         ]);
 
-        $this->app->get('/patients', [ $this, 'render' ]);
+        $this->app->map(['GET', 'POST'], '/patients', [ $this, 'render' ]);
         $this->app->get('/patients/show/:id', [ $this, 'show' ]);
         $this->app->get('/patients/create', [ $this, 'add' ]);
         $this->app->post('/patients/create', [ $this, 'createPatient' ]);
@@ -31,12 +31,27 @@ class PatientsController extends \App\Controller
 
     public function render()
     {
-        $this->checkPermissions([ 'paciente_index' ]);
+        $this->checkPermissions([ 'usuario_index' ]);
+        $get = $this->get();
+        $post = $this->post();
 
         Patient::init();
-        $patients = Patient::findBy(1, "state");
+        $patients = Patient::get([
+          "firstName" => $post['firstName'] == "" ? null : $post["firstName"],
+          "lastName" => $post['lastName'] == "" ? null : $post["lastName"],
+          "documentNumber" => $post['documentNumber'] == "" ? null : $post["documentNumber"],
+          "documentTypeId" => $post['documentTypeId'] == "" ? null : $post["documentTypeId"],
+          "state" => "1"
+        ]);
+        $pageNumber = !$get['page'] ? $get['page'] : $get['page'] - 1;
+        $from = AMOUNT_PER_PAGE * (int) $pageNumber;
+
         return $this->template->render('patients/patients.twig', [
-            'patients' => $patients
+            'patients' => $patients ? array_slice($patients, $from, AMOUNT_PER_PAGE) : [],
+            'page' => !$get['page'] ? 1 : $get['page'],
+            'last_page' => ceil(count($patients) / AMOUNT_PER_PAGE),
+            'location' => "patients/search/$field" . (!$value ? "" : "/$value"),
+            'documentsType' => DocumentType::all()
         ]);
     }
 

@@ -8,6 +8,8 @@
   <!-- -->
 {% endblock %}
 
+{% block app_message %}{% endblock %}
+
 {% block app_body %}
   <div id="wrapper" class="toggled">
     <!-- Sidebar -->
@@ -20,6 +22,20 @@
         </li>
         <li>
           <a href="#!">Inicio</a>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ owner_user.name }}
+            <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu" role="menu">
+            <li class="dropdown-header">Sesión</li>
+            <li>
+              <a href="users/show/{{ owner_user.name }}">Ver perfil</a>
+            </li>
+            <li>
+              <a href="logout">Cerrar Sesión</a>
+            </li>
+          </ul>
         </li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pacientes
@@ -52,20 +68,6 @@
             </li>
           </ul>
         </li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Permisos
-            <span class="caret"></span>
-          </a>
-          <ul class="dropdown-menu" role="menu">
-            <li class="dropdown-header">Opciones</li>
-            <li>
-              <a {{ 'permiso_index' not in permissions ? 'class="disabled"' }} href="permissions">Ver listado</a>
-            </li>
-            <li>
-              <a {{ 'permiso_new' not in permissions ? 'class="disabled"' }} href="permissions/create">Crear permiso</a>
-            </li>
-          </ul>
-        </li>
       </ul>
     </nav>
     <!-- /#sidebar-wrapper -->
@@ -80,7 +82,9 @@
       <div id="dashboard_container" class="container-fluid">
         <div class="row">
           <div class="col-lg-10 col-lg-offset-2">
-            <h1>Dashboard content</h1>
+            {% include 'error/message.twig' %}
+            <h1>Bienvenido
+              {{ owner_user.fullName}}</h1>
             <br>
             {% set analytics_data = {
               'users': users_count,
@@ -89,6 +93,65 @@
               'permissions': permissions_count
             } %}
             {% include 'analytics/analytics.twig' with analytics_data only %}
+            <hr>
+            <div class="text-center mt-4">
+              <h3>Configuración del sistema</h3>
+              <br>
+              <div id="settings_edit_response"></div>
+              <form id="settings_edit_form" action="settings/edit" method="post">
+                <div class="form-row">
+                  <div class="col-lg-3 col-xs-6">
+                    <p class="mb-0">
+                      <strong>Nombre</strong>
+                    </p>
+                    <div class="md-form mb-0 card-style-input">
+                      <input class="form-control text-center" type="text" name="name" value="{{ app.name }}" placeholder="Nombre">
+                    </div>
+                  </div>
+                  <div class="col-lg-3 col-xs-6">
+                    <p class="mb-0">
+                      <strong>Mail de contacto</strong>
+                    </p>
+                    <div class="md-form mb-0 card-style-input">
+                      <input class="form-control text-center" type="email" name="contact" value="{{ app.contact }}" placeholder="Cantidad por página">
+                    </div>
+                  </div>
+                  <div class="col-lg-3 col-xs-6">
+                    <p class="mb-0">
+                      <strong>Cantidad por página</strong>
+                    </p>
+                    <div class="md-form mb-0 card-style-input">
+                      <input class="form-control text-center" type="number" name="amount_per_page" value="{{ app.amount_per_page }}" placeholder="Cantidad por página">
+                    </div>
+                  </div>
+                  <div class="col-lg-3 col-xs-6">
+                    <p class="mb-0">
+                      <strong>Sitio en mantenimiento</strong>
+                    </p>
+                    <div class="md-form">
+                      <div class="checkbox">
+                        <input type="checkbox" {{ (app.maintenance) ? "checked" }} id="maintenance" name="maintenance">
+                        <label for="maintenance">Mantenimiento</label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-12 col-xs-6">
+                    <p class="mb-0">
+                      <strong>Descripción</strong>
+                    </p>
+                    <div class="md-form mb-0 card-style-input">
+                      <textarea type="text" id="description" name="description" class="md-textarea" style="min-height: 45px;">{{ app.description }}</textarea>
+                      <label for="description">Descripción</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="text-center mt-4">
+                  <button type="submit" class="btn btn-indigo" title="Editar configuración">
+                    Actualizar
+                  </button>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
       </div>
@@ -105,4 +168,7 @@
 
 {% block scripts %}
   <script src="web/assets/javascripts/components/dashboard/dashboard.js"></script>
+  {% if admin %}
+    <script src="web/assets/javascripts/components/dashboard/settings.js"></script>
+  {% endif %}
 {% endblock %}

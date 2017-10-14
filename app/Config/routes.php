@@ -7,6 +7,10 @@ $app->get('/', function ($app) {
     return new \App\Controllers\HomeController($app);
 }, [ $app ]);
 
+$app->get('/error/:code', function ($app, $code) {
+    return new \App\Controllers\ErrorController($app);
+}, [ $app ]);
+
 $app->map(['GET', 'POST'], '/:controller', function ($app, $controller) {
     return \App\Controller::create($controller, [$app]);
 }, [ $app ]);

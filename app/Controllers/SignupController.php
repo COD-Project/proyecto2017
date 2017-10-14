@@ -14,6 +14,10 @@ class SignupController extends \App\Controller
           'unlogged' => true
         ]);
 
+        if (MAINTENANCE) {
+            header('location:' . URL . 'error/500');
+        }
+
         $this->app->get('/signup', [ $this, 'render' ]);
 
         $this->app->post('/signup', [ $this, 'signup' ]);

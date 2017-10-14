@@ -30,16 +30,23 @@
       <div class="error-code m-b-10 m-t-20">500
         <i class="fa fa-warning"></i>
       </div>
-      <h3 class="font-bold">Internal Server Error.</h3>
+      <h3 class="font-bold">Internal Server Error</h3>
 
       <div class="error-desc">
         Lo sentimos, pero la página que busca se encuentra en mantenimiento actualmente.
         <br/>
         <div>
-          <a href="/">
-            <i class="fa fa-arrow-left"></i>
-            Volver a la página principal.
-          </a>
+          {% if owner_user %}
+            <a href="dashboard">
+              Dashboard
+              <i class="fa fa-arrow-right"></i>
+            </a>
+          {% else %}
+            <a href="login">
+              Iniciar Sesión
+              <i class="fa fa-arrow-right"></i>
+            </a>
+          {% endif %}
         </div>
       </div>
     </div>

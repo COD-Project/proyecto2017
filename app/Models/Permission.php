@@ -15,6 +15,4 @@ class Permission extends \App\Model
         "id" => "id",
         "name" => "nombre"
     ];
-
-
 }

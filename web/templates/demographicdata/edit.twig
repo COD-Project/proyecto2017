@@ -1,0 +1,81 @@
+{% extends 'modal/modal.twig' %}
+
+{% block modal_title %}
+  <i class="fa id-card-o">Editar Datos Demográficos</i>
+{% endblock %}
+
+{% block modal_body %}
+  <div id="edit_demographic_data_response"></div>
+  <form id="edit_demographic_data_form" action="demographicdata/create/patient/{{patient_id}}" method="post">
+    <div class="form-row">
+      <div class="col col-sm col-xs">
+        <div class="md-form">
+          <div class="checkbox">
+            <input type="checkbox" id="edit_refrigerator" name="refrigerator" {{demographic_data.refrigerator == "0" ? "" : "checked"}}>
+            <label for="refrigerator">Heladera</label>
+          </div>
+        </div>
+      </div>
+      <div class="col col-sm col-xs">
+        <div class="md-form">
+          <div class="checkbox">
+            <input type="checkbox" id="edit_electricity" name="electricity" {{demographic_data.electricity == "0" ? "" : "checked"}}>
+            <label for="electricity">Electricidad</label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col col-sm col-xs">
+
+        <div class="md-form">
+          <div class="checkbox">
+            <input type="checkbox" id="edit_pet" name="pet" {{demographic_data.pet == "0" ? "" : "checked"}}>
+            <label for="pet">Mascota</label>
+          </div>
+        </div>
+      </div>
+      <div class="col col-sm col-xs">
+        <div class="md-form">
+          <label for="apartamentTypeId"></label>
+          <select class="form-control" id="edit_apartamentTypeId" name="apartamentTypeId">
+            <option value="default" disabled="disabled">Tipo de Vivienda</option>
+            {% for option in apartamentType %}
+              <option {{demographic_data.apartamentTypeId == option.id ? "selected='true'" : ""}} value="{{option.id}}">{{option.name}}</option>
+            {% endfor %}
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="col col-sm col-xs">
+        <div class="md-form">
+          <label for="heatingTypeId"></label>
+          <select class="form-control" id="edit_heatingTypeId" name="heatingTypeId">
+            <option value="default" disabled="disabled">Tipo de Calefacción</option>
+            {% for option in heatingType %}
+              <option {{demographic_data.heatingTypeId == option.id ? "selected='true'" : ""}} value="{{option.id}}">{{option.name}}</option>
+            {% endfor %}
+          </select>
+        </div>
+      </div>
+      <div class="col col-sm col-xs">
+        <div class="md-form">
+          <label for="waterTypeId"></label>
+          <select class="form-control" id="edit_waterTypeId" name="waterTypeId">
+            <option value="default" disabled="disabled">Tipo de Agua</option>
+            {% for option in waterType %}
+              <option {{demographic_data.waterTypeId == option.id ? "selected='true'" : ""}} value="{{option.id}}">{{option.name}}</option>
+            {% endfor %}
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="text-center mt-1-half">
+      <button class="btn btn-info mb-2 waves-effect waves-light">Editar
+        <i class="fa fa-send ml-1"></i>
+      </button>
+    </div>
+  </form>
+{% endblock %}

@@ -21,7 +21,7 @@ class Config
         );
 
         $configjson = json_decode(
-          file_get_contents("uploads/config.json"),
+          file_get_contents("uploads/settings.json"),
           true
         );
 
@@ -78,6 +78,9 @@ class Config
         define('DEBUG', static::$data['debug']);
         define('APP_NAME', static::$data['name']);
         define('AMOUNT_PER_PAGE', static::$data['amount_per_page']);
+        define('MAINTENANCE', static::$data['maintenance']);
+        define('CONTACT', static::$data['contact']);
+        define('DESCRIPTION', static::$data['description']);
     }
 
     protected static function defineConstants()
