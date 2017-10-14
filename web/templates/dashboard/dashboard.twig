@@ -97,9 +97,10 @@
             <div class="text-center mt-4">
               <h3>Configuración del sistema</h3>
               <br>
+              <div id="settings_edit_response"></div>
               <form id="settings_edit_form" action="settings/edit" method="post">
                 <div class="form-row">
-                  <div class="col-lg-4 col-xs-6">
+                  <div class="col-lg-3 col-xs-6">
                     <p class="mb-0">
                       <strong>Nombre</strong>
                     </p>
@@ -107,7 +108,15 @@
                       <input class="form-control text-center" type="text" name="name" value="{{ app.name }}" placeholder="Nombre">
                     </div>
                   </div>
-                  <div class="col-lg-4 col-xs-6">
+                  <div class="col-lg-3 col-xs-6">
+                    <p class="mb-0">
+                      <strong>Mail de contacto</strong>
+                    </p>
+                    <div class="md-form mb-0 card-style-input">
+                      <input class="form-control text-center" type="email" name="contact" value="{{ app.contact }}" placeholder="Cantidad por página">
+                    </div>
+                  </div>
+                  <div class="col-lg-3 col-xs-6">
                     <p class="mb-0">
                       <strong>Cantidad por página</strong>
                     </p>
@@ -115,7 +124,7 @@
                       <input class="form-control text-center" type="number" name="amount_per_page" value="{{ app.amount_per_page }}" placeholder="Cantidad por página">
                     </div>
                   </div>
-                  <div class="col-lg-4 col-xs-6">
+                  <div class="col-lg-3 col-xs-6">
                     <p class="mb-0">
                       <strong>Sitio en mantenimiento</strong>
                     </p>
@@ -137,8 +146,8 @@
                   </div>
                 </div>
                 <div class="text-center mt-4">
-                  <button type="submit" class="btn btn-indigo" title="Editar Usuario">
-                    Editar usuario
+                  <button type="submit" class="btn btn-indigo" title="Editar configuración">
+                    Actualizar
                   </button>
                 </div>
               </form>
@@ -159,4 +168,7 @@
 
 {% block scripts %}
   <script src="web/assets/javascripts/components/dashboard/dashboard.js"></script>
+  {% if admin %}
+    <script src="web/assets/javascripts/components/dashboard/settings.js"></script>
+  {% endif %}
 {% endblock %}

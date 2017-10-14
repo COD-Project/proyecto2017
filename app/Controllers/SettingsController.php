@@ -35,6 +35,7 @@ class SettingsController extends \App\Controller
             $data = array_merge($data, [
               'name' => $post['name'],
               'description' => $post['description'],
+              'contact' => $post['contact'],
               'amount_per_page' => $post['amount_per_page'],
               'maintenance' => (bool) ($post['maintenance'] == 'on')
           ]);
