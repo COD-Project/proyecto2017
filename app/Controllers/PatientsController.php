@@ -57,7 +57,7 @@ class PatientsController extends \App\Controller
             'page' => !$get['page'] ? 1 : $get['page'],
             'last_page' => ceil(count($patients) / AMOUNT_PER_PAGE),
             'location' => $location,
-            'documentsType' => DocumentType::all()
+            'documentTypes' => DocumentType::all()
         ]);
     }
 
@@ -74,7 +74,7 @@ class PatientsController extends \App\Controller
         if ($patient) {
             return $this->template->render('patient/show.twig', [
                 'patient' => $patient,
-                'documentsType' => DocumentType::all(),
+                'documentTypes' => DocumentType::all(),
                 'socialWorks' => SocialWork::all(),
                 'heatingType' => HeatingType::all(),
                 'apartamentType' => ApartamentType::all(),
@@ -92,7 +92,7 @@ class PatientsController extends \App\Controller
 
         Patient::init();
         return $this->template->render('patient/create.twig', [
-            "documentsType" => DocumentType::all(),
+            "documentTypes" => DocumentType::all(),
             "socialWorks" => SocialWork::all()
         ]);
     }
@@ -104,6 +104,20 @@ class PatientsController extends \App\Controller
         try {
             $post = $this->post();
             Patient::init();
+            $patient = Patient::get([
+                "documentTypeId" => $post['documentTypeId'],
+                "documentNumber" => $post['documentNumber'],
+                "state" => "0"
+            ], 1);
+            if ($patient) {
+                $patient->addState([
+                    "state" => 1
+                ]);
+                $patient->edit();
+                $this->redirect("patients/show/{$patient->id()}?success=true&message=El paciente con número de documento {$patient->documentNumber()} y tipo de documento {$patient->documentType()->name()} fue reactivado. Puede editar su información aquí");
+                return;
+            }
+
             $patient = Patient::create([
                 'firstName' => $post['firstName'],
                 'lastName' => $post['lastName'],
