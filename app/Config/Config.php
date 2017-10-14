@@ -80,6 +80,7 @@ class Config
         define('AMOUNT_PER_PAGE', static::$data['amount_per_page']);
         define('MAINTENANCE', static::$data['maintenance']);
         define('CONTACT', static::$data['contact']);
+        define('DESCRIPTION', static::$data['description']);
     }
 
     protected static function defineConstants()

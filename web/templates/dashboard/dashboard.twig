@@ -8,6 +8,8 @@
   <!-- -->
 {% endblock %}
 
+{% block app_message %}{% endblock %}
+
 {% block app_body %}
   <div id="wrapper" class="toggled">
     <!-- Sidebar -->
@@ -80,6 +82,7 @@
       <div id="dashboard_container" class="container-fluid">
         <div class="row">
           <div class="col-lg-10 col-lg-offset-2">
+            {% include 'error/message.twig' %}
             <h1>Bienvenido
               {{ owner_user.fullName}}</h1>
             <br>
@@ -94,14 +97,14 @@
             <div class="text-center mt-4">
               <h3>Configuración del sistema</h3>
               <br>
-              <form id="user_edit_form" action="users/edit/{{user.id}}" method="post">
+              <form id="settings_edit_form" action="settings/edit" method="post">
                 <div class="form-row">
                   <div class="col-lg-4 col-xs-6">
                     <p class="mb-0">
                       <strong>Nombre</strong>
                     </p>
                     <div class="md-form mb-0 card-style-input">
-                      <input class="form-control text-center" type="text" name="name" value="{{app.name}}" placeholder="Nombre">
+                      <input class="form-control text-center" type="text" name="name" value="{{ app.name }}" placeholder="Nombre">
                     </div>
                   </div>
                   <div class="col-lg-4 col-xs-6">
@@ -118,7 +121,7 @@
                     </p>
                     <div class="md-form">
                       <div class="checkbox">
-                        <input type="checkbox" {{ manteinance == true ? 'checked="true"'}} id="maintenance" name="maintenance">
+                        <input type="checkbox" {{ (app.maintenance) ? "checked" }} id="maintenance" name="maintenance">
                         <label for="maintenance">Mantenimiento</label>
                       </div>
                     </div>
@@ -128,8 +131,8 @@
                       <strong>Descripción</strong>
                     </p>
                     <div class="md-form mb-0 card-style-input">
-                      <textarea type="text" id="description" name="description" class="md-textarea" style="height: 45px"></textarea>
-                      <label for="description">Descripción...</label>
+                      <textarea type="text" id="description" name="description" class="md-textarea" style="min-height: 45px;">{{ app.description }}</textarea>
+                      <label for="description">Descripción</label>
                     </div>
                   </div>
                 </div>

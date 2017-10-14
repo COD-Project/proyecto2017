@@ -15,6 +15,10 @@ class LoginController extends \App\Controller
           'unlogged' => true
         ]);
 
+        if (MAINTENANCE) {
+            header('location:' . URL . 'error/500');
+        }
+
         $this->app->get('/login', [ $this, 'render' ]);
 
         $this->app->post('/login', [ $this, 'login' ]);

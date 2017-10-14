@@ -11,11 +11,11 @@ class SettingsController extends \App\Controller
     {
         parent::__construct($app);
 
-        $this->configFile = new File("uploads/config.json");
+        $this->configFile = new File("uploads/settings.json");
 
         $this->app->get('/settings', [ $this, 'notFound' ]);
         $this->app->get('/settings/:method', [ $this, 'notFound' ]);
-        $this->app->post('/settings/edit', [ $this, 'edit' ]
+        $this->app->post('/settings/edit', [ $this, 'edit' ]);
 
         $this->app->router()->run();
     }
@@ -27,16 +27,23 @@ class SettingsController extends \App\Controller
 
     public function edit()
     {
-        $post = $this->post();
+        try {
+            $post = $this->post();
 
-        $data = json_encode($this->configFile->content(), true);
+            $data = json_decode($this->configFile->content(), true);
 
-        $data = array_merge($data, [
-            'name' => !$post['app_name'],
-            'amount_per_page' => $post['amount_per_page'],
-            'maintenance' => (bool) ($post['maintenance'] == 'on')
-        ]);
+            $data = array_merge($data, [
+              'name' => $post['name'],
+              'description' => $post['description'],
+              'amount_per_page' => $post['amount_per_page'],
+              'maintenance' => (bool) ($post['maintenance'] == 'on')
+          ]);
 
-        $this->configFile->write(json_decode($data));
+            $this->configFile->write(json_encode($data));
+
+            $this->redirect("dashboard?success=true&message=La operación fué realizada con éxito.");
+        } catch (\Exception $e) {
+            $this->redirect("dashboard?success=false&message={$e->getMessage()}");
+        }
     }
 }

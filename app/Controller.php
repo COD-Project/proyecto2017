@@ -10,16 +10,12 @@ class Controller extends \Mbh\Controller
 {
     public static function create($controller, $args)
     {
-        if (MAINTENANCE) {
-            header('location:' . URL . 'error/500');
-        } else {
-            $className = "\\App\\Controllers\\" . ucwords($controller) . "Controller";
-            if (class_exists($className)) {
-                return parent::create($className, $args);
-            }
-
-            header('location:' . URL . 'error');
+        $className = "\\App\\Controllers\\" . ucwords($controller) . "Controller";
+        if (class_exists($className)) {
+            return parent::create($className, $args);
         }
+
+        header('location:' . URL . 'error');
     }
 
     public function __construct($app = null, $sessionRules = [], $permissions = [])
@@ -52,7 +48,7 @@ class Controller extends \Mbh\Controller
             'name' => APP_NAME,
             'amount_per_page' => AMOUNT_PER_PAGE,
             'description' => DESCRIPTION,
-            'manteinance' => MANTEINANCE,
+            'maintenance' => MAINTENANCE,
             'contact' => CONTACT
         ]);
 

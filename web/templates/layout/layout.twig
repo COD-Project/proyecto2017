@@ -126,8 +126,7 @@
             <!--First column-->
             <div class="col-md-8">
               <h5 class="title mb-4 mt-3 font-bold">Sobre el hospital</h5>
-              <p>El Hospital Gutierrez de La Plata fue inaugurado el 6 de Agosto de 1954. En ese entonces, el hospital funcionaba solo en el área central del edificio, siendo que las dos alas anexas eran ocupadas por casas de admisión de menores.
-              </p>
+              <p>{{ app.description }}</p>
             </div>
             <!--/.First column-->
 
@@ -141,7 +140,8 @@
                   <a href="https://www.facebook.com/pages/Hospital-Zonal-de-Agudos-Dr-Ricardo-Guti%C3%A9rrez/143694942367566">Facebook</a>
                 </li>
                 <li>
-                  <a href="https://wego.here.com/directions/mylocation/e-eyJuYW1lIjoiSG9zcGl0YWwgWm9uYWwgZGUgQWd1ZG9zIFwiRHIuIFJpY2FyZG8gR3V0aVx1MDBlOXJyZXpcIiIsImFkZHJlc3MiOiJEaWFnLiAxMTQgeSAzOSwgTGEgUGxhdGEiLCJsYXRpdHVkZSI6LTM0Ljg5NTg4MjEwMzg3OSwibG9uZ2l0dWRlIjotNTcuOTQ4MDcwMTg5NjMxLCJwcm92aWRlck5hbWUiOiJmYWNlYm9vayIsInByb3ZpZGVySWQiOjE0MzY5NDk0MjM2NzU2Nn0=?map=-34.895882103879,-57.948070189631,15,normal&ref=facebook&link=addresses&fb_locale=es_ES">Como llegar</a>
+                  <a
+                    href="https://wego.here.com/directions/mylocation/e-eyJuYW1lIjoiSG9zcGl0YWwgWm9uYWwgZGUgQWd1ZG9zIFwiRHIuIFJpY2FyZG8gR3V0aVx1MDBlOXJyZXpcIiIsImFkZHJlc3MiOiJEaWFnLiAxMTQgeSAzOSwgTGEgUGxhdGEiLCJsYXRpdHVkZSI6LTM0Ljg5NTg4MjEwMzg3OSwibG9uZ2l0dWRlIjotNTcuOTQ4MDcwMTg5NjMxLCJwcm92aWRlck5hbWUiOiJmYWNlYm9vayIsInByb3ZpZGVySWQiOjE0MzY5NDk0MjM2NzU2Nn0=?map=-34.895882103879,-57.948070189631,15,normal&ref=facebook&link=addresses&fb_locale=es_ES">Como llegar</a>
                 </li>
                 <li>
                   <a href="callto:+54-0221-483-0171">Llamar a télefono</a>
@@ -170,18 +170,18 @@
           </div>
           <!--/.Call to action-->
         {% else %}
-        <!--Call to action-->
-        <div class="call-to-action">
-          <ul>
-            <li>
-              <h5 class="mb-1">Ir a sección de trabajo</h5>
-            </li>
-            <li>
-              <a href="dashboard" class="btn btn-danger btn-rounded waves-effect waves-light">Dashboard</a>
-            </li>
-          </ul>
-        </div>
-        <!--/.Call to action-->
+          <!--Call to action-->
+          <div class="call-to-action">
+            <ul>
+              <li>
+                <h5 class="mb-1">Ir a sección de trabajo</h5>
+              </li>
+              <li>
+                <a href="dashboard" class="btn btn-danger btn-rounded waves-effect waves-light">Dashboard</a>
+              </li>
+            </ul>
+          </div>
+          <!--/.Call to action-->
         {% endif %}
 
         <hr>
@@ -196,7 +196,9 @@
               </a>
             </li>
             <li>
-              <a class="btn-floating btn-circle btn-light-blue waves-effect waves-light" href="https://www.google.com.ar/maps/place/Hospital+Dr.+Ricardo+Guti%C3%A9rrez/@-34.8957026,-57.9479304,15z/data=!4m2!3m1!1s0x0:0xf673863d8a6bfd43?sa=X&ved=0ahUKEwj2n4bVhuzWAhUFipAKHTdsCesQ_BIIhQEwCg">
+              <a
+                class="btn-floating btn-circle btn-light-blue waves-effect waves-light"
+                href="https://www.google.com.ar/maps/place/Hospital+Dr.+Ricardo+Guti%C3%A9rrez/@-34.8957026,-57.9479304,15z/data=!4m2!3m1!1s0x0:0xf673863d8a6bfd43?sa=X&ved=0ahUKEwj2n4bVhuzWAhUFipAKHTdsCesQ_BIIhQEwCg">
                 <i class="fa fa-map-marker"></i>
               </a>
             </li>
@@ -213,7 +215,8 @@
         <!--Copyright-->
         <div class="footer-copyright">
           <div class="container-fluid">
-            © 2017 Copyright: {{app.name}}
+            © 2017 Copyright:
+            {{app.name}}
           </div>
         </div>
         <!--/.Copyright-->
