@@ -61,7 +61,7 @@
                     <option value="default" disabled="disabled">Roles</option>
                     {% for role in roles %}
                       {% set user_roles = user.rolesAsStringArray %}
-                      <option {{ role.name in user_roles ? 'selected="true"'}} value="{{ role.id }}">{{ role.name }}</option>
+                      <option {{ role.name in user_roles ? 'selected'}} value="{{ role.id }}">{{ role.name }}</option>
                     {% endfor %}
                   </select>
                 </div>
