@@ -7,13 +7,13 @@
       <div class="view gradient-card-header purple-gradient narrower py-4 mx-4 mb-3 d-flex justify-content-center align-items-center">
         <h4 class="font-bold font-up mb-0">Listado de Datos Demográficos</h4>
       </div>
+
+      <div class="px-4">
       <!--/Card image-->
         <table class="table table-hover table-responsive w-auto">
           <thead class="mdb-color darken-3">
             <tr class="text-white">
               <th>Paciente</th>
-              <th>Tipo de Documento</th>
-              <th>Documento</th>
               <th>Heladera</th>
               <th>Electricidad</th>
               <th>Mascota</th>
@@ -26,10 +26,8 @@
             {% for demographicElem in demographicData %}
               <tr>
                 <td>
-                  <a href="patient/show/{{ demographicElem.patient.id }}"> {{ demographicElem.patient.firstName }} {{ demographicElem.patient.lastName }} </a>
+                  <a href="patients/show/{{ demographicElem.patient.id }}"> {{ demographicElem.patient.firstName }} {{ demographicElem.patient.lastName }} </a>
                 </td>
-                <td> {{ demographicElem.patient.documentType.name }} </td>
-                <td> {{ demographicElem.patient.documentNumber }} </td>
                 <td> {{ (demographicElem.refrigerator == "0")? "No":"Si"}} </td>
                 <td> {{ (demographicElem.electricity == "0")? "No":"Si"}} </td>
                 <td> {{ (demographicElem.pet == "0")? "No":"Si"}} </td>
