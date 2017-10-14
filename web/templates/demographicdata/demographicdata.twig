@@ -9,7 +9,7 @@
       </div>
 
       <div class="px-4">
-      <!--/Card image-->
+        <!--/Card image-->
         <table class="table table-hover table-responsive w-auto">
           <thead class="mdb-color darken-3">
             <tr class="text-white">
@@ -24,17 +24,34 @@
           </thead>
           <tbody>
             {% for demographicElem in demographicData %}
-              <tr>
-                <td>
-                  <a href="patients/show/{{ demographicElem.patient.id }}"> {{ demographicElem.patient.firstName }} {{ demographicElem.patient.lastName }} </a>
-                </td>
-                <td> {{ (demographicElem.refrigerator == "0")? "No":"Si"}} </td>
-                <td> {{ (demographicElem.electricity == "0")? "No":"Si"}} </td>
-                <td> {{ (demographicElem.pet == "0")? "No":"Si"}} </td>
-                <td> {{ demographicElem.apartamentType.name }}  </td>
-                <td> {{ demographicElem.heatingType.name }} </td>
-                <td> {{ demographicElem.waterType.name }} </td>
-              </tr>
+              {% if demographicElem.patient.state %}
+                <tr>
+                  <td>
+                    <a href="patients/show/{{ demographicElem.patient.id }}">
+                      {{ demographicElem.patient.firstName }}
+                      {{ demographicElem.patient.lastName }}
+                    </a>
+                  </td>
+                  <td>
+                    {{ (demographicElem.refrigerator == "0")? "No":"Si"}}
+                  </td>
+                  <td>
+                    {{ (demographicElem.electricity == "0")? "No":"Si"}}
+                  </td>
+                  <td>
+                    {{ (demographicElem.pet == "0")? "No":"Si"}}
+                  </td>
+                  <td>
+                    {{ demographicElem.apartamentType.name }}
+                  </td>
+                  <td>
+                    {{ demographicElem.heatingType.name }}
+                  </td>
+                  <td>
+                    {{ demographicElem.waterType.name }}
+                  </td>
+                </tr>
+              {% endif %}
             {% endfor %}
           </tbody>
         </table>
