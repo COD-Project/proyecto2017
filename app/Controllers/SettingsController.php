@@ -11,7 +11,7 @@ class SettingsController extends \App\Controller
     {
         parent::__construct($app);
 
-        // $this->configFile = new File("uploads/settings.json");
+        $this->configFile = new File("uploads/settings.json");
 
         $this->app->get('/settings', [ $this, 'notFound' ]);
         $this->app->get('/settings/:method', [ $this, 'notFound' ]);
@@ -27,10 +27,10 @@ class SettingsController extends \App\Controller
 
     public function edit()
     {
-
+        try {
             $post = $this->post();
 
-            $data = json_decode(file_get_contents("uploads/settings.json"), true);
+            $data = json_decode($this->configFile->content(), true);
 
             $data = array_merge($data, [
               'name' => $post['name'],
@@ -40,9 +40,11 @@ class SettingsController extends \App\Controller
               'maintenance' => (bool) ($post['maintenance'] == 'on')
           ]);
 
-            file_put_contents("uploads/settings.json", json_encode($data));
+            $this->configFile->write(json_encode($data));
 
-
-
+            $this->redirect("dashboard?success=true&message=La operación fué realizada con éxito.");
+        } catch (\Exception $e) {
+            $this->redirect("dashboard?success=false&message={$e->getMessage()}");
+        }
     }
 }
