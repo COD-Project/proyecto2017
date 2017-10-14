@@ -31,7 +31,7 @@ class PatientsController extends \App\Controller
 
     public function render()
     {
-        $this->checkPermissions([ 'usuario_index' ]);
+        $this->checkPermissions([ 'paciente_index' ]);
         $get = $this->get();
 
         Patient::init();
