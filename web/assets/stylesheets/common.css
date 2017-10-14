@@ -3,6 +3,10 @@
   background: transparent;
 }
 
+table.table a {
+    color: #0275d8;
+}
+
 .home hr {
   margin-left: auto;
   margin-right: auto;
