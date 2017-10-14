@@ -11,7 +11,7 @@ class SettingsController extends \App\Controller
     {
         parent::__construct($app);
 
-        $this->configFile = new File("uploads/settings.json");
+        // $this->configFile = new File("uploads/settings.json");
 
         $this->app->get('/settings', [ $this, 'notFound' ]);
         $this->app->get('/settings/:method', [ $this, 'notFound' ]);
@@ -30,7 +30,7 @@ class SettingsController extends \App\Controller
 
             $post = $this->post();
 
-            $data = json_decode($this->configFile->content(), true);
+            $data = json_decode(file_get_contents("uploads/settings.json"), true);
 
             $data = array_merge($data, [
               'name' => $post['name'],
