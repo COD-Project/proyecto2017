@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: db
--- Tiempo de generación: 14-10-2017 a las 15:01:34
+-- Tiempo de generación: 14-10-2017 a las 16:03:37
 -- Versión del servidor: 5.7.19
 -- Versión de PHP: 7.0.21
 
@@ -29,7 +29,7 @@ USE `grupo5`;
 --
 -- Estructura de tabla para la tabla `configuraciones`
 --
--- Creación: 14-10-2017 a las 14:55:01
+-- Creación: 14-10-2017 a las 15:46:57
 --
 
 DROP TABLE IF EXISTS `configuraciones`;
@@ -44,14 +44,14 @@ CREATE TABLE IF NOT EXISTS `configuraciones` (
   `created_at` datetime NOT NULL,
   PRIMARY KEY (`id`),
   KEY `usuario_id` (`usuario_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `controles_de_salud`
 --
--- Creación: 14-10-2017 a las 14:51:33
+-- Creación: 14-10-2017 a las 15:46:58
 --
 
 DROP TABLE IF EXISTS `controles_de_salud`;
@@ -82,7 +82,7 @@ CREATE TABLE IF NOT EXISTS `controles_de_salud` (
 --
 -- Estructura de tabla para la tabla `datos_demograficos`
 --
--- Creación: 14-10-2017 a las 14:55:09
+-- Creación: 14-10-2017 a las 15:46:59
 --
 
 DROP TABLE IF EXISTS `datos_demograficos`;
@@ -105,8 +105,8 @@ CREATE TABLE IF NOT EXISTS `datos_demograficos` (
 --
 -- Estructura de tabla para la tabla `obras_sociales`
 --
--- Creación: 14-10-2017 a las 14:55:16
--- Última actualización: 14-10-2017 a las 14:54:34
+-- Creación: 14-10-2017 a las 15:46:52
+-- Última actualización: 14-10-2017 a las 15:48:13
 --
 
 DROP TABLE IF EXISTS `obras_sociales`;
@@ -124,18 +124,18 @@ CREATE TABLE IF NOT EXISTS `obras_sociales` (
 INSERT INTO `obras_sociales` (`id`, `nombre`) VALUES
 (3, 'GALLENO'),
 (1, 'IOMA'),
-(2, 'OSDE'),
-(7, 'OSECAC'),
-(6, 'OSPEPBA'),
-(4, 'OSPIC'),
-(5, 'PAMI');
+(4, 'OSDE'),
+(2, 'OSECAC'),
+(5, 'OSPEPBA'),
+(6, 'OSPIC'),
+(7, 'PAMI');
 
 -- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `pacientes`
 --
--- Creación: 14-10-2017 a las 14:55:37
+-- Creación: 14-10-2017 a las 15:47:00
 --
 
 DROP TABLE IF EXISTS `pacientes`;
@@ -156,15 +156,15 @@ CREATE TABLE IF NOT EXISTS `pacientes` (
   KEY `tipo_doc_id` (`tipo_doc_id`),
   KEY `datos_demograficos_id` (`datos_demograficos_id`),
   KEY `obra_social_id` (`obra_social_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `permisos`
 --
--- Creación: 14-10-2017 a las 14:55:46
--- Última actualización: 14-10-2017 a las 14:51:48
+-- Creación: 14-10-2017 a las 15:46:53
+-- Última actualización: 14-10-2017 a las 15:53:55
 --
 
 DROP TABLE IF EXISTS `permisos`;
@@ -201,8 +201,8 @@ INSERT INTO `permisos` (`id`, `nombre`) VALUES
 --
 -- Estructura de tabla para la tabla `roles`
 --
--- Creación: 14-10-2017 a las 14:55:53
--- Última actualización: 14-10-2017 a las 14:51:48
+-- Creación: 14-10-2017 a las 15:46:53
+-- Última actualización: 14-10-2017 a las 15:46:54
 --
 
 DROP TABLE IF EXISTS `roles`;
@@ -227,15 +227,14 @@ INSERT INTO `roles` (`id`, `nombre`) VALUES
 --
 -- Estructura de tabla para la tabla `rol_tiene_permisos`
 --
--- Creación: 14-10-2017 a las 14:51:35
--- Última actualización: 14-10-2017 a las 14:51:48
+-- Creación: 14-10-2017 a las 15:47:01
+-- Última actualización: 14-10-2017 a las 15:56:06
 --
 
 DROP TABLE IF EXISTS `rol_tiene_permisos`;
 CREATE TABLE IF NOT EXISTS `rol_tiene_permisos` (
   `rol_id` int(11) NOT NULL,
   `permiso_id` int(11) NOT NULL,
-  UNIQUE KEY `rol_id_2` (`rol_id`,`permiso_id`),
   KEY `rol_id` (`rol_id`),
   KEY `permiso_id` (`permiso_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -270,8 +269,8 @@ INSERT INTO `rol_tiene_permisos` (`rol_id`, `permiso_id`) VALUES
 --
 -- Estructura de tabla para la tabla `tipos_documento`
 --
--- Creación: 14-10-2017 a las 14:51:29
--- Última actualización: 14-10-2017 a las 14:51:48
+-- Creación: 14-10-2017 a las 15:46:55
+-- Última actualización: 14-10-2017 a las 15:56:40
 --
 
 DROP TABLE IF EXISTS `tipos_documento`;
@@ -297,8 +296,8 @@ INSERT INTO `tipos_documento` (`id`, `nombre`) VALUES
 --
 -- Estructura de tabla para la tabla `tipo_agua`
 --
--- Creación: 14-10-2017 a las 14:51:30
--- Última actualización: 14-10-2017 a las 14:51:48
+-- Creación: 14-10-2017 a las 15:46:55
+-- Última actualización: 14-10-2017 a las 15:57:04
 --
 
 DROP TABLE IF EXISTS `tipo_agua`;
@@ -323,8 +322,8 @@ INSERT INTO `tipo_agua` (`id`, `nombre`) VALUES
 --
 -- Estructura de tabla para la tabla `tipo_calefaccion`
 --
--- Creación: 14-10-2017 a las 14:51:30
--- Última actualización: 14-10-2017 a las 14:51:48
+-- Creación: 14-10-2017 a las 15:46:55
+-- Última actualización: 14-10-2017 a las 15:57:40
 --
 
 DROP TABLE IF EXISTS `tipo_calefaccion`;
@@ -340,7 +339,7 @@ CREATE TABLE IF NOT EXISTS `tipo_calefaccion` (
 --
 
 INSERT INTO `tipo_calefaccion` (`id`, `nombre`) VALUES
-(2, 'Eléctrico'),
+(2, 'Electrico'),
 (1, 'Gas'),
 (3, 'Leña'),
 (4, 'No tiene');
@@ -350,8 +349,8 @@ INSERT INTO `tipo_calefaccion` (`id`, `nombre`) VALUES
 --
 -- Estructura de tabla para la tabla `tipo_vivienda`
 --
--- Creación: 14-10-2017 a las 14:51:30
--- Última actualización: 14-10-2017 a las 14:51:48
+-- Creación: 14-10-2017 a las 15:46:56
+-- Última actualización: 14-10-2017 a las 15:59:02
 --
 
 DROP TABLE IF EXISTS `tipo_vivienda`;
@@ -367,20 +366,20 @@ CREATE TABLE IF NOT EXISTS `tipo_vivienda` (
 --
 
 INSERT INTO `tipo_vivienda` (`id`, `nombre`) VALUES
-(2, 'Casas unifamiliares'),
-(3, 'Conventillos'),
-(4, 'Departamento dúplex'),
+(2, 'Casa unifamilar'),
+(3, 'Conventillo'),
+(4, 'Departamento duplex'),
 (1, 'Edificio de departamentos'),
 (6, 'P.H'),
-(5, 'Vivienda tipo tríplex');
+(5, 'Vivienda tipo triplex');
 
 -- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `usuarios`
 --
--- Creación: 14-10-2017 a las 14:56:32
--- Última actualización: 14-10-2017 a las 15:01:16
+-- Creación: 14-10-2017 a las 15:46:56
+-- Última actualización: 14-10-2017 a las 16:03:01
 --
 
 DROP TABLE IF EXISTS `usuarios`;
@@ -398,31 +397,30 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `usuarios`
 --
 
 INSERT INTO `usuarios` (`id`, `email`, `username`, `password`, `activo`, `created_at`, `updated_at`, `session`, `first_name`, `last_name`) VALUES
-(1, 'admin@admin.com', 'admin', '0b1c78bc8b5b71f6f49e0f29c36db73c', 1, '2017-10-14 11:56:57', '2017-10-14 11:56:57', 0, 'Señor', 'Administrador'),
-(2, 'recepcionista@hnrc.com', 'recepcionista', 'd1d038d9d63b86431fc00d944e1ac852', 1, '2017-10-14 11:58:08', '2017-10-14 11:58:08', 0, 'Señor', 'Recepcionista'),
-(3, 'pediatra@hnrc.com', 'pediatra', '10616abba48177479b2b2c7411eb4021', 1, '2017-10-14 11:59:21', '2017-10-14 11:59:21', 0, 'Señor', 'Pediatra');
+(2, 'admin@admin.com', 'admin', '0b1c78bc8b5b71f6f49e0f29c36db73c', 1, '2017-10-14 12:59:36', '2017-10-14 12:59:36', 0, 'Señor', 'Administrador'),
+(3, 'recepcionista@hnrc.com', 'recepcionista', 'd1d038d9d63b86431fc00d944e1ac852', 1, '2017-10-14 13:00:24', '2017-10-14 13:00:24', 0, 'Señor', 'Recepcionista'),
+(4, 'pediatra@hnrg.com', 'pediatra', '10616abba48177479b2b2c7411eb4021', 1, '2017-10-14 13:00:59', '2017-10-14 13:00:59', 1508014981, 'Señor', 'Pediatra');
 
 -- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `usuario_tiene_roles`
 --
--- Creación: 14-10-2017 a las 14:51:36
--- Última actualización: 14-10-2017 a las 15:00:58
+-- Creación: 14-10-2017 a las 15:47:02
+-- Última actualización: 14-10-2017 a las 16:02:27
 --
 
 DROP TABLE IF EXISTS `usuario_tiene_roles`;
 CREATE TABLE IF NOT EXISTS `usuario_tiene_roles` (
   `usuario_id` int(11) NOT NULL,
   `rol_id` int(11) NOT NULL,
-  UNIQUE KEY `usuario_id_2` (`usuario_id`,`rol_id`),
   KEY `usuario_id` (`usuario_id`),
   KEY `rol_id` (`rol_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -432,9 +430,9 @@ CREATE TABLE IF NOT EXISTS `usuario_tiene_roles` (
 --
 
 INSERT INTO `usuario_tiene_roles` (`usuario_id`, `rol_id`) VALUES
-(1, 1),
-(2, 2),
-(3, 3);
+(2, 1),
+(4, 3),
+(3, 2);
 
 --
 -- Restricciones para tablas volcadas

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: db
--- Tiempo de generación: 14-10-2017 a las 15:01:59
+-- Tiempo de generación: 14-10-2017 a las 16:04:20
 -- Versión del servidor: 5.7.19
 -- Versión de PHP: 7.0.21
 
@@ -31,11 +31,11 @@ USE `grupo5`;
 INSERT INTO `obras_sociales` (`id`, `nombre`) VALUES
 (3, 'GALLENO'),
 (1, 'IOMA'),
-(2, 'OSDE'),
-(7, 'OSECAC'),
-(6, 'OSPEPBA'),
-(4, 'OSPIC'),
-(5, 'PAMI');
+(4, 'OSDE'),
+(2, 'OSECAC'),
+(5, 'OSPEPBA'),
+(6, 'OSPIC'),
+(7, 'PAMI');
 
 --
 -- Volcado de datos para la tabla `permisos`
@@ -116,7 +116,7 @@ INSERT INTO `tipo_agua` (`id`, `nombre`) VALUES
 --
 
 INSERT INTO `tipo_calefaccion` (`id`, `nombre`) VALUES
-(2, 'Eléctrico'),
+(2, 'Electrico'),
 (1, 'Gas'),
 (3, 'Leña'),
 (4, 'No tiene');
@@ -126,30 +126,30 @@ INSERT INTO `tipo_calefaccion` (`id`, `nombre`) VALUES
 --
 
 INSERT INTO `tipo_vivienda` (`id`, `nombre`) VALUES
-(2, 'Casas unifamiliares'),
-(3, 'Conventillos'),
-(4, 'Departamento dúplex'),
+(2, 'Casa unifamilar'),
+(3, 'Conventillo'),
+(4, 'Departamento duplex'),
 (1, 'Edificio de departamentos'),
 (6, 'P.H'),
-(5, 'Vivienda tipo tríplex');
+(5, 'Vivienda tipo triplex');
 
 --
 -- Volcado de datos para la tabla `usuarios`
 --
 
 INSERT INTO `usuarios` (`id`, `email`, `username`, `password`, `activo`, `created_at`, `updated_at`, `session`, `first_name`, `last_name`) VALUES
-(1, 'admin@admin.com', 'admin', '0b1c78bc8b5b71f6f49e0f29c36db73c', 1, '2017-10-14 11:56:57', '2017-10-14 11:56:57', 0, 'Señor', 'Administrador'),
-(2, 'recepcionista@hnrc.com', 'recepcionista', 'd1d038d9d63b86431fc00d944e1ac852', 1, '2017-10-14 11:58:08', '2017-10-14 11:58:08', 0, 'Señor', 'Recepcionista'),
-(3, 'pediatra@hnrc.com', 'pediatra', '10616abba48177479b2b2c7411eb4021', 1, '2017-10-14 11:59:21', '2017-10-14 11:59:21', 0, 'Señor', 'Pediatra');
+(2, 'admin@admin.com', 'admin', '0b1c78bc8b5b71f6f49e0f29c36db73c', 1, '2017-10-14 12:59:36', '2017-10-14 12:59:36', 0, 'Señor', 'Administrador'),
+(3, 'recepcionista@hnrc.com', 'recepcionista', 'd1d038d9d63b86431fc00d944e1ac852', 1, '2017-10-14 13:00:24', '2017-10-14 13:00:24', 0, 'Señor', 'Recepcionista'),
+(4, 'pediatra@hnrg.com', 'pediatra', '10616abba48177479b2b2c7411eb4021', 1, '2017-10-14 13:00:59', '2017-10-14 13:00:59', 1508014981, 'Señor', 'Pediatra');
 
 --
 -- Volcado de datos para la tabla `usuario_tiene_roles`
 --
 
 INSERT INTO `usuario_tiene_roles` (`usuario_id`, `rol_id`) VALUES
-(1, 1),
-(2, 2),
-(3, 3);
+(2, 1),
+(4, 3),
+(3, 2);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
