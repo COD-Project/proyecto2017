@@ -38,7 +38,7 @@ class DemographicdataController extends \App\Controller
 
       if (count($demographicData) > 0) {
           $demographicData = array_filter($demographicData, function($each) {
-              return (bool) $each->patient()->state();
+              return $each->patient()? (bool) $each->patient()->state : false;
           });
       }
 
