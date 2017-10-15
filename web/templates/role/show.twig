@@ -20,15 +20,17 @@
         <a class="nav-link" data-toggle="tab" href="#add" role="tab">Editar</a>
       </li>
     </ul>
+
     <!-- Tab panels -->
     <div class="tab-content">
+
       <!--Panel 1-->
       <div class="tab-pane fade in show active" id="show" role="tabpanel">
         <!--Card-->
         <div class="card card-cascade wider reverse my-4">
 
           <!--Card content-->
-          <div class="px-4">
+          <div class="card-body text-center">
             <table class="table table-hover table-responsive w-auto">
               <thead>
                 <tr>
@@ -71,9 +73,9 @@
 
                     <!-- Numbers -->
                     {% for index in range(1, last_page) %}
-                      <li class="page-item {{ (index == page) ? 'active' }}">
-                        <a class="page-link" href="roles/show/{{role.id}}?page={{ index }}">{{ index }}</a>
-                      </li>
+                    <li class="page-item {{ (index == page) ? 'active' }}">
+                      <a class="page-link" href="roles/show/{{role.id}}?page={{ index }}">{{ index }}</a>
+                    </li>
                     {% endfor %}
 
                     <!--Arrow right-->
@@ -101,6 +103,7 @@
         <!--/.Card-->
       </div>
       <!--/.Panel 1-->
+
       <!--Panel 2-->
       <div class="tab-pane fade" id="add" role="tabpanel">
         <!--Card-->
@@ -108,19 +111,19 @@
 
           <!--Card content-->
           <div class="card-body text-center">
-            <form id="roles_edit_form" action="roles/edit/{{role.id}}" method="post">
+            <form id="role_edit_form" action="roles/edit/{{role.id}}" method="post">
               <div class="form-row">
                 <div class="col-lg-12 col-sm-12">
                   <p class="mb-0">
                     <strong>Nombre</strong>
                   </p>
                   <div class="md-form mb-0 card-style-input">
-                    <input class="form-control text-center" type="text" name="name" value="{{role.name}}" placeholder="Nombre">
+                    <input class="form-control text-center" id="name" type="text" name="name" value="{{role.name}}" placeholder="Nombre">
                   </div>
                 </div>
                 <div class="col-lg-12 col-sm-12">
                   <p class="mb-0">
-                    <strong>Obra Social</strong>
+                    <strong>Permisos</strong>
                   </p>
                   <div class="md-form">
                     <label for="permissionsId"></label>
@@ -162,4 +165,8 @@
     {% endif %}
     <hr>
   </div>
+{% endblock %}
+
+{% block scripts %}
+  <script src="web/assets/javascripts/components/role/edit.js"></script>
 {% endblock %}
