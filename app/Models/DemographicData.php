@@ -44,7 +44,8 @@ class DemographicData extends \App\Model
 
     function patient()
     {
-        return Patient::findBy($this->id(), "demographicDataId")[0];
+        $patient = Patient::findBy($this->id(), "demographicDataId");
+        return $patient? $patient[0] : null;
     }
 
     function isActive()
