@@ -36,6 +36,12 @@ class DemographicdataController extends \App\Controller
       DemographicData::init();
       $demographicData = DemographicData::all();
 
+      if (count($demographicData) > 0) {
+          $demographicData = array_filter($demographicData, function($each) {
+              return (bool) $each->patient()->state();
+          });
+      }
+
       $pageNumber = !$get['page'] ? $get['page'] : $get['page'] - 1;
       $from = AMOUNT_PER_PAGE * (int) $pageNumber;
 
