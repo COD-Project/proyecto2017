@@ -39,14 +39,10 @@ class DemographicdataController extends \App\Controller
       $pageNumber = !$get['page'] ? $get['page'] : $get['page'] - 1;
       $from = AMOUNT_PER_PAGE * (int) $pageNumber;
 
-      $location = "demographicdata?";
-      $location .= "search=true";
-
       return $this->template->render('demographicdata/demographicdata.twig', [
           'demographicData' => $demographicData ? array_slice($demographicData, $from, AMOUNT_PER_PAGE) : [],
           'page' => !$get['page'] ? 1 : $get['page'],
-          'last_page' => ceil(count($demographicData) / AMOUNT_PER_PAGE),
-          'location' => $location
+          'last_page' => ceil(count($demographicData) / AMOUNT_PER_PAGE)
       ]);
   }
 
