@@ -1,7 +1,7 @@
 # Uso de la aplicación
 
 Para el uso de la aplicación, se debe comprender que existen 3 roles básicos, 
-permisos para acceder a diferentes secciones del sistema.
+con permisos para acceder a diferentes secciones del sistema.
 
 ## Roles
 
@@ -84,8 +84,8 @@ Conociendo los roles, se cuenta con 5 usuarios básicos.
     - usuario: su
     - contraseña: su
 
-Se decidió asignar el rol admninistrador extra al _Super Administrador_ por ciertas
-secciones en el código en donde se requiere tener dicho rol, y no ciertos permisos.
+Se decidió asignar el rol admninistrador al _Super Administrador_ debido a que 
+ciertas secciones requiren no de un permiso especifico, sino del rol **_Administrador_**.
 
 ## Errores
 
@@ -101,5 +101,5 @@ disponible.
 y va a ser el inicial durante estas semanas a modo de ilustración (ya que nos
 encontramos en mantenimiento del sitio, cerrando ciertos módulos no?)
 Para poder acceder al sitio libremente, se debe ingresar como **_Administrador_** 
-o como **_Super Administrador_** (ver sección [usuario](#usuarios)) y desactivar
+o como **_Super Administrador_** (ver sección [usuarios](#usuarios)) y desactivar
 modo mantenimiento.
