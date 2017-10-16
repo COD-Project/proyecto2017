@@ -50,6 +50,6 @@ class DemographicData extends \App\Model
 
     function isActive()
     {
-        return (bool) $this->patient()->state();
+        return $this->patient() ? (bool) $this->patient()->state() : false;
     }
 }
