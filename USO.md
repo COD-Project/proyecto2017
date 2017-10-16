@@ -94,7 +94,7 @@ El sistema esta preparado para mostrar pantallas de error con los siguientes có
 - 403: Esto significa que su usuario no cuenta con el permiso necesario para acceder
 a la página solicitada.
 Normalmente bastaría con asignar un rol que cuente con el permiso necesario (ver
-sección [roles](#roles)
+sección [roles](#roles))
 - 404: Esto significa, como todos sabemos, que el recuerso buscado no se encuentra
 disponible.
 - 500: Este error es el mostrado cuando el sistema se encuentra en _Mantenimiento_
@@ -102,4 +102,7 @@ y va a ser el inicial durante estas semanas a modo de ilustración (ya que nos
 encontramos en mantenimiento del sitio, cerrando ciertos módulos no?)
 Para poder acceder al sitio libremente, se debe ingresar como **_Administrador_** 
 o como **_Super Administrador_** (ver sección [usuarios](#usuarios)) y desactivar
-modo mantenimiento.
+el modo mantenimiento.
+
+Todos los errores cuentan con un pequeño texto descriptivo para orientar al 
+usuario del sistema la causa del error.
