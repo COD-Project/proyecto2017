@@ -11,9 +11,25 @@ class TurnosController extends \App\Controller
           'logged' => true
         ]);
 
-
-        $this->app->get('/users', [ $this, 'render' ]);
+        $this->app->get('/turnos', [ $this, 'render' ]);
+        $this->app->get('/turnos/:fecha', [ $this, 'turns' ]);
+        $this->app->post(
+            '/turnos/:dni/fecha/:fecha/hora/:hora',
+            [ $this, 'takeTurn' ]
+        );
 
         $this->app->run();
+    }
+
+    public function render()
+    {
+    }
+
+    public function turns($date)
+    {
+    }
+
+    public function takeTurn($doc, $date, $time)
+    {
     }
 }
