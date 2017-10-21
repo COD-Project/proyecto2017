@@ -23,7 +23,7 @@ class RolesController extends \App\Controller
         $this->app->get('/roles/delete/:id', [ $this, 'delete' ]);
         $this->app->get('/roles/delete/:id/:permission_name', [ $this, 'deletePermission' ]);
 
-        $this->app->router()->run();
+        $this->app->run();
     }
 
     public function render()

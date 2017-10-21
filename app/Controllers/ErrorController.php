@@ -34,6 +34,6 @@ class ErrorController extends \App\Controller
             $this->redirect("error/404");
         }, [$this->template]);
 
-        $this->app->router()->run();
+        $this->app->run();
     }
 }

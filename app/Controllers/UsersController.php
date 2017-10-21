@@ -26,7 +26,7 @@ class UsersController extends \App\Controller
         $this->app->post('/users/edit/:id', [ $this, 'edit' ]);
         $this->app->post('/users/edit/:id/roles', [ $this, 'editRoles' ]);
 
-        $this->app->router()->run();
+        $this->app->run();
     }
 
     public function render($active = 'active', $username = null)

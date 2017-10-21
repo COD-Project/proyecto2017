@@ -22,7 +22,7 @@ class SignupController extends \App\Controller
 
         $this->app->post('/signup', [ $this, 'signup' ]);
 
-        $this->app->router()->run();
+        $this->app->run();
     }
 
     public function render()

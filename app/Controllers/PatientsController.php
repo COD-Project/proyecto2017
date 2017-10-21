@@ -26,7 +26,7 @@ class PatientsController extends \App\Controller
         $this->app->post('/patients/edit/:id', [ $this, 'edit' ]);
         $this->app->get('/patients/delete/:id', [ $this, 'delete' ]);
 
-        $this->app->router()->run();
+        $this->app->run();
     }
 
     public function render()

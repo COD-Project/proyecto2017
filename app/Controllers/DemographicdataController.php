@@ -25,7 +25,7 @@ class DemographicdataController extends \App\Controller
       $this->app->post('/demographicdata/edit', [ $this, 'editDemographicdata' ]);
       $this->app->post('/demographicdata/create/patient/:id', [ $this, 'createDemographicdata' ]);
 
-      $this->app->router()->run();
+      $this->app->run();
   }
 
   public function render()
