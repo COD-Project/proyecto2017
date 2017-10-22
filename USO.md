@@ -62,7 +62,7 @@ Conociendo los roles, se cuenta con 5 usuarios básicos.
 - Administrador:
     - rol: Administrador
     - usuario: admin
-    - contraseña: admin
+    - contraseña: cod-admin
 - Recepcionista:
     - rol: Recepcionista
     - usuario: recepcionista
@@ -82,7 +82,7 @@ Conociendo los roles, se cuenta con 5 usuarios básicos.
 - Super Administrador:
     - rol: Administrador **y** Su
     - usuario: su
-    - contraseña: su
+    - contraseña: cod-su
 
 Se decidió asignar el rol admninistrador al _Super Administrador_ debido a que 
 ciertas secciones requiren no de un permiso especifico, sino del rol **_Administrador_**.
