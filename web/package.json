@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "font-awesome": "^4.7.0",
+    "highcharts": "^6.0.2",
     "jquery": "^3.2.1",
     "jquery-validation": "^1.17.0",
     "mdbootstrap": "^4.4.1"
