@@ -19,6 +19,8 @@ class PatientsController extends \App\Controller
           'logged' => true
         ]);
 
+        $this->getDataFromApi();
+
         $this->app->map(['GET', 'POST'], '/patients', [ $this, 'render' ]);
         $this->app->get('/patients/show/:id', [ $this, 'show' ]);
         $this->app->get('/patients/create', [ $this, 'add' ]);
@@ -174,5 +176,53 @@ class PatientsController extends \App\Controller
         } else {
             $this->redirect("?success=false&message=La operación no fue realizada con éxito");
         }
+    }
+
+    protected function mapping(&$data)
+    {
+        $data = array_map(function($each){
+            $each = (object) $each;
+            return [
+                "name" => $each->nombre
+            ];
+        }, $data);
+    }
+
+    protected function getDocumentTypeFromApi()
+    {
+        $ch = curl_init('https://api-referencias.proyecto2017.linti.unlp.edu.ar/tipo-documento');
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $info = curl_exec($ch);
+        if (!curl_errno($ch)) {
+            $info = json_decode($info, true);
+            $this->mapping($info);
+            DocumentType::updateWith($info);
+        }
+        curl_close($ch);
+
+        return $this;
+    }
+
+    protected function getSocialWorkDataFromApi()
+    {
+        $ch = curl_init('https://api-referencias.proyecto2017.linti.unlp.edu.ar/tipo-obra-social');
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $info = curl_exec($ch);
+        if (!curl_errno($ch)) {
+            $info = json_decode($info, true);
+            $this->mapping($info);
+            SocialWork::updateWith($info);
+        }
+        curl_close($ch);
+
+        return $this;
+    }
+
+    protected function getDataFromApi()
+    {
+        $this->getDocumentTypeFromApi()
+             ->getSocialWorkDataFromApi();
+
+        return $this;
     }
 }
