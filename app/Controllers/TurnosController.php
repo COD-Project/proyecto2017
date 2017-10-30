@@ -1,5 +1,7 @@
 <?php namespace App\Controllers;
 
+use App\Models\Turno;
+
 /**
  * @author Ulises J. Cornejo Fandos
  */
@@ -13,7 +15,8 @@ class TurnosController extends \App\Controller
 
         $this->app->get('/turnos', [ $this, 'render' ]);
         $this->app->get('/turnos/:fecha', [ $this, 'turns' ]);
-        $this->app->post(
+        $this->app->map(
+            ['GET', 'POST'],
             '/turnos/:document/fecha/:fecha/hora/:hora',
             [ $this, 'takeTurn' ]
         );
@@ -34,8 +37,13 @@ class TurnosController extends \App\Controller
         try {
             Turno::create([
                 'documentNumber' => (int) $document,
-                'date' => date('Y-m-d H:i:s', "$date $time");
+                'date' => date('Y-m-d H:i:s', "$date $time")
             ]);
+
+            return [
+              'success' => true,
+              'message' => "El turno fué agregado con éxito."
+            ];
         } catch (\Exception $e) {
             return [
               'success' => false,
