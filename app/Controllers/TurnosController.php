@@ -14,7 +14,7 @@ class TurnosController extends \App\Controller
         $this->app->get('/turnos', [ $this, 'render' ]);
         $this->app->get('/turnos/:fecha', [ $this, 'turns' ]);
         $this->app->post(
-            '/turnos/:dni/fecha/:fecha/hora/:hora',
+            '/turnos/:document/fecha/:fecha/hora/:hora',
             [ $this, 'takeTurn' ]
         );
 
@@ -29,7 +29,19 @@ class TurnosController extends \App\Controller
     {
     }
 
-    public function takeTurn($doc, $date, $time)
+    public function takeTurn($document, $date, $time)
     {
+        try {
+            Turno::create([
+                'documentNumber' => (int) $document,
+                'date' => date('Y-m-d H:i:s', "$date $time");
+            ]);
+        } catch (\Exception $e) {
+            return [
+              'success' => false,
+              'message' => $e->getMessage()
+            ];
+        }
+
     }
 }
