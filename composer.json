@@ -20,6 +20,11 @@
         "type": "git",
         "url": "git+https://gitlab.catedras.linti.unlp.edu.ar/proyecto2017/grupo5.git"
     },
+    "autoload": {
+      "psr-4": {
+        "App\\": "app/"
+      }
+    },
     "require": {
         "php": "^5.6 || ^7.0",
         "twig/twig": "^1",
