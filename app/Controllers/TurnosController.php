@@ -9,9 +9,7 @@ class TurnosController extends \App\Controller
 {
     public function __construct($app)
     {
-        parent::__construct($app, [
-          'logged' => true
-        ]);
+        parent::__construct($app);
 
         $this->app->get('/turnos', [ $this, 'render' ]);
         $this->app->get('/turnos/:fecha', [ $this, 'turns' ]);
@@ -35,9 +33,11 @@ class TurnosController extends \App\Controller
     public function takeTurn($document, $date, $time)
     {
         try {
+            $date = new \DateTime("$date $time");
+
             Turno::create([
                 'documentNumber' => (int) $document,
-                'date' => date('Y-m-d H:i:s', "$date $time")
+                'date' => $date->format('Y-m-d H:i:s')
             ]);
 
             return [
@@ -50,6 +50,5 @@ class TurnosController extends \App\Controller
               'message' => $e->getMessage()
             ];
         }
-
     }
 }
