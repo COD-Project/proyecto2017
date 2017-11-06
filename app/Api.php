@@ -14,7 +14,7 @@ class Api
         try {
             $bot = new \TelegramBot\Api\Client(self::API_TELEGRAM_TOKEN);
             $bot->command("turnos", function($message) use($bot){
-                $bot->sendMessage($message->getChat()->getId(), var_dump($message));
+                $bot->sendMessage($message->getChat()->getId(), "test");
                 $date = new DateTime($message);
                 $date = $date->format("Y-m-d");
                 $info = file_get_contents( URL . "turnos/$date");
