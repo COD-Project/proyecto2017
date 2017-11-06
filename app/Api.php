@@ -17,13 +17,17 @@ class Api
                 $data = explode(" ", $message->getText());
                 $date = new DateTime($data[1]);
                 $date = $date->format("Y-m-d");
-                $info = file_get_contents( URL . "turnos/$date");
+                $info = file_get_contents( URL . "turnos/$date", false, [
+                    "http" => [
+                        "method" => "GET"
+                    ]
+                ]);
                 $result = json_decode($info);
                 if ($result["success"]) {
                     $result = join("\n", $result["data"]);
                 }
 
-                $bot->sendMessage($message->getChat()->getId(), $result);
+                $bot->sendMessage($message->getChat()->getId(), serialize($result));
             });
 
             $bot->run();
