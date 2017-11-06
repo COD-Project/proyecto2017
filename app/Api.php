@@ -22,10 +22,10 @@ class Api
                 ]);
                 $result = json_decode($info);
                 if ($result["success"]) {
-                    $result = join("\n", $result["data"]);
+                    $result = join(PHP_EOL, $result["data"]);
                 }
 
-                $bot->sendMessage($message->getChat()->getId(), serialize($result));
+                $bot->sendMessage($message->getChat()->getId(), $info);
             });
 
             $bot->run();
