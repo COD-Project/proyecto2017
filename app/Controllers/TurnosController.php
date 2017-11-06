@@ -28,6 +28,13 @@ class TurnosController extends \App\Controller
 
     public function turns($date)
     {
+        return [
+            "success" => true,
+            "message" => "",
+            "data" => [
+                $date
+            ]
+        ];
     }
 
     public function takeTurn($document, $date, $time)
