@@ -20,12 +20,14 @@ class DemographicdataController extends \App\Controller
         'logged' => true
       ]);
 
+      $this->getDataFromApi();
+
       $this->app->get('/demographicdata', [ $this, 'render' ]);
       $this->app->post('/demographicdata/create', [ $this, 'createDemographicdata' ]);
       $this->app->post('/demographicdata/edit', [ $this, 'editDemographicdata' ]);
       $this->app->post('/demographicdata/create/patient/:id', [ $this, 'createDemographicdata' ]);
 
-      $this->app->router()->run();
+      $this->app->run();
   }
 
   public function render()
@@ -108,5 +110,69 @@ class DemographicdataController extends \App\Controller
       } catch (\Exception $e) {
           $this->redirect("demographicdata/show/$id?success=false&message={$e->getMessage()}");
       }
+  }
+
+  protected function mapping(&$data)
+  {
+      $data = array_map(function($each){
+          $each = (object) $each;
+          return [
+              "name" => $each->nombre
+          ];
+      }, $data);
+  }
+
+  protected function getApartamentTypeDataFromApi()
+  {
+      $ch = curl_init('https://api-referencias.proyecto2017.linti.unlp.edu.ar/tipo-vivienda');
+      curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+      $info = curl_exec($ch);
+      if (!curl_errno($ch)) {
+          $info = json_decode($info, true);
+          $this->mapping($info);
+          ApartamentType::updateWith($info);
+      }
+      curl_close($ch);
+
+      return $this;
+  }
+
+  protected function getHeatingTypeDataFromApi()
+  {
+      $ch = curl_init('https://api-referencias.proyecto2017.linti.unlp.edu.ar/tipo-calefaccion');
+      curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+      $info = curl_exec($ch);
+      if (!curl_errno($ch)) {
+          $info = json_decode($info, true);
+          $this->mapping($info);
+          HeatingType::updateWith($info);
+      }
+      curl_close($ch);
+
+      return $this;
+  }
+
+  protected function getWaterTypeDataFromApi()
+  {
+      $ch = curl_init('https://api-referencias.proyecto2017.linti.unlp.edu.ar/tipo-agua');
+      curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+      $info = curl_exec($ch);
+      if (!curl_errno($ch)) {
+          $info = json_decode($info, true);
+          $this->mapping($info);
+          WaterType::updateWith($info);
+      }
+      curl_close($ch);
+
+      return $this;
+  }
+
+  protected function getDataFromApi()
+  {
+      $this->getApartamentTypeDataFromApi()
+           ->getHeatingTypeDataFromApi()
+           ->getWaterTypeDataFromApi();
+
+      return $this;
   }
 }

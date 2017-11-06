@@ -11,33 +11,34 @@ $app->get('/error/:code', function ($app, $code) {
     return new \App\Controllers\ErrorController($app);
 }, [ $app ]);
 
-$app->map(['GET', 'POST'], '/:controller', function ($app, $controller) {
-    return \App\Controller::create($controller, [$app]);
-}, [ $app ]);
+$controller_create = function ($app, $controller) {
+    return \App\Controller::create($controller, [ $app ]);
+};
+
+$app->map(
+    ['GET', 'POST'],
+    '/:controller',
+    $controller_create,
+    [ $app ]
+);
 
 $app->map(
     ['GET', 'POST'],
     '/:controller/:method',
-    function ($app, $controller, $method) {
-        return \App\Controller::create($controller, [$app, $method]);
-    },
+    $controller_create,
     [ $app ]
 );
 
-$app->map(
-    ['GET', 'POST'],
-    '/:controller/:method/:data',
-    function ($app, $controller, $method, $data) {
-        return \App\Controller::create($controller, [$app, $method, $data]);
-    },
-    [ $app ]
-);
+$mvc_base_url = '/:controller/:method';
+$max_args = 5;
 
-$app->map(
-    ['GET', 'POST'],
-    '/:controller/:method/:data/:state',
-    function ($app, $controller, $method, $data, $state) {
-        return \App\Controller::create($controller, [$app, $method, $data, $state]);
-    },
-    [ $app ]
-);
+for ($i = 0; $i < $max_args; $i++) {
+    $mvc_base_url .= "/:arg$i";
+
+    $app->map(
+        ['GET', 'POST'],
+        $mvc_base_url,
+        $controller_create,
+        [$app]
+    );
+}

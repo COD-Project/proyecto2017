@@ -20,11 +20,17 @@
         "type": "git",
         "url": "git+https://gitlab.catedras.linti.unlp.edu.ar/proyecto2017/grupo5.git"
     },
+    "autoload": {
+      "psr-4": {
+        "App\\": "app/"
+      }
+    },
     "require": {
         "php": "^5.6 || ^7.0",
         "twig/twig": "^1",
-        "mbh-framework/rest": "v5.6-beta.2",
-        "mbh-framework/mvc": "v5.6-beta.2",
-        "mbh-framework/firewall": "v5.6-beta.2"
+        "mbh-framework/rest": "5.6.x-dev",
+        "mbh-framework/mvc": "5.6.x-dev",
+        "mbh-framework/firewall": "5.6.x-dev",
+        "telegram-bot/api": "^2"
     }
 }
