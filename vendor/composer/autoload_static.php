@@ -10,10 +10,15 @@ class ComposerStaticInit728ab2d3c16e0d21584c507e2a56fddd
         'T' => 
         array (
             'Twig\\' => 5,
+            'TelegramBot\\Api\\' => 16,
         ),
         'M' => 
         array (
             'Mbh\\' => 4,
+        ),
+        'A' => 
+        array (
+            'App\\' => 4,
         ),
     );
 
@@ -22,11 +27,19 @@ class ComposerStaticInit728ab2d3c16e0d21584c507e2a56fddd
         array (
             0 => __DIR__ . '/..' . '/twig/twig/src',
         ),
+        'TelegramBot\\Api\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/telegram-bot/api/src',
+        ),
         'Mbh\\' => 
         array (
             0 => __DIR__ . '/..' . '/mbh-framework/rest/Mbh',
             1 => __DIR__ . '/..' . '/mbh-framework/mvc/Mbh',
             2 => __DIR__ . '/..' . '/mbh-framework/firewall/Mbh',
+        ),
+        'App\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/app',
         ),
     );
 

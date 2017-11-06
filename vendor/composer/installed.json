@@ -1,157 +1,5 @@
 [
     {
-        "name": "mbh-framework/rest",
-        "version": "v5.6-beta.2",
-        "version_normalized": "5.6.0.0-beta2",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/MBHFramework/mbh-rest.git",
-            "reference": "90f22b0abb55bf3fde3ca61f0e2e571651fafc3c"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/MBHFramework/mbh-rest/zipball/90f22b0abb55bf3fde3ca61f0e2e571651fafc3c",
-            "reference": "90f22b0abb55bf3fde3ca61f0e2e571651fafc3c",
-            "shasum": ""
-        },
-        "require": {
-            "php": "^5.6 || ^7.0"
-        },
-        "time": "2017-10-07T14:52:23+00:00",
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-PHP5.6-1.x": "5.6-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Mbh\\": "Mbh/"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Ulises Jeremias Cornejo Fandos",
-                "email": "ulisescf.24@gmail.com"
-            },
-            {
-                "name": "Juan Cruz Ocampos",
-                "email": "ocamposjuancruz23@gmail.com"
-            },
-            {
-                "name": "Lucas Di Cunzolo",
-                "email": "ldicunzolo@cespi.unlp.edu.ar"
-            }
-        ],
-        "description": "Minimalist framework to create RESTFull Apps with php7."
-    },
-    {
-        "name": "mbh-framework/mvc",
-        "version": "v5.6-beta.2",
-        "version_normalized": "5.6.0.0-beta2",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/MBHFramework/mbh-mvc.git",
-            "reference": "c6db8599a29ad4d783916467bf18fee481248de8"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/MBHFramework/mbh-mvc/zipball/c6db8599a29ad4d783916467bf18fee481248de8",
-            "reference": "c6db8599a29ad4d783916467bf18fee481248de8",
-            "shasum": ""
-        },
-        "require": {
-            "php": "^5.6 || ^7.0"
-        },
-        "time": "2017-10-13T13:23:09+00:00",
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-PHP5.6-1.x": "5.6-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Mbh\\": "Mbh/"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Ulises Jeremias Cornejo Fandos",
-                "email": "ulisescf.24@gmail.com"
-            },
-            {
-                "name": "Juan Cruz Ocampos",
-                "email": "ocamposjuancruz23@gmail.com"
-            },
-            {
-                "name": "Lucas Di Cunzolo",
-                "email": "ldicunzolo@cespi.unlp.edu.ar"
-            }
-        ],
-        "description": "Minimalist framework to create MVC Apps with php7."
-    },
-    {
-        "name": "mbh-framework/firewall",
-        "version": "v5.6-beta.2",
-        "version_normalized": "5.6.0.0-beta2",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/MBHFramework/mbh-firewall.git",
-            "reference": "e210e2c0fb094d39d6e938bca37be9f9af68467a"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/MBHFramework/mbh-firewall/zipball/e210e2c0fb094d39d6e938bca37be9f9af68467a",
-            "reference": "e210e2c0fb094d39d6e938bca37be9f9af68467a",
-            "shasum": ""
-        },
-        "require": {
-            "php": "^5.6 || ^7.0"
-        },
-        "time": "2017-10-11T18:52:07+00:00",
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-PHP5.6-1.x": "5.6-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Mbh\\": "Mbh/"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Ulises Jeremias Cornejo Fandos",
-                "email": "ulisescf.24@gmail.com"
-            },
-            {
-                "name": "Juan Cruz Ocampos",
-                "email": "ocamposjuancruz23@gmail.com"
-            },
-            {
-                "name": "Lucas Di Cunzolo",
-                "email": "ldicunzolo@cespi.unlp.edu.ar"
-            }
-        ]
-    },
-    {
         "name": "twig/twig",
         "version": "v1.35.0",
         "version_normalized": "1.35.0.0",
@@ -216,6 +64,215 @@
         "homepage": "http://twig.sensiolabs.org",
         "keywords": [
             "templating"
+        ]
+    },
+    {
+        "name": "telegram-bot/api",
+        "version": "v2.3.6",
+        "version_normalized": "2.3.6.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/TelegramBot/Api.git",
+            "reference": "8ba284dbbf8643b68c5892b6f04d2438b79cccaa"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/TelegramBot/Api/zipball/8ba284dbbf8643b68c5892b6f04d2438b79cccaa",
+            "reference": "8ba284dbbf8643b68c5892b6f04d2438b79cccaa",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.5.0"
+        },
+        "require-dev": {
+            "codeception/codeception": "*",
+            "phpunit/phpunit": "~4.0",
+            "squizlabs/php_codesniffer": "2.*"
+        },
+        "time": "2017-11-03T16:03:45+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "1.0-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "TelegramBot\\Api\\": "src"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Ilya Gusev",
+                "email": "mail@igusev.ru",
+                "homepage": "https://php-cat.com",
+                "role": "Developer"
+            }
+        ],
+        "description": "PHP Wrapper for Telegram Bot API",
+        "homepage": "https://github.com/TelegramBot/Api",
+        "keywords": [
+            "bot",
+            "bot api",
+            "php",
+            "telegram"
+        ]
+    },
+    {
+        "name": "mbh-framework/rest",
+        "version": "v5.6-beta.2",
+        "version_normalized": "5.6.0.0-beta2",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/MBHFramework/mbh-rest.git",
+            "reference": "90f22b0abb55bf3fde3ca61f0e2e571651fafc3c"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/MBHFramework/mbh-rest/zipball/90f22b0abb55bf3fde3ca61f0e2e571651fafc3c",
+            "reference": "90f22b0abb55bf3fde3ca61f0e2e571651fafc3c",
+            "shasum": ""
+        },
+        "require": {
+            "php": "^5.6 || ^7.0"
+        },
+        "time": "2017-10-07T14:52:23+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-PHP5.6-1.x": "5.6-dev"
+            }
+        },
+        "installation-source": "source",
+        "autoload": {
+            "psr-4": {
+                "Mbh\\": "Mbh/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Ulises Jeremias Cornejo Fandos",
+                "email": "ulisescf.24@gmail.com"
+            },
+            {
+                "name": "Juan Cruz Ocampos",
+                "email": "ocamposjuancruz23@gmail.com"
+            },
+            {
+                "name": "Lucas Di Cunzolo",
+                "email": "ldicunzolo@cespi.unlp.edu.ar"
+            }
+        ],
+        "description": "Minimalist framework to create RESTFull Apps with php7."
+    },
+    {
+        "name": "mbh-framework/mvc",
+        "version": "v5.6-beta.2",
+        "version_normalized": "5.6.0.0-beta2",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/MBHFramework/mbh-mvc.git",
+            "reference": "c6db8599a29ad4d783916467bf18fee481248de8"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/MBHFramework/mbh-mvc/zipball/c6db8599a29ad4d783916467bf18fee481248de8",
+            "reference": "c6db8599a29ad4d783916467bf18fee481248de8",
+            "shasum": ""
+        },
+        "require": {
+            "php": "^5.6 || ^7.0"
+        },
+        "time": "2017-10-13T13:23:09+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-PHP5.6-1.x": "5.6-dev"
+            }
+        },
+        "installation-source": "source",
+        "autoload": {
+            "psr-4": {
+                "Mbh\\": "Mbh/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Ulises Jeremias Cornejo Fandos",
+                "email": "ulisescf.24@gmail.com"
+            },
+            {
+                "name": "Juan Cruz Ocampos",
+                "email": "ocamposjuancruz23@gmail.com"
+            },
+            {
+                "name": "Lucas Di Cunzolo",
+                "email": "ldicunzolo@cespi.unlp.edu.ar"
+            }
+        ],
+        "description": "Minimalist framework to create MVC Apps with php7."
+    },
+    {
+        "name": "mbh-framework/firewall",
+        "version": "v5.6-beta.2",
+        "version_normalized": "5.6.0.0-beta2",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/MBHFramework/mbh-firewall.git",
+            "reference": "e210e2c0fb094d39d6e938bca37be9f9af68467a"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/MBHFramework/mbh-firewall/zipball/e210e2c0fb094d39d6e938bca37be9f9af68467a",
+            "reference": "e210e2c0fb094d39d6e938bca37be9f9af68467a",
+            "shasum": ""
+        },
+        "require": {
+            "php": "^5.6 || ^7.0"
+        },
+        "time": "2017-10-11T18:52:07+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-PHP5.6-1.x": "5.6-dev"
+            }
+        },
+        "installation-source": "source",
+        "autoload": {
+            "psr-4": {
+                "Mbh\\": "Mbh/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Ulises Jeremias Cornejo Fandos",
+                "email": "ulisescf.24@gmail.com"
+            },
+            {
+                "name": "Juan Cruz Ocampos",
+                "email": "ocamposjuancruz23@gmail.com"
+            },
+            {
+                "name": "Lucas Di Cunzolo",
+                "email": "ldicunzolo@cespi.unlp.edu.ar"
+            }
         ]
     }
 ]

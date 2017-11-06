@@ -7,5 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Twig\\' => array($vendorDir . '/twig/twig/src'),
+    'TelegramBot\\Api\\' => array($vendorDir . '/telegram-bot/api/src'),
     'Mbh\\' => array($vendorDir . '/mbh-framework/rest/Mbh', $vendorDir . '/mbh-framework/mvc/Mbh', $vendorDir . '/mbh-framework/firewall/Mbh'),
+    'App\\' => array($baseDir . '/app'),
 );

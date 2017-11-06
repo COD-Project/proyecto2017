@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "d8ef248325a332af537c2bd9fd5cc5ef",
+    "content-hash": "dd2183b90660ee7512dbfe0613775a27",
     "packages": [
         {
             "name": "mbh-framework/firewall",
@@ -151,6 +151,61 @@
             ],
             "description": "Minimalist framework to create RESTFull Apps with php7.",
             "time": "2017-10-07T14:52:23+00:00"
+        },
+        {
+            "name": "telegram-bot/api",
+            "version": "v2.3.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/TelegramBot/Api.git",
+                "reference": "8ba284dbbf8643b68c5892b6f04d2438b79cccaa"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/TelegramBot/Api/zipball/8ba284dbbf8643b68c5892b6f04d2438b79cccaa",
+                "reference": "8ba284dbbf8643b68c5892b6f04d2438b79cccaa",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.0"
+            },
+            "require-dev": {
+                "codeception/codeception": "*",
+                "phpunit/phpunit": "~4.0",
+                "squizlabs/php_codesniffer": "2.*"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "TelegramBot\\Api\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ilya Gusev",
+                    "email": "mail@igusev.ru",
+                    "homepage": "https://php-cat.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "PHP Wrapper for Telegram Bot API",
+            "homepage": "https://github.com/TelegramBot/Api",
+            "keywords": [
+                "bot",
+                "bot api",
+                "php",
+                "telegram"
+            ],
+            "time": "2017-11-03T16:03:45+00:00"
         },
         {
             "name": "twig/twig",
