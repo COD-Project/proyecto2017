@@ -20,12 +20,8 @@ class Api
                         "method" => "GET"
                     ]
                 ]);
-                $result = json_decode($info, true);
-                if ($result["success"] && false) {
-                    $result = join(PHP_EOL, $result["data"]);
-                }
 
-                $bot->sendMessage($message->getChat()->getId(), $result);
+                $bot->sendMessage($message->getChat()->getId(), serialize($info));
             });
 
             $bot->run();
