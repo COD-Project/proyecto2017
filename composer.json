@@ -30,6 +30,7 @@
         "twig/twig": "^1",
         "mbh-framework/rest": "5.6.x-dev",
         "mbh-framework/mvc": "5.6.x-dev",
-        "mbh-framework/firewall": "5.6.x-dev"
+        "mbh-framework/firewall": "5.6.x-dev",
+        "telegram-bot/api": "v2.3.6"
     }
 }
