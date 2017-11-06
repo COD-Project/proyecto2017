@@ -22,7 +22,7 @@ class Api
 
                 $bot->sendMessage($message->getChat()->getId(), serialize($info));
             });
-
+            $bot->run();
         } catch (\TelegramBot\Api\Exception $e) {
             $e->getMessage();
         }
