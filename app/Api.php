@@ -15,11 +15,10 @@ class Api
             $bot = new \TelegramBot\Api\Client(self::API_TELEGRAM_TOKEN);
             $bot->command("turnos", function($message) use($bot){
                 $data = explode(" ", $message->getText());
-                $info = file_get_contents( URL . "turnos/{$data[1]}", false, [
-                    "http" => [
-                        "method" => "GET"
-                    ]
-                ]);
+                $ch = curl_init(URL . "/turnos/{$data[1]}");
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                $info = curl_exec($ch);
+                curl_close($ch);
 
                 $bot->sendMessage($message->getChat()->getId(), serialize($info));
             });
