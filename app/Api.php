@@ -12,9 +12,9 @@ class Api
     public function __construct()
     {
         try {
-            $this->bot = new \TelegramBot\Api\Client(self::API_TELEGRAM_TOKEN);
-            $this->bot->command("turnos", function($message){
-                var_dump($message);
+            $bot = new \TelegramBot\Api\Client(self::API_TELEGRAM_TOKEN);
+            $bot->command("turnos", function($message) use($bot){
+                $bot->sendMessage($message->getChat()->getId(), "test");
                 $date = new DateTime($message);
                 $date = $date->format("Y-m-d");
                 $info = file_get_contents( URL . "turnos/$date");
@@ -23,10 +23,10 @@ class Api
                     $result = join("\n", $result["data"]);
                 }
 
-                $this->bot->sendMessage($message->getChat()->getId(), $result);
+                $bot->sendMessage($message->getChat()->getId(), $result);
             });
 
-            $this->bot->run();
+            $bot->run();
         } catch (\TelegramBot\Api\Exception $e) {
             $e->getMessage();
         }
