@@ -13,6 +13,7 @@ class Turno extends \App\Model
     protected static $columnData = [
         "id" => "id",
         "date" => "fecha",
+        "time" => "horario",
         "documentNumber" => "numero_doc"
     ];
 }

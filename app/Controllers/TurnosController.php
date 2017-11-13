@@ -28,23 +28,42 @@ class TurnosController extends \App\Controller
 
     public function turns($date)
     {
-        return [
-            "success" => true,
-            "message" => "",
-            "data" => [
-                $date
-            ]
-        ];
+        try {
+            $models = Turno::findBy($date, 'date');
+
+            $data = [];
+
+            foreach ($models as $key => $value) {
+                $state = $value->getState();
+                unset($state['id']);
+
+                $data[] = $state;
+            }
+
+            return [
+                'success' => true,
+                'message' => 'Get your data!',
+                'data' => $data
+            ];
+        } catch (\Exception $e) {
+            return [
+              'success' => false,
+              'message' => $e->getMessage(),
+              'data' => $data
+          ];
+        }
     }
 
     public function takeTurn($document, $date, $time)
     {
         try {
-            $date = new \DateTime("$date $time");
+            $date = new \DateTime($date);
+            $time = new \DateTime($time);
 
             Turno::create([
                 'documentNumber' => (int) $document,
-                'date' => $date->format('Y-m-d H:i:s')
+                'date' => $date->format('Y-m-d'),
+                'time' => $time->format('H:i:s')
             ]);
 
             return [
