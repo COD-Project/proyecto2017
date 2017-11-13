@@ -14,7 +14,6 @@ class Controller extends \Mbh\Controller
     {
         $className = "\\App\\Controllers\\" . ucwords($controller) . "Controller";
         if (class_exists($className)) {
-            header("HTTP/1.1 200 OK");
             return parent::create($className, $args);
         }
 
