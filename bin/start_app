@@ -4,6 +4,9 @@ MYSQL_SERVER_DOCKER=`docker ps -f name=mysql-server -f status=running --format {
 PHPMYADMIN_DOCKER=`docker ps -f name=phpmyadmin -f status=running --format {{.ID}}`
 PHP_SERVER_DOCKER=`docker ps -f name=apache -f status=running --format {{.ID}}`
 
+PHP_SERVER_PORT=${PHP_SERVER_PORT:-3000}
+PHP_MYADMIN_PORT=${PHP_MYADMIN_PORT:-8080}
+
 if [ -z $MYSQL_SERVER_DOCKER ]
 then
   printf "mysql-server running now with docker id "
@@ -16,14 +19,14 @@ fi
 if [ -z $PHPMYADMIN_DOCKER ]
 then
   printf "phpmyadmin running now with docker id "
-  phpmyadmin 8080
+  phpmyadmin $PHP_MYADMIN_PORT
 else
   echo -e "phpmyadmin is running with docker id $PHPMYADMIN_DOCKER"
 fi
 
 if [ -z $PHP_SERVER_DOCKER ]
 then
-  php-server 3000
+  php-server $PHP_SERVER_PORT
 else
   echo -e "apache is running with docker id $PHP_SERVER_DOCKER"
 fi

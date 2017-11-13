@@ -1,0 +1,36 @@
+{
+    "name": "mbh-framework/firewall",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ulises Jeremias Cornejo Fandos",
+            "email": "ulisescf.24@gmail.com"
+        },
+        {
+            "name": "Juan Cruz Ocampos",
+            "email": "ocamposjuancruz23@gmail.com"
+        },
+        {
+            "name": "Lucas Di Cunzolo",
+            "email": "ldicunzolo@cespi.unlp.edu.ar"
+        }
+    ],
+    "description": "",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/MBHFramework/mbh-firewall.git"
+    },
+    "autoload": {
+      "psr-4": {
+        "Mbh\\": "Mbh/"
+      }
+    },
+    "require": {
+        "php": "^5.6 || ^7.0"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-PHP5.6-1.x": "5.6-dev"
+        }
+    }
+}

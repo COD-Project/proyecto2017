@@ -1,9 +1,3 @@
 .envrc
-composer.lock
-package-lock.json
-/vendor/*
 /var
-/web/node_modules/
-/web/etc/
-!/web/package.json
 /uploads/logs/
