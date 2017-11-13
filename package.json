@@ -9,7 +9,8 @@
     "type": "git",
     "url": "git@gitlab.catedras.linti.unlp.edu.ar:proyecto2017/grupo5.git"
   },
-  "authors": [{
+  "authors": [
+    {
       "name": "Ulises Jeremias Cornejo Fandos",
       "email": "ulisescf.24@gmail.com"
     },
