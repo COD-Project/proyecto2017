@@ -22,7 +22,7 @@ class Api
 
                 $bot->sendMessage($message->getChat()->getId(), file_get_contents(URL."turnos/{$data[1]}"));
             });
-            $bot->run();
+            //$bot->run();
         } catch (\TelegramBot\Api\Exception $e) {
             $e->getMessage();
         }
