@@ -18,7 +18,7 @@ class SettingsController extends \App\Controller
         $this->app->get('/settings/:method', [ $this, 'notFound' ]);
         $this->app->post('/settings/edit', [ $this, 'edit' ]);
 
-        $this->app->router()->run();
+        $this->app->run();
     }
 
     public function notFound()

@@ -19,7 +19,7 @@ class LoginController extends \App\Controller
 
         $this->app->post('/login', [ $this, 'login' ]);
 
-        $this->app->router()->run();
+        $this->app->run();
     }
 
     function render()

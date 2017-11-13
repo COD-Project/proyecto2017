@@ -97,13 +97,26 @@
             <h1>Bienvenido
               {{ owner_user.fullName}}</h1>
             <br>
-            {% set analytics_data = {
-              'users': users_count,
-              'patients': patients_count,
-              'roles': roles_count,
-              'permissions': permissions_count
-            } %}
-            {% include 'analytics/analytics.twig' with analytics_data only %}
+            {% if owner_user.roles is empty %}
+              <div class="alert alert-info alert-dismissible fade show" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                <p>
+                  <small>
+                    <strong>Usted aún no tiene roles designados.</strong>
+                  </small>
+                </p>
+              </div>
+            {% else %}
+              {% set analytics_data = {
+                'users': users_count,
+                'patients': patients_count,
+                'roles': roles_count,
+                'permissions': permissions_count
+              } %}
+              {% include 'analytics/analytics.twig' with analytics_data only %}
+            {% endif %}
             <hr>
             {% if admin %}
               <div class="text-center mt-4">
