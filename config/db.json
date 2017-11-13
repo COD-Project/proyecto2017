@@ -1,8 +1,8 @@
 {
   "database": {
     "host": "local.docker",
-    "user": "root",
-    "pass": "",
+    "user": "grupo5",
+    "pass": "NWQxMDA1NWJlMDA3",
     "name": "grupo5",
     "port": 3307,
     "protocol": "TCP",
