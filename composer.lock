@@ -60,12 +60,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/MBHFramework/mbh-mvc.git",
-                "reference": "c6db8599a29ad4d783916467bf18fee481248de8"
+                "reference": "d9a0c64bdb4beeecd312ae3aba55b506e4fd3182"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/MBHFramework/mbh-mvc/zipball/c6db8599a29ad4d783916467bf18fee481248de8",
-                "reference": "c6db8599a29ad4d783916467bf18fee481248de8",
+                "url": "https://api.github.com/repos/MBHFramework/mbh-mvc/zipball/d9a0c64bdb4beeecd312ae3aba55b506e4fd3182",
+                "reference": "d9a0c64bdb4beeecd312ae3aba55b506e4fd3182",
                 "shasum": ""
             },
             "require": {
@@ -101,7 +101,7 @@
                 }
             ],
             "description": "Minimalist framework to create MVC Apps with php7.",
-            "time": "2017-10-13T13:23:09+00:00"
+            "time": "2017-11-11T04:19:27+00:00"
         },
         {
             "name": "mbh-framework/rest",
@@ -109,12 +109,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/MBHFramework/mbh-rest.git",
-                "reference": "90f22b0abb55bf3fde3ca61f0e2e571651fafc3c"
+                "reference": "d131882cbffae3b0106431843367f9404a1a5410"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/MBHFramework/mbh-rest/zipball/90f22b0abb55bf3fde3ca61f0e2e571651fafc3c",
-                "reference": "90f22b0abb55bf3fde3ca61f0e2e571651fafc3c",
+                "url": "https://api.github.com/repos/MBHFramework/mbh-rest/zipball/d131882cbffae3b0106431843367f9404a1a5410",
+                "reference": "d131882cbffae3b0106431843367f9404a1a5410",
                 "shasum": ""
             },
             "require": {
@@ -150,7 +150,7 @@
                 }
             ],
             "description": "Minimalist framework to create RESTFull Apps with php7.",
-            "time": "2017-10-07T14:52:23+00:00"
+            "time": "2017-11-13T16:05:45+00:00"
         },
         {
             "name": "telegram-bot/api",
