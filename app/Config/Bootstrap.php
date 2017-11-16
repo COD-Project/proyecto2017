@@ -23,8 +23,6 @@ class Bootstrap
 
             require_once ROOT . "/app/Config/routes.php";
 
-            new Api;
-
             $app->firewall()
                 ->run();
 
