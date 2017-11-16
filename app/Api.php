@@ -25,7 +25,6 @@ class Api
             $bot->command("no", function($message) use($bot){
                 $bot->sendMessage($message->getChat()->getId(), "no");
             });
-            $bot->run();
         } catch (\TelegramBot\Api\Exception $e) {
             $e->getMessage();
         }
