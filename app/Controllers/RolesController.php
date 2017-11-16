@@ -90,16 +90,16 @@ class RolesController extends \App\Controller
                 'name' => $post['name']
             ]);
             if (count($post['permissionsId']) > 0) {
-              $db = new \App\Connection\Connection;
-              foreach ($post['permissionsId'] as $key => $permission) {
-                  if (!Permission::find($permission)) {
-                      throw new \Exception("Permiso no encontrado", 1);
-                  }
-                  $db->insert('rol_tiene_permisos', [
+                $db = new \App\Connection\Connection;
+                foreach ($post['permissionsId'] as $key => $permission) {
+                    if (!Permission::find($permission)) {
+                        throw new \Exception("Permiso no encontrado", 1);
+                    }
+                    $db->insert('rol_tiene_permisos', [
                       'rol_id' => $role->id(),
                       'permiso_id' => $permission
                   ]);
-              }
+                }
             }
             $this->redirect("roles/show/{$role->id()}?success=true&message=La operación fue realizada con éxito");
         } catch (\Exception $e) {
@@ -119,16 +119,16 @@ class RolesController extends \App\Controller
             ]);
             $role->edit();
             if (count($post['permissionsId']) > 0) {
-              $db = new \App\Connection\Connection;
-              foreach ($post['permissionsId'] as $key => $permission) {
-                  if (!Permission::find($permission)) {
-                      throw new \Exception("Permiso no encontrado", 1);
-                  }
-                  $db->insert('rol_tiene_permisos', [
+                $db = new \App\Connection\Connection;
+                foreach ($post['permissionsId'] as $key => $permission) {
+                    if (!Permission::find($permission)) {
+                        throw new \Exception("Permiso no encontrado", 1);
+                    }
+                    $db->insert('rol_tiene_permisos', [
                       'rol_id' => $role->id(),
                       'permiso_id' => $permission
                   ]);
-              }
+                }
             }
             $this->redirect("roles/show/{$role->id()}?success=true&message=La operación fue realizada con éxito");
         } catch (\Exception $e) {
@@ -146,9 +146,9 @@ class RolesController extends \App\Controller
                 $role->remove();
             }
             $this->redirect("roles?success=true&message=La operación fue realizada con éxito");
-          } catch (\Exception $e) {
-              $this->redirect("?success=false&message={$e->getMessage()}");
-          }
+        } catch (\Exception $e) {
+            $this->redirect("?success=false&message={$e->getMessage()}");
+        }
     }
 
     public function deletePermission($role_id, $permission)
