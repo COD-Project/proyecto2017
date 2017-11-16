@@ -176,8 +176,7 @@ class Router implements RouterInterface
             exit('404');
         }
 
-        http_response_code(200);
-        //header("HTTP/1.1 200 OK");
+        header("HTTP/1.1 200 OK");
 
         $response = $route->run($parser);
         $this->sendResponse($response);
