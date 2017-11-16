@@ -60,15 +60,24 @@ class TurnosController extends \App\Controller
             $date = new \DateTime($date);
             $time = new \DateTime($time);
 
-            Turno::create([
+            $turno = new Turno([
                 'documentNumber' => (int) $document,
                 'date' => $date->format('Y-m-d'),
                 'time' => $time->format('H:i:s')
             ]);
 
+            if (!$turno->exists()) {
+                $turno->save();
+
+                return [
+                  'success' => true,
+                  'message' => "El turno fué agregado con éxito."
+                ];
+            }
+
             return [
-              'success' => true,
-              'message' => "El turno fué agregado con éxito."
+              'success' => false,
+              'message' => "El turno ya existe."
             ];
         } catch (\Exception $e) {
             return [
