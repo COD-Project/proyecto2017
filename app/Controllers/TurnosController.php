@@ -14,7 +14,7 @@ class TurnosController extends \App\Controller
         $this->app->get('/turnos', [ $this, 'render' ]);
         $this->app->get('/turnos/:fecha', [ $this, 'turns' ]);
         $this->app->map(
-            ['GET', 'POST'],
+            ['GET', 'POST', 'HEAD'],
             '/turnos/:document/fecha/:fecha/hora/:hora',
             [ $this, 'takeTurn' ]
         );
