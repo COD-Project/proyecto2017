@@ -11,10 +11,6 @@ class AuthController extends \App\Controller
     {
         parent::__construct($app);
 
-        $this->app->get('/auth', function() {
-            return new Api;
-        });
-        
-        $this->app->run();
+        new Api;
     }
 }
