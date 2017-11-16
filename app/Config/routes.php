@@ -16,14 +16,14 @@ $controller_create = function ($app, $controller) {
 };
 
 $app->map(
-    ['GET', 'POST'],
+    ['GET', 'POST', 'HEAD'],
     '/:controller',
     $controller_create,
     [ $app ]
 );
 
 $app->map(
-    ['GET', 'POST'],
+    ['GET', 'POST', 'HEAD'],
     '/:controller/:method',
     $controller_create,
     [ $app ]
@@ -36,7 +36,7 @@ for ($i = 0; $i < $max_args; $i++) {
     $mvc_base_url .= "/:arg$i";
 
     $app->map(
-        ['GET', 'POST'],
+        ['GET', 'POST', 'HEAD'],
         $mvc_base_url,
         $controller_create,
         [$app]
