@@ -20,7 +20,6 @@ class Api
                 $info = curl_exec($ch);
                 curl_close($ch);
 
-                $data = json_decode($info);
                 $bot->sendMessage($message->getChat()->getId(), join(", ", $data["data"]));
             });
             $bot->run();
