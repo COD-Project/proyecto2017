@@ -20,7 +20,7 @@ class Api
                 $info = curl_exec($ch);
                 curl_close($ch);
 
-                $bot->sendMessage($message->getChat()->getId(), json_decode($info)["data"]);
+                $bot->sendMessage($message->getChat()->getId(), "ol");
             });
             $bot->run();
         } catch (\TelegramBot\Api\Exception $e) {
