@@ -204,7 +204,7 @@ class App
      */
     public function get($pattern, $callback = null, $inject = null)
     {
-        return $this->map([ 'GET' ], $pattern, $callback, $inject);
+        return $this->map([ 'GET', 'HEAD' ], $pattern, $callback, $inject);
     }
 
     /**
