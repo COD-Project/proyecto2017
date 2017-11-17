@@ -1,9 +1,8 @@
 <?php namespace App\Models;
 
 /**
- * @author Lucas Di Cunzolo
+ * @author Ulises Jeremias Cornejo Fandos
  */
-
 class HealthControl extends \App\Model
 {
     protected static $table = [
@@ -17,9 +16,9 @@ class HealthControl extends \App\Model
         "date" => "fecha",
         "weight" => "peso",
         "completeVaccines" => "vacunas_completas",
-        "maturationChord" => "maduracion_acorde",
-        "exCommonPhysicist" => "ex_fisico_comun",
-        "exPhysicistObservations" => "ex_fisico_observaciones",
+        "accordingMaturationContext" => "maduracion_acorde",
+        "commonPhysicalExamination" => "ex_fisico_comun",
+        "physicalExaminationObservations" => "ex_fisico_observaciones",
         "pc" => "pc",
         "ppc" => "ppc",
         "height" => "talla",
@@ -29,14 +28,14 @@ class HealthControl extends \App\Model
         "userId" => "user_id"
     ];
 
-    function patient()
+    public function patient()
     {
         if ($this->patientId()) {
             return Patient::find($this->patientId());
         }
     }
 
-    function user()
+    public function user()
     {
         if ($this->userId()) {
             return User::find($this->userId());

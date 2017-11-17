@@ -1,5 +1,6 @@
 <?php namespace App\Controllers;
 
+use Mbh\Collection;
 use App\Models\HealthControl;
 use App\Models\Patient;
 
@@ -14,11 +15,11 @@ class HealthcontrolsController extends \App\Controller
           'logged' => true
         ]);
 
-        $this->app->get('/healthcontrol/show/:id', [ $this, 'show']);
-        $this->app->get('/healthcontrol/create/patient/:id', [ $this, 'add']);
-        $this->app->post('/healthcontrol/create', [ $this, 'createHealthControl']);
-        $this->app->post('/healthcontrol/edit/:id', [ $this, 'edit']);
-        $this->app->post('/healthcontrol/delete/:id', [ $this, 'delete']);
+        $this->app->get('/healthcontrols/show/:id', [ $this, 'show']);
+        $this->app->get('/healthcontrols/create/patient/:id', [ $this, 'add']);
+        $this->app->post('/healthcontrols/create', [ $this, 'createHealthControl']);
+        $this->app->post('/healthcontrols/edit/:id', [ $this, 'edit']);
+        $this->app->post('/healthcontrols/delete/:id', [ $this, 'delete']);
 
         $this->app->run();
     }
@@ -31,7 +32,7 @@ class HealthcontrolsController extends \App\Controller
         $healthControl = HealthControl::find($id);
 
         if ($healthControl) {
-            return $this->template->render('healthcontrol/show.twig', [
+            return $this->template->render('healthcontrols/show.twig', [
                 'healthControl' => $healthControl,
                 'patient' => $healthControl->patient()
             ]);
@@ -45,13 +46,13 @@ class HealthcontrolsController extends \App\Controller
         $this->checkPermissions([ 'paciente_new' ]);
 
         Patient::init();
-        $patient = Patient::get([
+        $patients = new Collection(Patient::get([
             "id" => $patientId,
             "state" => "1"
-        ])[0];
+        ]));
 
-        if ($patient) {
-            return $this->template->render('healthcontrol/create.twig', [
+        if ($patient = $patients->get(0)) {
+            return $this->template->render('healthcontrols/create.twig', [
                 'patient' => $patient
             ]);
         }
@@ -64,29 +65,29 @@ class HealthcontrolsController extends \App\Controller
         $this->checkPermissions([ 'paciente_new' ]);
 
         try {
-            $post = $this->post();
+            $post = (object) $this->post();
 
             HealthControl::init();
             $healthControl = HealthControl::create([
-                'weight' => $post['weight'],
-                'completeVaccines' => $post['completeVaccines'],
-                'vaccinesObservations' => $post['vaccinesObservations'],
-                'maturationAccording' => $post['maturationAccording'],
-                'maturationObservations' => $post['maturationObservations'],
-                'physicalExam' => $post['physicalExam'],
-                'physicalExamObservations' => $post['physicalExamObservations'],
-                'cephalicPercentile' => $post['cephalicPercentile'],
-                'percentileCephalicPerimeter' => $post['percentileCephalicPerimeter'],
-                'size' => $post['size'],
-                'alimentation' => $post['alimentation'],
-                'generalObservations' => $post['generalObservations'],
-                'patientId' => $post['patientId'],
-                'userId' => $post['userId']
+                'weight' => $post->weight,
+                'completeVaccines' => $post->completeVaccines,
+                'vaccinesObservations' => $post->vaccinesObservations,
+                'accordingMaturationContext' => $post->accordingMaturationContext,
+                'maturationObservations' => $post->maturationObservations,
+                'commonPhysicalExamination' => $post->commonPhysicalExamination,
+                'physicalExaminationObservations' => $post->physicalExaminationObservations,
+                'cephalicPercentile' => $post->cephalicPercentile,
+                'percentileCephalicPerimeter' => $post->percentileCephalicPerimeter,
+                'size' => $post->size,
+                'alimentation' => $post->alimentation,
+                'generalObservations' => $post->generalObservations,
+                'patientId' => $post->patientId,
+                'userId' => $post->userId
             ]);
 
-            $this->redirect("healthcontrol/show/patient/{$healthControl->patient->id()}?success=true&message=La operación fue realizada con éxito.")
+            $this->redirect("healthcontrols/show/patient/{$healthControl->patient->id()}?success=true&message=La operación fue realizada con éxito.");
         } catch (\Exception $e) {
-            $this->redirect("healthcontrol/create/patient/{$post['patientId']}?success=false&message={$e->getMessage()}")
+            $this->redirect("healthcontrols/create/patient/{$post->patientId}?success=false&message={$e->getMessage()}");
         }
     }
 
@@ -95,46 +96,46 @@ class HealthcontrolsController extends \App\Controller
         $this->checkPermissions([ 'paciente_update' ]);
 
         try {
-            $post = $this->post();
+            $post = (object) $this->post();
 
             HealthControl::init();
             $healthControl = HealthControl::find($id);
 
             $healthControl->addState([
-                'weight' => $post['weight'],
-                'completeVaccines' => $post['completeVaccines'],
-                'vaccinesObservations' => $post['vaccinesObservations'],
-                'maturationAccording' => $post['maturationAccording'],
-                'maturationObservations' => $post['maturationObservations'],
-                'physicalExam' => $post['physicalExam'],
-                'physicalExamObservations' => $post['physicalExamObservations'],
-                'cephalicPercentile' => $post['cephalicPercentile'],
-                'percentileCephalicPerimeter' => $post['percentileCephalicPerimeter'],
-                'size' => $post['size'],
-                'alimentation' => $post['alimentation'],
-                'generalObservations' => $post['generalObservations']
+                'weight' => $post->weight,
+                'completeVaccines' => $post->completeVaccines,
+                'vaccinesObservations' => $post->vaccinesObservations,
+                'accordingMaturationContext' => $post->accordingMaturationContext,
+                'maturationObservations' => $post->maturationObservations,
+                'commonPhysicalExamination' => $post->commonPhysicalExamination,
+                'physicalExaminationObservations' => $post->physicalExaminationObservations,
+                'cephalicPercentile' => $post->cephalicPercentile,
+                'percentileCephalicPerimeter' => $post->percentileCephalicPerimeter,
+                'size' => $post->size,
+                'alimentation' => $post->alimentation,
+                'generalObservations' => $post->generalObservations,
             ]);
 
             $healthControl->edit();
 
-            $this->redirect("healthcontrol/show/patient/{$healthControl->patient->id()}?success=true&message=La operación fue realizada con éxito.")
+            $this->redirect("healthcontrols/show/patient/{$healthControl->patient->id()}?success=true&message=La operación fue realizada con éxito.");
         } catch (\Exception $e) {
-            $this->redirect("healthcontrol/show/patient/{$post['patientId']}?success=false&message={$e->getMessage()}")
+            $this->redirect("healthcontrols/show/patient/{$post->patientId}?success=false&message={$e->getMessage()}");
         }
     }
 
     public function delete($id)
     {
-        $this->checkPermissions([ 'paciente_destroy' ]);
+        try {
+            $this->checkPermissions([ 'paciente_destroy' ]);
 
-        HealthControl::init();
-        $healthControl = HealthControl::find($id);
+            HealthControl::init();
+            $healthControl = HealthControl::find($id);
 
-        if ($healthControl) {
             $patientId = $healthControl->patient->id();
             $healthControl->remove();
             $this->redirect("patients/show/{$patientId}?success=true&message=La operación fue realizada con éxito.")
-        } else {
+        } catch (\Exception $e) {
             $this->redirect("?success=false&message=Hubo un fallo en la operación.")
         }
     }

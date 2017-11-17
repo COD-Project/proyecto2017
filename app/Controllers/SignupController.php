@@ -32,15 +32,15 @@ class SignupController extends \App\Controller
     public function signup()
     {
         try {
-            $post = $this->post();
+            $post = (object) $this->post();
             User::init();
 
             $user = User::create([
-              'firstName' => $post['firstName'],
-              'lastName' => $post['lastName'],
-              'name' => $post['username'],
-              'email' => $post['email'],
-              'password' => Functions::encrypt($post['password'])
+              'firstName' => $post->firstName,
+              'lastName' => $post->lastName,
+              'name' => $post->username,
+              'email' => $post->email,
+              'password' => Functions::encrypt($post->password)
             ]);
 
             $this->session->generateSession($user->id());
