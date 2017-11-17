@@ -41,6 +41,16 @@ class Controller extends \Mbh\Controller
 
         $this->session->checkLife();
 
+        if (isset($sessionRules['unlogged']) && $sessionRules['unlogged'] == true && $this->session->isLoggedIn()) {
+            $this->redirect();
+            exit;
+        }
+
+        if (isset($sessionRules['logged']) && $sessionRules['logged'] == true && !$this->session->isLoggedIn()) {
+            $this->redirect();
+            exit;
+        }
+
         /**
          * Templates settings
          *
@@ -70,14 +80,6 @@ class Controller extends \Mbh\Controller
             $this->template->addGlobal('permissions', $this->currentPermissions());
             $this->template->addGlobal('roles', $this->currentRoles());
             $this->template->addGlobal('admin', $connectedUser->hasRole('Administrador'));
-        }
-
-        if (isset($sessionRules['unlogged']) && $sessionRules['unlogged'] && $this->session->isLoggedIn()) {
-            $this->redirect();
-        }
-
-        if (isset($sessionRules['logged']) && $sessionRules['logged'] && !$this->session->isLoggedIn()) {
-            $this->redirect();
         }
     }
 
