@@ -24,9 +24,9 @@ class Api
                     return "Turno {$date["time"]}";
                 },json_decode($info, true)["data"]);
 
-                //$date = (new \DateTime($data[1]))->format('d-m-Y');
+                $date = (new \DateTime($data[1]))->format('d-m-Y');
 
-                $response = "Turnos para la fecha\n\n" . join("\n", $data);
+                $response = "Turnos para la fecha {$date}\n\n" . join("\n", $data);
 
                 $bot->sendMessage($message->getChat()->getId(), $response);
             });
