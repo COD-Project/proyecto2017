@@ -21,13 +21,13 @@ class Api
                 curl_close($ch);
 
                 $turns_time = array_map(function($date) {
-                    return "Turno {$date["time"]}";
+                    return "- {$date["time"]}";
                 },json_decode($info, true)["data"]);
 
                 $date = new \DateTime($data[1]);
                 $date = $date->format('d-m-Y');
 
-                $response = "Turnos para la fecha {$date}\n\n" . join("\n", $turns_time);
+                $response = "Turnos para la fecha {$date}:\n\n" . join("\n", $turns_time);
 
                 $bot->sendMessage($message->getChat()->getId(), $response);
             });
