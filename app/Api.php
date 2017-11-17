@@ -31,6 +31,15 @@ class Api
 
                 $bot->sendMessage($message->getChat()->getId(), $response);
             });
+            $bot->commant("help", function($message) use($bot){
+                $response = "
+                Ayuda\n
+                  Comandos disponibles:\n
+                    - /turnos aaaa-mm-dd    Se mostraran los turnos disponibles para el dia aaaa-mm-dd\n
+                    - /turnos/tu_dni/fecha/aaaa-mm-dd/hora/hh:mm:ss    Se reservará un turno para la persona con dni tu_dni en la fecha y hora especificada";
+                $bot->sendMessage($message->getChat()->getId(), $response);
+
+            });
             $bot->run();
         } catch (\TelegramBot\Api\Exception $e) {
             $e->getMessage();
