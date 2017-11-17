@@ -49,7 +49,7 @@ class Api
                 $response .= "    Se reservará un turno para la persona con dni en la fecha y hora especificada\n\n";
                 $response .= "  - /turnos_activos\n";
                 $response .= "    Se muestran tus turnos activos.\n\n";
-                $response .= "  - /turnio dni\n";
+                $response .= "  - /turno dni\n";
                 $response .= "    Se muestran los turnos activos para la persona con dni especificado";
                 $bot->sendMessage($message->getChat()->getId(), $response);
 
