@@ -31,7 +31,7 @@ class Api
 
                 $bot->sendMessage($message->getChat()->getId(), $response);
             });
-            $bot->commant("help", function($message) use($bot){
+            $bot->command("help", function($message) use($bot){
                 $response = "
                 Ayuda\n
                   Comandos disponibles:\n
