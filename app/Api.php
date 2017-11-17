@@ -15,7 +15,8 @@ class Api
             $bot = new \TelegramBot\Api\Client(self::API_TELEGRAM_TOKEN);
             $bot->command("turnos", function($message) use($bot){
                 $data = explode(" ", $message->getText());
-                $ch = curl_init(URL . "turnos/{$data[1]}");
+                $date = new \DateTime($data[1]);
+                $ch = curl_init(URL . "turnos/{$date->format('Y-m-d')}");
                 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
                 $info = curl_exec($ch);
                 curl_close($ch);
@@ -24,10 +25,7 @@ class Api
                     return "- {$date["time"]}";
                 },json_decode($info, true)["data"]);
 
-                $date = new \DateTime($data[1]);
-                $date = $date->format('d-m-Y');
-
-                $response = "Turnos para la fecha {$date}:\n\n" . join("\n", $turns_time);
+                $response = "Turnos para la fecha {$date->format('d-m-Y')}:\n\n" . join("\n", $turns_time);
 
                 $bot->sendMessage($message->getChat()->getId(), $response);
             });
