@@ -26,8 +26,7 @@ class Api
 
                 //$date = (new \DateTime($data[1]))->format('d-m-Y');
 
-                //$response = "Turnos para la fecha\n\n";
-                $response = join("\n", $data);
+                $response = "Turnos para la fecha\n\n" . join("\n", $data);
 
                 $bot->sendMessage($message->getChat()->getId(), $response);
             });
