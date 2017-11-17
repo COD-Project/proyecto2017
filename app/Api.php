@@ -34,8 +34,10 @@ class Api
             $bot->command("help", function($message) use($bot){
                 $response = "Ayuda\n";
                 $response .= "Comandos disponibles:\n";
-                $response .= "\t- /turnos aaaa-mm-dd    Se mostraran los turnos disponibles para el dia aaaa-mm-dd\n";
-                $response .= "\t- /turnos/tu_dni/fecha/aaaa-mm-dd/hora/hh:mm:ss    Se reservará un turno para la persona con dni tu_dni en la fecha y hora especificada";
+                $response .= "  - /turnos aaaa-mm-dd:\n";
+                $response .= "    Se mostraran los turnos disponibles para el dia aaaa-mm-dd\n";
+                $response .= "  - /reservar dni dd-mm-aaaa hh:mm\n";
+                $response .= "    Se reservará un turno para la persona con dni tu_dni en la fecha y hora especificada";
                 $bot->sendMessage($message->getChat()->getId(), $response);
 
             });
