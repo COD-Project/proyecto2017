@@ -43,12 +43,10 @@ class Controller extends \Mbh\Controller
 
         if (isset($sessionRules['unlogged']) && $sessionRules['unlogged'] == true && $this->session->isLoggedIn()) {
             $this->redirect();
-            exit;
         }
 
         if (isset($sessionRules['logged']) && $sessionRules['logged'] == true && !$this->session->isLoggedIn()) {
             $this->redirect();
-            exit;
         }
 
         /**
@@ -116,6 +114,7 @@ class Controller extends \Mbh\Controller
     protected function redirect($url = "")
     {
         header('location:' . URL . $url);
+        exit;
     }
 
     protected function get()

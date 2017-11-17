@@ -29,14 +29,14 @@ class LoginController extends \App\Controller
 
     public function login()
     {
-        $post = (object) $this->post();
+        $post = $this->post();
         $e = [];
 
         User::init();
 
         $user = new User([
-            'name' => $post->username,
-            'password' => Functions::encrypt($post->password),
+            'name' => $post['username'],
+            'password' => Functions::encrypt($post['password']),
             'active' => '1'
         ]);
 

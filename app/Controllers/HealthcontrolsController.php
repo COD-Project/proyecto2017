@@ -65,29 +65,29 @@ class HealthcontrolsController extends \App\Controller
         $this->checkPermissions([ 'paciente_new' ]);
 
         try {
-            $post = (object) $this->post();
+            $post = $this->post();
 
             HealthControl::init();
             $healthControl = HealthControl::create([
-                'weight' => $post->weight,
-                'completeVaccines' => $post->completeVaccines,
-                'vaccinesObservations' => $post->vaccinesObservations,
-                'accordingMaturationContext' => $post->accordingMaturationContext,
-                'maturationObservations' => $post->maturationObservations,
-                'commonPhysicalExamination' => $post->commonPhysicalExamination,
-                'physicalExaminationObservations' => $post->physicalExaminationObservations,
-                'cephalicPercentile' => $post->cephalicPercentile,
-                'percentileCephalicPerimeter' => $post->percentileCephalicPerimeter,
-                'size' => $post->size,
-                'alimentation' => $post->alimentation,
-                'generalObservations' => $post->generalObservations,
-                'patientId' => $post->patientId,
-                'userId' => $post->userId
+                'weight' => $post['weight'],
+                'completeVaccines' => $post['completeVaccines'],
+                'vaccinesObservations' => $post['vaccinesObservations'],
+                'accordingMaturationContext' => $post['accordingMaturationContext'],
+                'maturationObservations' => $post['maturationObservations'],
+                'commonPhysicalExamination' => $post['commonPhysicalExamination'],
+                'physicalExaminationObservations' => $post['physicalExaminationObservations'],
+                'cephalicPercentile' => $post['cephalicPercentile'],
+                'percentileCephalicPerimeter' => $post['percentileCephalicPerimeter'],
+                'size' => $post['size'],
+                'alimentation' => $post['alimentation'],
+                'generalObservations' => $post['generalObservations'],
+                'patientId' => $post['patientId'],
+                'userId' => $post['userId']
             ]);
 
             $this->redirect("healthcontrols/show/patient/{$healthControl->patient->id()}?success=true&message=La operación fue realizada con éxito.");
         } catch (\Exception $e) {
-            $this->redirect("healthcontrols/create/patient/{$post->patientId}?success=false&message={$e->getMessage()}");
+            $this->redirect("healthcontrols/create/patient/{$post['patientId']}?success=false&message={$e->getMessage()}");
         }
     }
 
@@ -102,25 +102,25 @@ class HealthcontrolsController extends \App\Controller
             $healthControl = HealthControl::find($id);
 
             $healthControl->addState([
-                'weight' => $post->weight,
-                'completeVaccines' => $post->completeVaccines,
-                'vaccinesObservations' => $post->vaccinesObservations,
-                'accordingMaturationContext' => $post->accordingMaturationContext,
-                'maturationObservations' => $post->maturationObservations,
-                'commonPhysicalExamination' => $post->commonPhysicalExamination,
-                'physicalExaminationObservations' => $post->physicalExaminationObservations,
-                'cephalicPercentile' => $post->cephalicPercentile,
-                'percentileCephalicPerimeter' => $post->percentileCephalicPerimeter,
-                'size' => $post->size,
-                'alimentation' => $post->alimentation,
-                'generalObservations' => $post->generalObservations,
+                'weight' => $post['weight'],
+                'completeVaccines' => $post['completeVaccines'],
+                'vaccinesObservations' => $post['vaccinesObservations'],
+                'accordingMaturationContext' => $post['accordingMaturationContext'],
+                'maturationObservations' => $post['maturationObservations'],
+                'commonPhysicalExamination' => $post['commonPhysicalExamination'],
+                'physicalExaminationObservations' => $post['physicalExaminationObservations'],
+                'cephalicPercentile' => $post['cephalicPercentile'],
+                'percentileCephalicPerimeter' => $post['percentileCephalicPerimeter'],
+                'size' => $post['size'],
+                'alimentation' => $post['alimentation'],
+                'generalObservations' => $post['generalObservations']
             ]);
 
             $healthControl->edit();
 
             $this->redirect("healthcontrols/show/patient/{$healthControl->patient->id()}?success=true&message=La operación fue realizada con éxito.");
         } catch (\Exception $e) {
-            $this->redirect("healthcontrols/show/patient/{$post->patientId}?success=false&message={$e->getMessage()}");
+            $this->redirect("healthcontrols/show/patient/{$post['patientId']}?success=false&message={$e->getMessage()}");
         }
     }
 
