@@ -31,6 +31,15 @@ class Api
 
                 $bot->sendMessage($message->getChat()->getId(), $response);
             });
+            $bot->command("reservar", function($message) use($bot){
+                $bot->sendMessage($message->getChat()->getId(), "Comming soon");
+            });
+            $bot->command("turnos_activos", function($message) use($bot){
+                $bot->sendMessage($message->getChat()->getId(), "Comming soon");
+            });
+            $bot->command("turno", function($message) use($bot){
+                $bot->sendMessage($message->getChat()->getId(), "Comming soon");
+            });
             $bot->command("help", function($message) use($bot){
                 $response = "Ayuda\n";
                 $response .= "Comandos disponibles:\n";
