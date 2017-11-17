@@ -24,7 +24,12 @@ class Api
                     return "Turno {$date["time"]}";
                 },json_decode($info, true)["data"]);
 
-                $bot->sendMessage($message->getChat()->getId(), join("\n", $data));
+                $date = new \DateTime($data[1]);
+
+                $message = "Turnos para la fecha {$date->format('d-m-Y')}\n\n";
+                $message .= join("\n", $data);
+
+                $bot->sendMessage($message->getChat()->getId(), $message);
             });
             $bot->run();
         } catch (\TelegramBot\Api\Exception $e) {
