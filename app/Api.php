@@ -30,7 +30,20 @@ class Api
                 $bot->sendMessage($message->getChat()->getId(), $response);
             });
             $bot->command("reservar", function($message) use($bot){
-                $bot->sendMessage($message->getChat()->getId(), "Comming soon");
+                $data = explode(" ", $message->getText());
+                $dni = $data[1];
+                $date = $data[2];
+                $time = $data[3];
+
+                $date = new \DateTime($date);
+                $ch = curl_init(URL . "turnos/{$dni}/fecha/{$date->format('Y-m-d')}/hora/{$time->format('H:m:s')}");
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                $info = curl_exec($ch);
+                curl_close($ch);
+
+                $response = json_decode($info, true);
+
+                $bot->sendMessage($message->getChat()->getId(), $response["message"]);
             });
             $bot->command("turnos_activos", function($message) use($bot){
                 $bot->sendMessage($message->getChat()->getId(), "Comming soon");
