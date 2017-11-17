@@ -26,10 +26,10 @@ class Api
 
                 $date = (new \DateTime($data[1]))->format('d-m-Y');
 
-                $message = "Turnos para la fecha\n\n";
-                //$message .= join("\n", $data);
+                $response = "Turnos para la fecha\n\n";
+                $response .= join("\n", $data);
 
-                $bot->sendMessage($message->getChat()->getId(), $message);
+                $bot->sendMessage($message->getChat()->getId(), $response);
             });
             $bot->run();
         } catch (\TelegramBot\Api\Exception $e) {
