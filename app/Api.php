@@ -35,9 +35,9 @@ class Api
                 $response = "Ayuda\n";
                 $response .= "Comandos disponibles:\n";
                 $response .= "  - /turnos aaaa-mm-dd:\n";
-                $response .= "    Se mostraran los turnos disponibles para el dia aaaa-mm-dd\n";
+                $response .= "    Se mostraran los turnos disponibles para el dia aaaa-mm-dd\n\n";
                 $response .= "  - /reservar dni dd-mm-aaaa hh:mm\n";
-                $response .= "    Se reservará un turno para la persona con dni tu_dni en la fecha y hora especificada";
+                $response .= "    Se reservará un turno para la persona con dni en la fecha y hora especificada";
                 $bot->sendMessage($message->getChat()->getId(), $response);
 
             });
