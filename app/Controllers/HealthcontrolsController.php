@@ -96,7 +96,7 @@ class HealthcontrolsController extends \App\Controller
         $this->checkPermissions([ 'paciente_update' ]);
 
         try {
-            $post = (object) $this->post();
+            $post = $this->post();
 
             HealthControl::init();
             $healthControl = HealthControl::find($id);
