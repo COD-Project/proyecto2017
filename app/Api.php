@@ -21,7 +21,7 @@ class Api
                 curl_close($ch);
 
                 $data = array_map(function($date) {
-                    return $date["time"];
+                    return "Turno {$date["time"]}";
                 },json_decode($info, true)["data"]);
 
                 $bot->sendMessage($message->getChat()->getId(), join("\n", $data));
