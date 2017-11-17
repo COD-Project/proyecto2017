@@ -22,7 +22,7 @@ class Api
 
                 $data = array_map(function($date) {
                     return $date["time"];
-                },json_decode($info, true));
+                },json_decode($info, true)["data"]);
 
                 $bot->sendMessage($message->getChat()->getId(), json_encode($data));
             });
