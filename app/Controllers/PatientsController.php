@@ -184,7 +184,7 @@ class PatientsController extends \App\Controller
             //$each = (object) $each;
             var_dump($each);
             return [
-                "name" => $each[1]
+                "name" => $each["nombre"]
             ];
         }, $data);
     }
