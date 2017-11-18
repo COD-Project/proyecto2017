@@ -13,9 +13,12 @@ class TurnosController extends \App\Controller
 
         $this->app->get('/turnos', [ $this, 'render' ]);
         $this->app->get('/turnos/:fecha', [ $this, 'turns' ]);
-        $this->app->map(
-            ['GET', 'POST', 'HEAD'],
+        $this->app->get(
             '/turnos/:document/fecha/:fecha/hora/:hora',
+            [ $this, 'takeTurn' ]
+        );
+        $this->app->get(
+            '/turnos/:document/fecha/:fecha/hora/:hora/:chat_id',
             [ $this, 'takeTurn' ]
         );
 
@@ -63,7 +66,7 @@ class TurnosController extends \App\Controller
         }
     }
 
-    public function takeTurn($document, $date, $time)
+    public function takeTurn($document, $date, $time, $chat_id = 0)
     {
         try {
             $date = new \DateTime($date);
@@ -72,7 +75,8 @@ class TurnosController extends \App\Controller
             $turno = new Turno([
                 'documentNumber' => (int) $document,
                 'date' => $date->format('Y-m-d'),
-                'time' => $time->format('H:i:s')
+                'time' => $time->format('H:i:s'),
+                'chatId' => $chat_id
             ]);
 
             if (!$turno->exists()) {

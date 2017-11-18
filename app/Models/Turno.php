@@ -14,6 +14,7 @@ class Turno extends \App\Model
         "id" => "id",
         "date" => "fecha",
         "time" => "horario",
-        "documentNumber" => "numero_doc"
+        "documentNumber" => "numero_doc",
+        "chatId" => "chat_id"
     ];
 }
