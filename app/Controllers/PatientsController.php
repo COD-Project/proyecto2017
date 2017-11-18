@@ -181,9 +181,9 @@ class PatientsController extends \App\Controller
     protected function mapping(&$data)
     {
         $data = array_map(function($each){
-            $each = (object) $each;
+            //$each = (object) $each;
             return [
-                "name" => $each->fullName
+                "name" => $each["nombre"]
             ];
         }, $data);
     }
