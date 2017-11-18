@@ -184,45 +184,50 @@ class PatientsController extends \App\Controller
     public function healthcontrols($id, $type)
     {
         $healthcontrols = HealthControl::findBy($id, 'patientId');
-        return $this->healthcontrols{ucwords($type)}($healthcontrols);
+        $method = "healthcontrols" . ucwords($type);
+        return $this->{$method}($healthcontrols);
     }
 
     protected function healthcontrolsPpc($data)
     {
-        return array_map(function() {
-            $date = (int) (date_diff(new DateTime, $data->birthdate()))->format("%a")/7;
+        return array_map(function($each) {
+            $interval = date_diff(new \DateTime, new \DateTime($each->birthdate()));
+            $age = (int)($interval->format("%a")/7);
             return [
-                "age" => $date,
-                "ppc" => $data->ppc()
+                "age" => $age,
+                "ppc" => $each->ppc()
             ];
         }, $data);
     }
 
     protected function healthcontrolsWeight($data)
     {
-        return array_map(function() {
-            $date = (int) (date_diff(new DateTime, $data->birthdate()))->format("%a")/7;
+        return array_map(function($each) {
+            $interval = date_diff(new \DateTime, new \DateTime($each->birthdate()));
+            $age = (int) ($interval->format("%a")/7);
             return [
-                "age" => $date,
-                "weight" => $data->weight()
+                "age" => $age,
+                "weight" => $each->weight()
             ];
         }, $data);
     }
 
     protected function healthcontrolsHeight($data)
     {
-        return array_map(function() {
-            $date = (int) (date_diff(new DateTime, $data->birthdate()))->format("%a")/7;
+        return array_map(function($each) {
+            $interval = date_diff(new \DateTime, new \DateTime($each->birthdate()));
+            $age = (int) ($interval->format("%a")/7);
             return [
-                "age" => $date,
-                "height" => $data->height()
+                "age" => $age,
+                "height" => $each->height()
             ];
         }, $data);
     }
 
     public function renderGraph($id, $type)
     {
-        $this->render{ucwords($type)}($id);
+        $method = "render" . ucwords($type);
+        $this->{$method}($id);
     }
 
     protected function mapping(&$data)
