@@ -122,7 +122,7 @@ class TurnosController extends \App\Controller
                     "date" => $turno->date(),
                     "time" => $turno->time()
                 ];
-            });
+            }, $turnos);
         } catch (\Exception $e) {
             return [];
         }
@@ -140,7 +140,7 @@ class TurnosController extends \App\Controller
                     "date" => $turno->date(),
                     "time" => $turno->time()
                 ];
-            });
+            }, $turnos);
         } catch (\Exception $e) {
             return [];
         }
