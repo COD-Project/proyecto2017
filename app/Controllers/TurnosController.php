@@ -33,7 +33,8 @@ class TurnosController extends \App\Controller
     {
         for ($i = 8; $i < 19; $i++) {
             for ($j = 0; $j < 1; $j++) {
-                $date = new \DateTime("$i:{$j*30}:00");
+                $k = (int) $j * 30;
+                $date = new \DateTime("$i:{$k}:00");
                 $times[] = (string) $date->format("H:i:s");
             }
         }
