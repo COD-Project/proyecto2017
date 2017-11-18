@@ -13,6 +13,8 @@ class TurnosController extends \App\Controller
 
         $this->app->get('/turnos', [ $this, 'render' ]);
         $this->app->get('/turnos/:fecha', [ $this, 'turns' ]);
+        $this->app->get('/turnos/activos/user/:id', [ $this, 'turnsForUser' ]);
+        $this->app->get('/turnos/activos/doc/:doc', [ $this, 'turnsForDocumentNumber' ]);
         $this->app->get(
             '/turnos/:document/fecha/:fecha/hora/:hora',
             [ $this, 'takeTurn' ]
@@ -105,6 +107,42 @@ class TurnosController extends \App\Controller
               'success' => false,
               'message' => "Hubo un problema al realizar la transacción. Pruebe más tarde."
             ];
+        }
+    }
+
+    public function turnsForUser($id)
+    {
+        try {
+            $date = (new \DateTime())->format('Y-m-d');
+
+            $turnos = Turno::select("fecha, horario", "chat_id=$id AND fecha >= $date");
+
+            return array_map(function ($turno) {
+                return [
+                    "date" => $turno->date(),
+                    "time" => $turno->time()
+                ];
+            });
+        } catch (\Exception $e) {
+            return [];
+        }
+    }
+
+    public function turnsForDocumentNumber($doc)
+    {
+        try {
+            $date = (new \DateTime())->format('Y-m-d');
+
+            $turnos = Turno::select("fecha, horario", "numero_doc=$doc AND fecha >= $date");
+
+            return array_map(function ($turno) {
+                return [
+                    "date" => $turno->date(),
+                    "time" => $turno->time()
+                ];
+            });
+        } catch (\Exception $e) {
+            return [];
         }
     }
 }
