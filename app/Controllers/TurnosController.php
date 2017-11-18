@@ -32,7 +32,7 @@ class TurnosController extends \App\Controller
     private function timesArray()
     {
         for ($i = 8; $i < 19; $i++) {
-            for ($j = 0; $j < 1; $j++) {
+            for ($j = 0; $j < 2; $j++) {
                 $k = (int) $j * 30;
                 $date = new \DateTime("$i:{$k}:00");
                 $times[] = (string) $date->format("H:i:s");
@@ -50,13 +50,14 @@ class TurnosController extends \App\Controller
             $times = [];
 
             foreach ($models as $key => $value) {
-                $times[] = (string) $state['time'];
+                $state = $value->getState();
+                $times[] = $state['time'];
             }
 
             return [
                 'success' => true,
                 'message' => 'Get your data!',
-                'data' => (array) array_diff($this->timesArray(), $times)
+                'data' => array_values(array_diff($this->timesArray(), $times))
             ];
         } catch (\Exception $e) {
             return [
@@ -72,6 +73,10 @@ class TurnosController extends \App\Controller
         try {
             $date = new \DateTime($date);
             $time = new \DateTime($time);
+
+            if (!in_array($time, $this->timesArray())) {
+                throw new \InvalidArgumentException("El horario elegido es incorrecto");
+            }
 
             $turno = new Turno([
                 'documentNumber' => (int) $document,
@@ -89,9 +94,11 @@ class TurnosController extends \App\Controller
                 ];
             }
 
+            throw new \InvalidArgumentException("El turno ya existe");
+        } catch (\InvalidArgumentException $e) {
             return [
               'success' => false,
-              'message' => "El turno ya existe."
+              'message' => $e->getMessage()
             ];
         } catch (\Exception $e) {
             return [
