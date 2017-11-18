@@ -21,7 +21,7 @@ class PatientsController extends \App\Controller
 
         $this->getDataFromApi();
 
-        $this->app->map(['GET', 'POST', 'HEAD'], '/patients', [ $this, 'render' ]);
+        $this->app->get('/patients', [ $this, 'render' ]);
         $this->app->get('/patients/show/:id', [ $this, 'show' ]);
         $this->app->get('/patients/create', [ $this, 'add' ]);
         $this->app->post('/patients/create', [ $this, 'createPatient' ]);
