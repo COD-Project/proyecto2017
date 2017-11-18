@@ -49,6 +49,8 @@ class Controller extends \Mbh\Controller
             $this->redirect();
         }
 
+        $this->checkPermissions($permissions);
+
         /**
          * Templates settings
          *

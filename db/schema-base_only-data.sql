@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: db
--- Tiempo de generación: 18-11-2017 a las 02:51:56
+-- Tiempo de generación: 18-11-2017 a las 14:11:39
 -- Versión del servidor: 5.7.19
 -- Versión de PHP: 7.0.21
 
@@ -42,6 +42,8 @@ INSERT INTO `obras_sociales` (`id`, `nombre`) VALUES
 --
 
 INSERT INTO `permisos` (`id`, `nombre`) VALUES
+(17, 'debug_index'),
+(16, 'log_index'),
 (10, 'paciente_destroy'),
 (6, 'paciente_index'),
 (8, 'paciente_new'),

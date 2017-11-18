@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: db
--- Tiempo de generación: 18-11-2017 a las 02:51:39
+-- Tiempo de generación: 18-11-2017 a las 14:11:18
 -- Versión del servidor: 5.7.19
 -- Versión de PHP: 7.0.21
 
@@ -146,7 +146,7 @@ CREATE TABLE IF NOT EXISTS `permisos` (
   `nombre` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `nombre` (`nombre`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 

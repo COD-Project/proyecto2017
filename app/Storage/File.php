@@ -17,9 +17,15 @@ class File
         $lines = '';
         $file = new \SplFileObject($this->path);
 
-        while (!$f->eof()) {
-            $lines .= $file->fgets();
+        if (!$file->flock(LOCK_EX | LOCK_NB)) {
+            throw new \Exception("Error Locking File", 1);
         }
+
+        while (!$file->eof()) {
+            $lines .= (string) ($file->fgets() . PHP_EOL . PHP_EOL);
+        }
+
+        $file->flock(LOCK_UN);
 
         return (string) $lines;
     }
