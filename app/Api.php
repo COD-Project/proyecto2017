@@ -7,7 +7,6 @@
 class Api
 {
     const API_TELEGRAM_TOKEN = "456440817:AAFMl9hVYUXeGR8qiDmk4ua2_rphI16l2_w";
-    const API_BOTAN_TRACKER_TOKEN = "";
 
     public function __construct()
     {
@@ -35,7 +34,7 @@ class Api
                 $date = new \DateTime($data[2]);
                 $time = new \DateTime($data[3]);
 
-                $ch = curl_init(URL . "turnos/{$dni}/fecha/{$date->format('Y-m-d')}/hora/{$time->format('H:i:s')}");
+                $ch = curl_init(URL . "turnos/{$dni}/fecha/{$date->format('Y-m-d')}/hora/{$time->format('H:i:s')}/{$message->getChat()->getId()}");
                 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
                 $info = curl_exec($ch);
                 curl_close($ch);
@@ -45,10 +44,34 @@ class Api
                 $bot->sendMessage($message->getChat()->getId(), $response["message"]);
             });
             $bot->command("turnos_activos", function($message) use($bot){
-                $bot->sendMessage($message->getChat()->getId(), "Comming soon");
+                $data = explode(" ", $message->getText());
+
+                $ch = curl_init(URL . "turnos/activos/user/{$message->getChat()->getId()}");
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                $info = curl_exec($ch);
+                curl_close($ch);
+
+                $turns_time = array_map(function($date) {
+                    return "{$date["date"]} - {$date["time"]}";
+                },json_decode($info, true)["data"]);
+
+                $response = "Turnos activos:\n\n" . join("\n", $turns_time);
+                $bot->sendMessage($message->getChat()->getId(), $response);
             });
             $bot->command("turno", function($message) use($bot){
-                $bot->sendMessage($message->getChat()->getId(), "Comming soon");
+                $data = explode(" ", $message->getText());
+
+                $ch = curl_init(URL . "turnos/activos/dni/{$data[1]}");
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                $info = curl_exec($ch);
+                curl_close($ch);
+
+                $turns_time = array_map(function($date) {
+                    return "{$date["date"]} - {$date["time"]}";
+                },json_decode($info, true)["data"]);
+
+                $response = "Turnos activos para DNI {$data[1]}:\n\n" . join("\n", $turns_time);
+                $bot->sendMessage($message->getChat()->getId(), $response);
             });
             $bot->command("help", function($message) use($bot){
                 $response = "Ayuda\n";

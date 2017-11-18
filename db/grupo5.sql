@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.5
+-- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: db
--- Tiempo de generación: 13-11-2017 a las 14:07:16
--- Versión del servidor: 5.7.20
--- Versión de PHP: 7.1.9
+-- Tiempo de generación: 18-11-2017 a las 02:50:34
+-- Versión del servidor: 5.7.19
+-- Versión de PHP: 7.0.21
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -194,7 +194,7 @@ CREATE TABLE IF NOT EXISTS `roles` (
   `nombre` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `nombre` (`nombre`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `roles`
@@ -203,7 +203,8 @@ CREATE TABLE IF NOT EXISTS `roles` (
 INSERT INTO `roles` (`id`, `nombre`) VALUES
 (1, 'Administrador'),
 (3, 'Pediatra'),
-(2, 'Recepcionista');
+(2, 'Recepcionista'),
+(4, 'Superadministrador');
 
 -- --------------------------------------------------------
 
@@ -242,7 +243,22 @@ INSERT INTO `rol_tiene_permisos` (`rol_id`, `permiso_id`) VALUES
 (3, 6),
 (3, 7),
 (3, 8),
-(3, 9);
+(3, 9),
+(4, 10),
+(4, 6),
+(4, 8),
+(4, 7),
+(4, 9),
+(4, 15),
+(4, 11),
+(4, 13),
+(4, 12),
+(4, 14),
+(4, 5),
+(4, 1),
+(4, 3),
+(4, 2),
+(4, 4);
 
 -- --------------------------------------------------------
 
@@ -353,6 +369,7 @@ CREATE TABLE IF NOT EXISTS `turnos` (
   `fecha` date NOT NULL,
   `horario` time NOT NULL,
   `numero_doc` int(11) NOT NULL,
+  `chat_id` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
@@ -377,16 +394,17 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `usuarios`
 --
 
 INSERT INTO `usuarios` (`id`, `email`, `username`, `password`, `activo`, `created_at`, `updated_at`, `session`, `first_name`, `last_name`) VALUES
-(2, 'admin@admin.com', 'admin', '0b1c78bc8b5b71f6f49e0f29c36db73c', 1, '2017-10-14 12:59:36', '2017-10-14 12:59:36', 0, 'Señor', 'Administrador'),
+(2, 'admin@admin.com', 'admin', 'c9bf17bd5e274d7b883467f70ffb6087', 1, '2017-10-14 12:59:36', '2017-11-17 23:47:38', 1510991359, 'Señor', 'Administrador'),
 (3, 'recepcionista@hnrc.com', 'recepcionista', 'd1d038d9d63b86431fc00d944e1ac852', 1, '2017-10-14 13:00:24', '2017-10-14 13:00:24', 0, 'Señor', 'Recepcionista'),
-(4, 'pediatra@hnrg.com', 'pediatra', '10616abba48177479b2b2c7411eb4021', 1, '2017-10-14 13:00:59', '2017-10-14 13:00:59', 1508014981, 'Señor', 'Pediatra');
+(4, 'pediatra@hnrg.com', 'pediatra', '10616abba48177479b2b2c7411eb4021', 1, '2017-10-14 13:00:59', '2017-10-14 13:00:59', 0, 'Señor', 'Pediatra'),
+(5, 'su@hnrg.com', 'su', '829b13db5a760c43b3a891734d68c7f5', 1, '2017-11-17 23:48:12', '2017-11-17 23:48:12', 0, 'Señor', 'Superadministrador');
 
 -- --------------------------------------------------------
 
@@ -409,7 +427,9 @@ CREATE TABLE IF NOT EXISTS `usuario_tiene_roles` (
 INSERT INTO `usuario_tiene_roles` (`usuario_id`, `rol_id`) VALUES
 (2, 1),
 (4, 3),
-(3, 2);
+(3, 2),
+(5, 1),
+(5, 4);
 
 --
 -- Restricciones para tablas volcadas

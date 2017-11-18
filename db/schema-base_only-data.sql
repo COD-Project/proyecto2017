@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: db
--- Tiempo de generación: 14-10-2017 a las 16:04:20
+-- Tiempo de generación: 18-11-2017 a las 02:51:56
 -- Versión del servidor: 5.7.19
 -- Versión de PHP: 7.0.21
 
@@ -65,7 +65,8 @@ INSERT INTO `permisos` (`id`, `nombre`) VALUES
 INSERT INTO `roles` (`id`, `nombre`) VALUES
 (1, 'Administrador'),
 (3, 'Pediatra'),
-(2, 'Recepcionista');
+(2, 'Recepcionista'),
+(4, 'Superadministrador');
 
 --
 -- Volcado de datos para la tabla `rol_tiene_permisos`
@@ -90,7 +91,22 @@ INSERT INTO `rol_tiene_permisos` (`rol_id`, `permiso_id`) VALUES
 (3, 6),
 (3, 7),
 (3, 8),
-(3, 9);
+(3, 9),
+(4, 10),
+(4, 6),
+(4, 8),
+(4, 7),
+(4, 9),
+(4, 15),
+(4, 11),
+(4, 13),
+(4, 12),
+(4, 14),
+(4, 5),
+(4, 1),
+(4, 3),
+(4, 2),
+(4, 4);
 
 --
 -- Volcado de datos para la tabla `tipos_documento`
@@ -138,9 +154,10 @@ INSERT INTO `tipo_vivienda` (`id`, `nombre`) VALUES
 --
 
 INSERT INTO `usuarios` (`id`, `email`, `username`, `password`, `activo`, `created_at`, `updated_at`, `session`, `first_name`, `last_name`) VALUES
-(2, 'admin@admin.com', 'admin', '0b1c78bc8b5b71f6f49e0f29c36db73c', 1, '2017-10-14 12:59:36', '2017-10-14 12:59:36', 0, 'Señor', 'Administrador'),
+(2, 'admin@admin.com', 'admin', 'c9bf17bd5e274d7b883467f70ffb6087', 1, '2017-10-14 12:59:36', '2017-11-17 23:47:38', 1510991359, 'Señor', 'Administrador'),
 (3, 'recepcionista@hnrc.com', 'recepcionista', 'd1d038d9d63b86431fc00d944e1ac852', 1, '2017-10-14 13:00:24', '2017-10-14 13:00:24', 0, 'Señor', 'Recepcionista'),
-(4, 'pediatra@hnrg.com', 'pediatra', '10616abba48177479b2b2c7411eb4021', 1, '2017-10-14 13:00:59', '2017-10-14 13:00:59', 1508014981, 'Señor', 'Pediatra');
+(4, 'pediatra@hnrg.com', 'pediatra', '10616abba48177479b2b2c7411eb4021', 1, '2017-10-14 13:00:59', '2017-10-14 13:00:59', 0, 'Señor', 'Pediatra'),
+(5, 'su@hnrg.com', 'su', '829b13db5a760c43b3a891734d68c7f5', 1, '2017-11-17 23:48:12', '2017-11-17 23:48:12', 0, 'Señor', 'Superadministrador');
 
 --
 -- Volcado de datos para la tabla `usuario_tiene_roles`
@@ -149,7 +166,9 @@ INSERT INTO `usuarios` (`id`, `email`, `username`, `password`, `activo`, `create
 INSERT INTO `usuario_tiene_roles` (`usuario_id`, `rol_id`) VALUES
 (2, 1),
 (4, 3),
-(3, 2);
+(3, 2),
+(5, 1),
+(5, 4);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
