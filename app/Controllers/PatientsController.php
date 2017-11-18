@@ -180,6 +180,7 @@ class PatientsController extends \App\Controller
 
     protected function mapping(&$data)
     {
+        var_dump($data[0]);
         $data = array_map(function($each){
             //$each = (object) $each;
             return [
@@ -194,7 +195,7 @@ class PatientsController extends \App\Controller
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         $info = curl_exec($ch);
         if (!curl_errno($ch)) {
-            $info = json_decode($info, true)[0];
+            $info = json_decode($info, true);
             $this->mapping($info);
             DocumentType::updateWith($info);
         }
