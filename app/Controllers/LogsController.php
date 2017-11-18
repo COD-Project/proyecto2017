@@ -16,6 +16,8 @@ class LogsController extends \App\Controller
         ]);
 
         try {
+            echo 'Firewall logs';
+
             $file = new File('uploads/logs/firewall.logs');
             echo $file->content();
         } catch (\Exception $e) {
