@@ -180,11 +180,10 @@ class PatientsController extends \App\Controller
 
     protected function mapping(&$data)
     {
-        var_dump($data[0]);
         $data = array_map(function($each){
             //$each = (object) $each;
             return [
-                "name" => $each["nombre"]
+                "name" => $each[1]
             ];
         }, $data);
     }
