@@ -65,11 +65,11 @@ class Api
             $bot->command("turno", function($message) use($bot){
                 $data = explode(" ", $message->getText());
                 if (empty($data[1])) {
-                    $bot->sendMessage($message->getChat()->getId(), "No especificó ningun DNI");
+                    $bot->sendMessage($message->getChat()->getId(), "No especificó ningun número de documento");
                     return;
                 }
 
-                $ch = curl_init(URL . "turnos/activos/dni/{$data[1]}");
+                $ch = curl_init(URL . "turnos/activos/doc/{$data[1]}");
                 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
                 $info = curl_exec($ch);
                 curl_close($ch);
@@ -78,7 +78,7 @@ class Api
                     return "{$date["date"]} - {$date["time"]}";
                 },json_decode($info, true)["data"]);
 
-                $response = "Turnos activos para DNI {$data[1]}:\n\n" . join("\n", $turns_time);
+                $response = "Turnos activos para número de documento {$data[1]}:\n\n" . join("\n", $turns_time);
                 $bot->sendMessage($message->getChat()->getId(), $response);
             });
             $bot->command("help", function($message) use($bot){
