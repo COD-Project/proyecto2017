@@ -6,4 +6,3 @@ package-lock.json
 /web/node_modules/
 /web/etc/
 !/web/package.json
-/uploads/logs/
