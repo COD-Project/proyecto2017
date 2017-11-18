@@ -32,7 +32,7 @@ class TurnosController extends \App\Controller
     private function timesArray()
     {
         for ($i = 8; $i < 19; $i++) {
-            for ($j = 0; $j < 1; $j++) {
+            for ($j = 0; $j < 2; $j++) {
                 $k = (int) $j * 30;
                 $date = new \DateTime("$i:{$k}:00");
                 $times[] = (string) $date->format("H:i:s");
@@ -50,13 +50,14 @@ class TurnosController extends \App\Controller
             $times = [];
 
             foreach ($models as $key => $value) {
-                $times[] = (string) $state['time'];
+                $state = $value->getState();
+                $times[] = $state['time'];
             }
 
             return [
                 'success' => true,
                 'message' => 'Get your data!',
-                'data' => (array) array_diff($this->timesArray(), $times)
+                'data' => array_values(array_diff($this->timesArray(), $times))
             ];
         } catch (\Exception $e) {
             return [
