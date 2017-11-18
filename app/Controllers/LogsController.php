@@ -15,8 +15,10 @@ class LogsController extends \App\Controller
             'log_index'
         ]);
 
-        $file = new File('uploads/logs/firewall.logs');
-        
-        echo $file->content();
+        try {
+            $file = new File('uploads/logs/firewall.logs');
+            echo $file->content();
+        } catch (\Exception $e) {
+        }
     }
 }
