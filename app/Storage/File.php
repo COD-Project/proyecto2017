@@ -22,7 +22,7 @@ class File
         }
 
         while (!$file->eof()) {
-            $lines .= (string) ($file->fgets(); . PHP_EOL . PHP_EOL);
+            $lines .= (string) ($file->fgets() . PHP_EOL . PHP_EOL);
         }
 
         $file->flock(LOCK_UN);
