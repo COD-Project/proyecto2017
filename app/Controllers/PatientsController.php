@@ -190,7 +190,7 @@ class PatientsController extends \App\Controller
     protected function healthcontrolsPpc($data)
     {
         return array_map(function() {
-            $date = (int) (date_diff(new DateTime, $data->birthdate()))->format("$d")/7;
+            $date = (int) (date_diff(new DateTime, $data->birthdate()))->format("%a")/7;
             return [
                 "age" => $date,
                 "ppc" => $data->ppc()
@@ -201,7 +201,7 @@ class PatientsController extends \App\Controller
     protected function healthcontrolsWeight($data)
     {
         return array_map(function() {
-            $date = (int) (date_diff(new DateTime, $data->birthdate()))->format("$d")/7;
+            $date = (int) (date_diff(new DateTime, $data->birthdate()))->format("%a")/7;
             return [
                 "age" => $date,
                 "weight" => $data->weight()
@@ -212,7 +212,7 @@ class PatientsController extends \App\Controller
     protected function healthcontrolsHeight($data)
     {
         return array_map(function() {
-            $date = (int) (date_diff(new DateTime, $data->birthdate()))->format("$d")/7;
+            $date = (int) (date_diff(new DateTime, $data->birthdate()))->format("%a")/7;
             return [
                 "age" => $date,
                 "height" => $data->height()
