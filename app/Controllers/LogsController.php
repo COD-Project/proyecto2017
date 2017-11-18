@@ -16,10 +16,10 @@ class LogsController extends \App\Controller
         ]);
 
         try {
-            echo 'Firewall logs';
+            echo 'Firewall logs <br><br>';
 
             $file = new File('uploads/logs/firewall.logs');
-            echo $file->content();
+            echo (string) str_replace(PHP_EOL, '<br>', $file->content());
         } catch (\Exception $e) {
         }
     }
