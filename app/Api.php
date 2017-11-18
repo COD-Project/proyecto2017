@@ -57,7 +57,7 @@ class Api
 
                 $turns_time = array_map(function($date) {
                     return "{$date["date"]} - {$date["time"]}";
-                },json_decode($info, true)["data"]);
+                },json_decode($info, true));
 
                 $response = "Turnos activos:\n\n" . join("\n", $turns_time);
                 $bot->sendMessage($message->getChat()->getId(), $response);
@@ -76,7 +76,7 @@ class Api
 
                 $turns_time = array_map(function($date) {
                     return "{$date["date"]} - {$date["time"]}";
-                },json_decode($info, true)["data"]);
+                },json_decode($info, true));
 
                 $response = "Turnos activos para número de documento {$data[1]}:\n\n" . join("\n", $turns_time);
                 $bot->sendMessage($message->getChat()->getId(), $response);
