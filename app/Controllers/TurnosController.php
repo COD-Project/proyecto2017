@@ -74,6 +74,10 @@ class TurnosController extends \App\Controller
             $date = new \DateTime($date);
             $time = new \DateTime($time);
 
+            if (!in_array($time, $this->timesArray())) {
+                throw new \InvalidArgumentException("El horario elegido es incorrecto");
+            }
+
             $turno = new Turno([
                 'documentNumber' => (int) $document,
                 'date' => $date->format('Y-m-d'),
@@ -90,9 +94,11 @@ class TurnosController extends \App\Controller
                 ];
             }
 
+            throw new \InvalidArgumentException("El turno ya existe");
+        } catch (\InvalidArgumentException $e) {
             return [
               'success' => false,
-              'message' => "El turno ya existe."
+              'message' => $e->getMessage()
             ];
         } catch (\Exception $e) {
             return [
