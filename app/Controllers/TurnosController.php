@@ -119,8 +119,8 @@ class TurnosController extends \App\Controller
 
             return array_map(function ($turno) {
                 return [
-                    "date" => $turno->date(),
-                    "time" => $turno->time()
+                    "date" => $turno['fecha'],
+                    "time" => $turno['horario']
                 ];
             }, $turnos);
         } catch (\Exception $e) {
@@ -137,8 +137,8 @@ class TurnosController extends \App\Controller
 
             return array_map(function ($turno) {
                 return [
-                    "date" => $turno->date(),
-                    "time" => $turno->time()
+                    "date" => $turno['fecha'],
+                    "time" => $turno['horario']
                 ];
             }, $turnos);
         } catch (\Exception $e) {
