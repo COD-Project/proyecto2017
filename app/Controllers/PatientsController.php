@@ -205,7 +205,7 @@ class PatientsController extends \App\Controller
 
     protected function getSocialWorkDataFromApi()
     {
-        $ch = curl_init('https://api-referencias.proyecto2017.linti.unlp.edu.ar/tipo-obra-social');
+        $ch = curl_init('https://api-referencias.proyecto2017.linti.unlp.edu.ar/obra-social');
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         $info = curl_exec($ch);
         if (!curl_errno($ch)) {
