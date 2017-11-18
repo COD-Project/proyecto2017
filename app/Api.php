@@ -30,6 +30,10 @@ class Api
             });
             $bot->command("reservar", function($message) use($bot){
                 $data = explode(" ", $message->getText());
+                if (count($data) == 1) {
+                    $bot->sendMessage($message->getChat()->getId(), "No se especificaron datos\nVer /help para ayuda");
+                    return;
+                }
                 $dni = $data[1];
                 $date = new \DateTime($data[2]);
                 $time = new \DateTime($data[3]);
@@ -60,7 +64,7 @@ class Api
             });
             $bot->command("turno", function($message) use($bot){
                 $data = explode(" ", $message->getText());
-                if(empty($data[1])) {
+                if (empty($data[1])) {
                     $bot->sendMessage($message->getChat()->getId(), "No especificó ningun DNI");
                     return;
                 }
