@@ -34,7 +34,7 @@ class Api
                 $date = new \DateTime($data[2]);
                 $time = new \DateTime($data[3]);
 
-                $ch = curl_init(URL . "turnos/{$dni}/fecha/{$date->format('Y-m-d')}/hora/{$time->format('H:i:s')}");
+                $ch = curl_init(URL . "turnos/{$dni}/fecha/{$date->format('Y-m-d')}/hora/{$time->format('H:i:s')}/{$message->getChat()->getId()}");
                 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
                 $info = curl_exec($ch);
                 curl_close($ch);
