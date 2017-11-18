@@ -82,7 +82,7 @@ class TurnosController extends \App\Controller
         } catch (\Exception $e) {
             return [
               'success' => false,
-              'message' => $e->getMessage()
+              'message' => "Hubo un problema al realizar la transacción. Pruebe más tarde."
             ];
         }
     }

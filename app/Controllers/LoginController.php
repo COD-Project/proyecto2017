@@ -9,7 +9,7 @@ use \App\Models\User;
  */
 class LoginController extends \App\Controller
 {
-    function __construct($app)
+    public function __construct($app)
     {
         parent::__construct($app, [
           'unlogged' => true
@@ -22,12 +22,12 @@ class LoginController extends \App\Controller
         $this->app->run();
     }
 
-    function render()
+    public function render()
     {
         return $this->template->render('login/login.twig');
     }
 
-    function login()
+    public function login()
     {
         $post = $this->post();
         $e = [];

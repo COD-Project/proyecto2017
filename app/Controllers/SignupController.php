@@ -19,7 +19,6 @@ class SignupController extends \App\Controller
         }
 
         $this->app->get('/signup', [ $this, 'render' ]);
-
         $this->app->post('/signup', [ $this, 'signup' ]);
 
         $this->app->run();

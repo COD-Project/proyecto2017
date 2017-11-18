@@ -10,7 +10,7 @@ use App\Models\Permission;
  */
 class DashboardController extends \App\Controller
 {
-    function __construct($app)
+    public function __construct($app)
     {
         parent::__construct($app, [
           'logged' => true
