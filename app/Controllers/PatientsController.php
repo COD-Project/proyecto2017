@@ -227,7 +227,26 @@ class PatientsController extends \App\Controller
     public function renderGraph($id, $type)
     {
         $method = "render" . ucwords($type);
-        $this->{$method}($id);
+        if (method_exists($this, $method)) {
+            return $this->{$method}($id);
+        }
+
+        $this->redirect("patients/show/$id?success=false&message=El grafico $type no existe");
+    }
+
+    protected function renderPpc($id)
+    {
+        return $id;
+    }
+
+    protected function renderWeight($id)
+    {
+        return $id;
+    }
+
+    protected function renderHeight($id)
+    {
+        return $id;
     }
 
     protected function mapping(&$data)
