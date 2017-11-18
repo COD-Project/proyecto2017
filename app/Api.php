@@ -20,8 +20,8 @@ class Api
                 $info = curl_exec($ch);
                 curl_close($ch);
 
-                $turns_time = array_map(function($date) {
-                    return "- {$date["time"]}";
+                $turns_time = array_map(function($time) {
+                    return "- $time";
                 },json_decode($info, true)["data"]);
 
                 $response = "Turnos para la fecha {$date->format('d-m-Y')}:\n\n" . join("\n", $turns_time);
@@ -56,7 +56,9 @@ class Api
                 curl_close($ch);
 
                 $turns_time = array_map(function($date) {
-                    return "{$date["date"]} - {$date["time"]}";
+                    $date = (new \DateTime($date["date"]))->format("d-m-Y");
+                    $time = (new \DateTime($date["time"]))->format("H:i");
+                    return "$date - $time";
                 },json_decode($info, true)["data"]);
 
                 $response = "Turnos activos:\n\n" . join("\n", $turns_time);
@@ -75,7 +77,9 @@ class Api
                 curl_close($ch);
 
                 $turns_time = array_map(function($date) {
-                    return "{$date["date"]} - {$date["time"]}";
+                    $date = (new \DateTime($date["date"]))->format("d-m-Y");
+                    $time = (new \DateTime($date["time"]))->format("H:i");
+                    return "$date - $time";
                 },json_decode($info, true)["data"]);
 
                 $response = "Turnos activos para número de documento {$data[1]}:\n\n" . join("\n", $turns_time);
