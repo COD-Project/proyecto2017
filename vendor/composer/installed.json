@@ -17,7 +17,7 @@
         "require": {
             "php": "^5.6 || ^7.0"
         },
-        "time": "2017-11-13T16:05:45+00:00",
+        "time": "2017-11-13 16:05:45",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -57,18 +57,18 @@
         "source": {
             "type": "git",
             "url": "https://github.com/MBHFramework/mbh-mvc.git",
-            "reference": "d9a0c64bdb4beeecd312ae3aba55b506e4fd3182"
+            "reference": "458560a2e74be97171672c681b9c93ed97c6ff7c"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/MBHFramework/mbh-mvc/zipball/d9a0c64bdb4beeecd312ae3aba55b506e4fd3182",
-            "reference": "d9a0c64bdb4beeecd312ae3aba55b506e4fd3182",
+            "url": "https://api.github.com/repos/MBHFramework/mbh-mvc/zipball/458560a2e74be97171672c681b9c93ed97c6ff7c",
+            "reference": "458560a2e74be97171672c681b9c93ed97c6ff7c",
             "shasum": ""
         },
         "require": {
             "php": "^5.6 || ^7.0"
         },
-        "time": "2017-11-11T04:19:27+00:00",
+        "time": "2017-11-17 18:57:19",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -119,7 +119,7 @@
         "require": {
             "php": "^5.6 || ^7.0"
         },
-        "time": "2017-10-11T18:52:07+00:00",
+        "time": "2017-10-11 18:52:07",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -174,7 +174,7 @@
             "symfony/debug": "~2.7",
             "symfony/phpunit-bridge": "~3.3@dev"
         },
-        "time": "2017-09-27T18:06:46+00:00",
+        "time": "2017-09-27 18:06:46",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -241,7 +241,7 @@
             "phpunit/phpunit": "~4.0",
             "squizlabs/php_codesniffer": "2.*"
         },
-        "time": "2017-11-09T10:11:16+00:00",
+        "time": "2017-11-09 10:11:16",
         "type": "library",
         "extra": {
             "branch-alias": {

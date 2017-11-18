@@ -4,6 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
+    "hash": "d1d77d29bb5c8f198dbdab6927a6d686",
     "content-hash": "dd2183b90660ee7512dbfe0613775a27",
     "packages": [
         {
@@ -52,7 +53,7 @@
                     "email": "ldicunzolo@cespi.unlp.edu.ar"
                 }
             ],
-            "time": "2017-10-11T18:52:07+00:00"
+            "time": "2017-10-11 18:52:07"
         },
         {
             "name": "mbh-framework/mvc",
@@ -60,12 +61,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/MBHFramework/mbh-mvc.git",
-                "reference": "d9a0c64bdb4beeecd312ae3aba55b506e4fd3182"
+                "reference": "458560a2e74be97171672c681b9c93ed97c6ff7c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/MBHFramework/mbh-mvc/zipball/d9a0c64bdb4beeecd312ae3aba55b506e4fd3182",
-                "reference": "d9a0c64bdb4beeecd312ae3aba55b506e4fd3182",
+                "url": "https://api.github.com/repos/MBHFramework/mbh-mvc/zipball/458560a2e74be97171672c681b9c93ed97c6ff7c",
+                "reference": "458560a2e74be97171672c681b9c93ed97c6ff7c",
                 "shasum": ""
             },
             "require": {
@@ -101,7 +102,7 @@
                 }
             ],
             "description": "Minimalist framework to create MVC Apps with php7.",
-            "time": "2017-11-11T04:19:27+00:00"
+            "time": "2017-11-17 18:57:19"
         },
         {
             "name": "mbh-framework/rest",
@@ -150,7 +151,7 @@
                 }
             ],
             "description": "Minimalist framework to create RESTFull Apps with php7.",
-            "time": "2017-11-13T16:05:45+00:00"
+            "time": "2017-11-13 16:05:45"
         },
         {
             "name": "telegram-bot/api",
@@ -205,7 +206,7 @@
                 "php",
                 "telegram"
             ],
-            "time": "2017-11-09T10:11:16+00:00"
+            "time": "2017-11-09 10:11:16"
         },
         {
             "name": "twig/twig",
@@ -270,7 +271,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2017-09-27T18:06:46+00:00"
+            "time": "2017-09-27 18:06:46"
         }
     ],
     "packages-dev": [],
