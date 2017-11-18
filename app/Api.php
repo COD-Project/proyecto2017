@@ -62,6 +62,7 @@ class Api
                 $data = explode(" ", $message->getText());
                 if(empty($data[1])) {
                     $bot->sendMessage($message->getChat()->getId(), "No especificó ningun DNI");
+                    return;
                 }
 
                 $ch = curl_init(URL . "turnos/activos/dni/{$data[1]}");
