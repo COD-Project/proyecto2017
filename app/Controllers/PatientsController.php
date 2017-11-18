@@ -195,7 +195,7 @@ class PatientsController extends \App\Controller
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         $info = curl_exec($ch);
         if (!curl_errno($ch)) {
-            $info = json_decode($info, true);
+            $info = json_decode($info, true)[0][0];
             $this->mapping($info);
             DocumentType::updateWith($info);
         }
