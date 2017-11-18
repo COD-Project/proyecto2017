@@ -14,9 +14,6 @@ class Lines {
       url: window.location.origin + `/patients/get/${this.state.data[3]}/healthcontrols`,
       type: "GET",
       cache: false,
-      beforeSend: function() {
-
-      },
       success: function(response) {
         let data = JSON.parse(response);
         console.log(data);
@@ -25,9 +22,6 @@ class Lines {
           container: '#lines',
           data: data
         });
-      },
-      error: function() {
-
       }
     });
   }

@@ -1,6 +1,6 @@
 class HighchartsLines {
-  constructor(data) {
-    Highcharts.chart('container', {
+  constructor(container, data) {
+    Highcharts.chart(container, {
       data: {
         csv: data
       },
