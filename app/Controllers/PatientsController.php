@@ -181,10 +181,9 @@ class PatientsController extends \App\Controller
     protected function mapping(&$data)
     {
         $data = array_map(function($each){
-            //$each = (object) $each;
-            var_dump($each);
+            $each = (object) $each;
             return [
-                "name" => $each["nombre"]
+                "name" => $each->nombre
             ];
         }, $data);
     }
@@ -195,7 +194,7 @@ class PatientsController extends \App\Controller
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         $info = curl_exec($ch);
         if (!curl_errno($ch)) {
-            $info = json_decode($info, true)[0][0];
+            $info = json_decode($info, true);
             $this->mapping($info);
             DocumentType::updateWith($info);
         }
