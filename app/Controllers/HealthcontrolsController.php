@@ -85,7 +85,7 @@ class HealthcontrolsController extends \App\Controller
                 'userId' => $post['userId']
             ]);
 
-            $this->redirect("healthcontrols/show/patient/{$healthControl->patient->id()}?success=true&message=La operación fue realizada con éxito.");
+            $this->redirect("healthcontrols/show/patient/{$healthControl->patient()->id()}?success=true&message=La operación fue realizada con éxito.");
         } catch (\Exception $e) {
             $this->redirect("healthcontrols/create/patient/{$post['patientId']}?success=false&message={$e->getMessage()}");
         }
@@ -118,7 +118,7 @@ class HealthcontrolsController extends \App\Controller
 
             $healthControl->edit();
 
-            $this->redirect("healthcontrols/show/patient/{$healthControl->patient->id()}?success=true&message=La operación fue realizada con éxito.");
+            $this->redirect("healthcontrols/show/patient/{$healthControl->patient()->id()}?success=true&message=La operación fue realizada con éxito.");
         } catch (\Exception $e) {
             $this->redirect("healthcontrols/show/patient/{$post['patientId']}?success=false&message={$e->getMessage()}");
         }
@@ -132,7 +132,7 @@ class HealthcontrolsController extends \App\Controller
             HealthControl::init();
             $healthControl = HealthControl::find($id);
 
-            $patientId = $healthControl->patient->id();
+            $patientId = $healthControl->patient()->id();
             $healthControl->remove();
             $this->redirect("patients/show/{$patientId}?success=true&message=La operación fue realizada con éxito.")
         } catch (\Exception $e) {

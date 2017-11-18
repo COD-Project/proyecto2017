@@ -30,7 +30,7 @@ $app->map(
 );
 
 $mvc_base_url = '/:controller/:method';
-$max_args = 5;
+$max_args = MAX_ARGS;
 
 for ($i = 0; $i < $max_args; $i++) {
     $mvc_base_url .= "/:arg$i";

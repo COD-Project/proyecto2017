@@ -76,6 +76,7 @@ class Config
         define('__ROOT__', static::$data['root']);
         define('URL', static::$data['url']);
         define('DEBUG', static::$data['debug']);
+        define('MAX_ARGS', 8);
     }
 
     public static function defineSettingConstants($data = null)
