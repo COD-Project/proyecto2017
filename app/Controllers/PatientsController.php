@@ -183,7 +183,7 @@ class PatientsController extends \App\Controller
         $data = array_map(function($each){
             $each = (object) $each;
             return [
-                "name" => $each->nombre
+                "name" => $each->fullName
             ];
         }, $data);
     }
