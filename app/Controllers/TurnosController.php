@@ -115,16 +115,24 @@ class TurnosController extends \App\Controller
         try {
             $date = (new \DateTime())->format('Y-m-d');
 
-            $turnos = Turno::select("fecha, horario", "chat_id=$id AND fecha >= $date");
+            $turnos = Turno::select("fecha, horario", "chat_id=$id AND fecha >= DATE '$date'");
 
-            return array_map(function ($turno) {
-                return [
-                    "date" => $turno['fecha'],
-                    "time" => $turno['horario']
-                ];
-            }, $turnos);
+            return [
+                "success" => true,
+                "message" => "Get your data!",
+                "data" => array_map(function ($turno) {
+                    return [
+                        "date" => $turno['fecha'],
+                        "time" => $turno['horario']
+                    ];
+                }, $turnos)
+            ];
         } catch (\Exception $e) {
-            return [];
+            return [
+                "success" => false,
+                "message" => "Hubo un problema al realizar la transacción. Pruebe más tarde.",
+                "data" => []
+            ];
         }
     }
 
@@ -133,16 +141,24 @@ class TurnosController extends \App\Controller
         try {
             $date = (new \DateTime())->format('Y-m-d');
 
-            $turnos = Turno::select("fecha, horario", "numero_doc=$doc AND fecha >= $date");
+            $turnos = Turno::select("fecha, horario", "numero_doc=$doc AND fecha >= DATE '$date'");
 
-            return array_map(function ($turno) {
-                return [
-                    "date" => $turno['fecha'],
-                    "time" => $turno['horario']
-                ];
-            }, $turnos);
+            return [
+                "success" => true,
+                "message" => "Get your data!",
+                "data" => array_map(function ($turno) {
+                    return [
+                        "date" => $turno['fecha'],
+                        "time" => $turno['horario']
+                    ];
+                }, $turnos)
+            ];
         } catch (\Exception $e) {
-            return [];
+            return [
+                "success" => false,
+                "message" => "Hubo un problema al realizar la transacción. Pruebe más tarde.",
+                "data" => []
+            ];
         }
     }
 }
