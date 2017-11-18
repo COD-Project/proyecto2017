@@ -26,7 +26,8 @@ class DemographicdataController extends \App\Controller
         $this->app->post('/demographicdata/create', [ $this, 'createDemographicdata' ]);
         $this->app->post('/demographicdata/edit', [ $this, 'editDemographicdata' ]);
         $this->app->post('/demographicdata/create/patient/:id', [ $this, 'createDemographicdata' ]);
-        $this->app->get('/demographicdata/stats/:type', [ $this, 'renderGraph' ]);
+        $this->app->get('/demographicdata/analytics', [ $this, 'showGraphTypes' ]);
+        $this->app->get('/demographicdata/analytics/:type', [ $this, 'renderGraph' ]);
 
         $this->app->run();
     }
@@ -111,6 +112,13 @@ class DemographicdataController extends \App\Controller
         } catch (\Exception $e) {
             $this->redirect("demographicdata/show/$id?success=false&message={$e->getMessage()}");
         }
+    }
+
+    public function showGraphTypes()
+    {
+        return $this->template->render('demographicdata/analytics.twig', [
+            "graphs" => [ "total", "other" ]
+        ]);
     }
 
     public function renderGraph($type)
