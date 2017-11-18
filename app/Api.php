@@ -20,8 +20,8 @@ class Api
                 $info = curl_exec($ch);
                 curl_close($ch);
 
-                $turns_time = array_map(function($date) {
-                    return "- {$date["time"]}";
+                $turns_time = array_map(function($time) {
+                    return "- $time";
                 },json_decode($info, true)["data"]);
 
                 $response = "Turnos para la fecha {$date->format('d-m-Y')}:\n\n" . join("\n", $turns_time);
