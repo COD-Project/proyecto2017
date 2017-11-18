@@ -26,24 +26,33 @@ class TurnosController extends \App\Controller
     {
     }
 
+    private function timesArray()
+    {
+        for ($i = 8; $i < 19; $i++) {
+            for ($j = 0; $j < 1; $j++) {
+                $date = new \DateTime("$i:{$j*30}:00");
+                $times[] = (string) $date->format("H:i:s");
+            }
+        }
+
+        return $times;
+    }
+
     public function turns($date)
     {
         try {
             $models = Turno::findBy($date, 'date');
 
-            $data = [];
+            $times = [];
 
             foreach ($models as $key => $value) {
-                $state = $value->getState();
-                unset($state['id']);
-
-                $data[] = $state;
+                $times[] = (string) $state['time'];
             }
 
             return [
                 'success' => true,
                 'message' => 'Get your data!',
-                'data' => $data
+                'data' => (array) array_diff($this->timesArray(), $times)
             ];
         } catch (\Exception $e) {
             return [
