@@ -182,7 +182,6 @@ class PatientsController extends \App\Controller
     {
         $data = array_map(function($each){
             //$each = (object) $each;
-            var_dump($each);
             return [
                 "name" => $each["nombre"]
             ];
@@ -195,7 +194,7 @@ class PatientsController extends \App\Controller
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         $info = curl_exec($ch);
         if (!curl_errno($ch)) {
-            $info = json_decode($info, true);
+            $info = json_decode($info, true)[0];
             $this->mapping($info);
             DocumentType::updateWith($info);
         }
