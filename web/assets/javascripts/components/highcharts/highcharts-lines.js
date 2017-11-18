@@ -1,4 +1,4 @@
-class HighchartsCurve {
+class HighchartsLines {
   constructor(data) {
     Highcharts.chart('container', {
       data: {
