@@ -6,6 +6,7 @@ use App\Models\ApartamentType;
 use App\Models\SocialWork;
 use App\Models\WaterType;
 use App\Models\HeatingType;
+use App\Models\HealthControl;
 
 /**
  * @author Ulises Jeremias Cornejo Fandos
@@ -27,6 +28,8 @@ class PatientsController extends \App\Controller
         $this->app->post('/patients/create', [ $this, 'createPatient' ]);
         $this->app->post('/patients/edit/:id', [ $this, 'edit' ]);
         $this->app->get('/patients/delete/:id', [ $this, 'delete' ]);
+        $this->app->get('/patients/get/:id/healthcontrols/:value', [ $this, 'healthcontrols' ]);
+        $this->app->get('/patients/show/:id/graph/view/:type', [ $this, 'renderGraph' ]);
 
         $this->app->run();
     }
@@ -176,6 +179,50 @@ class PatientsController extends \App\Controller
         } else {
             $this->redirect("?success=false&message=La operación no fue realizada con éxito");
         }
+    }
+
+    public function healthcontrols($id, $type)
+    {
+        $healthcontrols = HealthControl::findBy($id, 'patientId');
+        return $this->healthcontrols{ucwords($type)}($healthcontrols);
+    }
+
+    protected function healthcontrolsPpc($data)
+    {
+        return array_map(function() {
+            $date = (int) (date_diff(new DateTime, $data->birthdate()))->format("$d")/7;
+            return [
+                "age" => $date,
+                "ppc" => $data->ppc()
+            ];
+        }, $data);
+    }
+
+    protected function healthcontrolsWeight($data)
+    {
+        return array_map(function() {
+            $date = (int) (date_diff(new DateTime, $data->birthdate()))->format("$d")/7;
+            return [
+                "age" => $date,
+                "weight" => $data->weight()
+            ];
+        }, $data);
+    }
+
+    protected function healthcontrolsHeight($data)
+    {
+        return array_map(function() {
+            $date = (int) (date_diff(new DateTime, $data->birthdate()))->format("$d")/7;
+            return [
+                "age" => $date,
+                "height" => $data->height()
+            ];
+        }, $data);
+    }
+
+    public function renderGraph($id, $type)
+    {
+        $this->render{ucwords($type)}($id);
     }
 
     protected function mapping(&$data)
