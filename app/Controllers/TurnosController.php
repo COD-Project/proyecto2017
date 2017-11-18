@@ -80,6 +80,10 @@ class TurnosController extends \App\Controller
                 throw new \InvalidArgumentException("El horario elegido es incorrecto");
             }
 
+            if (!is_numeric($document)) {
+                throw new \InvalidArgumentException("Puto el que lee");
+            }
+
             $turno = new Turno([
                 'documentNumber' => (int) $document,
                 'date' => $date->format('Y-m-d'),
