@@ -81,7 +81,7 @@ class TurnosController extends \App\Controller
             }
 
             if (!is_numeric($document)) {
-                throw new \InvalidArgumentException("Puto el que lee");
+                throw new \InvalidArgumentException("Documento inválido.");
             }
 
             $turno = new Turno([
