@@ -185,68 +185,24 @@ class PatientsController extends \App\Controller
     {
         $healthcontrols = HealthControl::findBy($id, 'patientId');
         $method = "healthcontrols" . ucwords($type);
-        return $this->{$method}($healthcontrols);
-    }
 
-    protected function healthcontrolsPpc($data)
-    {
-        return array_map(function ($each) {
-            $interval = date_diff(new \DateTime, new \DateTime($each->birthdate()));
-            $age = (int)($interval->format("%a")/7);
-            return [
-                "age" => $age,
-                "ppc" => $each->ppc()
-            ];
-        }, $data);
-    }
+        if (!in_array($type, ['ppc', 'weight', 'height'])) {
+            return;
+        }
 
-    protected function healthcontrolsWeight($data)
-    {
         return array_map(function ($each) {
             $interval = date_diff(new \DateTime, new \DateTime($each->birthdate()));
             $age = (int) ($interval->format("%a")/7);
             return [
                 "age" => $age,
-                "weight" => $each->weight()
+                "$type" => $each->{$type}()
             ];
-        }, $data);
-    }
-
-    protected function healthcontrolsHeight($data)
-    {
-        return array_map(function ($each) {
-            $interval = date_diff(new \DateTime, new \DateTime($each->birthdate()));
-            $age = (int) ($interval->format("%a")/7);
-            return [
-                "age" => $age,
-                "height" => $each->height()
-            ];
-        }, $data);
+        }, $healthcontrols);
     }
 
     public function renderGraphAction($id, $type)
     {
-        $method = "render" . ucwords($type);
-        if (method_exists($this, $method)) {
-            return $this->{$method}($id);
-        }
-
         $this->redirect("patients/show/$id?success=false&message=El grafico $type no existe");
-    }
-
-    protected function renderPpc($id)
-    {
-        return $id;
-    }
-
-    protected function renderWeight($id)
-    {
-        return $id;
-    }
-
-    protected function renderHeight($id)
-    {
-        return $id;
     }
 
     protected function mapping(&$data)
