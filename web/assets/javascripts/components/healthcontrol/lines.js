@@ -9,8 +9,6 @@ class Lines {
       options: options
     };
 
-    this.success.bind(this.state);
-
     this.ajax();
   }
 
