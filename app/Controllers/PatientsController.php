@@ -29,7 +29,7 @@ class PatientsController extends \App\Controller
         $this->app->post('/patients/edit/:id', [ $this, 'editAction' ]);
         $this->app->get('/patients/delete/:id', [ $this, 'deleteAction' ]);
         $this->app->get('/patients/get/:id/healthcontrols/:value', [ $this, 'healthcontrolsAction' ]);
-        $this->app->get('/patients/show/:id/graph/view/:type', [ $this, 'renderGraphAction' ]);
+        $this->app->get('/patients/show/:id/graph/view', [ $this, 'renderGraphAction' ]);
 
         $this->app->run();
     }
@@ -203,8 +203,8 @@ class PatientsController extends \App\Controller
             $interval = date_diff(new \DateTime, new \DateTime($each->birthdate()));
             $age = (int)($interval->format("%a")/7);
             return [
-                "age" => $age,
-                "ppc" => $each->ppc()
+                $age,
+                $each->ppc()
             ];
         }, $data);
     }
@@ -213,8 +213,8 @@ class PatientsController extends \App\Controller
     {
         return array_map(function ($each) {
             return [
-                "height" => $each->height(),
-                "weight" => $each->weight()
+                $each->height(),
+                $each->weight()
             ];
         }, $data);
     }
@@ -225,18 +225,14 @@ class PatientsController extends \App\Controller
             $interval = date_diff(new \DateTime, new \DateTime($each->birthdate()));
             $age = (int) ($interval->format("%a")/7);
             return [
-                "age" => $age,
-                "height" => $each->height()
+                $age,
+                $each->height()
             ];
         }, $data);
     }
 
-    public function renderGraphAction($id, $type)
+    public function renderGraphAction($id)
     {
-        if (!in_array($type, ['ppc', 'weight', 'height'])) {
-            $this->redirect("patients/show/$id?success=false&message=El grafico $type no existe");
-        }
-
         return $this->template->render('patient/graph.twig');
     }
 
