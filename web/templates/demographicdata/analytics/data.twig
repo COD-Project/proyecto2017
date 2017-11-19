@@ -1,0 +1,18 @@
+{% extends 'layout/layout.twig' %}
+
+{% block app_body %}
+
+  <div class="container mt-5">
+    <h4 class="text-center">Gráficos de los datos demográficos cargados</h4>
+    <div class="row">
+      {% for id, graph in graphs %}
+      <div id="{{id}}" class="col-6"></div>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}
+
+{% block scripts %}
+  <script src="web/assets/javascripts/components/highcharts/highcharts-pie.js"></script>
+  <script src="web/assets/javascripts/components/healthcontrol/pie.js"></script>
+{% endblock %}
