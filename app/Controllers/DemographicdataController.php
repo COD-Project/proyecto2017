@@ -120,7 +120,7 @@ class DemographicdataController extends \App\Controller
         return $this->template->render('demographicdata/analytics.twig', [
             "graphs" => [
                 "total" => "Gráfico de pacientes con/sin datos demográficos",
-                "datos" => "Gráfico de relacionados a los datos internos de datos demográficos"
+                "data" => "Gráfico de relacionados a los datos internos de datos demográficos"
               ]
         ]);
     }
@@ -140,9 +140,18 @@ class DemographicdataController extends \App\Controller
         return $this->template->render('demographicdata/analytics/total.twig');
     }
 
-    protected function renderDatos()
+    protected function renderData()
     {
-        return $this->template->render("demographicdata/analytics/data.twig");
+        return $this->template->render("demographicdata/analytics/data.twig", [
+            "graphs" => [
+                "waterTypeData" => "Tipos de agua",
+                "heatingTypeData" => "Tipos de calefacción",
+                "apartamentTypeData" => "Tipos de vivienda",
+                "refrigeratorData" => "Tiene heladera",
+                "electricityData" => "Tiene electricidad",
+                "petData" => "Tiene mascota"
+            ]
+        ]);
     }
 
     public function getData($type)
@@ -207,16 +216,12 @@ class DemographicdataController extends \App\Controller
         $with = DemographicData::select("count(*) AS count", "$type = 1")[0]["count"];
         return $data_for_stats = [
             [
-              "name" => "total",
-              "y" => count($demographicdata)
-            ],
-            [
-              "name" => "without",
-              "y" => count($demographicdata) - $with
-            ],
-            [
-              "name" => "with",
+              "name" => "con datos demográficos",
               "y" => $with
+            ],
+            [
+              "name" => "sin datos demográficos",
+              "y" => count($demographicdata) - $with
             ]
         ];
     }
