@@ -15,16 +15,16 @@ class HealthcontrolsController extends \App\Controller
           'logged' => true
         ]);
 
-        $this->app->get('/healthcontrols/show/:id', [ $this, 'show']);
-        $this->app->get('/healthcontrols/create/patient/:id', [ $this, 'add']);
-        $this->app->post('/healthcontrols/create', [ $this, 'createHealthControl']);
-        $this->app->post('/healthcontrols/edit/:id', [ $this, 'edit']);
-        $this->app->post('/healthcontrols/delete/:id', [ $this, 'delete']);
+        $this->app->get('/healthcontrols/show/:id', [ $this, 'showAction']);
+        $this->app->get('/healthcontrols/create/patient/:id', [ $this, 'addAction']);
+        $this->app->post('/healthcontrols/create', [ $this, 'createAction']);
+        $this->app->post('/healthcontrols/edit/:id', [ $this, 'editAction']);
+        $this->app->post('/healthcontrols/delete/:id', [ $this, 'deleteAction']);
 
         $this->app->run();
     }
 
-    public function show($id)
+    public function showAction($id)
     {
         $this->checkPermissions([ 'paciente_show' ]);
 
@@ -41,7 +41,7 @@ class HealthcontrolsController extends \App\Controller
         $this->redirect("error/404");
     }
 
-    public function add($patientId)
+    public function addAction($patientId)
     {
         $this->checkPermissions([ 'paciente_new' ]);
 
@@ -60,7 +60,7 @@ class HealthcontrolsController extends \App\Controller
         $this->redirect("error/404");
     }
 
-    public function createHealthControl()
+    public function createAction()
     {
         $this->checkPermissions([ 'paciente_new' ]);
 
@@ -91,7 +91,7 @@ class HealthcontrolsController extends \App\Controller
         }
     }
 
-    public function edit($id)
+    public function editAction($id)
     {
         $this->checkPermissions([ 'paciente_update' ]);
 
@@ -124,7 +124,7 @@ class HealthcontrolsController extends \App\Controller
         }
     }
 
-    public function delete($id)
+    public function deleteAction($id)
     {
         try {
             $this->checkPermissions([ 'paciente_destroy' ]);
