@@ -4,7 +4,7 @@ use App\Storage\File;
 use App\Models\Setting;
 
 /**
- * @author Ulises J. Cornejo Fandos
+ * @author Ulises Jeremias Cornejo Fandos
  */
 class SettingsController extends \App\Controller
 {
@@ -14,19 +14,19 @@ class SettingsController extends \App\Controller
           'logged' => true
         ]);
 
-        $this->app->get('/settings', [ $this, 'notFound' ]);
-        $this->app->get('/settings/:method', [ $this, 'notFound' ]);
-        $this->app->post('/settings/edit', [ $this, 'edit' ]);
+        $this->app->get('/settings', [ $this, 'indexAction' ]);
+        $this->app->get('/settings/:method', [ $this, 'indexAction' ]);
+        $this->app->post('/settings/edit', [ $this, 'editAction' ]);
 
         $this->app->run();
     }
 
-    public function notFound()
+    public function indexAction()
     {
         $this->redirect("error/404");
     }
 
-    public function edit()
+    public function editAction()
     {
         try {
             $post = $this->post();

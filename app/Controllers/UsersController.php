@@ -16,19 +16,19 @@ class UsersController extends \App\Controller
           'logged' => true
         ]);
 
-        $this->app->get('/users', [ $this, 'render' ]);
-        $this->app->get('/users/search/:active', [ $this, 'render' ]);
-        $this->app->get('/users/search/:active/:username', [ $this, 'render' ]);
-        $this->app->get('/users/show/:username', [ $this, 'show' ]);
-        $this->app->get('/users/disable/:id', [ $this, 'disable' ]);
-        $this->app->get('/users/enable/:id', [ $this, 'enable' ]);
-        $this->app->post('/users/edit/:id', [ $this, 'edit' ]);
-        $this->app->post('/users/edit/:id/roles', [ $this, 'editRoles' ]);
+        $this->app->get('/users', [ $this, 'indexAction' ]);
+        $this->app->get('/users/search/:active', [ $this, 'indexAction' ]);
+        $this->app->get('/users/search/:active/:username', [ $this, 'indexAction' ]);
+        $this->app->get('/users/show/:username', [ $this, 'showAction' ]);
+        $this->app->get('/users/disable/:id', [ $this, 'disableAction' ]);
+        $this->app->get('/users/enable/:id', [ $this, 'enableAction' ]);
+        $this->app->post('/users/edit/:id', [ $this, 'editAction' ]);
+        $this->app->post('/users/edit/:id/roles', [ $this, 'editRolesAction' ]);
 
         $this->app->run();
     }
 
-    public function render($active = 'active', $username = null)
+    public function indexAction($active = 'active', $username = null)
     {
         $this->checkPermissions([ 'usuario_index' ]);
 
@@ -64,7 +64,7 @@ class UsersController extends \App\Controller
         ]);
     }
 
-    public function show($username)
+    public function showAction($username)
     {
         if (!(
           $this->session->isLoggedIn()
@@ -87,7 +87,7 @@ class UsersController extends \App\Controller
         ]);
     }
 
-    public function edit($id)
+    public function editAction($id)
     {
         if (!(
           $this->session->isLoggedIn()
@@ -120,7 +120,7 @@ class UsersController extends \App\Controller
         }
     }
 
-    public function editRoles($id)
+    public function editRolesAction($id)
     {
         $this->checkPermissions([ 'usuario_update' ]);
 
@@ -151,7 +151,7 @@ class UsersController extends \App\Controller
         }
     }
 
-    public function disable($id)
+    public function disableAction($id)
     {
         $this->checkPermissions([ 'usuario_destroy' ]);
 
@@ -165,7 +165,7 @@ class UsersController extends \App\Controller
         }
     }
 
-    public function enable($id)
+    public function enableAction($id)
     {
         $this->checkPermissions([ 'usuario_new' ]);
 

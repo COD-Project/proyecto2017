@@ -18,18 +18,18 @@ class SignupController extends \App\Controller
             header('location:' . URL . 'error/500');
         }
 
-        $this->app->get('/signup', [ $this, 'render' ]);
-        $this->app->post('/signup', [ $this, 'signup' ]);
+        $this->app->get('/signup', [ $this, 'indexAction' ]);
+        $this->app->post('/signup', [ $this, 'signupAction' ]);
 
         $this->app->run();
     }
 
-    public function render()
+    public function indexAction()
     {
         return $this->template->render('signup/signup.twig');
     }
 
-    public function signup()
+    public function signupAction()
     {
         try {
             $post = $this->post();

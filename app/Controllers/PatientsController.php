@@ -22,19 +22,19 @@ class PatientsController extends \App\Controller
 
         $this->getDataFromApi();
 
-        $this->app->get('/patients', [ $this, 'render' ]);
-        $this->app->get('/patients/show/:id', [ $this, 'show' ]);
-        $this->app->get('/patients/create', [ $this, 'add' ]);
-        $this->app->post('/patients/create', [ $this, 'createPatient' ]);
-        $this->app->post('/patients/edit/:id', [ $this, 'edit' ]);
-        $this->app->get('/patients/delete/:id', [ $this, 'delete' ]);
-        $this->app->get('/patients/get/:id/healthcontrols/:value', [ $this, 'healthcontrols' ]);
-        $this->app->get('/patients/show/:id/graph/view/:type', [ $this, 'renderGraph' ]);
+        $this->app->get('/patients', [ $this, 'indexAction' ]);
+        $this->app->get('/patients/show/:id', [ $this, 'showAction' ]);
+        $this->app->get('/patients/create', [ $this, 'addAction' ]);
+        $this->app->post('/patients/create', [ $this, 'createAction' ]);
+        $this->app->post('/patients/edit/:id', [ $this, 'editAction' ]);
+        $this->app->get('/patients/delete/:id', [ $this, 'deleteAction' ]);
+        $this->app->get('/patients/get/:id/healthcontrols/:value', [ $this, 'healthcontrolsAction' ]);
+        $this->app->get('/patients/show/:id/graph/view/:type', [ $this, 'renderGraphAction' ]);
 
         $this->app->run();
     }
 
-    public function render()
+    public function indexAction()
     {
         $this->checkPermissions([ 'paciente_index' ]);
         $get = $this->get();
@@ -66,7 +66,7 @@ class PatientsController extends \App\Controller
         ]);
     }
 
-    public function show($id)
+    public function showAction($id)
     {
         $this->checkPermissions([ 'paciente_show' ]);
 
@@ -91,7 +91,7 @@ class PatientsController extends \App\Controller
         $this->redirect("error/404");
     }
 
-    public function add()
+    public function addAction()
     {
         $this->checkPermissions([ 'paciente_new' ]);
 
@@ -102,7 +102,7 @@ class PatientsController extends \App\Controller
         ]);
     }
 
-    public function createPatient()
+    public function createAction()
     {
         $this->checkPermissions([ 'paciente_new' ]);
 
@@ -141,7 +141,7 @@ class PatientsController extends \App\Controller
         }
     }
 
-    public function edit($id)
+    public function editAction($id)
     {
         $this->checkPermissions([ 'paciente_update' ]);
 
@@ -167,7 +167,7 @@ class PatientsController extends \App\Controller
         }
     }
 
-    public function delete($id)
+    public function deleteAction($id)
     {
         $this->checkPermissions([ 'paciente_destroy' ]);
 
@@ -181,7 +181,7 @@ class PatientsController extends \App\Controller
         }
     }
 
-    public function healthcontrols($id, $type)
+    public function healthcontrolsAction($id, $type)
     {
         $healthcontrols = HealthControl::findBy($id, 'patientId');
         $method = "healthcontrols" . ucwords($type);
@@ -190,7 +190,7 @@ class PatientsController extends \App\Controller
 
     protected function healthcontrolsPpc($data)
     {
-        return array_map(function($each) {
+        return array_map(function ($each) {
             $interval = date_diff(new \DateTime, new \DateTime($each->birthdate()));
             $age = (int)($interval->format("%a")/7);
             return [
@@ -202,7 +202,7 @@ class PatientsController extends \App\Controller
 
     protected function healthcontrolsWeight($data)
     {
-        return array_map(function($each) {
+        return array_map(function ($each) {
             $interval = date_diff(new \DateTime, new \DateTime($each->birthdate()));
             $age = (int) ($interval->format("%a")/7);
             return [
@@ -214,7 +214,7 @@ class PatientsController extends \App\Controller
 
     protected function healthcontrolsHeight($data)
     {
-        return array_map(function($each) {
+        return array_map(function ($each) {
             $interval = date_diff(new \DateTime, new \DateTime($each->birthdate()));
             $age = (int) ($interval->format("%a")/7);
             return [
@@ -224,7 +224,7 @@ class PatientsController extends \App\Controller
         }, $data);
     }
 
-    public function renderGraph($id, $type)
+    public function renderGraphAction($id, $type)
     {
         $method = "render" . ucwords($type);
         if (method_exists($this, $method)) {

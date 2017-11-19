@@ -15,19 +15,19 @@ class LoginController extends \App\Controller
           'unlogged' => true
         ]);
 
-        $this->app->get('/login', [ $this, 'render' ]);
+        $this->app->get('/login', [ $this, 'indexAction' ]);
 
-        $this->app->post('/login', [ $this, 'login' ]);
+        $this->app->post('/login', [ $this, 'loginAction' ]);
 
         $this->app->run();
     }
 
-    public function render()
+    public function indexAction()
     {
         return $this->template->render('login/login.twig');
     }
 
-    public function login()
+    public function loginAction()
     {
         $post = $this->post();
         $e = [];
