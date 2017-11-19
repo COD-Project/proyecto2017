@@ -1,5 +1,5 @@
 class HighchartsPie {
-  constructor(container, data) {
+  constructor({container, data, title}) {
     Highcharts.chart(container, {
       chart: {
         plotBackgroundColor: null,
@@ -8,14 +8,14 @@ class HighchartsPie {
         type: 'pie'
       },
       title: {
-        text: 'Browser market shares January, 2015 to May, 2015'
+        text: title
       },
       tooltip: {
         pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
       },
       plotOptions: {
         pie: {
-          allowPointSelect: true,
+          allowPointSelect: false,
           cursor: 'pointer',
           dataLabels: {
             enabled: false
@@ -23,7 +23,11 @@ class HighchartsPie {
           showInLegend: true
         }
       },
-      series: data
+      series: [{
+        name: 'Pacientes',
+        colorByPoint: true,
+        data: data.data
+      }]
     });
   }
 }
