@@ -119,8 +119,8 @@ class DemographicdataController extends \App\Controller
     {
         return $this->template->render('demographicdata/analytics.twig', [
             "graphs" => [
-                "total" => "Gráfico de pacientes con/sin datos demográficos",
-                "data" => "Gráfico de relacionados a los datos internos de datos demográficos"
+                "total" => "Pacientes con/sin datos demográficos",
+                "data" => "Porcentaje de datos en datos demográficos"
               ]
         ]);
     }
@@ -158,7 +158,11 @@ class DemographicdataController extends \App\Controller
     {
         $method = "get" . ucwords($type);
         if (method_exists($this, $method)) {
-            return $this->{$method}();
+            return [
+                "success" => true,
+                "message" => "Data",
+                "data" => $this->{$method}()
+             ];
         }
 
         $this->redirect("demographicdata?success=false&message=El grafico $type no existe");
@@ -169,13 +173,17 @@ class DemographicdataController extends \App\Controller
         $patients = Patient::all();
         $patient_without_dd = Patient::select("count(*) AS count", "datos_demograficos_id IS NULL")[0]["count"];
         return [
-            [
-                "name" => "con Datos Demográficos asignados",
-                "y" => $patient_without_dd
-            ],
-            [
-                "name" => "sin Datos Demográficos asignados",
-                "y" => count($patients) - $patient_without_dd
+            "success" => true,
+            "message" => "Data",
+            "data" => [
+                [
+                    "name" => "con Datos Demográficos asignados",
+                    "y" => $patient_without_dd
+                ],
+                [
+                    "name" => "sin Datos Demográficos asignados",
+                    "y" => count($patients) - $patient_without_dd
+                ]
             ]
         ];
     }
@@ -214,14 +222,18 @@ class DemographicdataController extends \App\Controller
     {
         $demographicdata = DemographicData::all();
         $with = DemographicData::select("count(*) AS count", "$type = 1")[0]["count"];
-        return $data_for_stats = [
-            [
-              "name" => "con datos demográficos",
-              "y" => $with
-            ],
-            [
-              "name" => "sin datos demográficos",
-              "y" => count($demographicdata) - $with
+        return[
+            "success" => true,
+            "message" => "Data",
+            "data" => [
+                [
+                  "name" => "con $type",
+                  "y" => $with
+                ],
+                [
+                  "name" => "sin $type",
+                  "y" => count($demographicdata) - $with
+                ]
             ]
         ];
     }
@@ -248,7 +260,11 @@ class DemographicdataController extends \App\Controller
                 "y" => array_key_exists($each->id(), $types_array) ? $types_array[$each->id()] : 0
             ];
         }, $all_types);
-        return $data_for_stats;
+        return [
+            "success" => true,
+            "message" => "Data",
+            "data" => $data_for_stats
+        ];
     }
 
     protected function mapping(&$data)
