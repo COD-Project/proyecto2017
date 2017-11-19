@@ -26,6 +26,8 @@ class DemographicdataController extends \App\Controller
         $this->app->post('/demographicdata/create', [ $this, 'createDemographicdata' ]);
         $this->app->post('/demographicdata/edit', [ $this, 'editDemographicdata' ]);
         $this->app->post('/demographicdata/create/patient/:id', [ $this, 'createDemographicdata' ]);
+        $this->app->get('/demographicdata/analytics', [ $this, 'showGraphTypes' ]);
+        $this->app->get('/demographicdata/analytics/:type', [ $this, 'renderGraph' ]);
 
         $this->app->run();
     }
@@ -110,6 +112,35 @@ class DemographicdataController extends \App\Controller
         } catch (\Exception $e) {
             $this->redirect("demographicdata/show/$id?success=false&message={$e->getMessage()}");
         }
+    }
+
+    public function showGraphTypes()
+    {
+        return $this->template->render('demographicdata/analytics.twig', [
+            "graphs" => [ "total", "other" ]
+        ]);
+    }
+
+    public function renderGraph($type)
+    {
+        $method = "render" . ucwords($type);
+        if (method_exists($this, $method)) {
+            return $this->{$method}($id);
+        }
+
+        $this->redirect("demographicdata?success=false&message=El grafico $type no existe");
+    }
+
+    protected function renderTotal()
+    {
+        $patients = Patient::all();
+        $patient_without_dd = Patient::select("count(*) AS count", "datos_demograficos_id IS NULL")[0]["count"];
+        $data_for_stats = [
+          "total" => count($patients),
+          "without" => $patient_without_dd,
+          "with" => count($patients) - $patient_without_dd
+        ];
+        return $data_for_stats;
     }
 
     protected function mapping(&$data)

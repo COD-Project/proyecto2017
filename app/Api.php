@@ -55,9 +55,9 @@ class Api
                 $info = curl_exec($ch);
                 curl_close($ch);
 
-                $turns_time = array_map(function($date) {
-                    $date = (new \DateTime($date["date"]))->format("d-m-Y");
-                    $time = (new \DateTime($date["time"]))->format("H:i");
+                $turns_time = array_map(function($each) {
+                    $date = (new \DateTime($each["date"]))->format("d-m-Y");
+                    $time = (new \DateTime($each["time"]))->format("H:i");
                     return "$date - $time";
                 },json_decode($info, true)["data"]);
 
@@ -76,9 +76,9 @@ class Api
                 $info = curl_exec($ch);
                 curl_close($ch);
 
-                $turns_time = array_map(function($date) {
-                    $date = (new \DateTime($date["date"]))->format("d-m-Y");
-                    $time = (new \DateTime($date["time"]))->format("H:i");
+                $turns_time = array_map(function($each) {
+                    $date = (new \DateTime($each["date"]))->format("d-m-Y");
+                    $time = (new \DateTime($each["time"]))->format("H:i");
                     return "$date - $time";
                 },json_decode($info, true)["data"]);
 
