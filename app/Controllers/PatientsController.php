@@ -188,20 +188,56 @@ class PatientsController extends \App\Controller
         }
 
         $healthcontrols = HealthControl::findBy($id, 'patientId');
+        $method = "healthcontrols" . ucwords($type);
 
+        return [
+          "success" => true,
+          "message" => "Get your data!",
+          "data" => $this->{$method}($healthcontrols)
+        ];
+    }
+
+    protected function healthcontrolsPpc($data)
+    {
+        return array_map(function ($each) {
+            $interval = date_diff(new \DateTime, new \DateTime($each->birthdate()));
+            $age = (int)($interval->format("%a")/7);
+            return [
+                "age" => $age,
+                "ppc" => $each->ppc()
+            ];
+        }, $data);
+    }
+
+    protected function healthcontrolsWeight($data)
+    {
+        return array_map(function ($each) {
+            return [
+                "height" => $each->height(),
+                "weight" => $each->weight()
+            ];
+        }, $data);
+    }
+
+    protected function healthcontrolsHeight($data)
+    {
         return array_map(function ($each) {
             $interval = date_diff(new \DateTime, new \DateTime($each->birthdate()));
             $age = (int) ($interval->format("%a")/7);
             return [
                 "age" => $age,
-                "$type" => $each->{$type}()
+                "height" => $each->height()
             ];
-        }, $healthcontrols);
+        }, $data);
     }
 
     public function renderGraphAction($id, $type)
     {
-        $this->redirect("patients/show/$id?success=false&message=El grafico $type no existe");
+        if (!in_array($type, ['ppc', 'weight', 'height'])) {
+            $this->redirect("patients/show/$id?success=false&message=El grafico $type no existe");
+        }
+
+        return $this->template->render('patient/graph.twig');
     }
 
     protected function mapping(&$data)

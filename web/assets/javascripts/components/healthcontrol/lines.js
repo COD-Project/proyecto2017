@@ -1,59 +1,86 @@
 class Lines {
   constructor(type, options) {
-    this.ajax();
-
     let path = window.location.pathname;
 
     this.state = {
       data: path.split('/'),
       url_base: window.location.origin,
-      `${this.state.url_base}/patients/get/${this.state.data[3]}/healthcontrols/${type}`
+      type: type,
+      options: options
     };
+
+    this.success.bind(this.state);
+
+    this.ajax();
+  }
+
+  success(response) {
+    let data = JSON.parse(response);
+
+    if (data.success) {
+      new HighchartsLines('lines-chart', this.state.options(data));
+    }
   }
 
   ajax() {
     $.ajax({
-      url: this.state.url,
+      url: `${this.state.url_base}/patients/get/${this.state.data[3]}/healthcontrols/${this.state.type}`,
       type: "GET",
       cache: false,
-      success: function(response) {
-        let data = JSON.parse(response);
-        console.log(data);
-
-        new HighchartsLines({
-          container: 'lines-chart',
-          data: options(data)
-        });
-      }
+      success: this.success.bind(this)
     });
   }
 }
 
-$('#ccm').click(function() {
-      setActive($(this));
+$('#weight-chard').click(function() {
 
-      new Lines('weight', function(data) {
-        return {
-          title: {
-            text: 'Gráfico de la evolución del peso mujeres hasta 13 semanas'
-          },
-          xAxis: {
-            title: {
-              text: 'Edad (En semanas)'
-            },
-            min: 0,
-            max: 13,
-            minorTickInterval: 0.5,
-          },
-          yAxis: {
-            title: {
-              text: 'Peso (kg)'
-            },
-            min: 2,
-            max: 8,
-            minorTickInterval: 0.1,
-          },
-          series: data
-        };
-      });
-    }
+  new Lines('weight', function(data) {
+    return {
+      title: {
+        text: 'Gráfico de la evolución del peso'
+      },
+      xAxis: {
+        title: {
+          text: 'Edad (En semanas)'
+        },
+        min: 0,
+        max: 13,
+        minorTickInterval: 0.5,
+      },
+      yAxis: {
+        title: {
+          text: 'Peso (kg)'
+        },
+        min: 2,
+        max: 8,
+        minorTickInterval: 0.1,
+      },
+      series: data
+    };
+  });
+});
+
+$('#height-chard').click(function() {
+
+  new Lines('weight', function(data) {
+    return {
+      title: {
+        text: 'Gráfico de la evolución del talle'
+      },
+      xAxis: {
+        title: {
+          text: 'Longitud (En cm.)'
+        },
+        minorTickInterval: 0.5,
+      },
+      yAxis: {
+        title: {
+          text: 'Peso (kg)'
+        },
+        minorTickInterval: 0.5,
+      },
+
+      series: data
+    };
+  });
+});

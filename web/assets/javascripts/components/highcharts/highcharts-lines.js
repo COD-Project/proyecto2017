@@ -1,5 +1,6 @@
 class HighchartsLines {
   constructor(container, options) {
+    console.log(options);
     Highcharts.setOptions({
       chart: {
         renderTo: container,
