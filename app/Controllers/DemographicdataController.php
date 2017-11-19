@@ -26,6 +26,7 @@ class DemographicdataController extends \App\Controller
         $this->app->post('/demographicdata/create', [ $this, 'createDemographicdata' ]);
         $this->app->post('/demographicdata/edit', [ $this, 'editDemographicdata' ]);
         $this->app->post('/demographicdata/create/patient/:id', [ $this, 'createDemographicdata' ]);
+        $this->app->get('/demographicdata/get/:type', [ $this, 'getData' ]);
         $this->app->get('/demographicdata/analytics', [ $this, 'showGraphTypes' ]);
         $this->app->get('/demographicdata/analytics/:type', [ $this, 'renderGraph' ]);
 
@@ -117,7 +118,10 @@ class DemographicdataController extends \App\Controller
     public function showGraphTypes()
     {
         return $this->template->render('demographicdata/analytics.twig', [
-            "graphs" => [ "total", "other" ]
+            "graphs" => [
+                "total" => "Gráfico de pacientes con/sin datos demográficos",
+                "datos" => "Gráfico de relacionados a los datos internos de datos demográficos"
+              ]
         ]);
     }
 
@@ -125,7 +129,7 @@ class DemographicdataController extends \App\Controller
     {
         $method = "render" . ucwords($type);
         if (method_exists($this, $method)) {
-            return $this->{$method}($id);
+            return $this->{$method}();
         }
 
         $this->redirect("demographicdata?success=false&message=El grafico $type no existe");
@@ -133,13 +137,112 @@ class DemographicdataController extends \App\Controller
 
     protected function renderTotal()
     {
+        return $this->template->render('demographicdata/analytics/total.twig');
+    }
+
+    protected function renderDatos()
+    {
+        return $this->template->render("demographicdata/analytics/data.twig");
+    }
+
+    public function getData($type)
+    {
+        $method = "get" . ucwords($type);
+        if (method_exists($this, $method)) {
+            return $this->{$method}();
+        }
+
+        $this->redirect("demographicdata?success=false&message=El grafico $type no existe");
+    }
+
+    protected function getDemographicDataData()
+    {
         $patients = Patient::all();
         $patient_without_dd = Patient::select("count(*) AS count", "datos_demograficos_id IS NULL")[0]["count"];
-        $data_for_stats = [
-          "total" => count($patients),
-          "without" => $patient_without_dd,
-          "with" => count($patients) - $patient_without_dd
+        return [
+            [
+                "name" => "con Datos Demográficos asignados",
+                "y" => $patient_without_dd
+            ],
+            [
+                "name" => "sin Datos Demográficos asignados",
+                "y" => count($patients) - $patient_without_dd
+            ]
         ];
+    }
+
+    protected function getWaterTypeData()
+    {
+        return $this->getGenericDataType("tipo_agua_id");
+    }
+
+    protected function getHeatingTypeData()
+    {
+        return $this->getGenericDataType("tipo_calefaccion_id");
+    }
+
+    protected function getApartamentTypeData()
+    {
+        return $this->getGenericDataType("tipo_vivienda_id");
+    }
+
+    protected function getRefrigeratorData()
+    {
+        return $this->getGenericData("heladera");
+    }
+
+    protected function getElectricityData()
+    {
+        return $this->getGenericData("electricidad");
+    }
+
+    protected function getPetData()
+    {
+        return $this->getGenericData("mascota");
+    }
+
+    protected function getGenericData($type)
+    {
+        $demographicdata = DemographicData::all();
+        $with = DemographicData::select("count(*) AS count", "$type = 1")[0]["count"];
+        return $data_for_stats = [
+            [
+              "name" => "total",
+              "y" => count($demographicdata)
+            ],
+            [
+              "name" => "without",
+              "y" => count($demographicdata) - $with
+            ],
+            [
+              "name" => "with",
+              "y" => $with
+            ]
+        ];
+    }
+
+    protected function getGenericDataType($type)
+    {
+        $models = [
+            "tipo_agua_id" => "\App\Models\WaterType",
+            "tipo_calefaccion_id" => "\App\Models\HeatingType",
+            "tipo_vivienda_id" => "\App\Models\ApartamentType"
+        ];
+        $model = $models[$type];
+
+        $all_types = $model::all();
+        $all = DemographicData::all();
+        $types = DemographicData::select("$type, count(*) AS cant", "1=1", "GROUP BY $type");
+        $types_array = [];
+        array_walk($types, function($each) use (&$types_array, $type){
+            $types_array[$each["$type"]] = $each["cant"];
+        });
+        $data_for_stats = array_map(function($each) use($types_array) {
+            return [
+                "name" => $each->name(),
+                "y" => array_key_exists($each->id(), $types_array) ? $types_array[$each->id()] : 0
+            ];
+        }, $all_types);
         return $data_for_stats;
     }
 
