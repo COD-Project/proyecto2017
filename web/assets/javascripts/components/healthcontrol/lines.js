@@ -15,7 +15,7 @@ class Lines {
   success(response) {
     let data = JSON.parse(response);
 
-    if (data.success) {
+    if (data.success && data.data.length > 0) {
       new HighchartsLines('lines-chart', this.state.options(data));
     }
   }
@@ -31,7 +31,6 @@ class Lines {
 }
 
 $('#weight-chard').click(function() {
-
   new Lines('weight', function(data) {
     return {
       title: {
@@ -59,11 +58,10 @@ $('#weight-chard').click(function() {
 });
 
 $('#height-chard').click(function() {
-
-  new Lines('weight', function(data) {
+  new Lines('height', function(data) {
     return {
       title: {
-        text: 'Gráfico de la evolución del talle'
+        text: 'Gráfico de la evolución de la talla'
       },
       xAxis: {
         title: {
@@ -77,7 +75,29 @@ $('#height-chard').click(function() {
         },
         minorTickInterval: 0.5,
       },
+      series: data
+    };
+  });
+});
 
+$('#ppc-chard').click(function() {
+  new Lines('ppc', function(data) {
+    return {
+      title: {
+        text: 'Gráfico de la evolución del PPC'
+      },
+      xAxis: {
+        title: {
+          text: 'Edad (En semanas)'
+        },
+        minorTickInterval: 0.5,
+      },
+      yAxis: {
+        title: {
+          text: 'Circunferencia cefálica (En cm.)'
+        },
+        minorTickInterval: 0.1,
+      },
       series: data
     };
   });
