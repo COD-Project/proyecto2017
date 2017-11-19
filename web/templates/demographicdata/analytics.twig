@@ -4,8 +4,8 @@
   <div class="container mt-5">
     <h4 class="text-center">Gráficos</h4>
     <div class="list-group mt-5">
-      {% for graphs in graph %}
-      <a href="graph" class="list-group-item">graph</a>
+      {% for key,graph in graphs %}
+      <a href="demographicdata/analytics/{{ key }}" class="list-group-item">{{ graph }}</a>
       {% endfor %}
     </div>
   </div>
