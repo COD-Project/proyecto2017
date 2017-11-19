@@ -183,12 +183,11 @@ class PatientsController extends \App\Controller
 
     public function healthcontrolsAction($id, $type)
     {
-        $healthcontrols = HealthControl::findBy($id, 'patientId');
-        $method = "healthcontrols" . ucwords($type);
-
         if (!in_array($type, ['ppc', 'weight', 'height'])) {
             return;
         }
+
+        $healthcontrols = HealthControl::findBy($id, 'patientId');
 
         return array_map(function ($each) {
             $interval = date_diff(new \DateTime, new \DateTime($each->birthdate()));
