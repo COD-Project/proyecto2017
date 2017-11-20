@@ -103,7 +103,7 @@ class HealthcontrolsController extends \App\Controller
                 'feeding' => $post['feeding'],
                 'generalObservations' => $post['generalObservations'],
                 'patientId' => $id,
-                'userId' => $this->session->currentSession()->id()
+                'userId' => $this->session->sessionInUse()->id()
             ]);
 
             $this->redirect("healthcontrols/show/patient/$id?success=true&message=La operación fue realizada con éxito.");
