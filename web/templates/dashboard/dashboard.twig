@@ -89,10 +89,10 @@
           <ul class="dropdown-menu" role="menu">
             <li class="dropdown-header">Opciones</li>
             <li>
-              <a {{ 'paciente_index' not in permissions ? 'class="disabled"' }} href="healthcontrols">Ver listado</a>
+              <a {{ 'control_salud_index' not in permissions ? 'class="disabled"' }} href="healthcontrols">Ver listado</a>
             </li>
             <li>
-              <a {{ 'paciente_index' not in permissions ? 'class="disabled"' }} href="healthcontrols/analytics">Ver estadísticas</a>
+              <a {{ 'control_salud_index' not in permissions ? 'class="disabled"' }} href="healthcontrols/analytics">Ver estadísticas</a>
             </li>
           </ul>
         </li>
