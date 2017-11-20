@@ -20,7 +20,7 @@ class HealthcontrolsController extends \App\Controller
         $this->app->get('/healthcontrols/create/patient/:id', [ $this, 'addAction']);
         $this->app->get('/healthcontrols/analytics/:sex/:type', [ $this, 'getHealthcontrolsAction']);
         $this->app->get('/healthcontrols/analytics', [ $this, 'renderAnalytictsAction']);
-        $this->app->post('/healthcontrols/create', [ $this, 'createAction']);
+        $this->app->post('/healthcontrols/create/patient/:id', [ $this, 'createAction']);
         $this->app->post('/healthcontrols/edit/:id', [ $this, 'editAction']);
         $this->app->post('/healthcontrols/delete/:id', [ $this, 'deleteAction']);
 
@@ -29,6 +29,22 @@ class HealthcontrolsController extends \App\Controller
 
     public function indexAction()
     {
+        $get = $this->get();
+
+        $users = User::get([
+          'name' => $username,
+          'active' => (int) ($active == 'active')
+      ]);
+
+        $pageNumber = !$get['page'] ? $get['page'] : $get['page'] - 1;
+        $from = AMOUNT_PER_PAGE * (int) $pageNumber;
+
+        return $this->template->render('users/users.twig', [
+          'users' => $users ? array_slice($users, $from, AMOUNT_PER_PAGE) : [],
+          'page' => !$get['page'] ? 1 : $get['page'],
+          'last_page' => ceil(count($users) / AMOUNT_PER_PAGE),
+          'location' => "users/search/$active" . (!$username ? "" : "/$username")
+      ]);
     }
 
     public function showAction($id)
@@ -67,7 +83,7 @@ class HealthcontrolsController extends \App\Controller
         $this->redirect("error/404");
     }
 
-    public function createAction()
+    public function createAction($id)
     {
         $this->checkPermissions([ 'paciente_new' ]);
 
@@ -76,6 +92,7 @@ class HealthcontrolsController extends \App\Controller
 
             HealthControl::init();
             $healthControl = HealthControl::create([
+                'date' => (new \DateTime)->format('Y-m-d'),
                 'weight' => $post['weight'],
                 'completeVaccines' => $post['completeVaccines'],
                 'vaccinesObservations' => $post['vaccinesObservations'],
@@ -88,13 +105,13 @@ class HealthcontrolsController extends \App\Controller
                 'size' => $post['size'],
                 'alimentation' => $post['alimentation'],
                 'generalObservations' => $post['generalObservations'],
-                'patientId' => $post['patientId'],
+                'patientId' => $id,
                 'userId' => $this->session->currentSession()->id()
             ]);
 
-            $this->redirect("healthcontrols/show/patient/{$healthControl->patient()->id()}?success=true&message=La operación fue realizada con éxito.");
+            $this->redirect("healthcontrols/show/patient/$id?success=true&message=La operación fue realizada con éxito.");
         } catch (\Exception $e) {
-            $this->redirect("healthcontrols/create/patient/{$post['patientId']}?success=false&message={$e->getMessage()}");
+            $this->redirect("healthcontrols/create/patient/$id?success=false&message={$e->getMessage()}");
         }
     }
 
