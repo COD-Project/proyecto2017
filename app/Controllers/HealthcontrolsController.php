@@ -91,11 +91,11 @@ class HealthcontrolsController extends \App\Controller
             $healthControl = HealthControl::create([
                 'date' => (new \DateTime)->format('Y-m-d'),
                 'weight' => $post['weight'],
-                'completeVaccines' => $post['completeVaccines'],
+                'completeVaccines' => (string)(int)($post['completeVaccines'] == 'on'),
                 'vaccinesObservations' => $post['vaccinesObservations'],
-                'accordingMaturationContext' => $post['accordingMaturationContext'],
+                'accordingMaturationContext' => (string)(int)($post['accordingMaturationContext'] == 'on'),
                 'maturationObservations' => $post['maturationObservations'],
-                'commonPhysicalExamination' => $post['commonPhysicalExamination'],
+                'commonPhysicalExamination' => (string)(int)($post['commonPhysicalExamination'] == 'on'),
                 'physicalExaminationObservations' => $post['physicalExaminationObservations'],
                 'cephalicPercentile' => $post['cephalicPercentile'],
                 'percentileCephalicPerimeter' => $post['percentileCephalicPerimeter'],
@@ -103,7 +103,7 @@ class HealthcontrolsController extends \App\Controller
                 'feeding' => $post['feeding'],
                 'generalObservations' => $post['generalObservations'],
                 'patientId' => $id,
-                'userId' => $this->session->currentSession()->id()
+                'userId' => $this->session->sessionInUse()->id()
             ]);
 
             $this->redirect("healthcontrols/show/patient/$id?success=true&message=La operación fue realizada con éxito.");
