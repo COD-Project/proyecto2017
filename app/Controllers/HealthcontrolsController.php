@@ -20,9 +20,9 @@ class HealthcontrolsController extends \App\Controller
         $this->app->get('/healthcontrols/create/patient/:id', [ $this, 'addAction']);
         $this->app->get('/healthcontrols/analytics/:sex/:type', [ $this, 'getHealthcontrolsAction']);
         $this->app->get('/healthcontrols/analytics', [ $this, 'renderAnalytictsAction']);
+        $this->app->get('/healthcontrols/delete/:id', [ $this, 'deleteAction']);
         $this->app->post('/healthcontrols/create/patient/:id', [ $this, 'createAction']);
         $this->app->post('/healthcontrols/edit/:id', [ $this, 'editAction']);
-        $this->app->post('/healthcontrols/delete/:id', [ $this, 'deleteAction']);
 
         $this->app->run();
     }
@@ -97,8 +97,8 @@ class HealthcontrolsController extends \App\Controller
                 'maturationObservations' => $post['maturationObservations'],
                 'commonPhysicalExamination' => (string)(int)($post['commonPhysicalExamination'] == 'on'),
                 'physicalExaminationObservations' => $post['physicalExaminationObservations'],
-                'cephalicPercentile' => $post['cephalicPercentile'],
-                'cephalicPercentilePerimeter' => $post['cephalicPercentilePerimeter'],
+                'pc' => $post['cephalicPercentile'],
+                'ppc' => $post['cephalicPercentilePerimeter'],
                 'height' => $post['height'],
                 'feeding' => $post['feeding'],
                 'generalObservations' => $post['generalObservations'],
@@ -106,7 +106,7 @@ class HealthcontrolsController extends \App\Controller
                 'userId' => $this->session->sessionInUse()->id()
             ]);
 
-            $this->redirect("healthcontrols/show/patient/$id?success=true&message=La operación fue realizada con éxito.");
+            $this->redirect("healthcontrols/show/{$healthControl->id()}?success=true&message=La operación fue realizada con éxito.");
         } catch (\Exception $e) {
             $this->redirect("healthcontrols/create/patient/$id?success=false&message={$e->getMessage()}");
         }
