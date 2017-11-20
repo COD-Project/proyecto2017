@@ -4,19 +4,19 @@
 
   {% set data = {
     'id': 'demographic_data_create',
-    'apartamentType' : apartamentType,
-    'heatingType' : heatingType,
-    'waterType' : waterType,
-    'patient_id' : patient.id
+    'apartamentType': apartamentType,
+    'heatingType': heatingType,
+    'waterType': waterType,
+    'patient_id': patient.id
   } %}
 
   {% set editData = {
-    'id' : 'demographic_data_edit',
-    'apartamentType' : apartamentType,
-    'heatingType' : heatingType,
-    'waterType' : waterType,
-    'patient_id' : patient.id,
-    'demographic_data' : patient.demographicData
+    'id': 'demographic_data_edit',
+    'apartamentType': apartamentType,
+    'heatingType': heatingType,
+    'waterType': waterType,
+    'patient_id': patient.id,
+    'demographic_data': patient.demographicData
   } %}
 
   {% include 'demographicdata/create.twig' with data only %}
@@ -46,6 +46,9 @@
             <!--Title-->
             <h4 class="card-title">
               <strong>{{patient.fullName}}</strong>
+              <a href="patients/show/{{patient.id}}/graph/view" class="btn btn-dark light-blue darken-3 btn-circle btn-xs" title="Graficos del paciente">
+                <i class="fa fa-line-chart"></i>
+              </a>
             </h4>
             <h5 class="indigo-text">
               <strong>{{patient.birthday}}</strong>
@@ -93,28 +96,30 @@
 
               <hr>
               {% if patient.demographicDataId is null %}
-              <div class="mt-5 mb-4">
-                <button type="button" class="btn btn-dark light-blue darken-3" data-toggle="modal" data-target="#demographic_data_create">Datos Demográficos</button>
-              </div>
+                <div class="mt-5 mb-4">
+                  <button type="button" class="btn btn-dark light-blue darken-3" data-toggle="modal" data-target="#demographic_data_create">Datos Demográficos</button>
+                </div>
               {% else %}
-              <br>
-              <h4>Datos demográficos
-                <button type="button" class="btn btn-dark light-blue darken-3 btn-circle btn-xs" data-toggle="modal" data-target="#demographic_data_edit"><i class="material-icons">edit</i></button>
-              </h4>
-              <div class="card-body text-center">
-                <div class="row">
-                  <div class="col-lg-4 col-sm-6">
-                    <p class="mb-0">
-                      <strong>Heladera</strong>
-                    </p>
-                    <p>{{(patient.demographicData.refrigerator == "0")? "No":"Si"}}</p>
-                  </div>
+                <br>
+                <h4>Datos demográficos
+                  <button type="button" class="btn btn-dark light-blue darken-3 btn-circle btn-xs" data-toggle="modal" data-target="#demographic_data_edit">
+                    <i class="material-icons">edit</i>
+                  </button>
+                </h4>
+                <div class="card-body text-center">
+                  <div class="row">
+                    <div class="col-lg-4 col-sm-6">
+                      <p class="mb-0">
+                        <strong>Heladera</strong>
+                      </p>
+                      <p>{{(patient.demographicData.refrigerator == "0")? "No":"Si"}}</p>
+                    </div>
 
-                  <div class="col-lg-4 col-sm-6">
-                    <p class="mb-0">
-                      <strong>Electricidad</strong>
-                    </p>
-                    <p>{{(patient.demographicData.electricity == "0")? "No":"Si"}}</p>
+                    <div class="col-lg-4 col-sm-6">
+                      <p class="mb-0">
+                        <strong>Electricidad</strong>
+                      </p>
+                      <p>{{(patient.demographicData.electricity == "0")? "No":"Si"}}</p>
                     </div>
 
                     <div class="col-lg-4 col-sm-6">
@@ -145,7 +150,7 @@
                       <p>{{patient.demographicData.waterType.name}}</p>
                     </div>
                   </div>
-              </div>
+                </div>
               {% endif %}
               <img class="mt-3" style="max-width: 25px;" src="web/assets/images/icon.png" alt="Logo de la ficha del paciente">
             </div>
@@ -220,7 +225,7 @@
                     </p>
                     <div class="md-form mb-0 card-style-input">
                       <select class="form-control" id="documentTypeId" name="documentTypeId">
-                        <option disabled>Tipo de documento</option>
+                        <option disabled="disabled">Tipo de documento</option>
                         {% for option in documentTypes %}
                           <option value="{{option.id}}" {{(patient.documentTypeId == option.id)? "selected"}}>{{option.name}}</option>
                         {% endfor %}
@@ -233,7 +238,7 @@
                     </p>
                     <div class="md-form mb-0 card-style-input">
                       <select class="form-control" id="gender" name="gender">
-                        <option disabled>Género</option>
+                        <option disabled="disabled">Género</option>
                         {% for option in genders %}
                           <option value="{{option}}" {{(patient.gender == option) ? "selected"}}>{{option}}</option>
                         {% endfor %}
@@ -246,7 +251,7 @@
                     </p>
                     <div class="md-form mb-0 card-style-input">
                       <select class="form-control" id="socialWorkId" name="socialWorkId">
-                        <option disabled>Obra Social</option>
+                        <option disabled="disabled">Obra Social</option>
                         {% for option in socialWorks %}
                           <option value="{{option.id}}" {{(patient.socialWorkId == option.id)? "selected"}}>{{option.name}}</option>
                         {% endfor %}

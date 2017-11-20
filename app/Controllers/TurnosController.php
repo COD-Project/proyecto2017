@@ -11,23 +11,23 @@ class TurnosController extends \App\Controller
     {
         parent::__construct($app);
 
-        $this->app->get('/turnos', [ $this, 'render' ]);
-        $this->app->get('/turnos/:fecha', [ $this, 'turns' ]);
-        $this->app->get('/turnos/activos/user/:id', [ $this, 'turnsForUser' ]);
-        $this->app->get('/turnos/activos/doc/:doc', [ $this, 'turnsForDocumentNumber' ]);
+        $this->app->get('/turnos', [ $this, 'indexAction' ]);
+        $this->app->get('/turnos/:fecha', [ $this, 'getAction' ]);
+        $this->app->get('/turnos/activos/user/:id', [ $this, 'getForUserAction' ]);
+        $this->app->get('/turnos/activos/doc/:doc', [ $this, 'getForDocumentNumberAction' ]);
         $this->app->get(
             '/turnos/:document/fecha/:fecha/hora/:hora',
-            [ $this, 'takeTurn' ]
+            [ $this, 'createAction' ]
         );
         $this->app->get(
             '/turnos/:document/fecha/:fecha/hora/:hora/:chat_id',
-            [ $this, 'takeTurn' ]
+            [ $this, 'createAction' ]
         );
 
         $this->app->run();
     }
 
-    public function render()
+    public function indexAction()
     {
     }
 
@@ -44,7 +44,7 @@ class TurnosController extends \App\Controller
         return $times;
     }
 
-    public function turns($date)
+    public function getAction($date)
     {
         try {
             $models = Turno::findBy($date, 'date');
@@ -70,7 +70,7 @@ class TurnosController extends \App\Controller
         }
     }
 
-    public function takeTurn($document, $date, $time, $chat_id = 0)
+    public function createAction($document, $date, $time, $chat_id = 0)
     {
         try {
             $date = new \DateTime($date);
@@ -114,7 +114,7 @@ class TurnosController extends \App\Controller
         }
     }
 
-    public function turnsForUser($id)
+    public function getForUserAction($id)
     {
         try {
             $date = (new \DateTime())->format('Y-m-d');
@@ -140,7 +140,7 @@ class TurnosController extends \App\Controller
         }
     }
 
-    public function turnsForDocumentNumber($doc)
+    public function getForDocumentNumberAction($doc)
     {
         try {
             $date = (new \DateTime())->format('Y-m-d');
