@@ -3,28 +3,28 @@ $('#healthcontrol_edit_form').validate({
     weight: {
       required: true,
       number: true,
-      min: 1,
+      min: 0,
       minlength: 1,
       maxlength: 9
     },
     height: {
       required: true,
       number: true,
-      min: 1,
+      min: 0,
       minlength: 1,
       maxlength: 9
     },
     pc: {
       required: true,
       number: true,
-      min: 1,
+      min: 0,
       minlength: 1,
       maxlength: 9
     },
     ppc: {
       required: true,
       number: true,
-      min: 1,
+      min: 0,
       minlength: 1,
       maxlength: 9
     },
