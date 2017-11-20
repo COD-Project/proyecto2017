@@ -97,8 +97,8 @@ class HealthcontrolsController extends \App\Controller
                 'maturationObservations' => $post['maturationObservations'],
                 'commonPhysicalExamination' => (string)(int)($post['commonPhysicalExamination'] == 'on'),
                 'physicalExaminationObservations' => $post['physicalExaminationObservations'],
-                'cephalicPercentile' => $post['cephalicPercentile'],
-                'cephalicPercentilePerimeter' => $post['cephalicPercentilePerimeter'],
+                'pc' => $post['cephalicPercentile'],
+                'ppc' => $post['cephalicPercentilePerimeter'],
                 'height' => $post['height'],
                 'feeding' => $post['feeding'],
                 'generalObservations' => $post['generalObservations'],
@@ -106,7 +106,7 @@ class HealthcontrolsController extends \App\Controller
                 'userId' => $this->session->sessionInUse()->id()
             ]);
 
-            $this->redirect("healthcontrols/show/patient/$id?success=true&message=La operación fue realizada con éxito.");
+            $this->redirect("healthcontrols/show/{$healthControl->id()}?success=true&message=La operación fue realizada con éxito.");
         } catch (\Exception $e) {
             $this->redirect("healthcontrols/create/patient/$id?success=false&message={$e->getMessage()}");
         }
