@@ -42,4 +42,11 @@ class HealthControl extends \App\Model
             return User::find($this->userId());
         }
     }
+
+    public function age()
+    {
+        $birthday = new \DateTime($this->patient()->birthday());
+        $interval = $birthday->diff(new \DateTime($this->date()), true);
+        return (int) ($interval->format("%a")/7);
+    }
 }

@@ -203,11 +203,8 @@ class PatientsController extends \App\Controller
     protected function healthcontrolsPpc($data)
     {
         return array_map(function ($each) {
-            $birthday = new \DateTime($each->patient()->birthday());
-            $interval = $birthday->diff(new \DateTime($each->date()), true);
-            $age = (int)($interval->format("%a")/7);
             return [
-                $age,
+                $each->age(),
                 $each->ppc()
             ];
         }, $data);
@@ -226,11 +223,8 @@ class PatientsController extends \App\Controller
     protected function healthcontrolsHeight($data)
     {
         return array_map(function ($each) {
-            $birthday = new \DateTime($each->patient()->birthday());
-            $interval = $birthday->diff(new \DateTime($each->date()), true);
-            $age = (int) ($interval->format("%a")/7);
             return [
-                $age,
+                $each->age(),
                 $each->height()
             ];
         }, $data);
