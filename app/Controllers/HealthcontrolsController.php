@@ -52,7 +52,7 @@ class HealthcontrolsController extends \App\Controller
         $healthControl = HealthControl::find($id);
 
         if ($healthControl) {
-            return $this->template->render('healthcontrols/show.twig', [
+            return $this->template->render('healthcontrol/show.twig', [
                 'healthControl' => $healthControl,
                 'patient' => $healthControl->patient()
             ]);
@@ -72,7 +72,7 @@ class HealthcontrolsController extends \App\Controller
         ]));
 
         if ($patient = $patients->get(0)) {
-            return $this->template->render('healthcontrols/create.twig', [
+            return $this->template->render('healthcontrol/create.twig', [
                 'patient' => $patient
             ]);
         }
@@ -100,7 +100,7 @@ class HealthcontrolsController extends \App\Controller
                 'cephalicPercentile' => $post['cephalicPercentile'],
                 'percentileCephalicPerimeter' => $post['percentileCephalicPerimeter'],
                 'height' => $post['height'],
-                'alimentation' => $post['alimentation'],
+                'feeding' => $post['feeding'],
                 'generalObservations' => $post['generalObservations'],
                 'patientId' => $id,
                 'userId' => $this->session->currentSession()->id()
@@ -133,7 +133,7 @@ class HealthcontrolsController extends \App\Controller
                 'cephalicPercentile' => $post['cephalicPercentile'],
                 'percentileCephalicPerimeter' => $post['percentileCephalicPerimeter'],
                 'height' => $post['height'],
-                'alimentation' => $post['alimentation'],
+                'feeding' => $post['feeding'],
                 'generalObservations' => $post['generalObservations']
             ]);
 
