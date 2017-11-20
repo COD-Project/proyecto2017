@@ -106,9 +106,7 @@ class HealthcontrolsController extends \App\Controller
                 'userId' => $this->session->sessionInUse()->id()
             ]);
 
-            $healthControl->refresh();
-
-            $this->redirect("healthcontrols/show/{$healthControl->id()}?success=true&message=La operación fue realizada con éxito.");
+            $this->redirect("healthcontrols?success=true&message=La operación fue realizada con éxito.");
         } catch (\Exception $e) {
             $this->redirect("healthcontrols/create/patient/$id?success=false&message={$e->getMessage()}");
         }
@@ -195,8 +193,8 @@ class HealthcontrolsController extends \App\Controller
     {
         return array_map(function ($each) {
             return [
-                $each->age(),
-                $each->ppc()
+                (int) $each->age(),
+                floatval($each->ppc())
             ];
         }, $data);
     }
@@ -205,8 +203,8 @@ class HealthcontrolsController extends \App\Controller
     {
         return array_map(function ($each) {
             return [
-                $each->age(),
-                $each->weight()
+                (int) $each->age(),
+                floatval($each->weight())
             ];
         }, $data);
     }
@@ -215,8 +213,8 @@ class HealthcontrolsController extends \App\Controller
     {
         return array_map(function ($each) {
             return [
-                $each->height(),
-                $each->weight()
+                floatval($each->height()),
+                floatval($each->weight())
             ];
         }, $data);
     }
