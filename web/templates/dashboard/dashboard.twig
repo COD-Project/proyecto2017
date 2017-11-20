@@ -77,6 +77,23 @@
             <li>
               <a {{ 'paciente_index' not in permissions ? 'class="disabled"' }} href="demographicdata">Ver listado</a>
             </li>
+            <li>
+              <a {{ 'paciente_index' not in permissions ? 'class="disabled"' }} href="demographicdata/analytics">Ver estadísticas</a>
+            </li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Historias Clínicas
+            <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu" role="menu">
+            <li class="dropdown-header">Opciones</li>
+            <li>
+              <a {{ 'paciente_index' not in permissions ? 'class="disabled"' }} href="healthcontrols">Ver listado</a>
+            </li>
+            <li>
+              <a {{ 'paciente_index' not in permissions ? 'class="disabled"' }} href="healthcontrols/analytics">Ver estadísticas</a>
+            </li>
           </ul>
         </li>
         <li class="dropdown">

@@ -1,0 +1,286 @@
+{% extends 'layout/layout.twig' %}
+
+{% block app_body %}
+
+  <div class="container" style="margin-top: 45px;">
+    <div id="patient_edit_response"></div>
+
+    <ul class="nav nav nav-pills nav-fill" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link active" data-toggle="tab" href="#show" role="tab">Paciente</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#edit" role="tab">Editar</a>
+      </li>
+    </ul>
+
+    <!-- Tab panels -->
+    <div class="tab-content">
+      <!--Panel 1-->
+      <div class="tab-pane fade in show active" id="show" role="tabpanel">
+        <!--Card-->
+        <div class="card card-cascade wider reverse my-4">
+
+          <!--Card content-->
+          <div class="card-body text-center">
+            <!--Title-->
+            <h4 class="card-title">
+              <strong>{{patient.fullName}}</strong>
+              <a href="patients/show/{{patient.id}}/graph/view" class="btn btn-dark light-blue darken-3 btn-circle btn-xs" title="Graficos del paciente">
+                <i class="fa fa-line-chart"></i>
+              </a>
+            </h4>
+            <h5 class="indigo-text">
+              <strong>{{patient.birthday}}</strong>
+            </h5>
+            <br>
+            <div class="row">
+              <div class="col-lg-4 col-sm-6">
+                <p class="mb-0">
+                  <strong>Obra Social</strong>
+                </p>
+                <p>{{patient.socialWork.name}}</p>
+              </div>
+              <div class="col-lg-4 col-sm-6">
+                <p class="mb-0">
+                  <strong>Tipo de documento</strong>
+                </p>
+                <p>{{patient.documentType.name}}
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                  <p class="mb-0">
+                    <strong>Número de documento</strong>
+                  </p>
+                  <p>{{patient.documentNumber}}</p>
+                </div>
+
+                <div class="col-lg-4 col-sm-6">
+                  <p class="mb-0">
+                    <strong>Teléfono</strong>
+                  </p>
+                  <p>{{patient.phone}}</p>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                  <p class="mb-0">
+                    <strong>Dirección</strong>
+                  </p>
+                  <p>{{patient.address}}</p>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                  <p class="mb-0">
+                    <strong>Género</strong>
+                  </p>
+                  <p>{{patient.gender}}</p>
+                </div>
+              </div>
+
+              <hr>
+              <div class="mt-5 mb-3">
+                <h3 class="text-center">Control de salud</h3>
+                <h5 class="indigo-text">
+                  <strong>{{healthControl.date}}</strong>
+                </h5>
+                <div class="row">
+                  <div class="col-lg-4 col-sm-6">
+                    <p class="mb-0">
+                      <strong>Peso</strong>
+                    </p>
+                    <p>{{healthControl.weight}} gr</p>
+                  </div>
+                  <div class="col-lg-4 col-sm-6">
+                    <p class="mb-0">
+                      <strong>Talla</strong>
+                    </p>
+                    <p>{{healthControl.height}} cm</p>
+                  </div>
+                  <div class="col-lg-4 col-sm-6">
+                    <p class="mb-0">
+                      <strong>PC</strong>
+                    </p>
+                    <p>{{healthControl.pc}}</p>
+                  </div>
+                  <div class="col-lg-4 col-sm-6">
+                    <p class="mb-0">
+                      <strong>PPC</strong>
+                    </p>
+                    <p>{{healthControl.ppc}}</p>
+                  </div>
+                  <div class="col-lg-4 col-sm-6">
+                    <p class="mb-0">
+                      <strong>Vacunas completas</strong>
+                    </p>
+                    <p>{{healthControl.completeVaccines ? "Si":"No"}}</p>
+                  </div>
+                  <div class="col-lg-4 col-sm-6">
+                    <p class="mb-0">
+                      <strong>Maduración acorde</strong>
+                    </p>
+                    <p>{{healthControl.accordingMaturationContext ? "Si":"No"}}</p>
+                  </div>
+                  <div class="col-lg-12 col-sm-12">
+                    <p class="mb-0">
+                      <strong>Examen físico común</strong>
+                    </p>
+                    <p>{{healthControl.commonPhysicalExamination ? "Si":"No"}}</p>
+                  </div>
+                  <div class="col-lg-12 col-sm-12">
+                    <p class="mb-0">
+                      <strong>Alimentación</strong>
+                    </p>
+                    <p>{{healthControl.feeding | default("No declarado")}}</p>
+                  </div>
+                  <div class="col-lg-12 col-sm-12">
+                    <p class="mb-0">
+                      <strong>Observaciones generales</strong>
+                    </p>
+                    <p>{{healthControl.generalObservations | default("Sin observaciones")}}</p>
+                  </div>
+                  <div class="col-lg-12 col-sm-12">
+                    <p class="mb-0">
+                      <strong>Observaciones Examen Físico</strong>
+                    </p>
+                    <p>{{healthControl.physicalExaminationObservations | default("Sin observaciones")}}</p>
+                  </div>
+                  <div class="col-lg-12 col-sm-12">
+                    <p class="mb-0">
+                      <strong>Observaciones vacuncación</strong>
+                    </p>
+                    <p>{{healthControl.vaccinesObservations | default("Sin observaciones")}}</p>
+                  </div>
+                  <div class="col-lg-12 col-sm-12">
+                    <p class="mb-0">
+                      <strong>Observaciones maduración</strong>
+                    </p>
+                    <p>{{healthControl.maturationObservations | default("Sin observaciones")}}</p>
+                  </div>
+                </div>
+              </div>
+            <img class="mt-3" style="max-width: 25px;" src="web/assets/images/icon.png" alt="Logo de la ficha del paciente">
+            </div>
+            <!--/.Card content-->
+
+          </div>
+          <!--/.Card-->
+
+        </div>
+        <!--/.Panel 1-->
+        <!--Panel 2-->
+        <div class="tab-pane fade" id="edit" role="tabpanel">
+          <!--Card-->
+          <div class="card card-cascade wider reverse my-4">
+
+            <!--Card content-->
+            <div class="card-body text-center">
+              <!--Title-->
+              <form id="patient_edit_form" action="patients/edit/{{patient.id}}" method="post">
+                <div class="form-row">
+                  <div class="col-lg-4 col-sm-6">
+                    <p class="mb-0">
+                      <strong>Nombre</strong>
+                    </p>
+                    <div class="md-form mb-0 card-style-input">
+                      <input class="form-control text-center" type="text" name="firstName" value="{{patient.firstName}}" placeholder="Nombre">
+                    </div>
+                  </div>
+                  <div class="col-lg-4 col-sm-6">
+                    <p class="mb-0">
+                      <strong>Apellido</strong>
+                    </p>
+                    <div class="md-form mb-0 card-style-input">
+                      <input class="form-control text-center" type="text" name="lastName" value="{{patient.lastName}}" placeholder="Apellido">
+                    </div>
+                  </div>
+                  <div class="col-lg-4 col-sm-6">
+                    <p class="mb-0">
+                      <strong>Fecha de nacimiento</strong>
+                    </p>
+                    <div class="md-form mb-0 card-style-input">
+                      <input class="form-control text-center" type="date" name="birthday" value="{{patient.birthday}}">
+                    </div>
+                  </div>
+                  <div class="col-lg-4 col-sm-6">
+                    <p class="mb-0">
+                      <strong>Número de documento</strong>
+                    </p>
+                    <div class="md-form mb-0 card-style-input">
+                      <input class="form-control text-center" type="text" name="documentNumber" value="{{patient.documentNumber}}" placeholder="Número de documento">
+                    </div>
+                  </div>
+                  <div class="col-lg-4 col-sm-6">
+                    <p class="mb-0">
+                      <strong>Teléfono</strong>
+                    </p>
+                    <div class="md-form mb-0 card-style-input">
+                      <input class="form-control text-center" type="text" name="phone" value="{{patient.phone}}" placeholder="Teléfono">
+                    </div>
+                  </div>
+                  <div class="col-lg-4 col-sm-6">
+                    <p class="mb-0">
+                      <strong>Dirección</strong>
+                    </p>
+                    <div class="md-form mb-0 card-style-input">
+                      <input class="form-control text-center" type="text" name="address" value="{{patient.address}}" placeholder="Dirección">
+                    </div>
+                  </div>
+                  <div class="col-lg-4 col-sm-6">
+                    <p class="mb-0">
+                      <strong>Tipo de documento</strong>
+                    </p>
+                    <div class="md-form mb-0 card-style-input">
+                      <select class="form-control" id="documentTypeId" name="documentTypeId">
+                        <option disabled="disabled">Tipo de documento</option>
+                        {% for option in documentTypes %}
+                          <option value="{{option.id}}" {{(patient.documentTypeId == option.id)? "selected"}}>{{option.name}}</option>
+                        {% endfor %}
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-lg-4 col-sm-6">
+                    <p class="mb-0">
+                      <strong>Género</strong>
+                    </p>
+                    <div class="md-form mb-0 card-style-input">
+                      <select class="form-control" id="gender" name="gender">
+                        <option disabled="disabled">Género</option>
+                        {% for option in genders %}
+                          <option value="{{option}}" {{(patient.gender == option) ? "selected"}}>{{option}}</option>
+                        {% endfor %}
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-lg-4 col-sm-6">
+                    <p class="mb-0">
+                      <strong>Obra Social</strong>
+                    </p>
+                    <div class="md-form mb-0 card-style-input">
+                      <select class="form-control" id="socialWorkId" name="socialWorkId">
+                        <option disabled="disabled">Obra Social</option>
+                        {% for option in socialWorks %}
+                          <option value="{{option.id}}" {{(patient.socialWorkId == option.id)? "selected"}}>{{option.name}}</option>
+                        {% endfor %}
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="text-center">
+                  <button id="edit_button" type="submit" class="btn btn-indigo" title="Editar Paciente">
+                    Editar paciente
+                  </button>
+                </div>
+              </form>
+              <br>
+            </div>
+            <!--/.Card content-->
+
+          </div>
+          <!--/.Card-->
+        </div>
+        <!--/.Panel 2-->
+      </div>
+    </div>
+  {% endblock %}
+
+  {% block scripts %}
+    <script src="web/assets/javascripts/components/patient/edit.js"></script>
+    <script src="web/assets/javascripts/components/demographicdata/create.js"></script>
+  {% endblock %}

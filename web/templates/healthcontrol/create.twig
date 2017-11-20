@@ -1,0 +1,134 @@
+{% extends 'layout/layout.twig' %}
+
+{% block app_message %}
+  <!-- -->
+{% endblock %}
+
+{% block app_body %}
+  <div class="container-fluid">
+    <div class="wrap-fluid" style="margin-top: 45px;">
+      <div id="healthcontrol_create_response">
+        {% include 'error/message.twig' %}
+      </div>
+      <div class="form-container">
+        <!-- Form subscription -->
+        <form id="healthcontrol_create_form" action="healthcontrol/create/patient/{{patient.id}}" method="post">
+          <p class="h3 text-center mb-0">Agregar Control de Saludo</p>
+          <br><br>
+          <div class="form-row">
+            <div class="col-lg-4 col-xs-12">
+              <div class="md-form">
+                <input id="weight" name="weight" type="number" class="form-control" title="Ingrese peso en gramos" placeholder="">
+                <label for="weight">Peso (gr)</label>
+              </div>
+            </div>
+
+            <div class="col-lg-4 col-xs-12">
+              <div class="md-form">
+                <input id="height" name="height" type="number" class="form-control" title="Ingrese talla en cm" placeholder="">
+                <label for="height">Talla (cm)</label>
+              </div>
+            </div>
+
+            <div class="col-lg-4 col-xs-12">
+              <div class="md-form">
+                <input id="feeding" name="feeding" type="text" class="form-control" title="Alimentacion" placeholder="">
+                <label for="feeding">Alimentación</label>
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="col-lg-4 col-xs-12">
+              <div class="md-form">
+                <div class="checkbox">
+                  <input type="checkbox" id="completeVaccines" name="completeVaccines">
+                  <label for="completeVaccines">Vacunas completas</label>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-4 col-xs-12">
+              <div class="md-form">
+                <div class="checkbox">
+                  <input type="checkbox" id="accordingMaturationContext" name="accordingMaturationContext">
+                  <label for="accordingMaturationContext">Maduración acorde</label>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-4 col-xs-12">
+              <div class="md-form">
+                <div class="checkbox">
+                  <input type="checkbox" id="commonPhysicalExamination" name="commonPhysicalExamination">
+                  <label for="commonPhysicalExamination">Examen fisico</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="col-lg-4 col-xs-12">
+              <div class="md-form">
+                <textarea id="vaccinesObservations" name="vaccinesObservations" class="md-textarea" style="min-height: 45px;"></textarea>
+                <label for="vaccinesObservations">Vacunas - Observaciones</label>
+              </div>
+            </div>
+
+            <div class="col-lg-4 col-xs-12">
+              <div class="md-form">
+                <textarea id="maturationObservations" name="maturationObservations" class="md-textarea" style="min-height: 45px;"></textarea>
+                <label for="maturationObservations">Maduración - Observaciones</label>
+              </div>
+            </div>
+
+            <div class="col-lg-4 col-xs-12">
+              <div class="md-form">
+                <textarea id="physicalExaminationObservations" name="physicalExaminationObservations" class="md-textarea" style="min-height: 45px;"></textarea>
+                <label for="physicalExaminationObservations">Examen Físico - Observaciones</label>
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="col-lg-6 col-xs-12">
+              <div class="md-form">
+                <input id="cephalicPercentile" name="cephalicPercentile" type="number" class="form-control" title="Ingrese pc" placeholder="">
+                <label for="cephalicPercentile">Percentil cefálico</label>
+              </div>
+            </div>
+
+            <div class="col-lg-6 col-xs-12">
+              <div class="md-form">
+                <input id="cephalicPercentilePerimeter" name="cephalicPercentilePerimeter" type="number" class="form-control" title="Ingrese ppc" placeholder="">
+                <label for="cephalicPercentilePerimeter">Perímetro Percentil cefálico</label>
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="col-lg-12 col-xs-12">
+              <div class="md-form">
+                <textarea id="generalObservations" name="generalObservations" class="md-textarea" style="min-height: 45px;"></textarea>
+                <label for="generalObservations">Observaciones generales</label>
+              </div>
+            </div>
+          </div>
+          <div class="text-center">
+            <button id="healthcontrol_create_button" type="submit" class="btn btn-indigo" title="Crear control de salud">
+              Registrar control de salud
+            </button>
+          </div>
+        </form>
+      </div>
+      <br>
+    </div>
+  </div>
+{% endblock %}
+
+{% block app_footer %}
+  <footer class="text-center" style="col-lg-4 col-xs-12or: #4285F4; margin-top: 45px;">
+    <p>Hospital de Niños Ricardo Gutierrez.</p>
+    <p>Proyecto de Software &copy; 2017</p>
+  </footer>
+{% endblock %}
+
+{% block scripts %}
+  <script src="web/assets/javascripts/components/healthcontrol/create.js"></script>
+{% endblock %}

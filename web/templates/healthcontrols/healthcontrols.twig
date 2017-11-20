@@ -1,0 +1,110 @@
+{% extends 'layout/layout.twig' %}
+
+{% block app_message %}
+  <!-- -->
+{% endblock %}
+
+{% block app_body %}
+  <div class="container">
+    <br>
+    <div id="healthcontrol_edit_response">
+      {% include 'error/message.twig' %}
+    </div>
+    <div class="card card-cascade narrower">
+      <!--Card image-->
+      <div class="view gradient-card-header purple-gradient narrower py-4 mx-4 mb-3 d-flex justify-content-center align-items-center">
+        <h3 class="text-center">Controles de salud</h3>
+      </div>
+      <!--/Card image-->
+      <div class="px-4">
+        <table class="table table-hover table-responsive w-auto">
+          <thead>
+            <tr>
+              <th>Paciente</th>
+              <th>Usuario</th>
+              <th>Fecha</th>
+              <th>Opciones</th>
+            </tr>
+          </thead>
+          {% for healthcontrol in healthcontrols %}
+            <tbody>
+              <tr>
+                <td>
+                  <a href="patients/show/{{healthcontrol.patient.id}}">{{ healthcontrol.patient.fullName }}</a>
+                </td>
+                <td>{{ healthcontrol.user.fullName }}</td>
+                <td>{{ healthcontrol.date }}</td>
+                <td>
+                  <a href="healthcontrols/show/{{healthcontrol.id}}">
+                    <span class="badge badge-info badge-pill">Ver/Editar</span>
+                  </a>
+                  <a href="healthcontrols/delete/{{healthcontrol.id}}">
+                    <span class="badge badge-danger badge-pill">Eliminar</span>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          {% endfor %}
+        </table>
+        {% if healthcontrols is null %}
+          <div class="alert alert-info alert-dismissible fade show" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <p>
+              <small>
+                <strong>No hay historias clínicas cargadas en el sistema.</strong>
+                Puede cargar una nueva historia clínica
+                <a href="healthcontrols/create">aquí</a>
+              </small>
+            </p>
+          </div>
+        {% endif %}
+        <div class="d-flex justify-content-center">
+          <!--Pagination -->
+          {% if healthcontrols is not empty %}
+            <nav class="my-4 pt-2">
+              <ul class="pagination pagination-circle pg-bluegrey mb-0">
+
+                <!--First-->
+                <li class="page-item {{ (1 == page) ? 'disabled' }} clearfix d-none d-md-block">
+                  <a class="page-link" href="{{location}}?page=1">First</a>
+                </li>
+
+                <!--Arrow left-->
+                <li class="page-item {{ (1 == page) ? 'disabled' }}">
+                  <a class="page-link" href="{{location}}?page={{ page - 1 }}" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                    <span class="sr-only">Previo</span>
+                  </a>
+                </li>
+
+                <!-- Numbers -->
+                {% for index in range(1, last_page) %}
+                  <li class="page-item {{ (index == page) ? 'active' }}">
+                    <a class="page-link" href="{{location}}?page={{index}}">{{ index }}</a>
+                  </li>
+                {% endfor %}
+
+                <!--Arrow right-->
+                <li class="page-item {{ (last_page == page) ? 'disabled' }}">
+                  <a class="page-link" href="{{location}}?page={{ page + 1 }}" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                    <span class="sr-only">Siguiente</span>
+                  </a>
+                </li>
+
+                <!--First-->
+                <li class="page-item {{ (last_page == page) ? 'disabled' }} clearfix d-none d-md-block">
+                  <a class="page-link" href="{{location}}?page={{ last_page }}">Last</a>
+                </li>
+
+              </ul>
+            </nav>
+          {% endif %}
+          <!--/Pagination -->
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
