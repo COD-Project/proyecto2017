@@ -124,14 +124,14 @@ class HealthcontrolsController extends \App\Controller
 
             $healthControl->addState([
                 'weight' => $post['weight'],
-                'completeVaccines' => $post['completeVaccines'],
+                'completeVaccines' => (string)(int)($post['completeVaccines'] == 'on'),
                 'vaccinesObservations' => $post['vaccinesObservations'],
-                'accordingMaturationContext' => $post['accordingMaturationContext'],
+                'accordingMaturationContext' => (string)(int)($post['accordingMaturationContext'] == 'on'),
                 'maturationObservations' => $post['maturationObservations'],
-                'commonPhysicalExamination' => $post['commonPhysicalExamination'],
+                'commonPhysicalExamination' => (string)(int)($post['commonPhysicalExamination'] == 'on'),
                 'physicalExaminationObservations' => $post['physicalExaminationObservations'],
-                'pc' => $post['cephalicPercentile'],
-                'ppc' => $post['cephalicPercentilePerimeter'],
+                'pc' => $post['pc'],
+                'ppc' => $post['ppc'],
                 'height' => $post['height'],
                 'feeding' => $post['feeding'],
                 'generalObservations' => $post['generalObservations']
@@ -139,9 +139,9 @@ class HealthcontrolsController extends \App\Controller
 
             $healthControl->edit();
 
-            $this->redirect("healthcontrols/show/patient/{$healthControl->patient()->id()}?success=true&message=La operación fue realizada con éxito.");
+            $this->redirect("healthcontrols/show/{$healthControl->patient()->id()}?success=true&message=La operación fue realizada con éxito.");
         } catch (\Exception $e) {
-            $this->redirect("healthcontrols/show/patient/{$post['patientId']}?success=false&message={$e->getMessage()}");
+            $this->redirect("healthcontrols/show/{$post['patientId']}?success=false&message={$e->getMessage()}");
         }
     }
 
