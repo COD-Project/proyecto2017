@@ -46,7 +46,7 @@ class HealthcontrolsController extends \App\Controller
 
     public function showAction($id)
     {
-        $this->checkPermissions([ 'paciente_show' ]);
+        $this->checkPermissions([ 'control_salud_show' ]);
 
         HealthControl::init();
         $healthControl = HealthControl::find($id);
@@ -63,7 +63,7 @@ class HealthcontrolsController extends \App\Controller
 
     public function addAction($patientId)
     {
-        $this->checkPermissions([ 'paciente_new' ]);
+        $this->checkPermissions([ 'control_salud_new' ]);
 
         Patient::init();
         $patients = new Collection(Patient::get([
@@ -82,7 +82,7 @@ class HealthcontrolsController extends \App\Controller
 
     public function createAction($id)
     {
-        $this->checkPermissions([ 'paciente_new' ]);
+        $this->checkPermissions([ 'control_salud_new' ]);
 
         try {
             $post = $this->post();
@@ -114,7 +114,7 @@ class HealthcontrolsController extends \App\Controller
 
     public function editAction($id)
     {
-        $this->checkPermissions([ 'paciente_update' ]);
+        $this->checkPermissions([ 'control_salud_update' ]);
 
         try {
             $post = $this->post();
@@ -148,7 +148,7 @@ class HealthcontrolsController extends \App\Controller
     public function deleteAction($id)
     {
         try {
-            $this->checkPermissions([ 'paciente_destroy' ]);
+            $this->checkPermissions([ 'control_salud_destroy' ]);
 
             HealthControl::init();
             $healthControl = HealthControl::find($id);
