@@ -20,9 +20,9 @@ class HealthcontrolsController extends \App\Controller
         $this->app->get('/healthcontrols/create/patient/:id', [ $this, 'addAction']);
         $this->app->get('/healthcontrols/analytics/:sex/:type', [ $this, 'getHealthcontrolsAction']);
         $this->app->get('/healthcontrols/analytics', [ $this, 'renderAnalytictsAction']);
+        $this->app->get('/healthcontrols/delete/:id', [ $this, 'deleteAction']);
         $this->app->post('/healthcontrols/create/patient/:id', [ $this, 'createAction']);
         $this->app->post('/healthcontrols/edit/:id', [ $this, 'editAction']);
-        $this->app->post('/healthcontrols/delete/:id', [ $this, 'deleteAction']);
 
         $this->app->run();
     }
