@@ -1,10 +1,11 @@
 class Lines {
-  constructor(type, options) {
+  constructor(sex, type, options) {
     let path = window.location.pathname;
 
     this.state = {
       data: path.split('/'),
       url_base: window.location.origin,
+      sex: sex,
       type: type,
       options: options
     };
@@ -31,11 +32,11 @@ class Lines {
 }
 
 
-$('#weight-chard').click(function() {
-  new Lines('weight', function(data) {
+$('#men-weight-chard').click(function() {
+  new Lines('masculino', 'weight', function(data) {
     return {
       title: {
-        text: 'Gráfico de la evolución del peso'
+        text: 'Gráfico de la evolución del peso en hombres hasta 13 semanas'
       },
       xAxis: {
         title: {
@@ -58,11 +59,38 @@ $('#weight-chard').click(function() {
   });
 });
 
-$('#height-chard').click(function() {
-  new Lines('height', function(data) {
+$('#women-weight-chard').click(function() {
+  new Lines('femenino', 'weight', function(data) {
     return {
       title: {
-        text: 'Gráfico de la evolución de la talla'
+        text: 'Gráfico de la evolución del peso en Mujeres hasta 13 semanas'
+      },
+      xAxis: {
+        title: {
+          text: 'Edad (En semanas)'
+        },
+        min: 0,
+        max: 13,
+        minorTickInterval: 0.5,
+      },
+      yAxis: {
+        title: {
+          text: 'Peso (kg)'
+        },
+        min: 2,
+        max: 8,
+        minorTickInterval: 0.1,
+      },
+      series: data
+    };
+  });
+});
+
+$('#men-height-chard').click(function() {
+  new Lines('masculino', 'height', function(data) {
+    return {
+      title: {
+        text: 'Gráfico de la evolución de la talla en hombres hasta 2 años'
       },
       xAxis: {
         title: {
@@ -81,11 +109,57 @@ $('#height-chard').click(function() {
   });
 });
 
-$('#ppc-chard').click(function() {
-  new Lines('ppc', function(data) {
+$('#women-height-chard').click(function() {
+  new Lines('femenino', 'height', function(data) {
     return {
       title: {
-        text: 'Gráfico de la evolución del PPC'
+        text: 'Gráfico de la evolución de la talla en mujeres hasta 2 años'
+      },
+      xAxis: {
+        title: {
+          text: 'Longitud (En cm.)'
+        },
+        minorTickInterval: 0.5,
+      },
+      yAxis: {
+        title: {
+          text: 'Peso (kg)'
+        },
+        minorTickInterval: 0.5,
+      },
+      series: data
+    };
+  });
+});
+
+$('#men-ppc-chard').click(function() {
+  new Lines('masculino', 'ppc', function(data) {
+    return {
+      title: {
+        text: 'Gráfico de la evolución del PPC en hombres hasta 13 semanas'
+      },
+      xAxis: {
+        title: {
+          text: 'Edad (En semanas)'
+        },
+        minorTickInterval: 0.5,
+      },
+      yAxis: {
+        title: {
+          text: 'Circunferencia cefálica (En cm.)'
+        },
+        minorTickInterval: 0.1,
+      },
+      series: data
+    };
+  });
+});
+
+$('#women-ppc-chard').click(function() {
+  new Lines('femenino', 'ppc', function(data) {
+    return {
+      title: {
+        text: 'Gráfico de la evolución del PPC en mujeres hasta 13 semanas'
       },
       xAxis: {
         title: {
