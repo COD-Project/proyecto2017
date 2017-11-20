@@ -2,39 +2,73 @@ $('#healthcontrol_create_form').validate({
   rules: {
     weight: {
       required: true,
-      number: true
+      number: true,
+      min: 1,
+      minlength: 1,
+      maxlength: 9
     },
     height: {
       required: true,
-      number: true
+      number: true,
+      min: 1,
+      minlength: 1,
+      maxlength: 9
     },
-    vaccinesObservations: {
-      required: true
+    pc: {
+      required: true,
+      number: true,
+      min: 1,
+      minlength: 1,
+      maxlength: 9
     },
-    maturationObservations: {
-      required: true
+    ppc: {
+      required: true,
+      number: true,
+      min: 1,
+      minlength: 1,
+      maxlength: 9
     },
-    physicalExaminationObservations: {
-      required: true
-    }
+    physicalExaminationObservations: "required",
+    vaccinesObservations: "required",
+    maturationObservations: "required"
   },
   messages: {
     weight: {
-      required: "Ingrese el peso del paciente",
-      number: "El peso debe ser un número"
+      required: "Por favor, especifique peso para el paciente.",
+      number: "Solo se admiten números en el campo peso.",
+      min: "No se admiten pesos negativos",
+      minlength: "Por favor, especifique un peso válido (al menos 1 digito).",
+      maxlength: "Por favor, especifique un peso válido (Maximo 9 dígitos)."
     },
     height: {
-      required: "Ingrese el talle del paciente",
-      number: "El talle debe ser un número"
+      required: "Por favor, especifique talla para el paciente.",
+      number: "Solo se admiten números en el campo talla.",
+      min: "No se admiten tallas negativos",
+      minlength: "Por favor, especifique una talla válida (al menos 1 digito).",
+      maxlength: "Por favor, especifique una talla válida (Maximo 9 dígitos)."
     },
-    vaccinesObservations: {
-      required: "Ingrese las observaciones sobre las vacunas dadas"
+    pc: {
+      required: "Por favor, especifique el PC para el paciente.",
+      number: "Solo se admiten números en el campo PC.",
+      min: "No se admiten PC negativos",
+      minlength: "Por favor, especifique un PC válido (al menos 1 digito).",
+      maxlength: "Por favor, especifique un PC válido (Maximo 9 dígitos)."
     },
-    maturationObservations: {
-      required: "Ingrese las observaciones sobre la maduración"
+    ppc: {
+      required: "Por favor, especifique el PPC para el paciente.",
+      number: "Solo se admiten números en el campo PPC.",
+      min: "No se admiten PPC negativos",
+      minlength: "Por favor, especifique un PPC válido (al menos 1 digito).",
+      maxlength: "Por favor, especifique un PPC válido (Maximo 9 dígitos)."
     },
     physicalExaminationObservations: {
-      required: "Ingrese las observaciones sobre el examen físico"
+      required: "Por favor, especifique una observacion del examen físico del paciente"
+    },
+    vaccinesObservations: {
+      required: "Por favor, especifique una observacion de las vacunas del paciente"
+    },
+    maturationObservations: {
+      required: "Por favor, especifique una observacion de la maduración del paciente"
     }
   },
   errorPlacement: function(error, input) {

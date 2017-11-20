@@ -106,7 +106,7 @@ class HealthcontrolsController extends \App\Controller
                 'userId' => $this->session->sessionInUse()->id()
             ]);
 
-            $this->redirect("healthcontrols/show/{$healthControl->id()}?success=true&message=La operación fue realizada con éxito.");
+            $this->redirect("healthcontrols?success=true&message=La operación fue realizada con éxito.");
         } catch (\Exception $e) {
             $this->redirect("healthcontrols/create/patient/$id?success=false&message={$e->getMessage()}");
         }
@@ -192,12 +192,9 @@ class HealthcontrolsController extends \App\Controller
     protected function healthcontrolsPpc($data)
     {
         return array_map(function ($each) {
-            $birthday = new \DateTime($each->patient()->birthday());
-            $interval = $birthday->diff(new \DateTime($each->date()), true);
-            $age = (int)($interval->format("%a")/7);
             return [
-                $age,
-                $each->ppc()
+                (int) $each->age(),
+                floatval($each->ppc())
             ];
         }, $data);
     }
@@ -206,8 +203,8 @@ class HealthcontrolsController extends \App\Controller
     {
         return array_map(function ($each) {
             return [
-                $each->height(),
-                $each->weight()
+                (int) $each->age(),
+                floatval($each->weight())
             ];
         }, $data);
     }
@@ -215,12 +212,9 @@ class HealthcontrolsController extends \App\Controller
     protected function healthcontrolsHeight($data)
     {
         return array_map(function ($each) {
-            $birthday = new \DateTime($each->patient()->birthday());
-            $interval = $birthday->diff(new \DateTime($each->date()), true);
-            $age = (int) ($interval->format("%a")/7);
             return [
-                $age,
-                $each->height()
+                floatval($each->height()),
+                floatval($each->weight())
             ];
         }, $data);
     }

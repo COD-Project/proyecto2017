@@ -187,11 +187,11 @@ class DemographicdataController extends \App\Controller
         return [
                 [
                     "name" => "con Datos Demográficos asignados",
-                    "y" => $patient_with_dd
+                    "y" => (int)($patient_with_dd)
                 ],
                 [
                     "name" => "sin Datos Demográficos asignados",
-                    "y" => count($patients) - $patient_with_dd
+                    "y" => (int)(count($patients) - $patient_with_dd)
                 ]
             ];
     }
@@ -236,11 +236,11 @@ class DemographicdataController extends \App\Controller
         return[
                 [
                   "name" => "con $type",
-                  "y" => $with
+                  "y" => (int)($with)
                 ],
                 [
                   "name" => "sin $type",
-                  "y" => count($demographicdata) - $with
+                  "y" => (int)(count($demographicdata) - $with)
                 ]
             ];
     }
@@ -269,7 +269,7 @@ class DemographicdataController extends \App\Controller
         $data_for_stats = array_map(function($each) use($types_array) {
             return [
                 "name" => $each->name(),
-                "y" => array_key_exists($each->id(), $types_array) ? $types_array[$each->id()] : 0
+                "y" => array_key_exists($each->id(), $types_array) ? (int)($types_array[$each->id()]) : 0
             ];
         }, $all_types);
         return $data_for_stats;

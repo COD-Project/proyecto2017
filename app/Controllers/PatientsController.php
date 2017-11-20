@@ -203,12 +203,9 @@ class PatientsController extends \App\Controller
     protected function healthcontrolsPpc($data)
     {
         return array_map(function ($each) {
-            $birthday = new \DateTime($each->patient()->birthday());
-            $interval = $birthday->diff(new \DateTime($each->date()), true);
-            $age = (int)($interval->format("%a")/7);
             return [
-                $age,
-                $each->ppc()
+                (int) $each->age(),
+                floatval($each->ppc())
             ];
         }, $data);
     }
@@ -217,8 +214,8 @@ class PatientsController extends \App\Controller
     {
         return array_map(function ($each) {
             return [
-                $each->height(),
-                $each->weight()
+                (int) $each->age(),
+                floatval($each->weight())
             ];
         }, $data);
     }
@@ -226,12 +223,9 @@ class PatientsController extends \App\Controller
     protected function healthcontrolsHeight($data)
     {
         return array_map(function ($each) {
-            $birthday = new \DateTime($each->patient()->birthday());
-            $interval = $birthday->diff(new \DateTime($each->date()), true);
-            $age = (int) ($interval->format("%a")/7);
             return [
-                $age,
-                $each->height()
+                floatval($each->height()),
+                floatval($each->weight())
             ];
         }, $data);
     }
@@ -281,10 +275,58 @@ class PatientsController extends \App\Controller
         return $this;
     }
 
+    protected function getApartamentTypeDataFromApi()
+    {
+        $ch = curl_init('https://api-referencias.proyecto2017.linti.unlp.edu.ar/tipo-vivienda');
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $info = curl_exec($ch);
+        if (!curl_errno($ch)) {
+            $info = json_decode($info, true);
+            $this->mapping($info);
+            ApartamentType::updateWith($info);
+        }
+        curl_close($ch);
+
+        return $this;
+    }
+
+    protected function getHeatingTypeDataFromApi()
+    {
+        $ch = curl_init('https://api-referencias.proyecto2017.linti.unlp.edu.ar/tipo-calefaccion');
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $info = curl_exec($ch);
+        if (!curl_errno($ch)) {
+            $info = json_decode($info, true);
+            $this->mapping($info);
+            HeatingType::updateWith($info);
+        }
+        curl_close($ch);
+
+        return $this;
+    }
+
+    protected function getWaterTypeDataFromApi()
+    {
+        $ch = curl_init('https://api-referencias.proyecto2017.linti.unlp.edu.ar/tipo-agua');
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $info = curl_exec($ch);
+        if (!curl_errno($ch)) {
+            $info = json_decode($info, true);
+            $this->mapping($info);
+            WaterType::updateWith($info);
+        }
+        curl_close($ch);
+
+        return $this;
+    }
+
     protected function getDataFromApi()
     {
         $this->getDocumentTypeFromApi()
-             ->getSocialWorkDataFromApi();
+             ->getSocialWorkDataFromApi()
+             ->getApartamentTypeDataFromApi()
+             ->getHeatingTypeDataFromApi()
+             ->getWaterTypeDataFromApi();
 
         return $this;
     }

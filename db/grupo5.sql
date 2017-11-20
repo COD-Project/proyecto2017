@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.5
+-- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: db
--- Tiempo de generación: 20-11-2017 a las 09:20:08
--- Versión del servidor: 5.7.20
--- Versión de PHP: 7.1.9
+-- Tiempo de generación: 20-11-2017 a las 12:35:45
+-- Versión del servidor: 5.7.19
+-- Versión de PHP: 7.0.21
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -66,7 +66,7 @@ CREATE TABLE IF NOT EXISTS `controles_de_salud` (
   `talla` int(11) DEFAULT NULL,
   `alimentacion` varchar(255) DEFAULT NULL,
   `observaciones_generales` varchar(255) DEFAULT NULL,
-  `paciente_id` int(11) DEFAULT NULL,
+  `paciente_id` int(11) NOT NULL,
   `user_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `paciente_id` (`paciente_id`),
@@ -106,20 +106,7 @@ CREATE TABLE IF NOT EXISTS `obras_sociales` (
   `nombre` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `nombre` (`nombre`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
-
---
--- Volcado de datos para la tabla `obras_sociales`
---
-
-INSERT INTO `obras_sociales` (`id`, `nombre`) VALUES
-(3, 'GALLENO'),
-(1, 'IOMA'),
-(4, 'OSDE'),
-(2, 'OSECAC'),
-(5, 'OSPEPBA'),
-(6, 'OSPIC'),
-(7, 'PAMI');
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -159,13 +146,18 @@ CREATE TABLE IF NOT EXISTS `permisos` (
   `nombre` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `nombre` (`nombre`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `permisos`
 --
 
 INSERT INTO `permisos` (`id`, `nombre`) VALUES
+(22, 'control_salud_destroy'),
+(18, 'control_salud_index'),
+(20, 'control_salud_new'),
+(19, 'control_salud_show'),
+(21, 'control_salud_update'),
 (17, 'debug_index'),
 (16, 'log_index'),
 (10, 'paciente_destroy'),
@@ -260,7 +252,18 @@ INSERT INTO `rol_tiene_permisos` (`rol_id`, `permiso_id`) VALUES
 (4, 1),
 (4, 3),
 (4, 2),
-(4, 4);
+(4, 4),
+(4, 22),
+(4, 18),
+(4, 20),
+(4, 19),
+(4, 21),
+(4, 17),
+(4, 16),
+(3, 18),
+(3, 20),
+(3, 19),
+(3, 21);
 
 -- --------------------------------------------------------
 
@@ -274,17 +277,7 @@ CREATE TABLE IF NOT EXISTS `tipos_documento` (
   `nombre` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `nombre` (`nombre`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
-
---
--- Volcado de datos para la tabla `tipos_documento`
---
-
-INSERT INTO `tipos_documento` (`id`, `nombre`) VALUES
-(2, 'CI'),
-(1, 'DNI'),
-(4, 'LC'),
-(3, 'LI');
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -298,16 +291,7 @@ CREATE TABLE IF NOT EXISTS `tipo_agua` (
   `nombre` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `nombre` (`nombre`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
-
---
--- Volcado de datos para la tabla `tipo_agua`
---
-
-INSERT INTO `tipo_agua` (`id`, `nombre`) VALUES
-(1, 'Corriente'),
-(3, 'No tiene'),
-(2, 'Pozo');
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -321,17 +305,7 @@ CREATE TABLE IF NOT EXISTS `tipo_calefaccion` (
   `nombre` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `nombre` (`nombre`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
-
---
--- Volcado de datos para la tabla `tipo_calefaccion`
---
-
-INSERT INTO `tipo_calefaccion` (`id`, `nombre`) VALUES
-(2, 'Electrico'),
-(1, 'Gas'),
-(3, 'Leña'),
-(4, 'No tiene');
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -345,19 +319,7 @@ CREATE TABLE IF NOT EXISTS `tipo_vivienda` (
   `nombre` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `nombre` (`nombre`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
-
---
--- Volcado de datos para la tabla `tipo_vivienda`
---
-
-INSERT INTO `tipo_vivienda` (`id`, `nombre`) VALUES
-(2, 'Casa unifamilar'),
-(3, 'Conventillo'),
-(4, 'Departamento duplex'),
-(1, 'Edificio de departamentos'),
-(6, 'P.H'),
-(5, 'Vivienda tipo triplex');
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -403,9 +365,9 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `email`, `username`, `password`, `activo`, `created_at`, `updated_at`, `session`, `first_name`, `last_name`) VALUES
-(2, 'admin@admin.com', 'admin', 'c9bf17bd5e274d7b883467f70ffb6087', 1, '2017-10-14 12:59:36', '2017-11-17 23:47:38', 1510991359, 'Señor', 'Administrador'),
-(3, 'recepcionista@hnrc.com', 'recepcionista', 'd1d038d9d63b86431fc00d944e1ac852', 1, '2017-10-14 13:00:24', '2017-10-14 13:00:24', 0, 'Señor', 'Recepcionista'),
-(4, 'pediatra@hnrg.com', 'pediatra', '10616abba48177479b2b2c7411eb4021', 1, '2017-10-14 13:00:59', '2017-10-14 13:00:59', 0, 'Señor', 'Pediatra'),
+(2, 'admin@admin.com', 'admin', 'c9bf17bd5e274d7b883467f70ffb6087', 1, '2017-10-14 12:59:36', '2017-11-17 23:47:38', 1511199208, 'Señor', 'Administrador'),
+(3, 'recepcionista@hnrc.com', 'recepcionista', '0963abc8847487fe0875671fb980f838', 1, '2017-10-14 13:00:24', '2017-11-20 08:55:55', 0, 'Señor', 'Recepcionista'),
+(4, 'pediatra@hnrg.com', 'pediatra', '2145344b74248f25ecf6047c5f271de5', 1, '2017-10-14 13:00:59', '2017-11-20 08:55:47', 0, 'Señor', 'Pediatra'),
 (5, 'su@hnrg.com', 'su', '829b13db5a760c43b3a891734d68c7f5', 1, '2017-11-17 23:48:12', '2017-11-17 23:48:12', 0, 'Señor', 'Superadministrador');
 
 -- --------------------------------------------------------
