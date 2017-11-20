@@ -18,7 +18,7 @@ class HealthControl extends \App\Model
         "vaccinesObservations" => "vacunas_observaciones",
         "accordingMaturationContext" => "maduracion_acorde",
         "maturationObservations" => "maduracion_observacion",
-        "commonPhysicalExamination" => "ex_fisico_comun",
+        "commonPhysicalExamination" => "ex_fisico_normal",
         "physicalExaminationObservations" => "ex_fisico_observaciones",
         "pc" => "pc",
         "ppc" => "ppc",
