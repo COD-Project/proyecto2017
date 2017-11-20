@@ -30,35 +30,3 @@ class HighchartsLines {
     Highcharts.chart(options);
   }
 }
-
-class Lines {
-  constructor(type, options) {
-    let path = window.location.pathname;
-
-    this.state = {
-      data: path.split('/'),
-      url_base: window.location.origin,
-      type: type,
-      options: options
-    };
-
-    this.ajax();
-  }
-
-  success(response) {
-    let data = JSON.parse(response);
-
-    if (data.success && data.data.length > 0) {
-      new HighchartsLines('lines-chart', this.state.options(data.data));
-    }
-  }
-
-  ajax() {
-    $.ajax({
-      url: `${this.state.url_base}/patients/get/${this.state.data[3]}/healthcontrols/${this.state.type}`,
-      type: "GET",
-      cache: false,
-      success: this.success.bind(this)
-    });
-  }
-}

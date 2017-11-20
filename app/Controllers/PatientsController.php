@@ -193,7 +193,10 @@ class PatientsController extends \App\Controller
         return [
           "success" => true,
           "message" => "Get your data!",
-          "data" => $this->{$method}($healthcontrols)
+          "data" => [[
+              'name' => 'paciente',
+              'data' =>  $this->{$method}($healthcontrols)
+          ]]
         ];
     }
 
