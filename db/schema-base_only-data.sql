@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
+-- version 4.7.5
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: db
--- Tiempo de generación: 18-11-2017 a las 14:11:39
--- Versión del servidor: 5.7.19
--- Versión de PHP: 7.0.21
+-- Tiempo de generación: 20-11-2017 a las 09:20:31
+-- Versión del servidor: 5.7.20
+-- Versión de PHP: 7.1.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -21,8 +21,6 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `grupo5`
 --
-CREATE DATABASE IF NOT EXISTS `grupo5` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `grupo5`;
 
 --
 -- Volcado de datos para la tabla `obras_sociales`

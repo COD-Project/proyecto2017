@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
+-- version 4.7.5
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: db
--- Tiempo de generación: 18-11-2017 a las 14:10:30
--- Versión del servidor: 5.7.19
--- Versión de PHP: 7.0.21
+-- Tiempo de generación: 20-11-2017 a las 09:20:08
+-- Versión del servidor: 5.7.20
+-- Versión de PHP: 7.1.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -53,7 +53,7 @@ CREATE TABLE IF NOT EXISTS `configuraciones` (
 DROP TABLE IF EXISTS `controles_de_salud`;
 CREATE TABLE IF NOT EXISTS `controles_de_salud` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `fecha_nac` date NOT NULL,
+  `fecha` date NOT NULL,
   `peso` int(11) NOT NULL,
   `vacunas_completas` tinyint(1) NOT NULL DEFAULT '0',
   `vacunas_observaciones` varchar(255) NOT NULL,
