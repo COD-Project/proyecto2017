@@ -214,7 +214,7 @@ class PatientsController extends \App\Controller
     {
         return array_map(function ($each) {
             return [
-                $each->height(),
+                $each->age(),
                 $each->weight()
             ];
         }, $data);
@@ -224,8 +224,8 @@ class PatientsController extends \App\Controller
     {
         return array_map(function ($each) {
             return [
-                $each->age(),
-                $each->height()
+                $each->height(),
+                $each->weight()
             ];
         }, $data);
     }
