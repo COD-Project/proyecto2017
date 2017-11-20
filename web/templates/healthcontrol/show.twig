@@ -26,7 +26,7 @@
             <!--Title-->
             <h3 class="card-title">Control de salud</h3>
             <h5 class="indigo-text">
-              <strong>{{healthControl.date}}</strong>
+              <strong>{{healthControl.date|date("d-m-Y")}} ({{healthControl.age}} semanas)</strong>
             </h5>
             <div class="row">
               <div class="col-lg-4 col-sm-6">
@@ -196,7 +196,7 @@
                   <div class="col-lg-4 col-sm-6">
                     <div class="md-form">
                       <div class="checkbox">
-                        <input type="checkbox" id="completeVaccines" name="completeVaccines">
+                        <input type="checkbox" id="completeVaccines" name="completeVaccines" {{healthControl.completeVaccines ? "checked" : ""}}>
                         <label for="completeVaccines">Vacunas completas</label>
                       </div>
                     </div>
@@ -204,7 +204,7 @@
                   <div class="col-lg-4 col-sm-6">
                     <div class="md-form">
                       <div class="checkbox">
-                        <input type="checkbox" id="accordingMaturationContext" name="accordingMaturationContext">
+                        <input type="checkbox" id="accordingMaturationContext" name="accordingMaturationContext" {{healthControl.accordingMaturationContext ? "checked" : ""}}>
                         <label for="accordingMaturationContext">Maduración acorde</label>
                       </div>
                     </div>
@@ -212,7 +212,7 @@
                   <div class="col-lg-4 col-sm-6">
                     <div class="md-form">
                       <div class="checkbox">
-                        <input type="checkbox" id="commonPhysicalExamination" name="commonPhysicalExamination">
+                        <input type="checkbox" id="commonPhysicalExamination" name="commonPhysicalExamination" {{healthControl.commonPhysicalExamination ? "checked" : ""}}>
                         <label for="commonPhysicalExamination">Examen fisico normal</label>
                       </div>
                     </div>

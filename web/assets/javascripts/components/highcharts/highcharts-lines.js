@@ -14,7 +14,7 @@ class HighchartsLines {
       plotOptions: {
         series: {
           marker: {
-            enabled: false,
+            enabled: true,
           },
           lineWidth: 1,
         },
