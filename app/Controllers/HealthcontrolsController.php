@@ -52,7 +52,7 @@ class HealthcontrolsController extends \App\Controller
         $healthControl = HealthControl::find($id);
 
         if ($healthControl) {
-            return $this->template->render('healthcontrol/show.twig', [
+            return $this->template->render('healthcontrols/show.twig', [
                 'healthControl' => $healthControl,
                 'patient' => $healthControl->patient()
             ]);
