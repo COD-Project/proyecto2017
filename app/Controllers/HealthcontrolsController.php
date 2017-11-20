@@ -99,7 +99,7 @@ class HealthcontrolsController extends \App\Controller
                 'physicalExaminationObservations' => $post['physicalExaminationObservations'],
                 'cephalicPercentile' => $post['cephalicPercentile'],
                 'percentileCephalicPerimeter' => $post['percentileCephalicPerimeter'],
-                'size' => $post['size'],
+                'height' => $post['height'],
                 'alimentation' => $post['alimentation'],
                 'generalObservations' => $post['generalObservations'],
                 'patientId' => $id,
@@ -132,7 +132,7 @@ class HealthcontrolsController extends \App\Controller
                 'physicalExaminationObservations' => $post['physicalExaminationObservations'],
                 'cephalicPercentile' => $post['cephalicPercentile'],
                 'percentileCephalicPerimeter' => $post['percentileCephalicPerimeter'],
-                'size' => $post['size'],
+                'height' => $post['height'],
                 'alimentation' => $post['alimentation'],
                 'generalObservations' => $post['generalObservations']
             ]);
