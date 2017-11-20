@@ -234,7 +234,7 @@ class PatientsController extends \App\Controller
         }, $data);
     }
 
-    public function renderGraphAction($id)
+    public function renderGraphAction()
     {
         return $this->template->render('patient/graph.twig');
     }

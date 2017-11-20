@@ -22,7 +22,7 @@ class Lines {
 
   ajax() {
     $.ajax({
-      url: `${this.state.url_base}/healthcontrols/${this.state.type}`,
+      url: `${this.state.url_base}/healthcontrols/analytics/${this.state.sex}/${this.state.type}`,
       type: "GET",
       cache: false,
       success: this.success.bind(this)

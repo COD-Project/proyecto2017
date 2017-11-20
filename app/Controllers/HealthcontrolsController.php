@@ -17,6 +17,8 @@ class HealthcontrolsController extends \App\Controller
 
         $this->app->get('/healthcontrols/show/:id', [ $this, 'showAction']);
         $this->app->get('/healthcontrols/create/patient/:id', [ $this, 'addAction']);
+        $this->app->get('/healthcontrols/analytics/:sex/:type', [ $this, 'getHealthcontrolsAction']);
+        $this->app->get('/healthcontrols/analytics', [ $this, 'renderAnalytictsAction']);
         $this->app->post('/healthcontrols/create', [ $this, 'createAction']);
         $this->app->post('/healthcontrols/edit/:id', [ $this, 'editAction']);
         $this->app->post('/healthcontrols/delete/:id', [ $this, 'deleteAction']);
@@ -134,26 +136,29 @@ class HealthcontrolsController extends \App\Controller
 
             $patientId = $healthControl->patient()->id();
             $healthControl->remove();
-            $this->redirect("patients/show/{$patientId}?success=true&message=La operación fue realizada con éxito.")
+            $this->redirect("patients/show/{$patientId}?success=true&message=La operación fue realizada con éxito.");
         } catch (\Exception $e) {
-            $this->redirect("?success=false&message=Hubo un fallo en la operación.")
+            $this->redirect("?success=false&message=Hubo un fallo en la operación.");
         }
     }
 
-    public function healthcontrolsAction($type)
+    public function getHealthcontrolsAction($sex, $type)
     {
         if (!in_array($type, ['ppc', 'weight', 'height'])) {
             return;
         }
 
         $method = "healthcontrols" . ucwords($type);
-        $patients = Patient::all();
+        $patients = Patient::get([
+            'gender' => ucwords($sex)
+        ]);
+
         $data = [];
 
         foreach ($patients as $key => $value) {
             $healthcontrols = HealthControl::findBy($value->id(), 'patientId');
             $data[] = [
-                'name' => $value->name(),
+                'name' => 'paciente#' . $value->id(),
                 'data' => $this->{$method}($healthcontrols)
             ];
         }
@@ -199,8 +204,8 @@ class HealthcontrolsController extends \App\Controller
         }, $data);
     }
 
-    public function renderGraphAction($id)
+    public function renderAnalytictsAction()
     {
-        return $this->template->render('patient/graph.twig');
+        return $this->template->render('healthcontrols/analytics.twig');
     }
 }
