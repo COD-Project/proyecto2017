@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.5
+-- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: db
--- Tiempo de generación: 20-11-2017 a las 09:20:31
--- Versión del servidor: 5.7.20
--- Versión de PHP: 7.1.9
+-- Tiempo de generación: 20-11-2017 a las 11:56:59
+-- Versión del servidor: 5.7.19
+-- Versión de PHP: 7.0.21
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -21,6 +21,8 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `grupo5`
 --
+CREATE DATABASE IF NOT EXISTS `grupo5` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `grupo5`;
 
 --
 -- Volcado de datos para la tabla `obras_sociales`
@@ -154,9 +156,9 @@ INSERT INTO `tipo_vivienda` (`id`, `nombre`) VALUES
 --
 
 INSERT INTO `usuarios` (`id`, `email`, `username`, `password`, `activo`, `created_at`, `updated_at`, `session`, `first_name`, `last_name`) VALUES
-(2, 'admin@admin.com', 'admin', 'c9bf17bd5e274d7b883467f70ffb6087', 1, '2017-10-14 12:59:36', '2017-11-17 23:47:38', 1510991359, 'Señor', 'Administrador'),
-(3, 'recepcionista@hnrc.com', 'recepcionista', 'd1d038d9d63b86431fc00d944e1ac852', 1, '2017-10-14 13:00:24', '2017-10-14 13:00:24', 0, 'Señor', 'Recepcionista'),
-(4, 'pediatra@hnrg.com', 'pediatra', '10616abba48177479b2b2c7411eb4021', 1, '2017-10-14 13:00:59', '2017-10-14 13:00:59', 0, 'Señor', 'Pediatra'),
+(2, 'admin@admin.com', 'admin', 'c9bf17bd5e274d7b883467f70ffb6087', 1, '2017-10-14 12:59:36', '2017-11-17 23:47:38', 0, 'Señor', 'Administrador'),
+(3, 'recepcionista@hnrc.com', 'recepcionista', '0963abc8847487fe0875671fb980f838', 1, '2017-10-14 13:00:24', '2017-11-20 08:55:55', 0, 'Señor', 'Recepcionista'),
+(4, 'pediatra@hnrg.com', 'pediatra', '2145344b74248f25ecf6047c5f271de5', 1, '2017-10-14 13:00:59', '2017-11-20 08:55:47', 0, 'Señor', 'Pediatra'),
 (5, 'su@hnrg.com', 'su', '829b13db5a760c43b3a891734d68c7f5', 1, '2017-11-17 23:48:12', '2017-11-17 23:48:12', 0, 'Señor', 'Superadministrador');
 
 --

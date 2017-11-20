@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.5
+-- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: db
--- Tiempo de generación: 20-11-2017 a las 09:20:08
--- Versión del servidor: 5.7.20
--- Versión de PHP: 7.1.9
+-- Tiempo de generación: 20-11-2017 a las 11:56:21
+-- Versión del servidor: 5.7.19
+-- Versión de PHP: 7.0.21
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -66,7 +66,7 @@ CREATE TABLE IF NOT EXISTS `controles_de_salud` (
   `talla` int(11) DEFAULT NULL,
   `alimentacion` varchar(255) DEFAULT NULL,
   `observaciones_generales` varchar(255) DEFAULT NULL,
-  `paciente_id` int(11) DEFAULT NULL,
+  `paciente_id` int(11) NOT NULL,
   `user_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `paciente_id` (`paciente_id`),
@@ -403,9 +403,9 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `email`, `username`, `password`, `activo`, `created_at`, `updated_at`, `session`, `first_name`, `last_name`) VALUES
-(2, 'admin@admin.com', 'admin', 'c9bf17bd5e274d7b883467f70ffb6087', 1, '2017-10-14 12:59:36', '2017-11-17 23:47:38', 1510991359, 'Señor', 'Administrador'),
-(3, 'recepcionista@hnrc.com', 'recepcionista', 'd1d038d9d63b86431fc00d944e1ac852', 1, '2017-10-14 13:00:24', '2017-10-14 13:00:24', 0, 'Señor', 'Recepcionista'),
-(4, 'pediatra@hnrg.com', 'pediatra', '10616abba48177479b2b2c7411eb4021', 1, '2017-10-14 13:00:59', '2017-10-14 13:00:59', 0, 'Señor', 'Pediatra'),
+(2, 'admin@admin.com', 'admin', 'c9bf17bd5e274d7b883467f70ffb6087', 1, '2017-10-14 12:59:36', '2017-11-17 23:47:38', 0, 'Señor', 'Administrador'),
+(3, 'recepcionista@hnrc.com', 'recepcionista', '0963abc8847487fe0875671fb980f838', 1, '2017-10-14 13:00:24', '2017-11-20 08:55:55', 0, 'Señor', 'Recepcionista'),
+(4, 'pediatra@hnrg.com', 'pediatra', '2145344b74248f25ecf6047c5f271de5', 1, '2017-10-14 13:00:59', '2017-11-20 08:55:47', 0, 'Señor', 'Pediatra'),
 (5, 'su@hnrg.com', 'su', '829b13db5a760c43b3a891734d68c7f5', 1, '2017-11-17 23:48:12', '2017-11-17 23:48:12', 0, 'Señor', 'Superadministrador');
 
 -- --------------------------------------------------------
