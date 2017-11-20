@@ -126,7 +126,7 @@
                       <strong>Peso(gr)</strong>
                     </p>
                     <div class="md-form mb-0 card-style-input">
-                      <input class="form-control text-center" type="number" name="weight" value="{{healthControl.weight}}" placeholder="Peso">
+                      <input class="form-control text-center" type="number" min="0" name="weight" value="{{healthControl.weight}}" placeholder="Peso">
                     </div>
                   </div>
                   <div class="col-lg-4 col-sm-6">
@@ -134,7 +134,7 @@
                       <strong>Talla(cm)</strong>
                     </p>
                     <div class="md-form mb-0 card-style-input">
-                      <input class="form-control text-center" type="number" name="height" value="{{healthControl.height}}" placeholder="Talla">
+                      <input class="form-control text-center" type="number" min="0" name="height" value="{{healthControl.height}}" placeholder="Talla">
                     </div>
                   </div>
                   <div class="col-lg-4 col-sm-6">
@@ -142,39 +142,15 @@
                       <strong>PC</strong>
                     </p>
                     <div class="md-form mb-0 card-style-input">
-                      <input class="form-control text-center" type="number" name="pc" value="{{healthControl.pc}}" placeholder="PC">
+                      <input class="form-control text-center" type="number" min="0" name="pc" value="{{healthControl.pc}}" placeholder="PC">
                     </div>
                   </div>
-                  <div class="col-lg-4 col-sm-6">
+                  <div class="col-lg-12 col-sm-12">
                     <p class="mb-0">
                       <strong>PPC</strong>
                     </p>
                     <div class="md-form mb-0 card-style-input">
-                      <input class="form-control text-center" type="number" name="ppc" value="{{healthControl.ppc}}" placeholder="PPC">
-                    </div>
-                  </div>
-                  <div class="col-lg-4 col-sm-6">
-                    <div class="md-form">
-                      <div class="checkbox">
-                        <input type="checkbox" id="completeVaccines" name="completeVaccines">
-                        <label for="completeVaccines">Vacunas completas</label>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-lg-4 col-sm-6">
-                    <div class="md-form">
-                      <div class="checkbox">
-                        <input type="checkbox" id="accordingMaturationContext" name="accordingMaturationContext">
-                        <label for="accordingMaturationContext">Maduración acorde</label>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-lg-4 col-sm-6">
-                    <div class="md-form">
-                      <div class="checkbox">
-                        <input type="checkbox" id="commonPhysicalExamination" name="commonPhysicalExamination">
-                        <label for="commonPhysicalExamination">Examen fisico normal</label>
-                      </div>
+                      <input class="form-control text-center" type="number" min="0" name="ppc" value="{{healthControl.ppc}}" placeholder="PPC">
                     </div>
                   </div>
                   <div class="col-lg-12 col-sm-12">
@@ -215,6 +191,30 @@
                     </p>
                     <div class="md-form mb-0 card-style-input">
                       <input class="form-control text-center" type="text" name="generalObservations" value="{{healthControl.generalObservations}}" placeholder="Observaciones generales">
+                    </div>
+                  </div>
+                  <div class="col-lg-4 col-sm-6">
+                    <div class="md-form">
+                      <div class="checkbox">
+                        <input type="checkbox" id="completeVaccines" name="completeVaccines">
+                        <label for="completeVaccines">Vacunas completas</label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-4 col-sm-6">
+                    <div class="md-form">
+                      <div class="checkbox">
+                        <input type="checkbox" id="accordingMaturationContext" name="accordingMaturationContext">
+                        <label for="accordingMaturationContext">Maduración acorde</label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-4 col-sm-6">
+                    <div class="md-form">
+                      <div class="checkbox">
+                        <input type="checkbox" id="commonPhysicalExamination" name="commonPhysicalExamination">
+                        <label for="commonPhysicalExamination">Examen fisico normal</label>
+                      </div>
                     </div>
                   </div>
                 </div>
