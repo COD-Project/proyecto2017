@@ -29,7 +29,9 @@
           {% for healthcontrol in healthcontrols %}
             <tbody>
               <tr>
-                <td>{{ healthcontrol.patient.fullName }}</td>
+                <td>
+                  <a href="patients/show/{{healthcontrol.patient.id}}">{{ healthcontrol.patient.fullName }}</a>
+                </td>
                 <td>{{ healthcontrol.user.fullName }}</td>
                 <td>{{ healthcontrol.date }}</td>
                 <td>
