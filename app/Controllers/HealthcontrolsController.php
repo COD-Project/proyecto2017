@@ -106,6 +106,8 @@ class HealthcontrolsController extends \App\Controller
                 'userId' => $this->session->sessionInUse()->id()
             ]);
 
+            $healthControl->refresh();
+
             $this->redirect("healthcontrols/show/{$healthControl->id()}?success=true&message=La operación fue realizada con éxito.");
         } catch (\Exception $e) {
             $this->redirect("healthcontrols/create/patient/$id?success=false&message={$e->getMessage()}");
