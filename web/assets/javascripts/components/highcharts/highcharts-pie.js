@@ -26,7 +26,7 @@ class HighchartsPie {
       series: [{
         name: 'Pacientes',
         colorByPoint: true,
-        data: data.data
+        data: data
       }]
     });
   }
