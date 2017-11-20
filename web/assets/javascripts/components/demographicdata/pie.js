@@ -14,12 +14,16 @@ class Pie {
 
   success(response) {
     let data = JSON.parse(response);
+
     if (data.success) {
       new HighchartsPie({
         container: this.state.type,
         data: data.data,
         title: this.state.title
       });
+    } else {
+      console.log(this.state.type);
+      $("#" + this.state.type).html('<h3 class="text-center">Parece que no hay grafico para mostrar. Cargue datos y vuelva a intentarlo</h3>');
     }
   }
 

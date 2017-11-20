@@ -158,11 +158,20 @@ class DemographicdataController extends \App\Controller
     {
         $method = "get" . ucwords($type);
         if (method_exists($this, $method)) {
-            return [
-                "success" => true,
-                "message" => "Data",
-                "data" => $this->{$method}()
-             ];
+            $response = $this->{$method}();
+            if ($response) {
+                return [
+                    "success" => true,
+                    "message" => "Data",
+                    "data" => $this->{$method}()
+                ];
+            } else {
+                return [
+                    "success" => false,
+                    "message" => "No data",
+                    "data" => []
+                ];
+            }
         }
 
         $this->redirect("demographicdata?success=false&message=El grafico $type no existe");
@@ -170,22 +179,21 @@ class DemographicdataController extends \App\Controller
 
     protected function getDemographicDataData()
     {
-        $patients = Patient::all();
-        $patient_without_dd = Patient::select("count(*) AS count", "datos_demograficos_id IS NULL")[0]["count"];
+        $patients = Patient::get(["state" => "1"]);
+        $patient_with_dd = Patient::select("count(*) AS count", "datos_demograficos_id IS NOT NULL")[0]["count"];
+        if (!$patients && !$patient_with_dd) {
+            return false;
+        }
         return [
-            "success" => true,
-            "message" => "Data",
-            "data" => [
                 [
                     "name" => "con Datos Demográficos asignados",
-                    "y" => $patient_without_dd
+                    "y" => $patient_with_dd
                 ],
                 [
                     "name" => "sin Datos Demográficos asignados",
-                    "y" => count($patients) - $patient_without_dd
+                    "y" => count($patients) - $patient_with_dd
                 ]
-            ]
-        ];
+            ];
     }
 
     protected function getWaterTypeData()
@@ -222,10 +230,10 @@ class DemographicdataController extends \App\Controller
     {
         $demographicdata = DemographicData::all();
         $with = DemographicData::select("count(*) AS count", "$type = 1")[0]["count"];
+        if(!$with && !$demographicdata) {
+            return false;
+        }
         return[
-            "success" => true,
-            "message" => "Data",
-            "data" => [
                 [
                   "name" => "con $type",
                   "y" => $with
@@ -234,8 +242,7 @@ class DemographicdataController extends \App\Controller
                   "name" => "sin $type",
                   "y" => count($demographicdata) - $with
                 ]
-            ]
-        ];
+            ];
     }
 
     protected function getGenericDataType($type)
@@ -250,7 +257,12 @@ class DemographicdataController extends \App\Controller
         $all_types = $model::all();
         $all = DemographicData::all();
         $types = DemographicData::select("$type, count(*) AS cant", "1=1", "GROUP BY $type");
-        $types_array = [];
+
+        if(!$all && empty($types)) {
+            return false;
+        }
+
+          $types_array = [];
         array_walk($types, function($each) use (&$types_array, $type){
             $types_array[$each["$type"]] = $each["cant"];
         });
@@ -260,11 +272,7 @@ class DemographicdataController extends \App\Controller
                 "y" => array_key_exists($each->id(), $types_array) ? $types_array[$each->id()] : 0
             ];
         }, $all_types);
-        return [
-            "success" => true,
-            "message" => "Data",
-            "data" => $data_for_stats
-        ];
+        return $data_for_stats;
     }
 
     protected function mapping(&$data)
