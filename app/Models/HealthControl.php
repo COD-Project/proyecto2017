@@ -12,8 +12,7 @@ class HealthControl extends \App\Model
 
     protected static $columnData = [
         "id" => "id",
-        "age" => "edad",
-        "birthdate" => "fecha_nac",
+        "date" => "fecha",
         "weight" => "peso",
         "completeVaccines" => "vacunas_completas",
         "accordingMaturationContext" => "maduracion_acorde",

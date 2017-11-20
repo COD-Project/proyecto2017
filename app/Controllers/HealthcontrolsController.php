@@ -15,6 +15,7 @@ class HealthcontrolsController extends \App\Controller
           'logged' => true
         ]);
 
+        $this->app->get('/healthcontrols', [$this, 'indexAction']);
         $this->app->get('/healthcontrols/show/:id', [ $this, 'showAction']);
         $this->app->get('/healthcontrols/create/patient/:id', [ $this, 'addAction']);
         $this->app->get('/healthcontrols/analytics/:sex/:type', [ $this, 'getHealthcontrolsAction']);
@@ -24,6 +25,10 @@ class HealthcontrolsController extends \App\Controller
         $this->app->post('/healthcontrols/delete/:id', [ $this, 'deleteAction']);
 
         $this->app->run();
+    }
+
+    public function indexAction()
+    {
     }
 
     public function showAction($id)
@@ -84,7 +89,7 @@ class HealthcontrolsController extends \App\Controller
                 'alimentation' => $post['alimentation'],
                 'generalObservations' => $post['generalObservations'],
                 'patientId' => $post['patientId'],
-                'userId' => $post['userId']
+                'userId' => $this->session->currentSession()->id()
             ]);
 
             $this->redirect("healthcontrols/show/patient/{$healthControl->patient()->id()}?success=true&message=La operación fue realizada con éxito.");
@@ -173,7 +178,8 @@ class HealthcontrolsController extends \App\Controller
     protected function healthcontrolsPpc($data)
     {
         return array_map(function ($each) {
-            $interval = date_diff(new \DateTime, new \DateTime($each->birthdate()));
+            $birthday = new \DateTime($each->patient()->birthday());
+            $interval = $birthday->diff(new \DateTime($each->date()), true);
             $age = (int)($interval->format("%a")/7);
             return [
                 $age,
@@ -195,7 +201,8 @@ class HealthcontrolsController extends \App\Controller
     protected function healthcontrolsHeight($data)
     {
         return array_map(function ($each) {
-            $interval = date_diff(new \DateTime, new \DateTime($each->birthdate()));
+            $birthday = new \DateTime($each->patient()->birthday());
+            $interval = $birthday->diff(new \DateTime($each->date()), true);
             $age = (int) ($interval->format("%a")/7);
             return [
                 $age,
