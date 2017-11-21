@@ -22,10 +22,6 @@ class Api
 
                 $data_curl = json_decode($info, true);
 
-                if (!$data_curl["success"]) {
-                    $bot->sendMessage($message->getChat()->getId(), "error";
-                }
-
                 $turns_time = array_map(function($time) {
                     return "- $time";
                 }, json_decode($info, true)["data"]);
