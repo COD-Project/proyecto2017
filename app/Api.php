@@ -23,7 +23,7 @@ class Api
                 $data_curl = json_decode($info, true);
 
                 if (!$data_curl["success"]) {
-                    $bot->sendMessage($message->getChat()->getId(), $data_curl["message"];
+                    $bot->sendMessage($message->getChat()->getId(), "error";
                 }
 
                 $turns_time = array_map(function($time) {
