@@ -32,9 +32,9 @@ class Api
 
                 $response = "Turnos para la fecha {$date->format('d-m-Y')}:\n\n" . join("\n", $turns_time);
 
-                if ($data_curl["success"] == false) {
-                    $response = $data_curl["message"];
-                }
+                //if ($data_curl["success"] == false) {
+                //    $response = $data_curl["message"];
+                //}
 
                 $bot->sendMessage($message->getChat()->getId(), $response);
             });
