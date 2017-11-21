@@ -53,7 +53,7 @@ class TurnosController extends \App\Controller
 
             $times = [];
 
-            $datetime = \DateTime::createFromFormat("Y-m-d H:i:s", $date);
+            $datetime = \DateTime::createFromFormat("Y-m-d", $date);
 
             if (!$datetime) {
                 $data = [];
