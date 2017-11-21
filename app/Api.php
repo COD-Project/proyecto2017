@@ -14,28 +14,27 @@ class Api
             $bot = new \TelegramBot\Api\Client(self::API_TELEGRAM_TOKEN);
             $bot->command("turnos", function($message) use($bot){
                 $data = explode(" ", $message->getText());
-                try {
-                    $date = \DateTime::createFromFormat("d-m-Y", $data[1]);
-                } catch (\Exception => $e) {
-                    $bot->sendMessage($message->getChat()->getId(), "Hay un error en el formato de la fecha");
+                $date = \DateTime::createFromFormat("d-m-Y", $data[1]);
+                if ($date) {
+                    $ch = curl_init(URL . "turnos/{$date->format('Y-m-d')}");
+                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                    $info = curl_exec($ch);
+                    curl_close($ch);
+
+                    $data_curl = json_decode($info, true);
+
+                    $turns_time = array_map(function($time) {
+                        return "- $time";
+                    }, json_decode($info, true)["data"]);
+
+                    $response = "Turnos para la fecha {$date->format('d-m-Y')}:\n\n" . join("\n", $turns_time);
+
+                    if ($data_curl["success"] == false) {
+                        $response = $data_curl["message"];
+                    }
+                } else {
+                    $response = "Hay un error en el formato de la fecha";
                 }
-                $ch = curl_init(URL . "turnos/{$date->format('Y-m-d')}");
-                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                $info = curl_exec($ch);
-                curl_close($ch);
-
-                $data_curl = json_decode($info, true);
-
-                $turns_time = array_map(function($time) {
-                    return "- $time";
-                }, json_decode($info, true)["data"]);
-
-                $response = "Turnos para la fecha {$date->format('d-m-Y')}:\n\n" . join("\n", $turns_time);
-
-                if ($data_curl["success"] == false) {
-                    $response = $data_curl["message"];
-                }
-
                 $bot->sendMessage($message->getChat()->getId(), $response);
             });
             $bot->command("reservar", function($message) use($bot){
