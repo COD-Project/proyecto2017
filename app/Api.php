@@ -14,7 +14,11 @@ class Api
             $bot = new \TelegramBot\Api\Client(self::API_TELEGRAM_TOKEN);
             $bot->command("turnos", function($message) use($bot){
                 $data = explode(" ", $message->getText());
-                $date = new \DateTime($data[1]);
+                try {
+                    $date = \DateTime::createFromFormat("d-m-Y", $data[1]);
+                } catch (\Exception => $e) {
+                    $bot->sendMessage($message->getChat()->getId(), "Hay un error en el formato de la fecha");
+                }
                 $ch = curl_init(URL . "turnos/{$date->format('Y-m-d')}");
                 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
                 $info = curl_exec($ch);
