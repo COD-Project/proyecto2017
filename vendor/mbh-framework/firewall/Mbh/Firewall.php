@@ -29,7 +29,7 @@ class Firewall
       'PROTECTION_REQUEST_SERVER' => true,
       'PROTECTION_BOTS' => true,
       'PROTECTION_REQUEST_METHOD' => true,
-      'PROTECTION_DOS' => true,
+      'PROTECTION_DOS' => false,
       'PROTECTION_UNION_SQL' => true,
       'PROTECTION_CLICK_ATTACK' => true,
       'PROTECTION_XSS_ATTACK' => true,
