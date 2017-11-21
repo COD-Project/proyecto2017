@@ -18,11 +18,10 @@ use Mbh\Helpers\Functions;
 class Firewall
 {
     const FCONF = [
-      'WEBMASTER_EMAIL' => 'ulisescf.24@gmail.com',
+      'WEBMASTER_EMAIL' => '',
       'PUSH_MAIL' => false,
-      'IS_API' => false,
-      'ACTIVATE_LOGS' => false,
-      'LOG_FILE' => 'var/logs/logfile',
+      'ACTIVATE_LOGS' => true,
+      'LOG_FILE' => 'uploads/logs/firewall',
       'PROTECTION_UNSET_GLOBALS' => true,
       'PROTECTION_RANGE_IP_DENY' => false,
       'PROTECTION_RANGE_IP_SPAM' => false,
@@ -93,7 +92,7 @@ class Firewall
      *
      * @param string $s: index of the variable to heal
      *
-     * @return retorna $r healed
+     * @return string $r healed
      */
     private function getEnv($s)
     {
@@ -122,7 +121,7 @@ class Firewall
     /**
      * Gets ip
      *
-     * @return ip
+     * @return string ip
      */
     private function getIp()
     {
@@ -137,7 +136,7 @@ class Firewall
     /**
      * Gets user agent
      *
-     * @return devuelve el agente de usuario
+     * @return string user agent
      */
     private function getUserAgent()
     {
@@ -150,16 +149,18 @@ class Firewall
     /**
      * Gets the request of the page request
      *
-     * @return query of the request
+     * @return string query of the request
      */
     private function getQueryString()
     {
         if (self::FCONF['PROTECTION_ROUTER_STRICT']) {
             return str_replace('%09', '%20', $_SERVER['REQUEST_URI']);
         }
+
         if ($this->getEnv('QUERY_STRING')) {
             return str_replace('%09', '%20', $this->getEnv('QUERY_STRING'));
         }
+
         return '';
     }
 
@@ -176,7 +177,7 @@ class Firewall
     /**
      * Gets Internet host name
      *
-     * @return devuelve el host de Internet según la IP actual
+     * @return string host
      */
     private function getHostByAddr()
     {
@@ -200,20 +201,20 @@ class Firewall
     */
     private function pushEmail($subject, $msg)
     {
-        $headers = "From: MBHFramework Firewall: ". self::FCONF['WEBMASTER_EMAIL'] ." <".self::FCONF['WEBMASTER_EMAIL'].">\r\n"
-                  ."Reply-To: ".self::FCONF['WEBMASTER_EMAIL']."\r\n"
-                  ."Priority: urgent\r\n"
-                  ."Importance: High\r\n"
-                  ."Precedence: special-delivery\r\n"
-                  ."Organization: MBHFramework\r\n"
-                  ."MIME-Version: 1.0\r\n"
-                  ."Content-Type: text/plain\r\n"
-                  ."Content-Transfer-Encoding: 8bit\r\n"
-                  ."X-Priority: 1\r\n"
-                  ."X-MSMail-Priority: High\r\n"
-                  ."X-Mailer: PHP/" . phpversion() ."\r\n"
-                  ."X-Firewall: 1.0 by MBHFramework\r\n"
-                  ."Date:" . date("D, d M Y H:s:i") . " +0100\n";
+        $headers = "From: MBHFramework Firewall: " .  self::FCONF['WEBMASTER_EMAIL'] . " <" . self::FCONF['WEBMASTER_EMAIL']. ">\r\n"
+                  . "Reply-To: " . self::FCONF['WEBMASTER_EMAIL']. "\r\n"
+                  . "Priority: urgent\r\n"
+                  . "Importance: High\r\n"
+                  . "Precedence: special-delivery\r\n"
+                  . "Organization: MBHFramework\r\n"
+                  . "MIME-Version: 1.0\r\n"
+                  . "Content-Type: text/plain\r\n"
+                  . "Content-Transfer-Encoding: 8bit\r\n"
+                  . "X-Priority: 1\r\n"
+                  . "X-MSMail-Priority: High\r\n"
+                  . "X-Mailer: PHP/" . phpversion() . "\r\n"
+                  . "X-Firewall: 1.0 by MBHFramework\r\n"
+                  . "Date:" . date("D, d M Y H:s:i") . " +0100\n";
         if (self::FCONF['WEBMASTER_EMAIL'] != '') {
             mail(self::FCONF['WEBMASTER_EMAIL'], $subject, $msg, $headers);
         }
@@ -232,12 +233,12 @@ class Firewall
     private function logs($type, $ip, $user_agent, $referer)
     {
         if (self::FCONF['ACTIVATE_LOGS']) {
-            $f = fopen('./' . self::FCONF['LOG_FILE'] .'.log', 'a');
+            $f = fopen('./' . self::FCONF['LOG_FILE'] .'.logs', 'a');
             $msg = date('j-m-Y H:i:s') . ' | ' . $type . ' | IP: '. $ip .' ] | DNS: ' . gethostbyaddr($ip) . ' | Agent: ' . $user_agent . PHP_EOL;
             fwrite($f, $msg);
             fclose($f);
             if (self::FCONF['PUSH_MAIL']) {
-                $this->pushEmail('Alert MBHFramework Firewall ' . strip_tags($_SERVER['SERVER_NAME']), "Firewall logs of " . strip_tags($_SERVER['SERVER_NAME']) . "\n".str_replace('|', "\n", $msg));
+                $this->pushEmail('Alert MBHFramework Firewall ' . strip_tags($_SERVER['SERVER_NAME']), "Firewall logs of " . strip_tags($_SERVER['SERVER_NAME']) . "\n" . str_replace('|', "\n", $msg));
             }
         }
     }
@@ -294,10 +295,9 @@ class Firewall
 
         if (self::FCONF['PROTECTION_SERVER_OVH'] and stristr($GET_HOST, 'ovh') and !stristr($GET_HOST, 'dsl.ovh')) {
             $this->logs('OVH Server list', $GET_IP, $USER_AGENT, $GET_REFERER);
-            if (self::FCONF['IS_API']) {
-                die(json_encode(array('success' => 0, 'message' => self::MSG_PROTECTION_OVH)));
-            }
-            Functions::redirect();
+
+            die(json_encode(array('success' => 0, 'message' => self::MSG_PROTECTION_OVH)));
+
             return;
         }
 
@@ -305,29 +305,26 @@ class Firewall
             $ip = explode('.', $GET_IP);
             if (sizeof($ip) > 1 and in_array($ip[0].'.'.$ip[1], self::IPLIST['SERVER_OVH_BY_IP'])) {
                 $this->logs('OVH Server IP', $GET_IP, $USER_AGENT, $GET_REFERER);
-                if (self::FCONF['IS_API']) {
-                    die(json_encode(array('success' => 0, 'message' => self::MSG_PROTECTION_OVH)));
-                }
-                Functions::redirect();
+
+                die(json_encode(array('success' => 0, 'message' => self::MSG_PROTECTION_OVH)));
+
                 return;
             }
         }
 
         if (self::FCONF['PROTECTION_SERVER_KIMSUFI'] and stristr($GET_HOST, 'kimsufi')) {
             $this->logs('KIMSUFI Server list', $GET_IP, $USER_AGENT, $GET_REFERER);
-            if (self::FCONF['IS_API']) {
-                die(json_encode(array('success' => 0, 'message' => self::MSG_PROTECTION_KIMSUFI)));
-            }
-            Functions::redirect();
+
+            die(json_encode(array('success' => 0, 'message' => self::MSG_PROTECTION_KIMSUFI)));
+
             return;
         }
 
         if (self::FCONF['PROTECTION_SERVER_DEDIBOX'] and stristr($GET_HOST, 'dedibox')) {
             $this->logs('DEDIBOX Server list', $GET_IP, $USER_AGENT, $GET_REFERER);
-            if (self::FCONF['IS_API']) {
-                die(json_encode(array('success' => 0, 'message' => self::MSG_PROTECTION_DEDIBOX)));
-            }
-            Functions::redirect();
+
+            die(json_encode(array('success' => 0, 'message' => self::MSG_PROTECTION_DEDIBOX)));
+
             return;
         }
 
@@ -335,20 +332,18 @@ class Firewall
             $ip = explode('.', $GET_IP);
             if (sizeof($ip) > 1 and $ip[0].'.'.$ip[1] == self::IPLIST['DEDIBOX_BY_IP']) {
                 $this->logs('DEDIBOX server IP', $GET_IP, $USER_AGENT, $GET_REFERER);
-                if (self::FCONF['IS_API']) {
-                    die(json_encode(array('success' => 0, 'message' => self::MSG_PROTECTION_DEDIBOX_IP)));
-                }
-                Functions::redirect();
+
+                die(json_encode(array('success' => 0, 'message' => self::MSG_PROTECTION_DEDIBOX_IP)));
+
                 return;
             }
         }
 
         if (self::FCONF['PROTECTION_SERVER_DIGICUBE'] and stristr($GET_HOST, 'digicube')) {
             $this->logs('DIGICUBE Server list', $GET_IP, $USER_AGENT, $GET_REFERER);
-            if (self::FCONF['IS_API']) {
-                die(json_encode(array('success' => 0, 'message' => self::MSG_PROTECTION_DIGICUBE)));
-            }
-            Functions::redirect();
+
+            die(json_encode(array('success' => 0, 'message' => self::MSG_PROTECTION_DIGICUBE)));
+
             return;
         }
 
@@ -356,10 +351,9 @@ class Firewall
             $ip = explode('.', $GET_IP);
             if (sizeof($ip) > 1 and $ip[0].'.'.$ip[1] == self::IPLIST['DIGICUBE_BY_IP']) {
                 $this->logs('DIGICUBE Server IP', $GET_IP, $USER_AGENT, $GET_REFERER);
-                if (self::FCONF['IS_API']) {
-                    die(json_encode(array('success' => 0, 'message' => self::MSG_PROTECTION_DIGICUBE_IP)));
-                }
-                Functions::redirect();
+
+                die(json_encode(array('success' => 0, 'message' => self::MSG_PROTECTION_DIGICUBE_IP)));
+
                 return;
             }
         }
@@ -368,9 +362,8 @@ class Firewall
             $range_ip = explode('.', $GET_IP);
             if (in_array($range_ip[0], self::IPLIST['RANGE_IP_SPAM'])) {
                 $this->logs('IPs (ip:'.$range_ip[0].') Spam list (Comming)', $GET_IP, $USER_AGENT, $GET_REFERER);
-                if (self::FCONF['IS_API']) {
-                    die(json_encode(array('success' => 0, 'message' => self::MSG_PROTECTION_SPAM)));
-                }
+
+                die(json_encode(array('success' => 0, 'message' => self::MSG_PROTECTION_SPAM)));
                 die(self::MSG_PROTECTION_SPAM);
             }
         }
@@ -379,9 +372,8 @@ class Firewall
             $range_ip = explode('.', $GET_IP);
             if (in_array($range_ip[0], self::IPLIST['RANGE_IP_DENY'])) {
                 $this->logs('IPs (ip:'.$range_ip[0].') Reserved list (Comming)', $GET_IP, $USER_AGENT, $GET_REFERER);
-                if (self::FCONF['IS_API']) {
-                    die(json_encode(array('success' => 0, 'message' => self::MSG_PROTECTION_SPAM_IP)));
-                }
+
+                die(json_encode(array('success' => 0, 'message' => self::MSG_PROTECTION_SPAM_IP)));
                 die(self::MSG_PROTECTION_SPAM_IP);
             }
         }
@@ -461,10 +453,9 @@ class Firewall
             $check = str_replace($ct_rules, '*', $GET_QUERY_STRING);
             if ($GET_QUERY_STRING != $check) {
                 $this->logs('URL protect', $GET_IP, $USER_AGENT, $GET_REFERER);
-                if (self::FCONF['IS_API']) {
-                    die(json_encode(array('success' => 0, 'message' => self::MSG_PROTECTION_URL)));
-                }
-                Functions::redirect();
+
+                die(json_encode(array('success' => 0, 'message' => self::MSG_PROTECTION_URL)));
+
                 return;
             }
         }
@@ -472,10 +463,9 @@ class Firewall
         if (self::FCONF['PROTECTION_REQUEST_SERVER'] and $GET_REQUEST_METHOD == 'POST'
            and isset($_SERVER['HTTP_REFERER']) and !stripos($_SERVER['HTTP_REFERER'], $_SERVER['HTTP_HOST'], 0)) {
             $this->logs('Posting another server', $GET_IP, $USER_AGENT, $GET_REFERER);
-            if (self::FCONF['IS_API']) {
-                die(json_encode(array('success' => 0, 'message' => self::MSG_PROTECTION_OTHER_SERVER)));
-            }
-            Functions::redirect();
+
+            die(json_encode(array('success' => 0, 'message' => self::MSG_PROTECTION_OTHER_SERVER)));
+
             return;
         }
 
@@ -529,29 +519,26 @@ class Firewall
 
             if (strtolower($USER_AGENT) != str_replace($ct_rules, '*', strtolower($USER_AGENT))) {
                 $this->logs('Bots attack', $GET_IP, $USER_AGENT, $GET_REFERER);
-                if (self::FCONF['IS_API']) {
-                    die(json_encode(array('success' => 0, 'message' => self::MSG_PROTECTION_BOTS)));
-                }
-                Functions::redirect();
+
+                die(json_encode(array('success' => 0, 'message' => self::MSG_PROTECTION_BOTS)));
+
                 return;
             }
         }
 
         if (self::FCONF['PROTECTION_REQUEST_METHOD'] and !in_array(strtolower($GET_REQUEST_METHOD), ['get','head','post','put','update','delete'])) {
             $this->logs('Invalid request', $GET_IP, $USER_AGENT, $GET_REFERER);
-            if (self::FCONF['IS_API']) {
-                die(json_encode(array('success' => 0, 'message' => self::MSG_PROTECTION_REQUEST)));
-            }
-            Functions::redirect();
+
+            die(json_encode(array('success' => 0, 'message' => self::MSG_PROTECTION_REQUEST)));
+
             return;
         }
 
         if (self::FCONF['PROTECTION_DOS'] and ($USER_AGENT == '' or $USER_AGENT == '-')) {
             $this->logs('Dos attack', $GET_IP, $USER_AGENT, $GET_REFERER);
-            if (self::FCONF['IS_API']) {
-                die(json_encode(array('success' => 0, 'message' => self::MSG_PROTECTION_DOS)));
-            }
-            Functions::redirect();
+
+            die(json_encode(array('success' => 0, 'message' => self::MSG_PROTECTION_DOS)));
+
             return;
         }
 
@@ -567,20 +554,18 @@ class Firewall
             !strstr(rawurldecode($GET_QUERY_STRING), '*') ?: $stop++;
             if ($stop > 0) {
                 $this->logs('Union attack', $GET_IP, $USER_AGENT, $GET_REFERER);
-                if (self::FCONF['IS_API']) {
-                    die(json_encode(array('success' => 0, 'message' => self::MSG_PROTECTION_UNION)));
-                }
-                Functions::redirect();
+
+                die(json_encode(array('success' => 0, 'message' => self::MSG_PROTECTION_UNION)));
+
                 return;
             }
         }
 
         if (self::FCONF['PROTECTION_CLICK_ATTACK'] and $GET_QUERY_STRING != str_replace(['/*', 'c2nyaxb0', '/*'], '*', $GET_QUERY_STRING)) {
             $this->logs('Click attack', $GET_IP, $USER_AGENT, $GET_REFERER);
-            if (self::FCONF['IS_API']) {
-                die(json_encode(array('success' => 0, 'message' => self::MSG_PROTECTION_CLICK)));
-            }
-            Functions::redirect();
+
+            die(json_encode(array('success' => 0, 'message' => self::MSG_PROTECTION_CLICK)));
+
             return;
         }
 
@@ -591,10 +576,9 @@ class Firewall
              'ftp%20:', 'ftps:', 'f%20tps:', 'ft%20ps:', 'ftp%20s:', 'ftps%20:'];
             if ($GET_QUERY_STRING != str_replace($ct_rules, '*', $GET_QUERY_STRING)) {
                 $this->logs('XSS attack', $GET_IP, $USER_AGENT, $GET_REFERER);
-                if (self::FCONF['IS_API']) {
-                    die(json_encode(array('success' => 0, 'message' => self::MSG_PROTECTION_XSS)));
-                }
-                Functions::redirect();
+
+                die(json_encode(array('success' => 0, 'message' => self::MSG_PROTECTION_XSS)));
+
                 return;
             }
         }
