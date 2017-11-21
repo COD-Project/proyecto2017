@@ -82,7 +82,7 @@ class TurnosController extends \App\Controller
                 throw new \InvalidArgumentException("La fecha es incorrecta");
             }
 
-            if (date_diff($date, new DateTime)->format("%d") < 0) {
+            if (date_diff($date, new \DateTime)->format("%d") < 0) {
                 throw new \InvalidArgumentException("Está intentando reservar un turno para una fecha vencida");
             }
 
