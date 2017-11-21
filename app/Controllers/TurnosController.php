@@ -73,8 +73,16 @@ class TurnosController extends \App\Controller
     public function createAction($document, $date, $time, $chat_id = 0)
     {
         try {
-            $date = new \DateTime($date);
+            $date = \DateTime::createFromFormat("Y-m-d", $date);
             $time = new \DateTime($time);
+
+            if (!$date) {
+                throw new \InvalidArgumentException("La fecha es incorrecta");
+            }
+
+            if (date_diff($date, new DateTime)->format("%d") < 0) {
+                throw new \InvalidArgumentException("Está intentando reservar un turno para una fecha vencida");
+            }
 
             if (!in_array($time->format('H:i:s'), $this->timesArray())) {
                 throw new \InvalidArgumentException("El horario elegido es incorrecto");
