@@ -45,8 +45,12 @@ class Api
                     return;
                 }
                 $dni = $data[1];
-                $date = new \DateTime($data[2]);
-                $time = new \DateTime($data[3]);
+                try {
+                    $date = new \DateTime($data[2]);
+                    $time = new \DateTime($data[3]);
+                } catch (\Exception $e) {
+                    $bot->sendMessage($message->getChat()->getId(), "Hay un error en el formato de la fecha");
+                }
 
                 $ch = curl_init(URL . "turnos/{$dni}/fecha/{$date->format('Y-m-d')}/hora/{$time->format('H:i:s')}/{$message->getChat()->getId()}");
                 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
