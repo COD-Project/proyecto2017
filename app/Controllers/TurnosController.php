@@ -53,6 +53,8 @@ class TurnosController extends \App\Controller
 
             $times = [];
 
+            $data = [];
+
             $datetime = \DateTime::createFromFormat("Y-m-d H:i:s", $date);
 
             if (!$datetime) {
@@ -60,7 +62,6 @@ class TurnosController extends \App\Controller
             }
 
             if ($datetime < new \DateTime(date("Y-m-d"))) {
-                $data = [];
                 throw new \Exception("Está intentando ver turnos vencidos");
             }
 
