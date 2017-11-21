@@ -22,7 +22,7 @@ class Api
 
                 $data_curl = json_decode($info, true);
 
-                if (!$data_curl["success"]) {
+                if ($data_curl["success"] == false) {
                     $bot->sendMessage($message->getChat()->getId(), "error";
                 }
 
