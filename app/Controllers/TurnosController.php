@@ -53,9 +53,9 @@ class TurnosController extends \App\Controller
 
             $times = [];
 
-            $date = new \DateTime($date);
+            $datetime = new \DateTime($date);
 
-            if ($date < new \DateTime) {
+            if ($datetime < new \DateTime) {
                 throw new \Exception("Está intentando ver turnos vencidos");
             }
 
