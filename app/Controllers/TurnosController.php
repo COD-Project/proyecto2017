@@ -53,7 +53,7 @@ class TurnosController extends \App\Controller
 
             $times = [];
 
-            $datetime = new \DateTime::createFromFormat("Y-m-d H:i:s", $date);
+            $datetime = \DateTime::createFromFormat("Y-m-d H:i:s", $date);
 
             if (!$datetime) {
                 throw new \Exception("Hay un error en el formato de la fecha");
