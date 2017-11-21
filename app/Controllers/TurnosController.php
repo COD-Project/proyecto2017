@@ -15,11 +15,13 @@ class TurnosController extends \App\Controller
         $this->app->get('/turnos/:fecha', [ $this, 'getAction' ]);
         $this->app->get('/turnos/activos/user/:id', [ $this, 'getForUserAction' ]);
         $this->app->get('/turnos/activos/doc/:doc', [ $this, 'getForDocumentNumberAction' ]);
-        $this->app->get(
+        $this->app->map(
+            ['GET', 'HEAD', 'POST'],
             '/turnos/:document/fecha/:fecha/hora/:hora',
             [ $this, 'createAction' ]
         );
-        $this->app->get(
+        $this->app->map(
+            ['GET', 'HEAD', 'POST'],
             '/turnos/:document/fecha/:fecha/hora/:hora/:chat_id',
             [ $this, 'createAction' ]
         );

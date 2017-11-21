@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/MBHFramework/mbh-firewall.git",
-                "reference": "e210e2c0fb094d39d6e938bca37be9f9af68467a"
+                "reference": "962f0c53b4d505fbc7a33779fde277f27ce99333"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/MBHFramework/mbh-firewall/zipball/e210e2c0fb094d39d6e938bca37be9f9af68467a",
-                "reference": "e210e2c0fb094d39d6e938bca37be9f9af68467a",
+                "url": "https://api.github.com/repos/MBHFramework/mbh-firewall/zipball/962f0c53b4d505fbc7a33779fde277f27ce99333",
+                "reference": "962f0c53b4d505fbc7a33779fde277f27ce99333",
                 "shasum": ""
             },
             "require": {
@@ -52,7 +52,7 @@
                     "email": "ldicunzolo@cespi.unlp.edu.ar"
                 }
             ],
-            "time": "2017-10-11T18:52:07+00:00"
+            "time": "2017-10-30T13:44:09+00:00"
         },
         {
             "name": "mbh-framework/mvc",

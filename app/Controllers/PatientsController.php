@@ -204,8 +204,8 @@ class PatientsController extends \App\Controller
     {
         return array_map(function ($each) {
             return [
-                $each->age(),
-                $each->ppc()
+                (int) $each->age(),
+                floatval($each->ppc())
             ];
         }, $data);
     }
@@ -214,8 +214,8 @@ class PatientsController extends \App\Controller
     {
         return array_map(function ($each) {
             return [
-                $each->age(),
-                $each->weight()
+                (int) $each->age(),
+                floatval($each->weight())
             ];
         }, $data);
     }
@@ -224,8 +224,8 @@ class PatientsController extends \App\Controller
     {
         return array_map(function ($each) {
             return [
-                $each->height(),
-                $each->weight()
+                floatval($each->height()),
+                floatval($each->weight())
             ];
         }, $data);
     }
