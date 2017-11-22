@@ -17,7 +17,7 @@
               <div class="md-form">
                 <label for="active"></label>
                 <select class="form-control" id="active" name="active">
-                  <option selected disabled="disabled">Estado</option>
+                  <option selected="selected" disabled="disabled">Estado</option>
                   <option value="active">Activo</option>
                   <option value="inactive">Inactivo</option>
                 </select>
@@ -54,7 +54,7 @@
                 <td>{{ user.fullName }}</td>
                 <td>{{ user.email }}</td>
                 <td>
-                  <a href="users/{{ user.active == '1' ? 'disable' : 'enable' }}/{{user.id}}">
+                  <a href="users/{{ user.active == '1' ? 'disable' : 'enable' }}/{{user.id}}" class="confirmation">
                     <span class="badge badge-danger badge-pill">{{ user.active == '1' ? 'Deshabilitar' : 'Habilitar' }}</span>
                   </a>
                 </td>

@@ -26,7 +26,8 @@ class HealthControl extends \App\Model
         "feeding" => "alimentacion",
         "generalObservations" => "observaciones_generales",
         "patientId" => "paciente_id",
-        "userId" => "user_id"
+        "userId" => "user_id",
+        "active" => "activo"
     ];
 
     public function patient()
@@ -48,5 +49,16 @@ class HealthControl extends \App\Model
         $birthday = new \DateTime($this->patient()->birthday());
         $interval = $birthday->diff(new \DateTime($this->date()), true);
         return (int) ($interval->format("%a")/7);
+    }
+
+    public function remove()
+    {
+        $this->addState([
+            "active" => "0"
+        ]);
+
+        $this->edit();
+
+        return $this;
     }
 }

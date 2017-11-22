@@ -32,7 +32,7 @@
                   <a href="roles/show/{{role.id}}">
                     <span class="badge badge-info badge-pill">Ver/Editar</span>
                   </a>
-                  <a href="roles/delete/{{role.id}}">
+                  <a href="roles/delete/{{role.id}}" class="confirmation">
                     <span class="badge badge-danger badge-pill">Eliminar</span>
                   </a>
                 </td>
@@ -41,62 +41,63 @@
           {% endfor %}
         </table>
         {% if roles is null %}
-        <div class="alert alert-info alert-dismissible fade show" role="alert">
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-          <p>
-            <small>
-              <strong>No hay roles cargados en el sistema.</strong>
-              Puede crear un nuevo rol <a href="roles/create">aquí</a>
-            </small>
-          </p>
-        </div>
+          <div class="alert alert-info alert-dismissible fade show" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <p>
+              <small>
+                <strong>No hay roles cargados en el sistema.</strong>
+                Puede crear un nuevo rol
+                <a href="roles/create">aquí</a>
+              </small>
+            </p>
+          </div>
         {% endif %}
 
         <div class="d-flex justify-content-center">
           <!--Pagination -->
           {% if roles is not empty %}
-          <div class="text-center">
-            <nav class="my-4 pt-2">
-              <ul class="pagination pagination-circle pg-bluegrey mb-0">
+            <div class="text-center">
+              <nav class="my-4 pt-2">
+                <ul class="pagination pagination-circle pg-bluegrey mb-0">
 
-                <!--First-->
-                <li class="page-item {{ (1 == page) ? 'disabled' }} clearfix d-none d-md-block">
-                  <a class="page-link" href="roles?page=1">First</a>
-                </li>
-
-                <!--Arrow left-->
-                <li class="page-item {{ (1 == page) ? 'disabled' }}">
-                  <a class="page-link" href="roles?page={{ page - 1 }}" aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
-                    <span class="sr-only">Previo</span>
-                  </a>
-                </li>
-
-                <!-- Numbers -->
-                {% for index in range(1, last_page) %}
-                  <li class="page-item {{ (index == page) ? 'active' }}">
-                    <a class="page-link" href="roles?page={{ index }}">{{ index }}</a>
+                  <!--First-->
+                  <li class="page-item {{ (1 == page) ? 'disabled' }} clearfix d-none d-md-block">
+                    <a class="page-link" href="roles?page=1">First</a>
                   </li>
-                {% endfor %}
 
-                <!--Arrow right-->
-                <li class="page-item {{ (last_page == page) ? 'disabled' }}">
-                  <a class="page-link" href="roles?page={{ page + 1 }}" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                    <span class="sr-only">Siguiente</span>
-                  </a>
-                </li>
+                  <!--Arrow left-->
+                  <li class="page-item {{ (1 == page) ? 'disabled' }}">
+                    <a class="page-link" href="roles?page={{ page - 1 }}" aria-label="Previous">
+                      <span aria-hidden="true">&laquo;</span>
+                      <span class="sr-only">Previo</span>
+                    </a>
+                  </li>
 
-                <!--First-->
-                <li class="page-item {{ (last_page == page) ? 'disabled' }} clearfix d-none d-md-block">
-                  <a class="page-link" href="roles?page={{ last_page }}">Last</a>
-                </li>
+                  <!-- Numbers -->
+                  {% for index in range(1, last_page) %}
+                    <li class="page-item {{ (index == page) ? 'active' }}">
+                      <a class="page-link" href="roles?page={{ index }}">{{ index }}</a>
+                    </li>
+                  {% endfor %}
 
-              </ul>
-            </nav>
-          </div>
+                  <!--Arrow right-->
+                  <li class="page-item {{ (last_page == page) ? 'disabled' }}">
+                    <a class="page-link" href="roles?page={{ page + 1 }}" aria-label="Next">
+                      <span aria-hidden="true">&raquo;</span>
+                      <span class="sr-only">Siguiente</span>
+                    </a>
+                  </li>
+
+                  <!--First-->
+                  <li class="page-item {{ (last_page == page) ? 'disabled' }} clearfix d-none d-md-block">
+                    <a class="page-link" href="roles?page={{ last_page }}">Last</a>
+                  </li>
+
+                </ul>
+              </nav>
+            </div>
           {% endif %}
           <!--/Pagination -->
         </div>

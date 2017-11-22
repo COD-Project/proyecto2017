@@ -36,9 +36,9 @@
               <div class="md-form text-center">
                 <label for="documentTypeId"></label>
                 <select class="form-control" id="documentTypeId" name="documentTypeId">
-                  <option selected disabled="disabled">Tipo de documento</option>
+                  <option selected="selected" disabled="disabled">Tipo de documento</option>
                   {% for option in documentTypes %}
-                  <option value="{{option.id}}">{{option.name}}</option>
+                    <option value="{{option.id}}">{{option.name}}</option>
                   {% endfor %}
                 </select>
               </div>
@@ -80,7 +80,7 @@
                   <a href="patients/show/{{patient.id}}">
                     <span class="badge badge-info badge-pill">Ver/Editar</span>
                   </a>
-                  <a href="patients/delete/{{patient.id}}">
+                  <a href="patients/delete/{{patient.id}}" class="confirmation">
                     <span class="badge badge-danger badge-pill">Eliminar</span>
                   </a>
                 </td>
@@ -88,18 +88,19 @@
             </tbody>
           {% endfor %}
         </table>
-        {% if patients is null %}
-        <div class="alert alert-info alert-dismissible fade show" role="alert">
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-          <p>
-            <small>
-              <strong>No hay pacientes cargados en el sistema.</strong>
-              Puede cargar un nuevo paciente <a href="patients/create">aquí</a>
-            </small>
-          </p>
-        </div>
+        {% if patients is empty %}
+          <div class="alert alert-info alert-dismissible fade show" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <p>
+              <small>
+                <strong>No hay pacientes cargados en el sistema.</strong>
+                Puede cargar un nuevo paciente
+                <a href="patients/create">aquí</a>
+              </small>
+            </p>
+          </div>
         {% endif %}
         <div class="d-flex justify-content-center">
           <!--Pagination -->
