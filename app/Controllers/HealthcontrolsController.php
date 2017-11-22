@@ -46,14 +46,21 @@ class HealthcontrolsController extends \App\Controller
     {
         $get = $this->get();
 
-        $patients = !is_null($document) ?
-                      Patient::findBy($document, 'documentNumber') :
-                      null;
+        if (!$document) {
+            $healthcontrols = HealthControl::get([
+                "active" => '1'
+            ]);
+        } else {
+            $patients = !is_null($document) ?
+                        Patient::findBy($document, 'documentNumber') :
+                        null;
+                        
+            $healthcontrols = HealthControl::get([
+                "active" => '1',
+                "patientId" => !sizeof($patients) ? 'not_match' : $patients[0]->id()
+            ]);
+        }
 
-        $healthcontrols = HealthControl::get([
-            "active" => '1',
-            "patientId" => !sizeof($patients) ? 'not_match' : $patients[0]->id()
-        ]);
 
         $pageNumber = !$get['page'] ? $get['page'] : $get['page'] - 1;
         $from = AMOUNT_PER_PAGE * (int) $pageNumber;
