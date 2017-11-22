@@ -187,15 +187,23 @@ class PatientsController extends \App\Controller
             return;
         }
 
+        $patient = Patient::find($id);
         $healthcontrols = HealthControl::findBy($id, 'patientId');
         $method = "healthcontrols" . ucwords($type);
+
+        $file = strtolower($patient->gender()) . "-$type.json";
+
+        $static_data = json_decode(
+          file_get_contents("uploads/graphs/$file"),
+          true
+        );
 
         return [
           "success" => true,
           "message" => "Get your data!",
           "data" => [[
               'name' => 'paciente',
-              'data' =>  $this->{$method}($healthcontrols)
+              'data' =>  (array) (($this->{$method}($healthcontrols)) + $static_data)
           ]]
         ];
     }
@@ -215,7 +223,7 @@ class PatientsController extends \App\Controller
         return array_map(function ($each) {
             return [
                 (int) $each->age(),
-                floatval($each->weight())
+                floatval($each->weight() / 1000)
             ];
         }, $data);
     }
@@ -225,7 +233,7 @@ class PatientsController extends \App\Controller
         return array_map(function ($each) {
             return [
                 floatval($each->height()),
-                floatval($each->weight())
+                floatval($each->weight() / 1000)
             ];
         }, $data);
     }
