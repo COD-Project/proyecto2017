@@ -16,6 +16,7 @@ class HealthcontrolsController extends \App\Controller
         ]);
 
         $this->app->get('/healthcontrols', [$this, 'indexAction']);
+        $this->app->get('/healthcontrols/search/document/:document', [$this, 'indexAction']);
         $this->app->get('/healthcontrols/show/:id', [ $this, 'showAction']);
         $this->app->get('/healthcontrols/create/patient/:id', [ $this, 'addAction']);
         $this->app->get('/healthcontrols/analytics/:sex/:type', [ $this, 'getHealthcontrolsAction']);
@@ -27,12 +28,31 @@ class HealthcontrolsController extends \App\Controller
         $this->app->run();
     }
 
-    public function indexAction()
+    public function indexAction($document = null)
+    {
+        $this->checkPermissions([ 'usuario_index' ]);
+
+        $get = $this->get();
+
+        if (isset($get['document'])) {
+            $document = $get['document'];
+            $this->redirect("healthcontrols/search/document/$document");
+        }
+
+        return $this->search($document);
+    }
+
+    public function search($document = null)
     {
         $get = $this->get();
 
+        $patients = !is_null($document) ?
+                      Patient::findBy($document, 'documentNumber') :
+                      null;
+
         $healthcontrols = HealthControl::get([
-            "active" => '1'
+            "active" => '1',
+            "patientId" => !sizeof($patients) ? 'not_match' : $patients[0]->id()
         ]);
 
         $pageNumber = !$get['page'] ? $get['page'] : $get['page'] - 1;
@@ -42,7 +62,7 @@ class HealthcontrolsController extends \App\Controller
           'healthcontrols' => $healthcontrols ? array_slice($healthcontrols, $from, AMOUNT_PER_PAGE) : [],
           'page' => !$get['page'] ? 1 : $get['page'],
           'last_page' => ceil(count($healthcontrols) / AMOUNT_PER_PAGE),
-          'location' => "healthcontrols"
+          'location' => "healthcontrols" . (string) (is_null($patients) ? "" : "/search/document/$document")
       ]);
     }
 
