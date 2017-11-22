@@ -201,10 +201,10 @@ class PatientsController extends \App\Controller
         return [
           "success" => true,
           "message" => "Get your data!",
-          "data" => [[
+          "data" => (array) ([[
               'name' => 'paciente',
-              'data' =>  (array) (($this->{$method}($healthcontrols)) + $static_data)
-          ]]
+              'data' => $this->{$method}($healthcontrols)
+          ]] + $static_data)
         ];
     }
 
