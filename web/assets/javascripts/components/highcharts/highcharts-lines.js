@@ -13,6 +13,9 @@ class HighchartsLines {
       },
       plotOptions: {
         series: {
+          marker: {
+            enabled: false,
+          }
           lineWidth: 1,
         },
         xAxis: {
