@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: db
--- Tiempo de generación: 20-11-2017 a las 12:36:19
+-- Tiempo de generación: 22-11-2017 a las 19:05:41
 -- Versión del servidor: 5.7.19
 -- Versión de PHP: 7.0.21
 
@@ -68,6 +68,7 @@ CREATE TABLE IF NOT EXISTS `controles_de_salud` (
   `observaciones_generales` varchar(255) DEFAULT NULL,
   `paciente_id` int(11) NOT NULL,
   `user_id` int(11) DEFAULT NULL,
+  `activo` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`),
   KEY `paciente_id` (`paciente_id`),
   KEY `user_id` (`user_id`)
