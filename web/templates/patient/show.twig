@@ -94,7 +94,7 @@
                 </div>
                 <div class="col-lg-4 col-sm-6">
                   <p class="mb-0">
-                    <strong>Género</strong>
+                    <strong>Sexo</strong>
                   </p>
                   <p>{{patient.gender}}</p>
                 </div>
@@ -240,11 +240,11 @@
                   </div>
                   <div class="col-lg-4 col-sm-6">
                     <p class="mb-0">
-                      <strong>Género</strong>
+                      <strong>Sexo</strong>
                     </p>
                     <div class="md-form mb-0 card-style-input">
                       <select class="form-control" id="gender" name="gender">
-                        <option disabled="disabled">Género</option>
+                        <option disabled="disabled">Sexo</option>
                         {% for option in genders %}
                           <option value="{{option}}" {{(patient.gender == option) ? "selected"}}>{{option}}</option>
                         {% endfor %}

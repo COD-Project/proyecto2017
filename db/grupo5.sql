@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: db
--- Tiempo de generación: 20-11-2017 a las 12:35:45
+-- Tiempo de generación: 22-11-2017 a las 20:54:10
 -- Versión del servidor: 5.7.19
 -- Versión de PHP: 7.0.21
 
@@ -68,6 +68,7 @@ CREATE TABLE IF NOT EXISTS `controles_de_salud` (
   `observaciones_generales` varchar(255) DEFAULT NULL,
   `paciente_id` int(11) NOT NULL,
   `user_id` int(11) DEFAULT NULL,
+  `activo` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`),
   KEY `paciente_id` (`paciente_id`),
   KEY `user_id` (`user_id`)
@@ -122,7 +123,7 @@ CREATE TABLE IF NOT EXISTS `pacientes` (
   `domicilio` varchar(255) NOT NULL,
   `telefono` varchar(255) DEFAULT NULL,
   `fecha_nac` date NOT NULL,
-  `genero` enum('Masculino','Femenino','Otro') NOT NULL,
+  `genero` enum('Masculino','Femenino') NOT NULL,
   `datos_demograficos_id` int(11) DEFAULT NULL,
   `obra_social_id` int(11) DEFAULT NULL,
   `tipo_doc_id` int(11) NOT NULL,
@@ -365,7 +366,7 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `email`, `username`, `password`, `activo`, `created_at`, `updated_at`, `session`, `first_name`, `last_name`) VALUES
-(2, 'admin@admin.com', 'admin', 'c9bf17bd5e274d7b883467f70ffb6087', 1, '2017-10-14 12:59:36', '2017-11-17 23:47:38', 1511199208, 'Señor', 'Administrador'),
+(2, 'admin@admin.com', 'admin', 'c9bf17bd5e274d7b883467f70ffb6087', 1, '2017-10-14 12:59:36', '2017-11-17 23:47:38', 0, 'Señor', 'Administrador'),
 (3, 'recepcionista@hnrc.com', 'recepcionista', '0963abc8847487fe0875671fb980f838', 1, '2017-10-14 13:00:24', '2017-11-20 08:55:55', 0, 'Señor', 'Recepcionista'),
 (4, 'pediatra@hnrg.com', 'pediatra', '2145344b74248f25ecf6047c5f271de5', 1, '2017-10-14 13:00:59', '2017-11-20 08:55:47', 0, 'Señor', 'Pediatra'),
 (5, 'su@hnrg.com', 'su', '829b13db5a760c43b3a891734d68c7f5', 1, '2017-11-17 23:48:12', '2017-11-17 23:48:12', 0, 'Señor', 'Superadministrador');
