@@ -54,7 +54,7 @@ class HealthcontrolsController extends \App\Controller
             $patients = !is_null($document) ?
                         Patient::findBy($document, 'documentNumber') :
                         null;
-                        
+
             $healthcontrols = HealthControl::get([
                 "active" => '1',
                 "patientId" => !sizeof($patients) ? 'not_match' : $patients[0]->id()
@@ -69,7 +69,7 @@ class HealthcontrolsController extends \App\Controller
           'healthcontrols' => $healthcontrols ? array_slice($healthcontrols, $from, AMOUNT_PER_PAGE) : [],
           'page' => !$get['page'] ? 1 : $get['page'],
           'last_page' => ceil(count($healthcontrols) / AMOUNT_PER_PAGE),
-          'location' => "healthcontrols" . (string) (is_null($patients) ? "" : "/search/document/$document")
+          'location' => "healthcontrols" . (string) (is_null($document) ? "" : "/search/document/$document")
       ]);
     }
 
