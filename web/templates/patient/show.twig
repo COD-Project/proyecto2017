@@ -44,13 +44,16 @@
           <!--Card content-->
           <div class="card-body text-center">
             <!--Title-->
-            <h4 class="card-title" style="margin-left: 55px;">
+            <h4 class="card-title" style="margin-left: 125px;">
               <strong>{{patient.fullName}}</strong>
-              <a href="patients/show/{{patient.id}}/graph/view" class="btn btn-dark light-blue darken-3 btn-circle btn-xs" title="Graficos del paciente">
-                <i class="fa fa-line-chart"></i>
-              </a>
-              <a href="healthcontrols/create/patient/{{patient.id}}" class="btn btn-dark light-blue darken-3 btn-circle btn-xs" style="margin-left: -10px;" title="Agregar historia clinica">
+              <a href="healthcontrols/create/patient/{{patient.id}}" class="btn btn-dark light-blue darken-3 btn-circle btn-xs" title="Agregar historia clinica">
                 <i class="fa fa-plus"></i>
+              </a>
+              <a href="healthcontrols/search/document/{{patient.documentNumber}}" class="btn btn-dark light-blue darken-3 btn-circle btn-xs" style="margin-left: -10px;" title="Ver historias clínicas">
+                <i class="fa fa-list-ol"></i>
+              </a>
+              <a href="patients/show/{{patient.id}}/graph/view" class="btn btn-dark light-blue darken-3 btn-circle btn-xs" style="margin-left: -10px;" title="Graficos del paciente">
+                <i class="fa fa-line-chart"></i>
               </a>
             </h4>
             <h5 class="indigo-text">
