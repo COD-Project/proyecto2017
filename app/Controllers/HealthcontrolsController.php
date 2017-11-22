@@ -229,7 +229,7 @@ class HealthcontrolsController extends \App\Controller
         return array_map(function ($each) {
             return [
                 (int) $each->age(),
-                floatval($each->weight())
+                floatval($each->weight() / 1000)
             ];
         }, $data);
     }
@@ -239,7 +239,7 @@ class HealthcontrolsController extends \App\Controller
         return array_map(function ($each) {
             return [
                 floatval($each->height()),
-                floatval($each->weight())
+                floatval($each->weight() / 1000)
             ];
         }, $data);
     }
