@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: db
--- Tiempo de generación: 22-11-2017 a las 19:05:41
+-- Tiempo de generación: 22-11-2017 a las 20:54:23
 -- Versión del servidor: 5.7.19
 -- Versión de PHP: 7.0.21
 
@@ -123,7 +123,7 @@ CREATE TABLE IF NOT EXISTS `pacientes` (
   `domicilio` varchar(255) NOT NULL,
   `telefono` varchar(255) DEFAULT NULL,
   `fecha_nac` date NOT NULL,
-  `genero` enum('Masculino','Femenino','Otro') NOT NULL,
+  `genero` enum('Masculino','Femenino') NOT NULL,
   `datos_demograficos_id` int(11) DEFAULT NULL,
   `obra_social_id` int(11) DEFAULT NULL,
   `tipo_doc_id` int(11) NOT NULL,

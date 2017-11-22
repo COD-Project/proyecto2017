@@ -84,7 +84,7 @@ class PatientsController extends \App\Controller
                 'heatingType' => HeatingType::all(),
                 'apartamentType' => ApartamentType::all(),
                 'waterType' => WaterType::all(),
-                'genders' => ["Masculino", "Femenino", "Otro"]
+                'genders' => ["Masculino", "Femenino"]
             ]);
         }
 
@@ -203,6 +203,9 @@ class PatientsController extends \App\Controller
           "message" => "Get your data!",
           "data" => (array) ([[
               'name' => 'paciente',
+              'marker' => [
+                  'enabled' => true,
+              ],
               'data' => $this->{$method}($healthcontrols)
           ]] + $static_data)
         ];
