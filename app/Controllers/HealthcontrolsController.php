@@ -31,7 +31,9 @@ class HealthcontrolsController extends \App\Controller
     {
         $get = $this->get();
 
-        $healthcontrols = HealthControl::all();
+        $healthcontrols = HealthControl::get([
+            "active" => '1'
+        ]);
 
         $pageNumber = !$get['page'] ? $get['page'] : $get['page'] - 1;
         $from = AMOUNT_PER_PAGE * (int) $pageNumber;
@@ -49,9 +51,12 @@ class HealthcontrolsController extends \App\Controller
         $this->checkPermissions([ 'control_salud_show' ]);
 
         HealthControl::init();
-        $healthControl = HealthControl::find($id);
+        $healthControls = HealthControl::get([
+            "id" => $id,
+            "active" => "1"
+        ]);
 
-        if ($healthControl) {
+        if ($healthControl = $healthControls[0]) {
             return $this->template->render('healthcontrol/show.twig', [
                 'healthControl' => $healthControl,
                 'patient' => $healthControl->patient()
