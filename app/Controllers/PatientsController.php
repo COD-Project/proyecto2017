@@ -202,7 +202,7 @@ class PatientsController extends \App\Controller
           "success" => true,
           "message" => "Get your data!",
           "data" => (array) ([[
-              'name' => 'paciente',
+              'name' => (string) ($patient->fullName() . ' - ' $patient->documentNumber()),
               'marker' => [
                   'enabled' => true,
               ],

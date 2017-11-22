@@ -50,7 +50,7 @@ $('#men-weight-chard').click(function() {
         title: {
           text: 'Peso (kg)'
         },
-        min: 2,
+        min: 1,
         max: 8,
         minorTickInterval: 0.1,
       },
@@ -77,7 +77,7 @@ $('#women-weight-chard').click(function() {
         title: {
           text: 'Peso (kg)'
         },
-        min: 2,
+        min: 1,
         max: 8,
         minorTickInterval: 0.1,
       },

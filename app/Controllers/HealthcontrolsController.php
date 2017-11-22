@@ -202,7 +202,7 @@ class HealthcontrolsController extends \App\Controller
         foreach ($patients as $key => $value) {
             $healthcontrols = HealthControl::findBy($value->id(), 'patientId');
             $data[] = [
-                'name' => 'paciente#' . $value->id(),
+                'name' => 'paciente#' . $value->documentNumber(),
                 'data' => $this->{$method}($healthcontrols)
             ];
         }
