@@ -30,7 +30,7 @@ class HealthcontrolsController extends \App\Controller
 
     public function indexAction($document = null)
     {
-        $this->checkPermissions([ 'usuario_index' ]);
+        $this->checkPermissions([ 'control_salud_index' ]);
 
         $get = $this->get();
 
@@ -42,7 +42,7 @@ class HealthcontrolsController extends \App\Controller
         return $this->search($document);
     }
 
-    public function search($document = null)
+    protected function search($document = null)
     {
         $get = $this->get();
 
