@@ -1,8 +1,8 @@
 {
   "database": {
     "host": "localhost",
-    "user": "grupo5",
-    "pass": "NWQxMDA1NWJlMDA3",
+    "user": "root",
+    "pass": "",
     "name": "grupo5",
     "port": 3307,
     "protocol": "TCP",
